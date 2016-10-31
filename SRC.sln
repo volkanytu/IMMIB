@@ -49,7 +49,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ConsoleApp", "ConsoleApp", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SRC.ConsoleApp.ScheduledJobs", "ConsoleApp\SRC.ConsoleApp.ScheduledJobs\SRC.ConsoleApp.ScheduledJobs.csproj", "{17F7F1A2-E262-42CC-90EC-B29819A4A942}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SRC.WindowsService.TestService", "WindowsService\SRC.WebService.Test\SRC.WindowsService.TestService.csproj", "{0986BBB3-F9CA-4E56-B6FE-A56AB6C67B5A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SRC.WindowsService.TestService", "WindowsService\SRC.WindowsService.Test\SRC.WindowsService.TestService.csproj", "{0986BBB3-F9CA-4E56-B6FE-A56AB6C67B5A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
