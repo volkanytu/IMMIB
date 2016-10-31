@@ -49,7 +49,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CrmEntities\Association.cs" />
+    <Compile Include="CrmEntities\City.cs" />
     <Compile Include="CrmEntities\Contact.cs" />
+    <Compile Include="CrmEntities\EducationDefinition.cs" />
+    <Compile Include="CrmEntities\EducationLocation.cs" />
+    <Compile Include="CrmEntities\GsmOperator.cs" />
+    <Compile Include="CrmEntities\InformedBy.cs" />
+    <Compile Include="CrmEntities\Language.cs" />
+    <Compile Include="CrmEntities\TaxOffice.cs" />
+    <Compile Include="CrmEntities\Town.cs" />
+    <Compile Include="CrmEntities\University.cs" />
     <Compile Include="CustomAttributes.cs" />
     <Compile Include="CrmEntities\EntityBase.cs" />
     <Compile Include="CustomEntities\CustomException.cs" />
