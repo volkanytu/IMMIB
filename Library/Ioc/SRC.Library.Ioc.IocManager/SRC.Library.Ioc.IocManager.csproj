@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6C6ACF75-343C-4B62-B131-75FE56C582C8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SRC.Library.Ioc.IocManager</RootNamespace>
+    <AssemblyName>SRC.Library.Ioc.IocManager</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Autofac, Version=4.1.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Autofac.4.1.1\lib\net45\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Autofac.Extras.DynamicProxy, Version=4.1.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Autofac.Extras.DynamicProxy.4.1.0\lib\net45\Autofac.Extras.DynamicProxy.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Castle.Core, Version=3.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Castle.Core.3.2.2\lib\net45\Castle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IocContainerBuilder.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\SRC.Library.Data.ElasticDao\SRC.Library.Data.ElasticDao.csproj">
+      <Project>{bfcc2314-0eda-4c5d-8b40-f958c999eee3}</Project>
+      <Name>SRC.Library.Data.ElasticDao</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\SRC.Library.Data.Interfaces\SRC.Library.Data.Interfaces.csproj">
+      <Project>{49be302d-3b93-487b-b3a1-5e4a3460bef4}</Project>
+      <Name>SRC.Library.Data.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\SRC.Library.Data.SqlDao\SRC.Library.Data.SqlDao.csproj">
+      <Project>{69420626-41fa-4559-ad2a-d38eb2cf0585}</Project>
+      <Name>SRC.Library.Data.SqlDao</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SRC.Library.Common\SRC.Library.Common.csproj">
+      <Project>{13229fe4-c206-4917-8a42-2ea185ef8f86}</Project>
+      <Name>SRC.Library.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SRC.Library.Constants\SRC.Library.Constants.csproj">
+      <Project>{a99b9f74-4e1e-4ed3-96ba-c60963dff937}</Project>
+      <Name>SRC.Library.Constants</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SRC.Library.Entities\SRC.Library.Entities.csproj">
+      <Project>{b8161203-76e4-4500-92c5-4c98b17b75ef}</Project>
+      <Name>SRC.Library.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SRC.Library.LogManager\SRC.Library.LogManager.csproj">
+      <Project>{0d8d367b-1381-462c-8398-ff309f7d270c}</Project>
+      <Name>SRC.Library.LogManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SRC.Library.RestClient\SRC.Library.RestClient.csproj">
+      <Project>{c746f8ae-0a8f-4faf-a54a-1c96e16ad1a3}</Project>
+      <Name>SRC.Library.RestClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SRC.Library.Ioc.Interceptor\SRC.Library.Ioc.Interceptor.csproj">
+      <Project>{5d948cc9-a8f5-4e80-a665-d01029732fc9}</Project>
+      <Name>SRC.Library.Ioc.Interceptor</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
