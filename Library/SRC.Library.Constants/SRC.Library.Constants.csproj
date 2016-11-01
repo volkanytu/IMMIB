@@ -46,10 +46,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlQueries\AccountQueries.cs" />
     <Compile Include="SqlQueries\AssociationQueries.cs" />
     <Compile Include="SqlQueries\CityQueries.cs" />
+    <Compile Include="SqlQueries\ContactQueries.cs" />
+    <Compile Include="SqlQueries\EducationAttendenceQueries.cs" />
     <Compile Include="SqlQueries\EducationDefinitionQueries.cs" />
     <Compile Include="SqlQueries\EducationLocationQueries.cs" />
+    <Compile Include="SqlQueries\EducationQueries.cs" />
     <Compile Include="SqlQueries\GsmOperatorQueries.cs" />
     <Compile Include="SqlQueries\InformedByQueries.cs" />
     <Compile Include="SqlQueries\LanguageQueries.cs" />

@@ -49,9 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CrmEntities\Account.cs" />
     <Compile Include="CrmEntities\Association.cs" />
     <Compile Include="CrmEntities\City.cs" />
     <Compile Include="CrmEntities\Contact.cs" />
+    <Compile Include="CrmEntities\Education.cs" />
+    <Compile Include="CrmEntities\EducationAttendance.cs" />
     <Compile Include="CrmEntities\EducationDefinition.cs" />
     <Compile Include="CrmEntities\EducationLocation.cs" />
     <Compile Include="CrmEntities\GsmOperator.cs" />

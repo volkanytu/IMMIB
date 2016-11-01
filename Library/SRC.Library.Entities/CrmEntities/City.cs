@@ -25,5 +25,17 @@ namespace SRC.Library.Entities.CrmEntities
         public const string KEY_CITY_ID = "new_cityid";
         public const string KEY_NAME = "new_name";
         public const string KEY_CODE = "new_code";
+
+        public enum StateCode
+        {
+            ACTIVE = 0,
+            PASSIVE = 1
+        }
+
+        public enum StatusCode
+        {
+            ACTIVE = 1,
+            PASSIVE = 2
+        }
     }
 }
