@@ -7,6 +7,7 @@ using System.Security.Cryptography;
 using System.Runtime.Serialization;
 using System.IO;
 using System.Reflection;
+using SRC.Library.Entities.CustomEntities;
 
 namespace SRC.Library.Entities
 {
@@ -138,6 +139,14 @@ namespace SRC.Library.Entities
             }
 
             return null;
+        }
+
+        public static void CheckNull(this object obj, string errorMessage, string logKey = null, string contextIdentifier = null)
+        {
+            if (obj == null || (obj is string && string.IsNullOrEmpty((string) obj)))
+            {
+                throw new CustomException(errorMessage, logKey, contextIdentifier);
+            }
         }
     }
 }

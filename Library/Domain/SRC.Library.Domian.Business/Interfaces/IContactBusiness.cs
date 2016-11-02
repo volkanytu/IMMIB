@@ -6,5 +6,8 @@ namespace SRC.Library.Domain.Business.Interfaces
     {
         Contact GetContact(string userName);
         Contact GetContact(string userName, string password);
+        void UpdatePassword(Guid contactId, string password, string newPassword);
+        string RememberPassword(string userName);
+        void UpdatePassword(Guid contactId, string password);
     }
 }

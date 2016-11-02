@@ -120,5 +120,14 @@ namespace SRC.Library.Common
 
             return value;
         }
+
+        public static string ToSHA1(this string value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return null;
+            }
+            return Encryption.SHA1Hash(value);
+        }
     }
 }

@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LogKey\ContactLogKeys.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlQueries\AccountQueries.cs" />
     <Compile Include="SqlQueries\AssociationQueries.cs" />
@@ -62,9 +63,7 @@
     <Compile Include="SqlQueries\TownQueries.cs" />
     <Compile Include="SqlQueries\UniversityQueries.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="LogKey\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="SRC.Library.Constants.snk" />
   </ItemGroup>

@@ -43,7 +43,9 @@
     <Compile Include="ContactBusiness.cs" />
     <Compile Include="Interfaces\IContactBusiness.cs" />
     <Compile Include="Interfaces\IBaseBusiness.cs" />
+    <Compile Include="Interfaces\ISmsBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SmsBusiness.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data\SRC.Library.Data.Interfaces\SRC.Library.Data.Interfaces.csproj">
@@ -53,6 +55,10 @@
     <ProjectReference Include="..\..\Data\SRC.Library.Data.SqlDao\SRC.Library.Data.SqlDao.csproj">
       <Project>{69420626-41fa-4559-ad2a-d38eb2cf0585}</Project>
       <Name>SRC.Library.Data.SqlDao</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SRC.Library.Common\SRC.Library.Common.csproj">
+      <Project>{13229fe4-c206-4917-8a42-2ea185ef8f86}</Project>
+      <Name>SRC.Library.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\SRC.Library.Constants\SRC.Library.Constants.csproj">
       <Project>{a99b9f74-4e1e-4ed3-96ba-c60963dff937}</Project>

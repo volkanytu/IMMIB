@@ -7,6 +7,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SRC.Library.Constants.LogKey;
+using SRC.Library.Entities.CustomEntities;
+using SRC.Library.Common;
 
 namespace SRC.Library.Domain.Business
 {
@@ -29,6 +32,66 @@ namespace SRC.Library.Domain.Business
         public Contact GetContact(string userName, string password)
         {
             return _contactDao.GetContact(userName, password);
+        }
+
+        public void UpdatePassword(Guid contactId, string password, string newPassword)
+        {
+            var contact = _baseDao.Get(contactId);
+            if (contact.Password != password)
+            {
+                throw new CustomException("Eski parola uyuşmuyor!",ContactLogKeys.INVALID_PASSWORD,contactId.ToString());
+            }
+
+            Contact entity = new Contact
+            {
+                Id = contactId,
+                Password = newPassword
+            };
+
+            _baseDao.Update(entity);
+
+        }
+
+        public void UpdatePassword(Guid contactId, string password)
+        {
+            if (string.IsNullOrWhiteSpace(password))
+            {
+                throw new CustomException("Şifre boş olamaz!", ContactLogKeys.PASSWORD_NULL, contactId.ToString());
+            }
+
+            Contact entity = new Contact
+            {
+                Id = contactId,
+                Password = password
+            };
+
+            _baseDao.Update(entity);
+
+        }
+
+        public string RememberPassword(string userName)
+        {
+            var contact = this.GetContact(userName);
+
+            if (contact == null)
+            {
+                throw new CustomException("Bu kullanıcı adına ait üye bulunamadı!", ContactLogKeys.USER_NOT_FOUND, userName); 
+            }
+
+            //TODO: Generate
+
+            string generatedPassword = "";
+            string hashedPassword = Encryption.SHA1Hash(generatedPassword);
+
+            Contact entity = new Contact
+            {
+                Id = contact.Id,
+                Password = hashedPassword
+            };
+
+            _baseDao.Update(entity);
+
+            return generatedPassword;
         }
     }
 }

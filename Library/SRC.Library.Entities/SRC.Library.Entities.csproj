@@ -60,6 +60,7 @@
     <Compile Include="CrmEntities\GsmOperator.cs" />
     <Compile Include="CrmEntities\InformedBy.cs" />
     <Compile Include="CrmEntities\Language.cs" />
+    <Compile Include="CrmEntities\SmsEnt.cs" />
     <Compile Include="CrmEntities\TaxOffice.cs" />
     <Compile Include="CrmEntities\Town.cs" />
     <Compile Include="CrmEntities\University.cs" />

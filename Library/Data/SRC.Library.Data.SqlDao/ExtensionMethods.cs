@@ -29,7 +29,7 @@ namespace SRC.Library.Data.SqlDao
             return returnValue;
         }
 
-        public static EntityReferenceWrapper ToEntityReferenceWrapper(this EntityReference entityReference)
+        public static EntityReferenceWrapper ToEntityRefWrapper(this EntityReference entityReference)
         {
             EntityReferenceWrapper returnValue = null;
 
@@ -48,7 +48,7 @@ namespace SRC.Library.Data.SqlDao
             return returnValue;
         }
 
-        public static OptionSetValueWrapper ToOptionSetValueWrapper(this OptionSetValue optionSetValue)
+        public static OptionSetValueWrapper ToOptionSetWrapper(this OptionSetValue optionSetValue)
         {
             OptionSetValueWrapper returnValue = null;
 

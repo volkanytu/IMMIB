@@ -39,10 +39,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContactFacade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\SRC.Library.Common\SRC.Library.Common.csproj">
+      <Project>{13229fe4-c206-4917-8a42-2ea185ef8f86}</Project>
+      <Name>SRC.Library.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SRC.Library.Constants\SRC.Library.Constants.csproj">
+      <Project>{a99b9f74-4e1e-4ed3-96ba-c60963dff937}</Project>
+      <Name>SRC.Library.Constants</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SRC.Library.Entities\SRC.Library.Entities.csproj">
+      <Project>{b8161203-76e4-4500-92c5-4c98b17b75ef}</Project>
+      <Name>SRC.Library.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SRC.Library.Domian.Business\SRC.Library.Domain.Business.csproj">
+      <Project>{739ade97-68b3-4b60-88bd-0d4d93374333}</Project>
+      <Name>SRC.Library.Domain.Business</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
