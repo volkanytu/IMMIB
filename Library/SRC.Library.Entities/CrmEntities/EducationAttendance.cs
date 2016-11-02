@@ -68,7 +68,7 @@ namespace SRC.Library.Entities.CrmEntities
 
         public enum StateCode
         {
-            ACTIVE = 0,
+            ACTIVE = 0 ,
             PASSIVE = 1
         }
 
