@@ -105,6 +105,7 @@
     <Compile Include="BaseSqlDao.cs" />
     <Compile Include="ContactDao.cs" />
     <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="Interfaces\IContactDao.cs" />
     <Compile Include="Interfaces\IMsCrmAccess.cs" />
     <Compile Include="Interfaces\ISqlEntityAccess.cs" />
     <Compile Include="MsCrmAccess.cs" />

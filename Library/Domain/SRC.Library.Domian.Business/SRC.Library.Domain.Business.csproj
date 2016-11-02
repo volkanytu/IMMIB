@@ -40,6 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseBusiness.cs" />
+    <Compile Include="ContactBusiness.cs" />
+    <Compile Include="Interfaces\IContactBusiness.cs" />
     <Compile Include="Interfaces\IBaseBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

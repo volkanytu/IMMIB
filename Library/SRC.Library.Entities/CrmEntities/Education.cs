@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace SRC.Library.Entities.CrmEntities
 {
     [CrmSchemaName(KEY_LOGICAL_NAME)]
-    public class Education: EntityBase
+    public class Education : EntityBase
     {
         [CrmFieldDataType(CrmDataType.UNIQUEIDENTIFIER)]
         [CrmFieldName(KEY_EDUCATION_ID)]
@@ -101,9 +101,33 @@ namespace SRC.Library.Entities.CrmEntities
         [CrmFieldName(KEY_INFO)]
         public string Info { get; set; }
 
-        public bool? IsExpired { get; set; }
-        public string FormattedEducationHour { get; set; }
-        public List<EntityReferenceWrapper> AssociationPermissions { get; set; }  
+        public bool IsExpired
+        {
+            get
+            {
+                if (StartDate != null && StartDate > DateTime.Now)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+        }
+
+        public string FormattedEducationHour
+        {
+            get
+            {
+                if (StartDate != null && EndDate != null)
+                {
+                    return string.Format("{0}-{1}", StartDate.Value.ToString("HH:mm"), EndDate.Value.ToString("HH:mm"));
+                }
+
+                return null;
+            }
+        }
+
+        public List<EntityReferenceWrapper> AssociationPermissions { get; set; }
 
         public const string KEY_LOGICAL_NAME = "new_education";
         public const string KEY_EDUCATION_ID = "new_educationid";

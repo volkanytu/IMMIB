@@ -134,7 +134,7 @@ namespace SRC.Library.Constants.SqlQueries
                                                 FROM
 	                                                Contact C WITH (NOLOCK)
                                                 WHERE
-	                                                C.new_username = @UserName";
+	                                                C.new_username = @userName";
         #endregion
 
         #region | GET_CONTACT_BY_USERNAME_PASSWORD |
@@ -177,9 +177,9 @@ namespace SRC.Library.Constants.SqlQueries
                                                 FROM
 	                                                Contact C WITH (NOLOCK)
                                                 WHERE
-	                                                C.new_username = @UserName
+	                                                C.new_username = @userName
 	                                                AND
-	                                                C.new_password = @Password";
+	                                                C.new_password = @password";
         #endregion
     }
 }
