@@ -21,24 +21,24 @@ namespace SRC.Library.Constants.SqlQueries
 	                                        ,C.BirthDate AS BirthDate
 	                                        ,C.GenderCode AS Gender
 	                                        ,C.MobilePhone
-	                                        ,C.new_gsmoperatorid AS GsmOperatorId
-	                                        ,C.new_gsmoperatoridName AS GsmOperatorIdName
+	                                        ,C.new_gsmoperatorid AS GsmOperator
+	                                        ,C.new_gsmoperatoridName AS GsmOperatorName
 	                                        ,C.Telephone2 AS LandPhone
 	                                        ,C.Telephone1 AS WorkPhone
 	                                        ,C.Fax
 	                                        ,C.EMailAddress1 AS EmailAddress
-	                                        ,C.new_universityid AS UniversityId
-	                                        ,C.new_universityidName AS UniversityIdName
+	                                        ,C.new_universityid AS University
+	                                        ,C.new_universityidName AS UniversityName
 	                                        ,C.new_companyname AS CompanyName
 	                                        ,C.new_taxnumber AS TaxNumber
-	                                        ,C.new_taxofficeid AS TaxOfficeId
-	                                        ,C.new_taxofficeidName AS TaxOfficeIdName
+	                                        ,C.new_taxofficeid AS TaxOffice
+	                                        ,C.new_taxofficeidName AS TaxOfficeName
 	                                        ,C.new_address AS CompanyAddress
 	                                        ,C.new_companyposition AS CompanyPosition
-	                                        ,C.new_informedbyid AS InformedById
-	                                        ,C.new_informedbyidName AS InformedByIdName
-	                                        ,C.new_cityid AS CityId
-	                                        ,C.new_cityidName AS CityIdName
+	                                        ,C.new_informedbyid AS InformedBy
+	                                        ,C.new_informedbyidName AS InformedByName
+	                                        ,C.new_cityid AS City
+	                                        ,C.new_cityidName AS CityName
 	                                        ,C.new_educationlevel AS EducationLevel
 	                                        ,C.new_iseducator AS IsEducator
 	                                        ,C.new_isassociationemployee AS IsAssociationEmployee
@@ -48,7 +48,7 @@ namespace SRC.Library.Constants.SqlQueries
                                         FROM
 	                                        Contact C WITH (NOLOCK)
                                         WHERE
-	                                        C.ContactId = @Id";
+	                                        C.ContactId = @Id AND C.StateCode = 0";
 
         #endregion
 
@@ -65,24 +65,24 @@ namespace SRC.Library.Constants.SqlQueries
 	                                                ,C.BirthDate AS BirthDate
 	                                                ,C.GenderCode AS Gender
 	                                                ,C.MobilePhone
-	                                                ,C.new_gsmoperatorid AS GsmOperatorId
-	                                                ,C.new_gsmoperatoridName AS GsmOperatorIdName
+	                                                ,C.new_gsmoperatorid AS GsmOperator
+	                                                ,C.new_gsmoperatoridName AS GsmOperatorName
 	                                                ,C.Telephone2 AS LandPhone
 	                                                ,C.Telephone1 AS WorkPhone
 	                                                ,C.Fax
 	                                                ,C.EMailAddress1 AS EmailAddress
-	                                                ,C.new_universityid AS UniversityId
-	                                                ,C.new_universityidName AS UniversityIdName
+	                                                ,C.new_universityid AS University
+	                                                ,C.new_universityidName AS UniversityName
 	                                                ,C.new_companyname AS CompanyName
 	                                                ,C.new_taxnumber AS TaxNumber
-	                                                ,C.new_taxofficeid AS TaxOfficeId
-	                                                ,C.new_taxofficeidName AS TaxOfficeIdName
+	                                                ,C.new_taxofficeid AS TaxOffice
+	                                                ,C.new_taxofficeidName AS TaxOfficeName
 	                                                ,C.new_address AS CompanyAddress
 	                                                ,C.new_companyposition AS CompanyPosition
-	                                                ,C.new_informedbyid AS InformedById
-	                                                ,C.new_informedbyidName AS InformedByIdName
-	                                                ,C.new_cityid AS CityId
-	                                                ,C.new_cityidName AS CityIdName
+	                                                ,C.new_informedbyid AS InformedBy
+	                                                ,C.new_informedbyidName AS InformedByName
+	                                                ,C.new_cityid AS City
+	                                                ,C.new_cityidName AS CityName
 	                                                ,C.new_educationlevel AS EducationLevel
 	                                                ,C.new_iseducator AS IsEducator
 	                                                ,C.new_isassociationemployee AS IsAssociationEmployee
@@ -90,7 +90,9 @@ namespace SRC.Library.Constants.SqlQueries
 	                                                ,C.StateCode AS State
 	                                                ,C.StatusCode AS Status
                                                 FROM
-	                                                Contact C WITH (NOLOCK)";
+	                                                Contact C WITH (NOLOCK)
+                                                WHERE
+	                                               C.StateCode = 0";
 
         #endregion
 
@@ -107,24 +109,24 @@ namespace SRC.Library.Constants.SqlQueries
 	                                                ,C.BirthDate AS BirthDate
 	                                                ,C.GenderCode AS Gender
 	                                                ,C.MobilePhone
-	                                                ,C.new_gsmoperatorid AS GsmOperatorId
-	                                                ,C.new_gsmoperatoridName AS GsmOperatorIdName
+	                                                ,C.new_gsmoperatorid AS GsmOperator
+	                                                ,C.new_gsmoperatoridName AS GsmOperatorName
 	                                                ,C.Telephone2 AS LandPhone
 	                                                ,C.Telephone1 AS WorkPhone
 	                                                ,C.Fax
 	                                                ,C.EMailAddress1 AS EmailAddress
-	                                                ,C.new_universityid AS UniversityId
-	                                                ,C.new_universityidName AS UniversityIdName
+	                                                ,C.new_universityid AS University
+	                                                ,C.new_universityidName AS UniversityName
 	                                                ,C.new_companyname AS CompanyName
 	                                                ,C.new_taxnumber AS TaxNumber
-	                                                ,C.new_taxofficeid AS TaxOfficeId
-	                                                ,C.new_taxofficeidName AS TaxOfficeIdName
+	                                                ,C.new_taxofficeid AS TaxOffice
+	                                                ,C.new_taxofficeidName AS TaxOfficeName
 	                                                ,C.new_address AS CompanyAddress
 	                                                ,C.new_companyposition AS CompanyPosition
-	                                                ,C.new_informedbyid AS InformedById
-	                                                ,C.new_informedbyidName AS InformedByIdName
-	                                                ,C.new_cityid AS CityId
-	                                                ,C.new_cityidName AS CityIdName
+	                                                ,C.new_informedbyid AS InformedBy
+	                                                ,C.new_informedbyidName AS InformedByName
+	                                                ,C.new_cityid AS City
+	                                                ,C.new_cityidName AS CityName
 	                                                ,C.new_educationlevel AS EducationLevel
 	                                                ,C.new_iseducator AS IsEducator
 	                                                ,C.new_isassociationemployee AS IsAssociationEmployee
@@ -134,7 +136,7 @@ namespace SRC.Library.Constants.SqlQueries
                                                 FROM
 	                                                Contact C WITH (NOLOCK)
                                                 WHERE
-	                                                C.new_username = @userName";
+	                                                C.new_username = @userName AND C.StateCode = 0";
         #endregion
 
         #region | GET_CONTACT_BY_USERNAME_PASSWORD |
@@ -150,24 +152,24 @@ namespace SRC.Library.Constants.SqlQueries
 	                                                ,C.BirthDate AS BirthDate
 	                                                ,C.GenderCode AS Gender
 	                                                ,C.MobilePhone
-	                                                ,C.new_gsmoperatorid AS GsmOperatorId
-	                                                ,C.new_gsmoperatoridName AS GsmOperatorIdName
+	                                                ,C.new_gsmoperatorid AS GsmOperator
+	                                                ,C.new_gsmoperatoridName AS GsmOperatorName
 	                                                ,C.Telephone2 AS LandPhone
 	                                                ,C.Telephone1 AS WorkPhone
 	                                                ,C.Fax
 	                                                ,C.EMailAddress1 AS EmailAddress
-	                                                ,C.new_universityid AS UniversityId
-	                                                ,C.new_universityidName AS UniversityIdName
+	                                                ,C.new_universityid AS University
+	                                                ,C.new_universityidName AS UniversityName
 	                                                ,C.new_companyname AS CompanyName
 	                                                ,C.new_taxnumber AS TaxNumber
-	                                                ,C.new_taxofficeid AS TaxOfficeId
-	                                                ,C.new_taxofficeidName AS TaxOfficeIdName
+	                                                ,C.new_taxofficeid AS TaxOffice
+	                                                ,C.new_taxofficeidName AS TaxOfficeName
 	                                                ,C.new_address AS CompanyAddress
 	                                                ,C.new_companyposition AS CompanyPosition
-	                                                ,C.new_informedbyid AS InformedById
-	                                                ,C.new_informedbyidName AS InformedByIdName
-	                                                ,C.new_cityid AS CityId
-	                                                ,C.new_cityidName AS CityIdName
+	                                                ,C.new_informedbyid AS InformedBy
+	                                                ,C.new_informedbyidName AS InformedByName
+	                                                ,C.new_cityid AS City
+	                                                ,C.new_cityidName AS CityName
 	                                                ,C.new_educationlevel AS EducationLevel
 	                                                ,C.new_iseducator AS IsEducator
 	                                                ,C.new_isassociationemployee AS IsAssociationEmployee
@@ -179,7 +181,9 @@ namespace SRC.Library.Constants.SqlQueries
                                                 WHERE
 	                                                C.new_username = @userName
 	                                                AND
-	                                                C.new_password = @password";
+	                                                C.new_password = @password 
+                                                    AND 
+                                                    C.StateCode = 0";
         #endregion
     }
 }

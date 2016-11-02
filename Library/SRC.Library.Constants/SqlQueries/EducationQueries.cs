@@ -12,10 +12,10 @@ namespace SRC.Library.Constants.SqlQueries
         public const string GET_EDUCATION = @"SELECT
 	                                            ED.new_educationId AS Id
 	                                            ,ED.new_code AS Code
-	                                            ,ED.new_educationdefinitionid AS EducationDefinitionId
-	                                            ,ED.new_educationdefinitionidName AS EducationDefinitionIdName
-	                                            ,ED.new_contactid AS ContactId
-	                                            ,ED.new_contactidName AS ContactIdName
+	                                            ,ED.new_educationdefinitionid AS EducationDefinition
+	                                            ,ED.new_educationdefinitionidName AS EducationDefinitionName
+	                                            ,ED.new_contactid AS Contact
+	                                            ,ED.new_contactidName AS ContactName
 	                                            ,ED.new_educationtype AS EducationType
 	                                            ,ED.new_quota AS Quota
 	                                            ,ED.new_leftquota AS LeftQuota
@@ -25,12 +25,12 @@ namespace SRC.Library.Constants.SqlQueries
 	                                            ,ED.new_ispaymentreturnoncancel AS IsPaymentReturnOnCancel
 	                                            ,ED.new_educationprice AS EducationPrice
 	                                            ,ED.new_isstudentcanattend AS IsStudentCanAttend
-	                                            ,ED.new_cityid AS CityId
-	                                            ,ED.new_cityidName AS CityIdName
-	                                            ,ED.new_townid AS TownId
-	                                            ,ED.new_townidName AS TownIdName
-	                                            ,ED.new_educationlocationid AS EducationLocationId
-	                                            ,ED.new_educationlocationidName AS EducationLocationIdName
+	                                            ,ED.new_cityid AS City
+	                                            ,ED.new_cityidName AS CityName
+	                                            ,ED.new_townid AS Town
+	                                            ,ED.new_townidName AS TownName
+	                                            ,ED.new_educationlocationid AS EducationLocation
+	                                            ,ED.new_educationlocationidName AS EducationLocationName
 	                                            ,ED.new_startdate AS StartDate
 	                                            ,ED.new_enddate AS EndDate
 	                                            ,ED.new_recordstartdate AS RecordStartDate
@@ -42,7 +42,7 @@ namespace SRC.Library.Constants.SqlQueries
                                             FROM
 	                                            new_education ED WITH (NOLOCK)
                                             WHERE
-	                                            ED.new_educationId = @Id";
+	                                            ED.new_educationId = @Id AND ED.StateCode = 0";
 
         #endregion
 
@@ -50,10 +50,10 @@ namespace SRC.Library.Constants.SqlQueries
         public const string GET_EDUCATION_LIST = @"SELECT
 	                                                ED.new_educationId AS Id
 	                                                ,ED.new_code AS Code
-	                                                ,ED.new_educationdefinitionid AS EducationDefinitionId
-	                                                ,ED.new_educationdefinitionidName AS EducationDefinitionIdName
-	                                                ,ED.new_contactid AS ContactId
-	                                                ,ED.new_contactidName AS ContactIdName
+	                                                ,ED.new_educationdefinitionid AS EducationDefinition
+	                                                ,ED.new_educationdefinitionidName AS EducationDefinitionName
+	                                                ,ED.new_contactid AS Contact
+	                                                ,ED.new_contactidName AS ContactName
 	                                                ,ED.new_educationtype AS EducationType
 	                                                ,ED.new_quota AS Quota
 	                                                ,ED.new_leftquota AS LeftQuota
@@ -63,12 +63,12 @@ namespace SRC.Library.Constants.SqlQueries
 	                                                ,ED.new_ispaymentreturnoncancel AS IsPaymentReturnOnCancel
 	                                                ,ED.new_educationprice AS EducationPrice
 	                                                ,ED.new_isstudentcanattend AS IsStudentCanAttend
-	                                                ,ED.new_cityid AS CityId
-	                                                ,ED.new_cityidName AS CityIdName
-	                                                ,ED.new_townid AS TownId
-	                                                ,ED.new_townidName AS TownIdName
-	                                                ,ED.new_educationlocationid AS EducationLocationId
-	                                                ,ED.new_educationlocationidName AS EducationLocationIdName
+	                                                ,ED.new_cityid AS City
+	                                                ,ED.new_cityidName AS CityName
+	                                                ,ED.new_townid AS Town
+	                                                ,ED.new_townidName AS TownName
+	                                                ,ED.new_educationlocationid AS EducationLocation
+	                                                ,ED.new_educationlocationidName AS EducationLocationName
 	                                                ,ED.new_startdate AS StartDate
 	                                                ,ED.new_enddate AS EndDate
 	                                                ,ED.new_recordstartdate AS RecordStartDate
@@ -78,7 +78,9 @@ namespace SRC.Library.Constants.SqlQueries
 	                                                ,ED.statecode AS State
 	                                                ,ED.statuscode AS Status
                                                 FROM
-	                                                new_education ED WITH (NOLOCK)";
+	                                                new_education ED WITH (NOLOCK)
+                                                WHERE
+	                                                ED.StateCode = 0";
 
         #endregion
     }

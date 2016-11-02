@@ -20,7 +20,7 @@ namespace SRC.Library.Constants.SqlQueries
                                                         FROM
 	                                                        new_language L WITH (NOLOCK)
                                                         WHERE
-	                                                        L.new_languageId = @Id";
+	                                                        L.new_languageId = @Id AND L.StateCode = 0";
 
         #endregion
 
@@ -34,7 +34,9 @@ namespace SRC.Library.Constants.SqlQueries
 	                                                        ,L.CreatedOn
 	                                                        ,L.ModifiedOn
                                                         FROM
-	                                                        new_language L WITH (NOLOCK)";
+	                                                        new_language L WITH (NOLOCK)
+                                                        WHERE
+	                                                        L.StateCode = 0";
 
         #endregion
     }

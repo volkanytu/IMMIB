@@ -63,7 +63,7 @@ namespace SRC.Library.Entities.CrmEntities
 
         [CrmFieldDataType(CrmDataType.ENTITYREFERENCE)]
         [CrmFieldName(KEY_CITY_ID)]
-        public EntityReferenceWrapper CityId { get; set; }
+        public EntityReferenceWrapper City { get; set; }
 
         [CrmFieldDataType(CrmDataType.BOOL)]
         [CrmFieldName(KEY_IS_CHECKED)]

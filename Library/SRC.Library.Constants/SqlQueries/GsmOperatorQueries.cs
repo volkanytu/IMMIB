@@ -20,7 +20,7 @@ namespace SRC.Library.Constants.SqlQueries
                                                         FROM
 	                                                        new_gsmoperator G WITH (NOLOCK)
                                                         WHERE
-	                                                        G.new_gsmoperatorId = @Id";
+	                                                        G.new_gsmoperatorId = @Id AND G.StateCode = 0";
 
         #endregion
 
@@ -34,7 +34,9 @@ namespace SRC.Library.Constants.SqlQueries
 	                                                        ,G.CreatedOn
 	                                                        ,G.ModifiedOn
                                                         FROM
-	                                                        new_gsmoperator G WITH (NOLOCK)";
+	                                                        new_gsmoperator G WITH (NOLOCK)
+                                                        WHERE
+	                                                        G.StateCode = 0";
 
         #endregion
     }

@@ -19,13 +19,13 @@ namespace SRC.Library.Constants.SqlQueries
 	                                        ,AC.EMailAddress1 AS EmailAddress
 	                                        ,AC.WebSiteURL AS WebSite
 	                                        ,AC.new_taxnumber AS TaxNumber
-	                                        ,AC.new_taxofficeid AS TaxOfficeId
-	                                        ,AC.new_taxofficeidName AS TaxOfficeIdName
+	                                        ,AC.new_taxofficeid AS TaxOffice
+	                                        ,AC.new_taxofficeidName AS TaxOfficeName
 	                                        ,AC.Address1_Line1 AS Address
 	                                        ,AC.new_registryid AS RegistryId
 	                                        ,AC.new_isassociationmember AS IsAssociationMember
-	                                        ,AC.new_cityid AS CityId
-	                                        ,AC.new_cityidName AS CityIdName
+	                                        ,AC.new_cityid AS City
+	                                        ,AC.new_cityidName AS CityName
 	                                        ,AC.new_ischecked AS IsChecked
 	                                        ,AC.new_iseducationcompany AS IsEducationCompany
                                             ,AC.StateCode AS State
@@ -33,7 +33,7 @@ namespace SRC.Library.Constants.SqlQueries
                                         FROM
 	                                        Account AC WITH (NOLOCK)
                                         WHERE
-	                                        AC.AccountId = @Id";
+	                                        AC.AccountId = @Id AND AC.StateCode = 0";
 
         #endregion
 
@@ -48,19 +48,21 @@ namespace SRC.Library.Constants.SqlQueries
 	                                        ,AC.EMailAddress1 AS EmailAddress
 	                                        ,AC.WebSiteURL AS WebSite
 	                                        ,AC.new_taxnumber AS TaxNumber
-	                                        ,AC.new_taxofficeid AS TaxOfficeId
-	                                        ,AC.new_taxofficeidName AS TaxOfficeIdName
+	                                        ,AC.new_taxofficeid AS TaxOffice
+	                                        ,AC.new_taxofficeidName AS TaxOfficeName
 	                                        ,AC.Address1_Line1 AS Address
 	                                        ,AC.new_registryid AS RegistryId
 	                                        ,AC.new_isassociationmember AS IsAssociationMember
-	                                        ,AC.new_cityid AS CityId
-	                                        ,AC.new_cityidName AS CityIdName
+	                                        ,AC.new_cityid AS City
+	                                        ,AC.new_cityidName AS CityName
 	                                        ,AC.new_ischecked AS IsChecked
 	                                        ,AC.new_iseducationcompany AS IsEducationCompany
                                             ,AC.StateCode AS State
                                             ,AC.StatusCode AS Status
                                         FROM
-	                                        Account AC WITH (NOLOCK)";
+	                                        Account AC WITH (NOLOCK) 
+                                        WHERE
+                                            AC.StateCode = 0";
 
         #endregion
     }

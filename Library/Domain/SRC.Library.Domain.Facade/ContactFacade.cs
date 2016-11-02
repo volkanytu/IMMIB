@@ -17,13 +17,15 @@ namespace SRC.Library.Domain.Facade
     {
         private IContactBusiness _contactBusiness;
         private ISmsBusiness _smsBusiness;
-        public ContactFacade(IContactBusiness contactBusiness, ISmsBusiness smsBusiness)
+        private ILoginLogBusiness _loginLogBusiness;
+        public ContactFacade(IContactBusiness contactBusiness, ISmsBusiness smsBusiness, ILoginLogBusiness loginLogBusiness)
         {
             _contactBusiness = contactBusiness;
             _smsBusiness = smsBusiness;
+            _loginLogBusiness = loginLogBusiness;
         }
 
-        public EntityReferenceWrapper CheckLogin(string userName, string password)
+        public EntityReferenceWrapper CheckLogin(string userName, string password, string ipAddress)
         {
             string hashedPassword = password.ToSHA1();
             var contact = _contactBusiness.GetContact(userName, hashedPassword);
@@ -32,7 +34,7 @@ namespace SRC.Library.Domain.Facade
                 throw new CustomException("Hatalı kullanıcı adı veya şifre!", ContactLogKeys.INVALID_USERNAME_OR_PASSWORD);
             }
 
-            //TODO: LOGIN_LOG_CREATE
+            _loginLogBusiness.Create(contact.ToEntityReferenceWrapper(), ipAddress);
 
             return contact.ToEntityReferenceWrapper();
         }
@@ -42,8 +44,6 @@ namespace SRC.Library.Domain.Facade
             var contact = _contactBusiness.GetContact(userName);
 
             contact.CheckNull("Bu kullanıcı adına ait üye bulunamadı!", ContactLogKeys.USER_NOT_FOUND, userName);
-
-            //TODO: Generate
 
             string generatedPassword = "";
             string hashedPassword = Encryption.SHA1Hash(generatedPassword);

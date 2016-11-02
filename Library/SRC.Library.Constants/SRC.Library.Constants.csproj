@@ -46,11 +46,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LogKey\ContactLogKeys.cs" />
+    <Compile Include="LogKey\LoginLogKeys.cs" />
+    <Compile Include="LogKey\SmsLogKeys.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlQueries\AccountQueries.cs" />
     <Compile Include="SqlQueries\AssociationQueries.cs" />
     <Compile Include="SqlQueries\CityQueries.cs" />
     <Compile Include="SqlQueries\ContactQueries.cs" />
+    <Compile Include="SqlQueries\CreditCardQueries.cs" />
+    <Compile Include="SqlQueries\DynamicPageQueries.cs" />
     <Compile Include="SqlQueries\EducationAttendenceQueries.cs" />
     <Compile Include="SqlQueries\EducationDefinitionQueries.cs" />
     <Compile Include="SqlQueries\EducationLocationQueries.cs" />
@@ -59,9 +63,11 @@
     <Compile Include="SqlQueries\InformedByQueries.cs" />
     <Compile Include="SqlQueries\LanguageQueries.cs" />
     <Compile Include="SqlQueries\LogQueries.cs" />
+    <Compile Include="SqlQueries\SmsQueries.cs" />
     <Compile Include="SqlQueries\TaxOfficeQueries.cs" />
     <Compile Include="SqlQueries\TownQueries.cs" />
     <Compile Include="SqlQueries\UniversityQueries.cs" />
+    <Compile Include="SqlQueries\UserLanguageQueries.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

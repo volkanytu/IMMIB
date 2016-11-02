@@ -55,7 +55,7 @@ namespace SRC.Library.Entities.CrmEntities
 
         [CrmFieldDataType(CrmDataType.ENTITYREFERENCE)]
         [CrmFieldName(KEY_GSM_OPERATOR_ID)]
-        public EntityReferenceWrapper GsmOperatorId { get; set; }
+        public EntityReferenceWrapper GsmOperator { get; set; }
 
         [CrmFieldDataType(CrmDataType.STRING)]
         [CrmFieldName(KEY_LAND_PHONE)]
@@ -75,7 +75,7 @@ namespace SRC.Library.Entities.CrmEntities
 
         [CrmFieldDataType(CrmDataType.ENTITYREFERENCE)]
         [CrmFieldName(KEY_UNIVERSITY_ID)]
-        public EntityReferenceWrapper UniversityId { get; set; }
+        public EntityReferenceWrapper University { get; set; }
 
         [CrmFieldDataType(CrmDataType.STRING)]
         [CrmFieldName(KEY_COMPANY_NAME)]
@@ -87,7 +87,7 @@ namespace SRC.Library.Entities.CrmEntities
 
         [CrmFieldDataType(CrmDataType.ENTITYREFERENCE)]
         [CrmFieldName(KEY_TAX_OFFICE_ID)]
-        public EntityReferenceWrapper TaxOfficeId { get; set; }
+        public EntityReferenceWrapper TaxOffice { get; set; }
 
         [CrmFieldDataType(CrmDataType.STRING)]
         [CrmFieldName(KEY_COMPANY_ADDRESS)]
@@ -99,7 +99,7 @@ namespace SRC.Library.Entities.CrmEntities
 
         [CrmFieldDataType(CrmDataType.ENTITYREFERENCE)]
         [CrmFieldName(KEY_INFORMEDBY_ID)]
-        public EntityReferenceWrapper InformedById { get; set; }
+        public EntityReferenceWrapper InformedBy { get; set; }
 
         [CrmFieldDataType(CrmDataType.ENTITYREFERENCE)]
         [CrmFieldName(KEY_CITY_ID)]

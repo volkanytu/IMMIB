@@ -20,7 +20,7 @@ namespace SRC.Library.Constants.SqlQueries
                                                         FROM
 	                                                        new_educationlocation ED WITH (NOLOCK)
                                                         WHERE
-	                                                        ED.new_educationlocationId = @Id";
+	                                                        ED.new_educationlocationId = @Id AND ED.StateCode = 0";
 
         #endregion
 
@@ -34,7 +34,9 @@ namespace SRC.Library.Constants.SqlQueries
 	                                                        ,ED.CreatedOn
 	                                                        ,ED.ModifiedOn
                                                         FROM
-	                                                        new_educationlocation ED WITH (NOLOCK)";
+	                                                        new_educationlocation ED WITH (NOLOCK)
+                                                        WHERE
+                                                            ED.StateCode = 0";
 
         #endregion
     }

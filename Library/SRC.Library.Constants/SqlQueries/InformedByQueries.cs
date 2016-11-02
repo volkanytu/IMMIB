@@ -20,7 +20,7 @@ namespace SRC.Library.Constants.SqlQueries
                                                         FROM
 	                                                        new_informedby IB WITH (NOLOCK)
                                                         WHERE
-	                                                        IB.new_informedbyId = @Id";
+	                                                        IB.new_informedbyId = @Id AND IB.StateCode = 0";
 
         #endregion
 
@@ -34,7 +34,9 @@ namespace SRC.Library.Constants.SqlQueries
 	                                                        ,IB.CreatedOn
 	                                                        ,IB.ModifiedOn
                                                         FROM
-	                                                        new_informedby IB WITH (NOLOCK)";
+	                                                        new_informedby IB WITH (NOLOCK)
+                                                        WHERE
+	                                                        IB.StateCode = 0";
 
         #endregion
     }

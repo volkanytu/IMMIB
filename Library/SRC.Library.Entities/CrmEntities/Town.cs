@@ -23,7 +23,7 @@ namespace SRC.Library.Entities.CrmEntities
 
         [CrmFieldDataType(CrmDataType.ENTITYREFERENCE)]
         [CrmFieldName(KEY_CITY_ID)]
-        public EntityReferenceWrapper CityId { get; set; }
+        public EntityReferenceWrapper City { get; set; }
 
         public const string KEY_LOGICAL_NAME = "new_town";
         public const string KEY_TOWN_ID = "new_townid";

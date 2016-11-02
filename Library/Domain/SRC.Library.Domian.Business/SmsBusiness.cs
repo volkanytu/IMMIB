@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SRC.Library.Constants.LogKey;
 using SRC.Library.Data.SqlDao;
 using SRC.Library.Domain.Business.Interfaces;
 using SRC.Library.Entities;
@@ -39,9 +40,9 @@ namespace SRC.Library.Domain.Business
 
         private void ValidateSms(SmsEnt smsEnt)
         {
-            smsEnt.Contact.CheckNull("İlgili kullanıcı bilgisi boş!", "","");
-            smsEnt.PhoneNumber.CheckNull("Telefon numarası boş!", "", smsEnt.Contact.Id.ToString());
-            smsEnt.Message.CheckNull("Mesaj içeriği boş!","",smsEnt.Contact.Id.ToString());
+            smsEnt.Contact.CheckNull("İlgili kullanıcı bilgisi boş!", SmsLogKeys.CONTACT_NULL, "");
+            smsEnt.PhoneNumber.CheckNull("Telefon numarası boş!", SmsLogKeys.TELEPHONE_NUMBER_NULL, smsEnt.Contact.Id.ToString());
+            smsEnt.Message.CheckNull("Mesaj içeriği boş!",SmsLogKeys.MESSAGE_NULL,smsEnt.Contact.Id.ToString());
         }
     }
 }

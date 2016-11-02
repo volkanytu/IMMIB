@@ -15,14 +15,14 @@ namespace SRC.Library.Constants.SqlQueries
 	                                                        ,T.new_code AS Code
 	                                                        ,T.statecode AS State
 	                                                        ,T.statecode AS Status
-															,T.new_cityid AS CityId
-															,T.new_cityidName AS CityIdName
+															,T.new_cityid AS City
+															,T.new_cityidName AS CityName
 	                                                        ,T.CreatedOn
 	                                                        ,T.ModifiedOn
                                                         FROM
 	                                                        new_town T WITH (NOLOCK)
                                                         WHERE
-	                                                        T.new_townId = @Id";
+	                                                        T.new_townId = @Id AND T.StateCode = 0";
 
         #endregion
 
@@ -33,12 +33,14 @@ namespace SRC.Library.Constants.SqlQueries
 	                                                        ,T.new_code AS Code
 	                                                        ,T.statecode AS State
 	                                                        ,T.statecode AS Status
-															,T.new_cityid AS CityId
-															,T.new_cityidName AS CityIdName
+															,T.new_cityid AS City
+															,T.new_cityidName AS CityName
 	                                                        ,T.CreatedOn
 	                                                        ,T.ModifiedOn
                                                         FROM
-	                                                        new_town T WITH (NOLOCK)";
+	                                                        new_town T WITH (NOLOCK)
+                                                        WHERE
+	                                                        T.StateCode = 0";
 
         #endregion
     }

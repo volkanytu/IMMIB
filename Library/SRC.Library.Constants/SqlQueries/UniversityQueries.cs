@@ -20,7 +20,7 @@ namespace SRC.Library.Constants.SqlQueries
                                                         FROM
 	                                                        new_university U WITH (NOLOCK)
                                                         WHERE
-	                                                        U.new_universityId = @Id";
+	                                                        U.new_universityId = @Id AND U.StateCode = 0";
 
         #endregion
 
@@ -34,7 +34,9 @@ namespace SRC.Library.Constants.SqlQueries
 	                                                        ,U.CreatedOn
 	                                                        ,U.ModifiedOn
                                                         FROM
-	                                                        new_university U WITH (NOLOCK)";
+	                                                        new_university U WITH (NOLOCK)
+                                                        WHERE
+	                                                        U.StateCode = 0";
 
         #endregion
     }

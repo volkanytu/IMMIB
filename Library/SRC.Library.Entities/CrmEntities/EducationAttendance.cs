@@ -23,11 +23,11 @@ namespace SRC.Library.Entities.CrmEntities
 
         [CrmFieldDataType(CrmDataType.ENTITYREFERENCE)]
         [CrmFieldName(KEY_EDUCATION_ID)]
-        public EntityReferenceWrapper EducationId { get; set; }
+        public EntityReferenceWrapper Education { get; set; }
 
         [CrmFieldDataType(CrmDataType.ENTITYREFERENCE)]
         [CrmFieldName(KEY_CONTACT_ID)]
-        public EntityReferenceWrapper ContactId { get; set; }
+        public EntityReferenceWrapper Contact { get; set; }
 
         [CrmFieldDataType(CrmDataType.STRING)]
         [CrmFieldName(KEY_DENY_INFO)]

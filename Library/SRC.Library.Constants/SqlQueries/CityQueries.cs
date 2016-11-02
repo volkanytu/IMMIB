@@ -20,7 +20,7 @@ namespace SRC.Library.Constants.SqlQueries
                                                 FROM
 	                                                new_city C WITH (NOLOCK)
                                                 WHERE
-	                                                C.new_cityId = @Id";
+	                                                C.new_cityId = @Id AND C.StateCode = 0";
 
         #endregion
 
@@ -34,7 +34,9 @@ namespace SRC.Library.Constants.SqlQueries
 	                                                ,C.CreatedOn
 	                                                ,C.ModifiedOn
                                                 FROM
-	                                                new_city C WITH (NOLOCK)";
+	                                                new_city C WITH (NOLOCK)
+                                                WHERE
+	                                                C.StateCode = 0";
 
         #endregion
     }

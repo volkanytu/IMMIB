@@ -13,10 +13,10 @@ namespace SRC.Library.Constants.SqlQueries
 	                                                        EA.new_educationattendanceId AS Id
 	                                                        ,EA.new_name AS Name
 	                                                        ,EA.new_code AS Code
-	                                                        ,EA.new_educationid AS EducationId
-	                                                        ,EA.new_educationidName AS EducationIdName
-	                                                        ,EA.new_contactid AS ContactId
-	                                                        ,EA.new_contactidName AS ContactIdName
+	                                                        ,EA.new_educationid AS Education
+	                                                        ,EA.new_educationidName AS EducationName
+	                                                        ,EA.new_contactid AS Contact
+	                                                        ,EA.new_contactidName AS ContactName
 	                                                        ,EA.new_denyinfo AS DenyInfo
 	                                                        ,EA.new_isattendanceconfirmed AS IsAttendanceConfirmed
 	                                                        ,EA.new_ispaymentdone AS IsPaymentDone
@@ -28,7 +28,9 @@ namespace SRC.Library.Constants.SqlQueries
                                                         FROM
 	                                                        new_educationattendance EA WITH (NOLOCK)
                                                         WHERE
-	                                                        EA.new_educationattendanceId = @Id";
+	                                                        EA.new_educationattendanceId = @Id
+                                                            AND
+	                                                        EA.StateCode = 0";
 
         #endregion
 
@@ -37,32 +39,10 @@ namespace SRC.Library.Constants.SqlQueries
 	                                                            EA.new_educationattendanceId AS Id
 	                                                            ,EA.new_name AS Name
 	                                                            ,EA.new_code AS Code
-	                                                            ,EA.new_educationid AS EducationId
-	                                                            ,EA.new_educationidName AS EducationIdName
-	                                                            ,EA.new_contactid AS ContactId
-	                                                            ,EA.new_contactidName AS ContactIdName
-	                                                            ,EA.new_denyinfo AS DenyInfo
-	                                                            ,EA.new_isattendanceconfirmed AS IsAttendanceConfirmed
-	                                                            ,EA.new_ispaymentdone AS IsPaymentDone
-	                                                            ,EA.new_ischargebackdone AS IsChargeBackDone
-	                                                            ,EA.new_bankconfirmationcode AS BankConfirmationCode
-	                                                            ,EA.new_paymenttype AS PaymentType
-	                                                            ,EA.statecode AS State
-	                                                            ,EA.statuscode AS Status
-                                                            FROM
-	                                                            new_educationattendance EA WITH (NOLOCK)";
-
-        #endregion
-
-        #region | GET_EDUCATION_ATTENDANCE_LIST_BY_CONTACT |
-        public const string GET_EDUCATION_ATTENDANCE_LIST_BY_CONTACT = @"SELECT
-	                                                            EA.new_educationattendanceId AS Id
-	                                                            ,EA.new_name AS Name
-	                                                            ,EA.new_code AS Code
-	                                                            ,EA.new_educationid AS EducationId
-	                                                            ,EA.new_educationidName AS EducationIdName
-	                                                            ,EA.new_contactid AS ContactId
-	                                                            ,EA.new_contactidName AS ContactIdName
+	                                                            ,EA.new_educationid AS Education
+	                                                            ,EA.new_educationidName AS EducationName
+	                                                            ,EA.new_contactid AS Contact
+	                                                            ,EA.new_contactidName AS ContactName
 	                                                            ,EA.new_denyinfo AS DenyInfo
 	                                                            ,EA.new_isattendanceconfirmed AS IsAttendanceConfirmed
 	                                                            ,EA.new_ispaymentdone AS IsPaymentDone
@@ -74,7 +54,33 @@ namespace SRC.Library.Constants.SqlQueries
                                                             FROM
 	                                                            new_educationattendance EA WITH (NOLOCK)
                                                             WHERE
-	                                                            EA.new_contactid = @ContactId";
+	                                                            EA.StateCode = 0";
+
+        #endregion
+
+        #region | GET_EDUCATION_ATTENDANCE_LIST_BY_CONTACT |
+        public const string GET_EDUCATION_ATTENDANCE_LIST_BY_CONTACT = @"SELECT
+	                                                            EA.new_educationattendanceId AS Id
+	                                                            ,EA.new_name AS Name
+	                                                            ,EA.new_code AS Code
+	                                                            ,EA.new_educationid AS Education
+	                                                            ,EA.new_educationidName AS EducationName
+	                                                            ,EA.new_contactid AS Contact
+	                                                            ,EA.new_contactidName AS ContactName
+	                                                            ,EA.new_denyinfo AS DenyInfo
+	                                                            ,EA.new_isattendanceconfirmed AS IsAttendanceConfirmed
+	                                                            ,EA.new_ispaymentdone AS IsPaymentDone
+	                                                            ,EA.new_ischargebackdone AS IsChargeBackDone
+	                                                            ,EA.new_bankconfirmationcode AS BankConfirmationCode
+	                                                            ,EA.new_paymenttype AS PaymentType
+	                                                            ,EA.statecode AS State
+	                                                            ,EA.statuscode AS Status
+                                                            FROM
+	                                                            new_educationattendance EA WITH (NOLOCK)
+                                                            WHERE
+	                                                            EA.new_contactid = @ContactId
+                                                                AND
+                                                                EA.StateCode = 0";
 
         #endregion
     }

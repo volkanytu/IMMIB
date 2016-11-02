@@ -23,7 +23,7 @@ namespace SRC.Library.Entities.CrmEntities
 
         [CrmFieldDataType(CrmDataType.ENTITYREFERENCE)]
         [CrmFieldName(KEY_EDUCATION_DEFINITION_ID)]
-        public EntityReferenceWrapper EducationDefinitionId { get; set; }
+        public EntityReferenceWrapper EducationDefinition { get; set; }
 
         [CrmFieldDataType(CrmDataType.ENTITYREFERENCE)]
         [CrmFieldName(KEY_CONTACT_ID)]
@@ -67,15 +67,15 @@ namespace SRC.Library.Entities.CrmEntities
 
         [CrmFieldDataType(CrmDataType.ENTITYREFERENCE)]
         [CrmFieldName(KEY_CITY_ID)]
-        public EntityReferenceWrapper CityId { get; set; }
+        public EntityReferenceWrapper City { get; set; }
 
         [CrmFieldDataType(CrmDataType.ENTITYREFERENCE)]
         [CrmFieldName(KEY_TOWN_ID)]
-        public EntityReferenceWrapper TownId { get; set; }
+        public EntityReferenceWrapper Town { get; set; }
 
         [CrmFieldDataType(CrmDataType.ENTITYREFERENCE)]
         [CrmFieldName(KEY_EDUCATION_LOCATION_ID)]
-        public EntityReferenceWrapper EducationLocationId { get; set; }
+        public EntityReferenceWrapper EducationLocation { get; set; }
 
         [CrmFieldDataType(CrmDataType.DATETIME)]
         [CrmFieldName(KEY_START_DATE)]

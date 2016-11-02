@@ -41,9 +41,11 @@
   <ItemGroup>
     <Compile Include="BaseBusiness.cs" />
     <Compile Include="ContactBusiness.cs" />
+    <Compile Include="Interfaces\ILoginLogBusiness.cs" />
     <Compile Include="Interfaces\IContactBusiness.cs" />
     <Compile Include="Interfaces\IBaseBusiness.cs" />
     <Compile Include="Interfaces\ISmsBusiness.cs" />
+    <Compile Include="LoginLogBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SmsBusiness.cs" />
   </ItemGroup>

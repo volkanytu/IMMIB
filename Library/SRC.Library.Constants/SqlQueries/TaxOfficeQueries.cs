@@ -20,7 +20,7 @@ namespace SRC.Library.Constants.SqlQueries
                                                         FROM
 	                                                        new_taxoffice TF WITH (NOLOCK)
                                                         WHERE
-	                                                        TF.new_taxofficeId = @Id";
+	                                                        TF.new_taxofficeId = @Id AND TF.StateCode = 0";
 
         #endregion
 
@@ -34,7 +34,9 @@ namespace SRC.Library.Constants.SqlQueries
 	                                                        ,TF.CreatedOn
 	                                                        ,TF.ModifiedOn
                                                         FROM
-	                                                        new_taxoffice TF WITH (NOLOCK)";
+	                                                        new_taxoffice TF WITH (NOLOCK)
+                                                        WHERE
+	                                                        TF.StateCode = 0";
 
         #endregion
     }
