@@ -7,5 +7,6 @@ namespace SRC.Library.Data.SqlDao.Interfaces
     public interface IEducationDao
     {
         List<Education> GetEducations(DateTime startDate, DateTime endDate);
+        List<Education> GetEducationsOfAttendances(List<EducationAttendance> educationAttendanceList);
     }
 }

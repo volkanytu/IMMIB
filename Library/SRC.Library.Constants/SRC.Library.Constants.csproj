@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LogKey\ContactLogKeys.cs" />
+    <Compile Include="LogKey\CreditCardLogKeys.cs" />
+    <Compile Include="LogKey\EducationAttendanceLogKeys.cs" />
     <Compile Include="LogKey\EducationLogKeys.cs" />
     <Compile Include="LogKey\LoginLogKeys.cs" />
     <Compile Include="LogKey\SmsLogKeys.cs" />

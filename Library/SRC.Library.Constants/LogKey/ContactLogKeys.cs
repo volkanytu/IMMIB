@@ -13,5 +13,6 @@ namespace SRC.Library.Constants.LogKey
         public const string INVALID_USERNAME_OR_PASSWORD = "INVALID_USERNAME_OR_PASSWORD";
         public const string PASSWORD_NULL = "PASSWORD_NULL";
         public const string CONTACT_NULL = "CONTACT_NULL";
+        public const string CONTACT_ID_NULL = "CONTACT_ID_NULL";
     }
 }

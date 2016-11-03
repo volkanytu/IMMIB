@@ -36,5 +36,13 @@ namespace SRC.Library.Data.SqlDao
 
             return dt.ToList<Education>().ToList();
         }
+
+        public List<Education> GetEducationsOfAttendances(List<EducationAttendance> educationAttendanceList)
+        {
+            string inClause = "'" + string.Join("','", educationAttendanceList.Select(x => x.Id.ToString())) + "'";
+
+            DataTable dt = _sqlAccess.GetDataTable(string.Format(EducationQueries.GET_EDUCATION_LIST_OF_ATTENDANCES, inClause));
+            return dt.ToList<Education>().ToList();
+        }
     }
 }

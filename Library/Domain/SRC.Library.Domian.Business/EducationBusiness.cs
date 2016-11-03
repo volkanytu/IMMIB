@@ -25,5 +25,10 @@ namespace SRC.Library.Domain.Business
         {
             return _educationDao.GetEducations(startDate, endDate);
         }
+
+        public List<Education> GetEducationsOfAttendances(List<EducationAttendance> educationAttendanceList)
+        {
+            return _educationDao.GetEducationsOfAttendances(educationAttendanceList);
+        }
     }
 }

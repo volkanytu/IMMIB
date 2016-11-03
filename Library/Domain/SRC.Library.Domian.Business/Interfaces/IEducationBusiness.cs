@@ -7,5 +7,6 @@ namespace SRC.Library.Domain.Business.Interfaces
     public interface IEducationBusiness
     {
         List<Education> GetEducations(DateTime startDate, DateTime endDate);
+        List<Education> GetEducationsOfAttendances(List<EducationAttendance> educationAttendanceList);
     }
 }

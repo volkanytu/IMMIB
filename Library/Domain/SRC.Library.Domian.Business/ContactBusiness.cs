@@ -42,10 +42,11 @@ namespace SRC.Library.Domain.Business
                 throw new CustomException("Eski parola uyuşmuyor!",ContactLogKeys.INVALID_PASSWORD,contactId.ToString());
             }
 
+            string hashedPassword = Encryption.SHA1Hash(newPassword);
             Contact entity = new Contact
             {
                 Id = contactId,
-                Password = newPassword
+                Password = hashedPassword
             };
 
             _baseDao.Update(entity);

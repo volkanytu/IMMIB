@@ -18,11 +18,14 @@ namespace SRC.Library.Domain.Facade
         private IContactBusiness _contactBusiness;
         private ISmsBusiness _smsBusiness;
         private IBaseBusiness<LoginLog> _baseBusiness;
-        public ContactFacade(IContactBusiness contactBusiness, ISmsBusiness smsBusiness, IBaseBusiness<LoginLog> baseBusiness)
+        private IBaseBusiness<Contact> _baseContactBusiness;
+        public ContactFacade(IContactBusiness contactBusiness, ISmsBusiness smsBusiness,
+            IBaseBusiness<LoginLog> baseBusiness, IBaseBusiness<Contact> baseContactBusiness)
         {
             _contactBusiness = contactBusiness;
             _smsBusiness = smsBusiness;
             _baseBusiness = baseBusiness;
+            _baseContactBusiness = baseContactBusiness;
         }
 
         public EntityReferenceWrapper CheckLogin(string userName, string password, string ipAddress)
@@ -52,6 +55,27 @@ namespace SRC.Library.Domain.Facade
             _smsBusiness.CreateRememberPasswordSms(contact, generatedPassword);
         }
 
+        public void UpdatePassWord(Guid? contactId, string password, string newPassword)
+        {
+            contactId.CheckNull("Üye bilgisi boş olamaz!", ContactLogKeys.CONTACT_ID_NULL);
+            password.CheckNull("Eski şifre boş olamaz!", ContactLogKeys.PASSWORD_NULL, contactId.ToString());
+            password.CheckNull("Yeni şifre boş olamaz!", ContactLogKeys.PASSWORD_NULL, contactId.ToString());
+           
+            _contactBusiness.UpdatePassword((Guid)contactId, password, newPassword);
+        }
+
+        public Guid? CreateContact(Contact contact)
+        {
+            contact.CheckNull("Üye bilgileri boş olamaz!", ContactLogKeys.CONTACT_NULL);
+            return _baseContactBusiness.Insert(contact);
+        }
+
+        public void UpdateContact(Contact contact)
+        {
+            contact.CheckNull("Üye bilgileri boş olamaz!", ContactLogKeys.CONTACT_NULL);
+            _baseContactBusiness.Update(contact);
+        }
+
         private void CreateLoginLog(EntityReferenceWrapper contact, string ipAddress)
         {
             ipAddress.CheckNull("Ip adresi boş!", LoginLogKeys.IP_ADDRESS_NULL, contact.Id.ToString());
@@ -66,5 +90,7 @@ namespace SRC.Library.Domain.Facade
 
             _baseBusiness.Insert(log);
         }
+
+
     }
 }
