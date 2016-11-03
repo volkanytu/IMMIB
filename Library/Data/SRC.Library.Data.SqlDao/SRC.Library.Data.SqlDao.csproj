@@ -104,7 +104,11 @@
   <ItemGroup>
     <Compile Include="BaseSqlDao.cs" />
     <Compile Include="ContactDao.cs" />
+    <Compile Include="EducationAttendanceDao.cs" />
+    <Compile Include="EducationDao.cs" />
     <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="Interfaces\IEducationAttendanceDao.cs" />
+    <Compile Include="Interfaces\IEducationDao.cs" />
     <Compile Include="Interfaces\IContactDao.cs" />
     <Compile Include="Interfaces\IMsCrmAccess.cs" />
     <Compile Include="Interfaces\ISqlEntityAccess.cs" />

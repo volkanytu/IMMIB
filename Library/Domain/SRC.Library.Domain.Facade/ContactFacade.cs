@@ -17,12 +17,12 @@ namespace SRC.Library.Domain.Facade
     {
         private IContactBusiness _contactBusiness;
         private ISmsBusiness _smsBusiness;
-        private ILoginLogBusiness _loginLogBusiness;
-        public ContactFacade(IContactBusiness contactBusiness, ISmsBusiness smsBusiness, ILoginLogBusiness loginLogBusiness)
+        private IBaseBusiness<LoginLog> _baseBusiness;
+        public ContactFacade(IContactBusiness contactBusiness, ISmsBusiness smsBusiness, IBaseBusiness<LoginLog> baseBusiness)
         {
             _contactBusiness = contactBusiness;
             _smsBusiness = smsBusiness;
-            _loginLogBusiness = loginLogBusiness;
+            _baseBusiness = baseBusiness;
         }
 
         public EntityReferenceWrapper CheckLogin(string userName, string password, string ipAddress)
@@ -34,7 +34,7 @@ namespace SRC.Library.Domain.Facade
                 throw new CustomException("Hatalı kullanıcı adı veya şifre!", ContactLogKeys.INVALID_USERNAME_OR_PASSWORD);
             }
 
-            _loginLogBusiness.Create(contact.ToEntityReferenceWrapper(), ipAddress);
+            this.CreateLoginLog(contact.ToEntityReferenceWrapper(), ipAddress);
 
             return contact.ToEntityReferenceWrapper();
         }
@@ -50,6 +50,21 @@ namespace SRC.Library.Domain.Facade
 
             _contactBusiness.UpdatePassword(contact.Id, hashedPassword);
             _smsBusiness.CreateRememberPasswordSms(contact, generatedPassword);
+        }
+
+        private void CreateLoginLog(EntityReferenceWrapper contact, string ipAddress)
+        {
+            ipAddress.CheckNull("Ip adresi boş!", LoginLogKeys.IP_ADDRESS_NULL, contact.Id.ToString());
+
+            var log = new LoginLog
+            {
+                Contact = contact.ToEntityReferenceWrapper(),
+                IpAddress = ipAddress,
+                LoginDate = DateTime.Now,
+                Name = DateTime.Now.ToShortDateString()
+            };
+
+            _baseBusiness.Insert(log);
         }
     }
 }

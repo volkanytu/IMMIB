@@ -78,7 +78,7 @@ namespace SRC.Library.Constants.SqlQueries
                                                             FROM
 	                                                            new_educationattendance EA WITH (NOLOCK)
                                                             WHERE
-	                                                            EA.new_contactid = @ContactId
+	                                                            EA.new_contactid = @contactId
                                                                 AND
                                                                 EA.StateCode = 0";
 
