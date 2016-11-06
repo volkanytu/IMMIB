@@ -1,0 +1,16 @@
+﻿@using SRC.Library.Entities.CrmEntities
+@model List<DynamicPage>
+
+<section class="slider">
+    <div class="flexslider">
+        <ul class="slides">
+            @foreach (var slide in Model)
+            {
+                <li>
+                    @Html.Raw(slide.Content)
+                </li>
+            }
+        </ul>
+
+    </div>
+</section>

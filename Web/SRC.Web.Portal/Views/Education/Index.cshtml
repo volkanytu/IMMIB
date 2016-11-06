@@ -1,36 +1,60 @@
-﻿
+﻿@using SRC.Library.Entities.CrmEntities
+@model List<Education>
+
 @{
     ViewBag.Title = "Eğitim Takvimi";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <section id="main-content" style="width:90%;margin:auto;">
-    <section class="wrapper site-min-height">
-        <!-- modal start-->
-        <div class="modal fade modal-dialog-center" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <iframe class="modal-dialog modal-lg" src="educationdetail.html?Id=5"></iframe>
-        </div>
-        <!-- modal end-->
+    <section class="wrapper">
         <!-- page start-->
         <section class="panel">
             <header class="panel-heading">
                 Eğitim Listesi
                 <span class="pull-right">
-                    <button type="button" id="loading-btn" class="btn btn-warning btn-xs"><i class="fa fa-refresh"></i> Refresh</button>
-                    <a href="#" class=" btn btn-success btn-xs"> Create New Project</a>
+                    <a href="/education" class="btn btn-warning btn-xs"><i class="fa fa-refresh"></i> Yenile</a>
                 </span>
             </header>
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="input-group">
-                            <input type="text" placeholder="Search Here" class="input-sm form-control"> <span class="input-group-btn">
-                                <button type="button" class="btn btn-sm btn-success"> Go!</button>
-                            </span>
-                        </div>
+                        <form class="form-inline text-center" role="form">
+                            <div class="form-group">
+                                <select class="form-control">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
+                                    <option>11</option>
+                                    <option>12</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control">
+                                    <option>2016</option>
+                                    <option>2017</option>
+                                    <option>2018</option>
+                                    <option>2019</option>
+                                    <option>2020</option>
+                                </select>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
+
+            <div class="modal fade modal-dialog-center" id="educationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" id="divModal">
+                </div>
+            </div>
+
             <table class="table table-hover p-table">
                 <thead>
                     <tr>
@@ -44,39 +68,61 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="p-name">
-                            <a data-toggle="modal" type="detail" href="#myModal5">Yurtdışı Fuar Katılımlarının Desteklenmesi Semineri (ÜCRETSİZ)</a>
-                            <br>
-                            <small>05.10.2016 - 05.10.2016</small>
-                        </td>
-                        <td>
-                            <a data-toggle="modal" type="educator" href="#myModal5">Volkan SERTER</a>
-                        </td>
-                        <td class="p-progress">
-                            <div class="progress progress-xs">
-                                <div style="width: 87%;" class="progress-bar progress-bar-success"></div>
-                            </div>
-                            <small>10% Complete </small>
-                        </td>
-                        <td>
-                            <span class="label label-primary">2 gün</span>
-                        </td>
-                        <td>
-                            <p>İSTANBUL</p>
-                        </td>
-                        <td>
-                            <p>Eğitim Gerçekleşti</p>
-                        </td>
-                        <td>
-                            <a href="project_details.html" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Başvur </a>
-                            <a data-toggle="modal" type="detail" href="#myModal5" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Detay </a>
-                        </td>
-                    </tr>
+
+                    @foreach (var education in Model)
+                    {
+                        <tr>
+                            <td class="p-name">
+                                <a data-toggle="modal" type="detail" id="@education.Id.ToString()" href="#educationModal">@education.Name</a>
+                                <br>
+                                <small>@education.FormattedEducationDate</small>
+                            </td>
+                            <td>
+                                <a data-toggle="modal" type="educator" href="#educationModal">@education.Contact.Name</a>
+                            </td>
+                            <td class="p-progress">
+                                <div class="progress progress-xs">
+                                    <div style="width: 87%;" class="progress-bar progress-bar-success"></div>
+                                </div>
+                                <small>10% Dolu </small>
+                            </td>
+                            <td>
+                                <span class="label label-primary">@education.EducationPeriod.Value gün</span>
+                            </td>
+                            <td>
+                                <p>@education.City.Name</p>
+                            </td>
+                            <td>
+                                <p>@education.Status.Value</p>
+                            </td>
+                            <td>
+                                <a href="project_details.html" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Başvur </a>
+                                <a data-toggle="modal" type="detail" href="#educationModal" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Detay </a>
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
+
+            @section TEST{
+
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $("a[type='detail']").click(function () {
+                            $.ajax({
+                                url: '@Url.Action("Detail", "Education")',
+                                type: 'GET',
+                                data: { id: $(this).attr("id") }
+                            }).success(function (result) {
+                                $("#divModal").html(result);
+                            });
+                        });
+                    });
+                </script>
+
+            }
+
         </section>
         <!-- page end-->
     </section>
 </section>
-

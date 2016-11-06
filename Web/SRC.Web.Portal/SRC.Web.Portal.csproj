@@ -129,9 +129,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\EducationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PartialsController.cs" />
+    <Compile Include="Filters\AuthenticationFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="MockData\DynamicPageMock.cs" />
+    <Compile Include="MockData\EducationMock.cs" />
+    <Compile Include="Models\HomePageModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1642,6 +1647,80 @@
     <Content Include="assets\nestable\index.html" />
     <Content Include="assets\nestable\jquery.nestable.css" />
     <Content Include="assets\nestable\jquery.nestable.js" />
+    <Content Include="assets\revolution_slider\css\preview.css" />
+    <Content Include="assets\revolution_slider\css\rs-style.css" />
+    <Content Include="assets\revolution_slider\images\tiles\bgtile.jpg" />
+    <Content Include="assets\revolution_slider\images\tiles\bgtile.png" />
+    <Content Include="assets\revolution_slider\images\tiles\check.png" />
+    <Content Include="assets\revolution_slider\images\tiles\divider.jpg" />
+    <Content Include="assets\revolution_slider\images\tiles\divider.png" />
+    <Content Include="assets\revolution_slider\images\tiles\dragnotch.png" />
+    <Content Include="assets\revolution_slider\images\tiles\dragsliderbg.png" />
+    <Content Include="assets\revolution_slider\images\tiles\dropdown.png" />
+    <Content Include="assets\revolution_slider\images\tiles\inputfield.png" />
+    <Content Include="assets\revolution_slider\images\tiles\logo.png" />
+    <Content Include="assets\revolution_slider\images\tiles\minishadow.png" />
+    <Content Include="assets\revolution_slider\images\tiles\minishadow2.png" />
+    <Content Include="assets\revolution_slider\images\tiles\minishadow3.png" />
+    <Content Include="assets\revolution_slider\images\tiles\minus.png" />
+    <Content Include="assets\revolution_slider\images\tiles\no.png" />
+    <Content Include="assets\revolution_slider\images\tiles\ok.png" />
+    <Content Include="assets\revolution_slider\images\tiles\plus.png" />
+    <Content Include="assets\revolution_slider\images\tiles\radio.png" />
+    <Content Include="assets\revolution_slider\images\tiles\rotator-line.png" />
+    <Content Include="assets\revolution_slider\images\tiles\rotator.png" />
+    <Content Include="assets\revolution_slider\images\tiles\shadow3_large.png" />
+    <Content Include="assets\revolution_slider\images\tiles\sliderconfigheadline.png" />
+    <Content Include="assets\revolution_slider\index-fullwidth.html" />
+    <Content Include="assets\revolution_slider\index-static.html" />
+    <Content Include="assets\revolution_slider\index.html" />
+    <Content Include="assets\revolution_slider\previewjs\preview-normal.js" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\arrowleft.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\arrowright.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\arrow_large_left.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\arrow_large_right.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\arrow_left.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\arrow_left2.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\arrow_right.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\arrow_right2.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\black50.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\boxed_bgtile.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\bullet.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\bullets.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\bullets2.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\bullet_bk.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\bullet_boxed.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\coloredbg.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\grain.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\large_left.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\large_left_bk.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\large_right.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\large_right_bk.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\loader.gif" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\loader2.gif" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\navigdots.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\navigdots_bgtile.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\shadow1.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\shadow2.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\shadow3.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\small_left.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\small_left_boxed.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\small_right.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\small_right_boxed.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\timer.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\timerdot.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\transparent.jpg" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\white50.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\css\settings %28In Konflikt stehende Kopie von Flash Horvath 2013-02-13%29.css" />
+    <Content Include="assets\revolution_slider\rs-plugin\css\settings.css" />
+    <Content Include="assets\revolution_slider\rs-plugin\images\decor_inside.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\images\decor_inside_white.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\images\decor_testimonial.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\images\gradient\g30.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\images\gradient\g40.png" />
+    <Content Include="assets\revolution_slider\rs-plugin\js\jquery.themepunch.plugins.min.js" />
+    <Content Include="assets\revolution_slider\rs-plugin\js\jquery.themepunch.revolution.js" />
+    <Content Include="assets\revolution_slider\rs-plugin\js\jquery.themepunch.revolution.min.js" />
     <Content Include="assets\summernote\.gitignore" />
     <Content Include="assets\summernote\dist\summernote-bs2.css" />
     <Content Include="assets\summernote\dist\summernote-bs3.css" />
@@ -1700,6 +1779,7 @@
     <Content Include="css\bootstrap-v3.2.0.min.css" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\flexslider.css" />
     <Content Include="css\gallery.css" />
     <Content Include="css\image-crop.css" />
     <Content Include="css\invoice-print.css" />
@@ -1707,6 +1787,7 @@
     <Content Include="css\jquery.vegas.css" />
     <Content Include="css\navbar-fixed-top.css" />
     <Content Include="css\owl.carousel.css" />
+    <Content Include="css\site.css" />
     <Content Include="css\slidebars.css" />
     <Content Include="css\soon.css" />
     <Content Include="css\style-responsive.css" />
@@ -1715,6 +1796,7 @@
     <Content Include="css\tasks.css" />
     <Content Include="css\yamm.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\flexslider-icon.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="img\404_icon.png" />
@@ -1871,6 +1953,7 @@
     <Content Include="js\jquery.customSelect.min.js" />
     <Content Include="js\jquery.dcjqaccordion.2.7.js" />
     <Content Include="js\jquery.dcjqaccordion.2.7.min.js" />
+    <Content Include="js\jquery.flexslider.js" />
     <Content Include="js\jquery.js" />
     <Content Include="js\jquery.nicescroll.js" />
     <Content Include="js\jquery.pulsate.min.js" />
@@ -1914,7 +1997,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="assets\jquery-file-upload\server\php\files\thumbnail\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -2145,10 +2227,21 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\flexslider-icon.eot" />
+    <Content Include="fonts\flexslider-icon.ttf" />
+    <Content Include="fonts\flexslider-icon.woff" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\arrows.psd" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\bullets.psd" />
+    <Content Include="assets\revolution_slider\rs-plugin\assets\small_arrows.psd" />
     <None Include="Project_Readme.html" />
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Education\Index.cshtml" />
+    <Content Include="Views\Home\_HomePageSlider.cshtml" />
+    <Content Include="Views\Partials\ComingEducations.cshtml" />
+    <Content Include="Views\Partials\DoneEducations.cshtml" />
+    <Content Include="Views\Partials\EducationList.cshtml" />
+    <Content Include="Views\Education\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Library\Domain\SRC.Library.Domain.Facade\SRC.Library.Domain.Facade.csproj">

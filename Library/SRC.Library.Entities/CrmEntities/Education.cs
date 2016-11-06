@@ -127,6 +127,32 @@ namespace SRC.Library.Entities.CrmEntities
             }
         }
 
+        public string FormattedEducationDate
+        {
+            get
+            {
+                if (StartDate != null && EndDate != null)
+                {
+                    return string.Format("{0}-{1}", StartDate.Value.ToString("dd.MM.yyyy"), EndDate.Value.ToString("dd.MM.yyyy"));
+                }
+
+                return null;
+            }
+        }
+
+        public string FormattedRecordDate
+        {
+            get
+            {
+                if (RecordStartDate != null && RecordEndDate != null)
+                {
+                    return string.Format("{0}-{1}", RecordStartDate.Value.ToString("dd.MM.yyyy"), RecordEndDate.Value.ToString("dd.MM.yyyy"));
+                }
+
+                return null;
+            }
+        }
+
         public List<EntityReferenceWrapper> AssociationPermissions { get; set; }
 
         public const string KEY_LOGICAL_NAME = "new_education";

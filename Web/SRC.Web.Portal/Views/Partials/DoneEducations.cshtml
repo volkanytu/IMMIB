@@ -1,0 +1,44 @@
+﻿@using SRC.Library.Entities.CrmEntities
+@model List<Education>
+
+<div class="panel-body">
+    <div class="text-center mbot30">
+        <h3 class="timeline-title">GERÇEKLEŞEN EĞİTİMLER</h3>
+    </div>
+    <div class="timeline">
+        @{
+            string altClass = "alt";
+            string colorClass = "red";
+
+            foreach (var education in Model)
+            {
+                <article class="timeline-item @altClass">
+                    <div class="timeline-desk">
+                        <div class="panel">
+                            <div class="panel-body">
+                                <span class="arrow"></span>
+                                <span class="timeline-icon @colorClass"></span>
+                                <span class="timeline-date">@education.City.Name</span>
+                                <h1 class="@colorClass">@education.StartDate.Value.ToString("dd.MM.yyyy")</h1>
+                                <p><a style="color:gray;" href="/education/@education.Id">@education.Name</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                if (!string.IsNullOrWhiteSpace(altClass))
+                {
+                    altClass = null;
+                    colorClass = "green";
+                }
+                else
+                {
+                    altClass = "alt";
+                    colorClass = "red";
+                }
+            }
+        }
+    </div>
+    <div class="clearfix">&nbsp;</div>
+</div>
+

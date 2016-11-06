@@ -1,0 +1,116 @@
+﻿@using SRC.Library.Entities.CrmEntities
+@model Education
+
+@if (Model == null)
+{
+    return;
+}
+<section id="container" class="">
+    <!--header end-->
+    <!--sidebar start-->
+    <!--sidebar end-->
+    <!--main content start-->
+    <section id="main-content">
+        <!-- page start-->
+        <div class="row">
+            <div class="col-md-12">
+                <section class="panel">
+                    <div class="bio-graph-heading project-heading">
+                        <strong> @Model.Name </strong>
+                        <!-- <small>EDU-K937925</small> -->
+                    </div>
+                    <div class="panel-body bio-graph-info">
+                        <!--<h1>New Dashboard BS3 </h1>-->
+                        <div class="row p-details">
+                            <div class="bio-row">
+                                <p><span class="bold">Eğitmen </span>: @Model.Contact.Name</p>
+                            </div>
+                            <div class="bio-row">
+                                <p><span class="bold">Durum </span>: <span class="label label-primary">Aktif</span></p>
+                            </div>
+                            <div class="bio-row">
+                                <p><span class="bold">Kayıt Tarihi </span>: @Model.FormattedRecordDate </p>
+                            </div>
+                            <div class="bio-row">
+                                <p><span class="bold">Eğitim Tarihi</span>: @Model.FormattedEducationDate </p>
+                            </div>
+                            <div class="bio-row">
+                                <p><span class="bold">Eğitim Saati </span>: <a href="#">@Model.FormattedEducationHour</a></p>
+                            </div>
+                            <div class="bio-row">
+                                <p><span class="bold">Şehir </span>: @Model.City.Name</p>
+                            </div>
+                            <div class="bio-row">
+                                <p><span class="bold">Eğitim Yeri </span>: Dış Ticaret Kompleksi-Yenibosna </p>
+                            </div>
+                            <div class="bio-row">
+                                <p><span class="bold">Kontenjan </span>: 20 Kişi </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="panel">
+                    <header class="panel-heading">
+                        Eğitim Detayı
+                    </header>
+                    <div class="panel-body">
+                        <!-- Div içerisine eğitim içeriği basılacak -->
+                        <div style="margin:20px;">
+                            <strong><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Problem Çözme ve Karar Verme</span></strong>
+                        </div>
+                        <div>&nbsp;</div>
+                        <p><strong><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Kimler Katılmalı&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</span></strong><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Problem</span><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Çözme yetkinliğini geliştirmek isteyen tüm katılımcılara yöneliktir.</span></p>
+                        <div><strong>&nbsp;</strong><strong><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">&nbsp;&nbsp;&nbsp; </span></strong></div>
+                        <div><strong><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Amaç</span></strong></div>
+                        <p><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Şirketlerde çalışan bireylerin karar verme ve problem çözme yönlerinin geliştirilmesi ve zihinsel hazırlığın sağlanmasıdır. Seminer; şirket içinde çalışan herkesin karar verme ve problem çözme yeteneklerini geliştirmek, yaratıcı düşünebilme konusunda ilham vermek ve olaylara geniş açıdan bakabilmelerini sağlamak amacıyla hazırlanmıştır. Bu program, bireylerin bakış açılarını derinleştirerek, olayları çok yönlü değerlendirmelerini ve etki alanında sonuç üretebilecekleri adımlar atmalarını hedeflemektedir. </span></p>
+                        <div><strong>&nbsp;</strong></div>
+                        <p><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Eğitim; karar verme sürecindeki aşamaları ve problem çözme tekniklerini içermekte ve katılımcıların zihinsel yönden egzersizin önemini kavramaları ve daha sonraki yaşamlarında bunları pratik hayata geçirmeleri için gerekli teknikler aktarmaktadır.</span></p>
+                        <div><strong>&nbsp;</strong></div>
+                        <p><strong><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Eğitim İçeriği</span></strong></p>
+                        <div><strong>&nbsp;</strong></div>
+                        <p><strong><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Organizasyonlarda Çözüm Odaklılık Yaklaşımı</span></strong></p>
+                        <div><span>Ø<span style="FONT: 7pt &quot;Times New Roman&quot;; font-size-adjust: none; font-stretch: normal">&nbsp;&nbsp;&nbsp; </span></span><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Çözüm odaklı bakış açısı</span></div>
+                        <div><span>Ø<span style="FONT: 7pt &quot;Times New Roman&quot;; font-size-adjust: none; font-stretch: normal">&nbsp;&nbsp;&nbsp; </span></span><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Çözüm odaklı tutum ve davranışlar</span></div>
+                        <p><span>Ø<span style="FONT: 7pt &quot;Times New Roman&quot;; font-size-adjust: none; font-stretch: normal">&nbsp;&nbsp;&nbsp; </span></span><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Çözüm odaklı bakış açısının önündeki engeller</span></p>
+                        <p><span>Ø<span style="FONT: 7pt &quot;Times New Roman&quot;; font-size-adjust: none; font-stretch: normal">&nbsp;&nbsp;&nbsp; </span></span><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Çözüm odaklı bakış açısının önündeki engelleri kaldırmak için yapılacaklar ve öz motivasyon</span></p>
+                        <p><span>Ø<span style="FONT: 7pt &quot;Times New Roman&quot;; font-size-adjust: none; font-stretch: normal">&nbsp;&nbsp;&nbsp; </span></span><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Bu süreçte &ldquo;Yaratıcılık ve İnovasyon&rdquo;</span></p>
+                        <p><strong><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Problem Çözme Temelleri</span></strong></p>
+                        <div><span>Ø<span style="FONT: 7pt &quot;Times New Roman&quot;; font-size-adjust: none; font-stretch: normal">&nbsp;&nbsp;&nbsp; </span></span><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Problem nedir?</span></div>
+                        <div><span>Ø<span style="FONT: 7pt &quot;Times New Roman&quot;; font-size-adjust: none; font-stretch: normal">&nbsp;&nbsp;&nbsp; </span></span><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Problem çözme paradoksu</span></div>
+                        <div><span>Ø<span style="FONT: 7pt &quot;Times New Roman&quot;; font-size-adjust: none; font-stretch: normal">&nbsp;&nbsp;&nbsp; </span></span><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Düşünme biçimleri</span></div>
+                        <p><span>Ø<span style="FONT: 7pt &quot;Times New Roman&quot;; font-size-adjust: none; font-stretch: normal">&nbsp;&nbsp;&nbsp; </span></span><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Problem karşısındaki zihinsel yaklaşımlarımız</span></p>
+                        <p><strong><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Problem Çözme Adımları</span></strong></p>
+                        <div><strong><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Analiz</span></strong></div>
+                        <div><span>Ø<span style="FONT: 7pt &quot;Times New Roman&quot;; font-size-adjust: none; font-stretch: normal">&nbsp;&nbsp;&nbsp; </span></span><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Problemi anlamak</span></div>
+                        <div><span>Ø<span style="FONT: 7pt &quot;Times New Roman&quot;; font-size-adjust: none; font-stretch: normal">&nbsp;&nbsp;&nbsp; </span></span><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Kök nedene inmek</span></div>
+                        <div><span>Ø<span style="FONT: 7pt &quot;Times New Roman&quot;; font-size-adjust: none; font-stretch: normal">&nbsp;&nbsp;&nbsp; </span></span><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">5n tekniği</span></div>
+                        <div><span>Ø<span style="FONT: 7pt &quot;Times New Roman&quot;; font-size-adjust: none; font-stretch: normal">&nbsp;&nbsp;&nbsp; </span></span><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Balık kılçığı diagramı</span></div>
+                        <div><span>Ø<span style="FONT: 7pt &quot;Times New Roman&quot;; font-size-adjust: none; font-stretch: normal">&nbsp;&nbsp;&nbsp; </span></span><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Zihin haritaları</span></div>
+                        <div><span>Ø<span style="FONT: 7pt &quot;Times New Roman&quot;; font-size-adjust: none; font-stretch: normal">&nbsp;&nbsp;&nbsp; </span></span><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Hedefi netleştirmek</span></div>
+                        <div><span>Ø<span style="FONT: 7pt &quot;Times New Roman&quot;; font-size-adjust: none; font-stretch: normal">&nbsp;&nbsp;&nbsp; </span></span><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Problemin tanımlanması</span></div>
+                        <p><strong><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Seçeneklerin Tanımlanması</span></strong></p>
+                        <div><span>Ø<span style="FONT: 7pt &quot;Times New Roman&quot;; font-size-adjust: none; font-stretch: normal">&nbsp;&nbsp;&nbsp; </span></span><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Seçeneklerimiz neler?</span></div>
+                        <div><span>Ø<span style="FONT: 7pt &quot;Times New Roman&quot;; font-size-adjust: none; font-stretch: normal">&nbsp;&nbsp;&nbsp; </span></span><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Beyin fırtınası</span></div>
+                        <div><span>Ø<span style="FONT: 7pt &quot;Times New Roman&quot;; font-size-adjust: none; font-stretch: normal">&nbsp;&nbsp;&nbsp; </span></span><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Yaratıcı düşünme teknikleri</span></div>
+                        <div><span>Ø<span style="FONT: 7pt &quot;Times New Roman&quot;; font-size-adjust: none; font-stretch: normal">&nbsp;&nbsp;&nbsp; </span></span><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Yaratıcılığın önündeki engeller</span></div>
+                        <div><span>Ø<span style="FONT: 7pt &quot;Times New Roman&quot;; font-size-adjust: none; font-stretch: normal">&nbsp;&nbsp;&nbsp; </span></span><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Seçim</span></div>
+                        <p><strong><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Çözümü Uygulama</span></strong></p>
+                        <p><strong><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Çözümü Geliştirme</span></strong></p>
+                        <p><strong><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Karar Verme</span></strong></p>
+                        <div><span>Ø<span style="FONT: 7pt &quot;Times New Roman&quot;; font-size-adjust: none; font-stretch: normal">&nbsp;&nbsp;&nbsp; </span></span><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Karar türleri</span></div>
+                        <div><span>Ø<span style="FONT: 7pt &quot;Times New Roman&quot;; font-size-adjust: none; font-stretch: normal">&nbsp;&nbsp;&nbsp; </span></span><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Karar verme adımları</span></div>
+                        <div><span>Ø<span style="FONT: 7pt &quot;Times New Roman&quot;; font-size-adjust: none; font-stretch: normal">&nbsp;&nbsp;&nbsp; </span></span><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Hazırlık</span></div>
+                        <div><span>Ø<span style="FONT: 7pt &quot;Times New Roman&quot;; font-size-adjust: none; font-stretch: normal">&nbsp;&nbsp;&nbsp; </span></span><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Kararı geliştirme</span></div>
+                        <div><span>Ø<span style="FONT: 7pt &quot;Times New Roman&quot;; font-size-adjust: none; font-stretch: normal">&nbsp;&nbsp;&nbsp; </span></span><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Kararın iletişimini kurma</span></div>
+                        <div><span>Ø<span style="FONT: 7pt &quot;Times New Roman&quot;; font-size-adjust: none; font-stretch: normal">&nbsp;&nbsp;&nbsp; </span></span><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Kararın uygulanması</span></div>
+                        <div>
+                            <span>Ø<span style="FONT: 7pt &quot;Times New Roman&quot;; font-size-adjust: none; font-stretch: normal">&nbsp;&nbsp;&nbsp; </span></span><span style="FONT-SIZE: 10.5pt; LINE-HEIGHT: 150%; sans-serif: ">Sürecin değerlendirilmesi</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <!-- page end-->
+    </section>
+    <!--main content end-->
+</section>

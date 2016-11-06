@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SRC.Web.Portal.MockData;
+using SRC.Web.Portal.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,9 +15,14 @@ namespace SRC.Web.Portal.Controllers
 
         }
 
-        public ActionResult Index()
+        public ActionResult Index(HomePageModel model)
         {
-            return View();
+            model = new HomePageModel();
+            model.SliderData = DynamicPageMock.GetDynamicPages();
+            model.ComingEducations = EducationMock.GetComingEducations();
+            model.DoneEducations = EducationMock.GetDoneEducations();
+
+            return View(model);
         }
     }
 }
