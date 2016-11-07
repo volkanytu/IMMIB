@@ -130,10 +130,11 @@
     <Compile Include="Controllers\EducationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PartialsController.cs" />
-    <Compile Include="Filters\AuthenticationFilter.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="MockData\ContactMock.cs" />
     <Compile Include="MockData\DynamicPageMock.cs" />
     <Compile Include="MockData\EducationMock.cs" />
     <Compile Include="Models\HomePageModel.cs" />
@@ -1997,6 +1998,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="assets\jquery-file-upload\server\php\files\thumbnail\" />
+    <Folder Include="Filters\" />
+    <Folder Include="Views\Edit\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -2242,6 +2245,8 @@
     <Content Include="Views\Partials\DoneEducations.cshtml" />
     <Content Include="Views\Partials\EducationList.cshtml" />
     <Content Include="Views\Education\Detail.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Profile\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Library\Domain\SRC.Library.Domain.Facade\SRC.Library.Domain.Facade.csproj">

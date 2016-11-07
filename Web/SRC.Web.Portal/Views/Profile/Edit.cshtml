@@ -1,0 +1,204 @@
+﻿@using SRC.Library.Entities.CrmEntities
+@model Contact
+
+@{
+    ViewBag.Title = "Profil Düzenle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="main-content" style="width:90%;margin:auto;">
+    <section class="wrapper site-min-height">
+        <!-- page start-->
+        <div class="row">
+            <aside class="profile-nav col-lg-3">
+                <section class="panel">
+                    <div class="user-heading round">
+                        <a href="#">
+                            <img src="../../img/profile-avatar.jpg" alt="">
+                        </a>
+                        <h1>Volkan Serter</h1>
+                        <p>volkan@serter.com</p>
+                    </div>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="active"><a href="Index"> <i class="fa fa-user"></i> Profil</a></li>
+                        <li><a href="Edit"> <i class="fa fa-edit"></i> Profil Düzenle</a></li>
+                        <li><a href="profileeducation.html"> <i class="fa fa-calendar"></i> Eğitimlerim <span class="label label-danger pull-right r-activity">9</span></a></li>
+                    </ul>
+                </section>
+            </aside>
+            <aside class="profile-info col-lg-9">
+                <section class="panel">
+                    <div class="bio-graph-heading">
+                        Profil bilgilerinizi düzenleyebilirsiniz.
+                    </div>
+                    <div class="panel-body bio-graph-info">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">İsim</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" id="f-name" placeholder=" " value="@Model.FirstName">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Soyisim</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" id="l-name" placeholder=" " value="@Model.LastName">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Doğum Tarihi</label>
+                                <div class="col-lg-6">
+                                    <input class="form-control form-control-inline input-medium default-date-picker" size="16" type="text" value="@Model.BirthDate" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Cinsiyet</label>
+                                <div class="col-lg-6">
+                                    <select class="form-control m-bot15">
+                                        <option>Erkek</option>
+                                        <option>Kadın</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Cep Telefonu</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" id="mobile" placeholder=" " value="@Model.MobilePhone">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Gsm Operatörünüz</label>
+                                <div class="col-lg-6">
+                                    <select id="operator" class="form-control m-bot15">
+                                        <option>Vodafone</option>
+                                        <option>Turkcell</option>
+                                        <option>Avea</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">İş Telefonu</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" id="businessphone" placeholder=" " value="@Model.WorkPhone">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Fax</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" id="fax" placeholder=" " value ="@Model.Fax">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">E-Posta</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" id="email" placeholder=" " value="@Model.EmailAddress">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Firma Vergi Numarası</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" id="taxnumber" placeholder=" " value="@Model.TaxNumber">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Firma Adı</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" id="firm" placeholder=" " value="@Model.CompanyName">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Firmadaki Pozisyonunuz</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" id="firmposition" placeholder=" " value="@Model.CompanyPosition">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Vergi Dairesi</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" id="taxoffice" placeholder=" " value="@Model.TaxOffice.Name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Firma Adresi</label>
+                                <div class="col-lg-10">
+                                    <textarea name="" id="address" class="form-control" cols="30" rows="5">
+                                        @Model.CompanyAddress
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Nereden Haberdar Oldunuz</label>
+                                <div class="col-lg-6">
+                                    <select id="where" class="form-control m-bot15">
+                                        <option>Arkadaşımdan</option>
+                                        <option>Web Sitesinden</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Şehir</label>
+                                <div class="col-lg-6">
+                                    <select id="city" class="form-control m-bot15">
+                                        <option>İstanbul</option>
+                                        <option>Ankara</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Eğitim Durumunuz</label>
+                                <div class="col-lg-6">
+                                    <select id="education" class="form-control m-bot15">
+                                        <option>İlköğretim</option>
+                                        <option>Lise</option>
+                                        <option>Lisans</option>
+                                        <option>Yüksek Lisans</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <button type="submit" class="btn btn-success">Kaydet</button>
+                                    <button type="button" class="btn btn-default">İptal Et</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+                <section>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading"> Şifre Değiştir</div>
+                        <div class="panel-body">
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Mevcut Şifreniz</label>
+                                    <div class="col-lg-6">
+                                        <input type="password" class="form-control" id="r-pwd" placeholder=" ">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Yeni Şifreniz</label>
+                                    <div class="col-lg-6">
+                                        <input type="password" class="form-control" id="n-pwd" placeholder=" ">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Yeni Şifreniz Tekrar</label>
+                                    <div class="col-lg-6">
+                                        <input type="password" class="form-control" id="rt-pwd" placeholder=" ">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-offset-2 col-lg-10">
+                                        <button type="submit" class="btn btn-info">Kaydet</button>
+                                        <button type="button" class="btn btn-default">İptal Et</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </aside>
+        </div>
+        <!-- page end-->
+    </section>
+</section>

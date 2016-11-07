@@ -31,12 +31,15 @@
     @Scripts.Render("~/scripts/general")
 
     <script src="/js/jquery.flexslider.js"></script>
+    <script src="~/assets/jquery-knob/js/jquery.knob.js"></script>
 
     @RenderSection("scripts", required: false)
 
     @RenderSection("TEST", required: false)
 
-    <script>
+    @RenderSection("Profile", required: false)
+
+<script>
         $(function () {
             $.vegas({
                 src: 'http://egitim.immib.org.tr/jsv/istanbul_turu_1.jpg'
