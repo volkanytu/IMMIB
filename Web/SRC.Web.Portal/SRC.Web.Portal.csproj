@@ -2243,7 +2243,6 @@
     <Content Include="Views\Home\_HomePageSlider.cshtml" />
     <Content Include="Views\Partials\ComingEducations.cshtml" />
     <Content Include="Views\Partials\DoneEducations.cshtml" />
-    <Content Include="Views\Education\Detail.cshtml" />
     <Content Include="Views\Partials\EducationList.cshtml" />
     <Content Include="Views\Education\Detail.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
