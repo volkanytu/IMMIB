@@ -2240,8 +2240,8 @@
     <Content Include="Views\Home\_HomePageSlider.cshtml" />
     <Content Include="Views\Partials\ComingEducations.cshtml" />
     <Content Include="Views\Partials\DoneEducations.cshtml" />
-    <Content Include="Views\Partials\EducationList.cshtml" />
     <Content Include="Views\Education\Detail.cshtml" />
+    <Content Include="Views\Partials\EducationList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Library\Domain\SRC.Library.Domain.Facade\SRC.Library.Domain.Facade.csproj">
