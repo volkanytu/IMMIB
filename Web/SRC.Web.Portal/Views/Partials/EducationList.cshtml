@@ -1,0 +1,78 @@
+﻿@using SRC.Library.Entities.CrmEntities
+@model List<Education>
+
+<div class="modal fade modal-dialog-center" id="educationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-url="@Url.Action("Detail", "Education")">
+    @*<iframe class="modal-dialog modal-lg" src="/education/detail/5"></iframe>*@
+    <div class="modal-dialog modal-lg" id="divModal">
+        @* @Html.Action("Detail", "Education", new { id = "123", @class = "modal-dialog modal-lg" })*@
+    </div>
+</div>
+
+<table class="table table-hover p-table">
+    <thead>
+        <tr>
+            <th>Eğitim Adı</th>
+            <th>Eğitmen</th>
+            <th>Kontenjan</th>
+            <th>Süre</th>
+            <th>Şehir</th>
+            <th>Durum</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var education in Model)
+        {
+            <tr>
+                <td class="p-name">
+                    <a data-toggle="modal" type="detail" href="#educationModal">@education.Name</a>
+                    <br>
+                    <small>@education.FormattedEducationDate</small>
+                </td>
+                <td>
+                    <a data-toggle="modal" type="educator" href="#educationModal">@education.Contact.Name</a>
+                </td>
+                <td class="p-progress">
+                    <div class="progress progress-xs">
+                        <div style="width: 87%;" class="progress-bar progress-bar-success"></div>
+                    </div>
+                    <small>10% Dolu </small>
+                </td>
+                <td>
+                    <span class="label label-primary">@education.EducationPeriod.Value gün</span>
+                </td>
+                <td>
+                    <p>@education.City.Name</p>
+                </td>
+                <td>
+                    <p>@education.Status.Value</p>
+                </td>
+                <td>
+                    <a href="project_details.html" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Başvur </a>
+                    <a data-toggle="modal" type="detail" href="#educationModal" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Detay </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section TEST{
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("a[type='detail']").click(function () {
+                alert("HELLO");
+                @*$.ajax({
+                    url: '@Url.Action("Detail", "Education")',
+                    type: 'GET',
+                    data: { id: 222 }
+                }).success(function (result) {
+                    $("#divModal").html(result);
+                });*@
+            });
+        });
+    </script>
+
+}
+
