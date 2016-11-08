@@ -33,5 +33,13 @@ namespace SRC.Web.Portal.Controllers
 
             return PartialView(model);
         }
+
+        public PartialViewResult Detail(Guid contactId, EducationAttendance.StatusCode statusCode)
+        {
+            Education model = new Education();
+
+
+            return PartialView(model);
+        }
     }
 }

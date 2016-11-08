@@ -8,8 +8,7 @@ namespace SRC.Library.Common
 
         private RegistryHelper()
         {
-            baseKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Wow6432Node\\PROD", RegistryKeyPermissionCheck.ReadWriteSubTree, System.Security.AccessControl.RegistryRights.ReadKey);
-            //baseKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Wow6432Node\\DEV", RegistryKeyPermissionCheck.ReadWriteSubTree, System.Security.AccessControl.RegistryRights.ReadKey);
+            baseKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Wow6432Node\\immib", RegistryKeyPermissionCheck.ReadWriteSubTree, System.Security.AccessControl.RegistryRights.ReadKey);
         }
 
         public string Value(string keyName)

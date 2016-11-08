@@ -47,6 +47,14 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -67,6 +75,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Library\Data\SRC.Library.Data.Interfaces\SRC.Library.Data.Interfaces.csproj">
+      <Project>{49be302d-3b93-487b-b3a1-5e4a3460bef4}</Project>
+      <Name>SRC.Library.Data.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library\Data\SRC.Library.Data.SqlDao\SRC.Library.Data.SqlDao.csproj">
+      <Project>{69420626-41fa-4559-ad2a-d38eb2cf0585}</Project>
+      <Name>SRC.Library.Data.SqlDao</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Library\Domain\SRC.Library.Domain.Facade\SRC.Library.Domain.Facade.csproj">
       <Project>{d8d6efb7-d1eb-4df7-9879-752e086a2a89}</Project>
       <Name>SRC.Library.Domain.Facade</Name>

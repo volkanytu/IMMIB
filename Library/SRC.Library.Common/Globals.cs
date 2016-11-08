@@ -8,50 +8,50 @@ namespace SRC.Library.Common
 {
     public class Globals
     {
-        public static string DomainName
-        {
-            get { return RegistryHelper.Get.Value("DomainName"); }
-        }
+        //public static string DomainName
+        //{
+        //    get { return RegistryHelper.Get.Value("DomainName"); }
+        //}
 
-        public static string AdminName
-        {
-            get { return RegistryHelper.Get.Value("AdminName"); }
-        }
+        //public static string AdminName
+        //{
+        //    get { return RegistryHelper.Get.Value("AdminName"); }
+        //}
 
-        public static string AdminUserName
-        {
-            get { return RegistryHelper.Get.Value("AdminUserName"); }
-        }
+        //public static string AdminUserName
+        //{
+        //    get { return RegistryHelper.Get.Value("AdminUserName"); }
+        //}
 
-        public static string AdminPassword
-        {
-            get { return RegistryHelper.Get.Value("AdminPassword"); }
-        }
+        //public static string AdminPassword
+        //{
+        //    get { return RegistryHelper.Get.Value("AdminPassword"); }
+        //}
 
-        public static string AdminId
-        {
-            get { return RegistryHelper.Get.Value("AdminId"); }
-        }
+        //public static string AdminId
+        //{
+        //    get { return RegistryHelper.Get.Value("AdminId"); }
+        //}
 
-        public static string CrmUrl
-        {
-            get { return RegistryHelper.Get.Value("CrmUrl"); }
-        }
+        //public static string CrmUrl
+        //{
+        //    get { return RegistryHelper.Get.Value("CrmUrl"); }
+        //}
 
-        public static string OrganizationName
-        {
-            get { return RegistryHelper.Get.Value("OrganizationName"); }
-        }
+        //public static string OrganizationName
+        //{
+        //    get { return RegistryHelper.Get.Value("OrganizationName"); }
+        //}
 
-        public static string AdministratorId
-        {
-            get { return RegistryHelper.Get.Value("AdminId"); }
-        }
+        //public static string AdministratorId
+        //{
+        //    get { return RegistryHelper.Get.Value("AdminId"); }
+        //}
 
-        public static string DatabaseName
-        {
-            get { return RegistryHelper.Get.Value("DatabaseName"); }
-        }
+        //public static string DatabaseName
+        //{
+        //    get { return RegistryHelper.Get.Value("DatabaseName"); }
+        //}
 
         public static string ConnectionString
         {
