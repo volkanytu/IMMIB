@@ -1,5 +1,7 @@
-﻿@using SRC.Library.Entities.CrmEntities
-@model Contact
+﻿@using SRC.Web.Portal.Models
+@using SRC.Library.Entities
+@using SRC.Library.Entities.CrmEntities
+@model ProfilePageModel
 
 @{
     ViewBag.Title = "Profil";
@@ -11,50 +13,35 @@
     <section class="wrapper site-min-height">
         <!-- page start-->
         <div class="row">
-            <aside class="profile-nav col-lg-3">
-                <section class="panel">
-                    <div class="user-heading round">
-                        <a href="#">
-                            <img src="../../img/profile-avatar.jpg" alt="">
-                        </a>
-                        <h1>Volkan Serter</h1>
-                        <p>volkan@serter.gmail.com</p>
-                    </div>
-                    <ul class="nav nav-pills nav-stacked">
-                        <li class="active"><a href="~/Profile"> <i class="fa fa-user"></i> Profil</a></li>
-                        <li><a href="~/Profile/Edit"> <i class="fa fa-edit"></i> Profil Düzenle</a></li>
-                        <li><a href="profileeducation.html"> <i class="fa fa-calendar"></i> Eğitimlerim <span class="label label-danger pull-right r-activity">9</span></a></li>
-                    </ul>
-                </section>
-            </aside>
+            @Html.Partial("ProfileMenu", Model);
             <aside class="profile-info col-lg-9">
                 <section class="panel transparentGray">
-                    <div class="panel-body bio-graph-info">
+                    <div class="panel-body bio-graph-info" id="divContent">
                         <h1>Bio Graph</h1>
                         <div class="row">
                             <div class="bio-row">
-                                <p><span>İsim </span>: @Model.FirstName</p>
+                                <p><span>İsim </span>: @Model.Contact.FirstName</p>
                             </div>
                             <div class="bio-row">
-                                <p><span>Soyisim </span>: @Model.LastName</p>
+                                <p><span>Soyisim </span>: @Model.Contact.LastName</p>
                             </div>
                             <div class="bio-row">
-                                <p><span>Doğum Tarihi</span>: @Model.BirthDate</p>
+                                <p><span>Doğum Tarihi</span>: @Model.Contact.BirthDate</p>
                             </div>
                             <div class="bio-row">
-                                <p><span>Cinsiyet </span>: @Model.Gender.Value</p>
+                                <p><span>Cinsiyet </span>: @Model.Contact.Gender.Value</p>
                             </div>
                             <div class="bio-row">
-                                <p><span>Cep Telefonu </span>: @Model.MobilePhone</p>
+                                <p><span>Cep Telefonu </span>: @Model.Contact.MobilePhone</p>
                             </div>
                             <div class="bio-row">
-                                <p><span>Email </span>: @Model.EmailAddress</p>
+                                <p><span>Email </span>: @Model.Contact.EmailAddress</p>
                             </div>
                             <div class="bio-row">
-                                <p><span>Gsm Operatörü </span>: @Model.GsmOperator.Name</p>
+                                <p><span>Gsm Operatörü </span>: @Model.Contact.GsmOperator.Name</p>
                             </div>
                             <div class="bio-row">
-                                <p><span>İş Telefonu </span>: @Model.WorkPhone</p>
+                                <p><span>İş Telefonu </span>: @Model.Contact.WorkPhone</p>
                             </div>
                         </div>
                     </div>
@@ -68,7 +55,18 @@
 
 @section scripts{
     <script>
-        
+
+        $(document).ready(function () {
+            $("a").click(function () {
+                $.ajax({
+                    url: '@Url.Action("EducationList", "Education")',
+                    type: 'POST',
+                    data: @Html.Raw(Json.Encode(Model.Attendances))
+                    }).success(function (result) {
+                        $("#divContent").html(result);
+                    });
+            });
+        });
     </script>
 }
 

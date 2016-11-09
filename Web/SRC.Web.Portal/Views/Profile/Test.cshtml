@@ -1,0 +1,40 @@
+﻿@using SRC.Web.Portal.Models
+@using SRC.Library.Entities
+@using SRC.Library.Entities.CrmEntities
+@model List<EducationAttendance>
+
+@{
+    ViewBag.Title = "Profil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section id="main-content" style="width: 90%; margin: auto;">
+    <section class="wrapper site-min-height">
+        <!-- page start-->
+        <div class="row">
+            @Html.Partial("ProfileMenu", Model);
+            <aside class="profile-info col-lg-9">
+                <section class="panel transparentGray">
+                    <div class="panel-body bio-graph-info" id="divContent">
+                        <h1>Bio Graph</h1>
+                        <div class="row">
+                            TEST:@Model.Count.ToString()
+                        </div>
+                    </div>
+                </section>
+            </aside>
+        </div>
+        <!-- page end-->
+    </section>
+</section>
+
+
+@section scripts{
+    <script>
+
+
+    </script>
+}
+
+
