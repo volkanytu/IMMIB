@@ -1,4 +1,5 @@
-﻿using SRC.Web.Portal.MockData;
+﻿using SRC.Library.Entities.CrmEntities;
+using SRC.Web.Portal.MockData;
 using SRC.Web.Portal.Models;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,8 @@ namespace SRC.Web.Portal.Controllers
     {
         public HomeController()
         {
-
+            //TEST için
+            LoggedUser.Current = ContactMock.GetContact();
         }
 
         public ActionResult Index(HomePageModel model)

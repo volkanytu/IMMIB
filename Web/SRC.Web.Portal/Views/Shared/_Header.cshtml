@@ -1,4 +1,5 @@
-﻿
+﻿@using SRC.Web.Portal.Models;
+
 <header class="header white-bg">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -7,33 +8,47 @@
         <!--logo start-->
         <a href="index.html" class="logo"><img src="http://egitim.immib.org.tr/images/immib.png" height="40" /></a>
         <!--logo end-->
-        <div class="horizontal-menu navbar-collapse collapse ">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Ana Sayfa</a></li>
-                <li><a href="/education">Eğitim Takvimi</a></li>
-                <li><a href="#">Nasıl Başvurabilirim?</a></li>
-                <li><a href="contact.html">İletişim</a></li>
-            </ul>
-        </div>
-        <div class="top-nav ">
-            <ul class="nav pull-right top-menu">
-                <!-- user login dropdown start-->
-                <li class="dropdown">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <img alt="" src="/img/avatar1_small.jpg">
-                        <span class="username">Volkan SERTER</span>
-                        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu extended logout">
-                        <div class="log-arrow-up"></div>
-                        <li><a href="~/Profile"><i class=" fa fa-suitcase"></i>Profilim</a></li>
-                        <li><a href="~/Profile/Edit"><i class="fa fa-cog"></i> Profil Düzenle</a></li>
-                        <li><a href="profileeducation.html"><i class="fa fa-bell-o"></i> Eğitimlerim</a></li>
-                        <li><a href="login.html"><i class="fa fa-key"></i> Çıkış</a></li>
+        @Html.Action("HeaderMenu", "Partials")
+
+        @{
+            if (LoggedUser.IsLoggedIn)
+            {
+                <div class="top-nav">
+                    <ul class="nav pull-right top-menu">
+                        <!-- user login dropdown start-->
+                        <li class="dropdown">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <img alt="" src="/img/avatar1_small.jpg">
+                                <span class="username">Volkan SERTER</span>
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu extended logout">
+                                <div class="log-arrow-up"></div>
+                                <li><a href="~/Profile"><i class=" fa fa-suitcase"></i>Profilim</a></li>
+                                <li><a href="~/Profile/Edit"><i class="fa fa-cog"></i> Profil Düzenle</a></li>
+                                <li><a href="profileeducation.html"><i class="fa fa-bell-o"></i> Eğitimlerim</a></li>
+                                <li><a href="login.html"><i class="fa fa-key"></i> Çıkış</a></li>
+                            </ul>
+                        </li>
+                        <!-- user login dropdown end -->
                     </ul>
-                </li>
-                <!-- user login dropdown end -->
-            </ul>
-        </div>
+                </div>
+            }
+            else
+            {
+                <div class="top-nav ">
+                    <ul class="nav pull-right top-menu">
+                        <!-- user login dropdown start-->
+                        <li class="dropdown">
+                            <a data-toggle="modal" type="detail" href="#loginModal">
+                                <span class="glyphicon glyphicon-user"></span>
+                                <span class="username">GİRİŞ / KAYIT</span>
+                            </a>
+                        </li>
+                        <!-- user login dropdown end -->
+                    </ul>
+                </div>
+            }
+        }
     </div>
 </header>

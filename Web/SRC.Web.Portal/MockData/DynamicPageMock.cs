@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using SRC.Library.Entities;
 
 namespace SRC.Web.Portal.MockData
 {
@@ -36,6 +37,36 @@ namespace SRC.Web.Portal.MockData
                                     <p>Havale yaparken açıklama olarak sizlere sistemimizden SMS ile iletilen eğitim katılım kodunu, adınızı ve soyadınızı&nbsp;yazmanızı rica ederiz ki ödemelerinizi rahat ve hızlı bir şekilde onaylayabilelim.</p>
                                 </div>"
                 }
+            };
+        }
+
+        public static DynamicPage GetContactPage()
+        {
+            return new DynamicPage
+            {
+                Content = @"<p><strong>Adres:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Çobançeşme mevkii, Sanayi Cad. Dış Ticaret Kompleksi A Blok P.K.34197 Yenibosna/Bahçelievler/İSTANBUL <br />
+                            <strong>İletişim Bilgileri</strong></p>
+                            <p><strong>Ganimet GENÇ Şube Müdürü</strong><br />
+                            <strong>Telefon:</strong>&nbsp;&nbsp;&nbsp; &nbsp;+90 212 454 0000/Dahili 1063&nbsp;<br />
+                            <strong>E-mail:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='mailto:immib@immib.org.tr'>ganimet.genc@immib.org.tr</a>&nbsp;</p>
+                            <p><strong>Selin DOĞAN PEKER&nbsp;Şef</strong><br />
+                            <strong>Telefon:</strong>&nbsp;&nbsp;&nbsp; &nbsp;+90 212 454 0000/Dahili 1894&nbsp;<br />
+                            <strong>E-mail:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='mailto:ganimet.genc@immib.org.tr'>selin.dogan@immib.org.tr</a>&nbsp;</p>
+                            <p><strong>Yasemin COŞMUŞ&nbsp;Uzman </strong></p>
+                            <p><strong>Telefon:</strong>&nbsp;&nbsp;&nbsp; &nbsp;+90 212 454 0000/Dahili 1995&nbsp;<br />
+                            <strong>E-mail:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='mailto:ganimet.genc@immib.org.tr'>yasemin.cosmus@immib.org.tr</a> </p>
+                            <p><iframe height='400' marginheight='0' src='http://maps.google.com/maps/ms?ie=UTF8&amp;hl=tr&amp;t=h&amp;msa=0&amp;msid=115574267836425181606.0004922dec6f8fc2ecc58&amp;ll=41.000646,28.821516&amp;spn=0.006478,0.017595&amp;z=16&amp;iwloc=0004922df1ddd50f15263&amp;output=embed' frameborder='0' width='820' marginwidth='0' scrolling='no'></iframe><br />
+                            <small>Şunu daha büyük bir haritada görüntüle: <a style='COLOR: #0000ff; TEXT-ALIGN: left' href='http://maps.google.com/maps/ms?ie=UTF8&amp;hl=tr&amp;t=h&amp;msa=0&amp;msid=115574267836425181606.0004922dec6f8fc2ecc58&amp;ll=41.000646,28.821516&amp;spn=0.006478,0.017595&amp;z=16&amp;iwloc=0004922df1ddd50f15263&amp;source=embed'>İMMİB</a></small></p>",
+                PageType = DynamicPage.PageTypeCode.CONTACT.ToOptionSetValueWrapper()
+            };
+        }
+
+        public static DynamicPage GetHowtoPage()
+        {
+            return new DynamicPage
+            {
+                Content = @"NASIL BAŞVURABİLİRİM İÇERİK",
+                PageType = DynamicPage.PageTypeCode.TRANSFER_INFORMATION.ToOptionSetValueWrapper()
             };
         }
     }

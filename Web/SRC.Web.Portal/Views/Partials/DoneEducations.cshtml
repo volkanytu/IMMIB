@@ -20,7 +20,7 @@
                                 <span class="timeline-icon @colorClass"></span>
                                 <span class="timeline-date">@education.City.Name</span>
                                 <h1 class="@colorClass">@education.StartDate.Value.ToString("dd.MM.yyyy")</h1>
-                                <p><a style="color:gray;" href="/education/@education.Id">@education.Name</a></p>
+                                <p><a style="color:gray;" data-toggle="modal" type="educationdetail" href="#educationModal" id="@education.Id">@education.Name</a></p>
                             </div>
                         </div>
                     </div>

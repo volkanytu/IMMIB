@@ -1,0 +1,30 @@
+﻿@using SRC.Web.Portal.Models
+@using SRC.Library.Entities
+@using SRC.Library.Entities.CrmEntities
+@model ProfilePageModel
+
+@{
+    ViewBag.Title = "Eğitimlerim";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="main-content" style="width:90%;margin:auto;">
+    <section class="wrapper site-min-height">
+        <!-- page start-->
+        <div class="row">
+            @Html.Action("ProfileMenu", "Partials")
+
+            <aside class="profile-info col-lg-9">
+                <section class="panel">
+                    <div class="bio-graph-heading" style="padding:10px 50px;">
+                        Eğitim Bilgileri
+                    </div>
+                    <div class="panel-body bio-graph-info">
+                        @Html.Action("EducationList", "Partials", new { querymodel = new EducationQueryModel { EducationList = Model.EducationList } })
+                    </div>
+                </section>
+            </aside>
+        </div>
+        <!-- page end-->
+    </section>
+</section>

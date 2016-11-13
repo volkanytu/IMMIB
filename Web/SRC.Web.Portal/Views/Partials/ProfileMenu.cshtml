@@ -3,46 +3,43 @@
 @using SRC.Library.Entities.CrmEntities
 @model ProfilePageModel
 
-@Html.HiddenFor(m => m.Attendances);
-
 <aside class="profile-nav col-lg-3">
     <section class="panel">
         <div class="user-heading round">
             <a href="#">
                 <img src="../../img/profile-avatar.jpg" alt="">
             </a>
-            <h1>Volkan Serter</h1>
-            <p>volkan@serter.gmail.com</p>
+            <h1>@Model.Contact.Name</h1>
+            <p>@Model.Contact.EmailAddress</p>
         </div>
         <ul class="nav nav-pills nav-stacked">
             <li class="active"><a href="~/Profile"> <i class="fa fa-user"></i> Profil</a></li>
             <li><a href="~/Profile/Edit"> <i class="fa fa-edit"></i> Profil Düzenle</a></li>
             <li>
-                <a href="#">
-                    <i class="fa fa-calendar"></i>Bekleyen Eğitimler
+                <a href="/Profile/Education?type=100000000">
+                    <i class="fa fa-credit-card"></i><small>Ödeme Bekleyen Eğitimler</small>
                     <span class="label label-danger pull-right r-activity">
                         @Model.Attendances.Where(a => a.Status.ToEnum<EducationAttendance.StatusCode>() == EducationAttendance.StatusCode.WAITING_PAYMENT).ToList().Count
                     </span>
                 </a>
             </li>
             <li>
-                <a href="#">
-                    <i class="fa fa-calendar"></i> Katıldığım Eğitimler
-                    <span class="label label-danger pull-right r-activity">
+                <a href="/Profile/Education?type=100000004">
+                    <i class="fa fa-flag"></i> Katıldığım Eğitimler
+                    <span class="label label-info pull-right r-activity">
                         @Model.Attendances.Where(a => a.Status.ToEnum<EducationAttendance.StatusCode>() == EducationAttendance.StatusCode.JOINED).ToList().Count
                     </span>
                 </a>
             </li>
             <li>
-                <form action="/Profile/Test" method="post">
-                    <button type="submit" value="TEST"></button>>
-                    <i class="fa fa-calendar"></i> Onaylanan Eğitimler
-                    <span class="label label-danger pull-right r-activity">
+                <a href="/Profile/Education?type=100000001">
+                    <i class="fa fa-check"></i> Onaylanan Eğitimler
+                    <span class="label label-success pull-right r-activity">
                         @Model.Attendances.Where(a => a.Status.ToEnum<EducationAttendance.StatusCode>() == EducationAttendance.StatusCode.REGISTRATION_CONFIRMED).ToList().Count
                     </span>
-                    </a>
-                </form>
+                </a>
             </li>
         </ul>
     </section>
 </aside>
+

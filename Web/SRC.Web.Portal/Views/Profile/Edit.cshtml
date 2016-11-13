@@ -12,10 +12,11 @@
     <section class="wrapper site-min-height">
         <!-- page start-->
         <div class="row">
-            @Html.Partial("ProfileMenu", Model);
+            @Html.Action("ProfileMenu", "Partials")
+
             <aside class="profile-info col-lg-9">
                 <section class="panel">
-                    <div class="bio-graph-heading">
+                    <div class="bio-graph-heading" style="padding:10px 50px;">
                         Profil bilgilerinizi düzenleyebilirsiniz.
                     </div>
                     <div class="panel-body bio-graph-info">

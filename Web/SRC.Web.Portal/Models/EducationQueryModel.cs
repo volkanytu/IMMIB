@@ -6,10 +6,10 @@ using System.Web;
 
 namespace SRC.Web.Portal.Models
 {
-    public class ProfilePageModel
+    public class EducationQueryModel
     {
-        public Contact Contact { get; set; }
-        public List<EducationAttendance> Attendances { get; set; }
+        public int? Month { get; set; }
+        public int? Year { get; set; }
         public List<Education> EducationList { get; set; }
     }
 }

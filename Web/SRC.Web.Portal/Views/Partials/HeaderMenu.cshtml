@@ -1,0 +1,11 @@
+﻿@using SRC.Web.Portal.Models
+@model List<HeaderMenuItem>
+
+<div class="horizontal-menu navbar-collapse collapse">
+    <ul class="nav navbar-nav">
+        @foreach (var item in Model)
+        {
+            <li class="@item.ClassDetails @item.ActiveClass"><a href="@item.Link">@item.Name</a></li>
+        }
+    </ul>
+</div>

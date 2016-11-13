@@ -127,10 +127,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IocContainerConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\EducationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HowtoController.cs" />
     <Compile Include="Controllers\PartialsController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -138,8 +141,12 @@
     <Compile Include="MockData\ContactMock.cs" />
     <Compile Include="MockData\DynamicPageMock.cs" />
     <Compile Include="MockData\EducationMock.cs" />
+    <Compile Include="Models\EducationModel.cs" />
+    <Compile Include="Models\EducationQueryModel.cs" />
+    <Compile Include="Models\HeaderMenuItem.cs" />
     <Compile Include="Models\HomePageModel.cs" />
     <Compile Include="Models\ProfilePageModel.cs" />
+    <Compile Include="Models\LoggedUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2001,7 +2008,6 @@
   <ItemGroup>
     <Folder Include="assets\jquery-file-upload\server\php\files\thumbnail\" />
     <Folder Include="Filters\" />
-    <Folder Include="Views\Edit\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -2249,8 +2255,12 @@
     <Content Include="Views\Education\Detail.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Profile\Edit.cshtml" />
-    <Content Include="Views\Profile\ProfileMenu.cshtml" />
-    <Content Include="Views\Profile\Test.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\Howto\Index.cshtml" />
+    <Content Include="Views\Partials\HeaderMenu.cshtml" />
+    <Content Include="Views\Profile\Education.cshtml" />
+    <Content Include="Views\Partials\ProfileMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Library\Domain\SRC.Library.Domain.Facade\SRC.Library.Domain.Facade.csproj">

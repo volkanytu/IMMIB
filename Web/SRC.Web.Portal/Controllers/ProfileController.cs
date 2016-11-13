@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SRC.Library.Entities;
 
 namespace SRC.Web.Portal.Controllers
 {
@@ -16,20 +17,33 @@ namespace SRC.Web.Portal.Controllers
 
         }
 
-        public ActionResult Index(Guid? id)
+        public ActionResult Index()
         {
             ProfilePageModel model = new ProfilePageModel();
-            model.Contact = ContactMock.GetContact();
+            model.Contact = LoggedUser.Current;
             model.Attendances = AttendanceMock.GetAttendances();
 
             return View(model);
         }
 
-        public ActionResult Edit(Guid? id)
+        public ActionResult Edit()
         {
             ProfilePageModel model = new ProfilePageModel();
-            model.Contact = ContactMock.GetContact();
+            model.Contact = LoggedUser.Current;
             model.Attendances = AttendanceMock.GetAttendances();
+
+            return View(model);
+        }
+
+        public ActionResult Education(int? type)
+        {
+            ProfilePageModel model = new ProfilePageModel();
+            model.Contact = LoggedUser.Current;
+            model.Attendances = AttendanceMock.GetAttendances()
+                .Where(a => a.Status.ToEnum<EducationAttendance.StatusCode>() == (EducationAttendance.StatusCode)type).ToList();
+
+            model.EducationList = EducationMock.GetEducations().Where(e => e.Status != null
+                                        && model.Attendances.Select(m => m.Education.Id).ToList().Contains(e.Id)).ToList();
 
             return View(model);
         }
@@ -37,26 +51,17 @@ namespace SRC.Web.Portal.Controllers
         public ActionResult ChangePassword(Contact model)
         {
             model = new Contact();
-            model = ContactMock.GetContact();
+            model = LoggedUser.Current;
             return RedirectToAction("Edit");
         }
 
         public PartialViewResult EducationList(List<EducationAttendance> model)
         {
 
-            var returnValue = EducationMock.GetComingEducations().Where(e => e.Status != null
+            var returnValue = EducationMock.GetDoneEducations().Where(e => e.Status != null
                 && model.Select(m => m.Education.Id).ToList().Contains(e.Id)).ToList();
 
             return PartialView(returnValue);
-        }
-
-        [HttpPost]
-        public ActionResult Test(List<EducationAttendance> model)
-        {
-            var returnValue = EducationMock.GetComingEducations().Where(e => e.Status != null
-                && model.Select(m => m.Education.Id).ToList().Contains(e.Id)).ToList();
-
-            return View(returnValue);
         }
     }
 }

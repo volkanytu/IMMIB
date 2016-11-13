@@ -13,11 +13,15 @@
     <section class="wrapper site-min-height">
         <!-- page start-->
         <div class="row">
-            @Html.Partial("ProfileMenu", Model);
+            @Html.Action("ProfileMenu", "Partials")
+
             <aside class="profile-info col-lg-9">
-                <section class="panel transparentGray">
+                <section class="panel">
+                    <div class="bio-graph-heading" style="padding:10px 50px;">
+                        &nbsp;
+                    </div>
                     <div class="panel-body bio-graph-info" id="divContent">
-                        <h1>Bio Graph</h1>
+                        <h1>Profil Özeti</h1>
                         <div class="row">
                             <div class="bio-row">
                                 <p><span>İsim </span>: @Model.Contact.FirstName</p>

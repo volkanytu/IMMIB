@@ -1,19 +1,22 @@
-﻿@using SRC.Library.Entities.CrmEntities
-@model List<Education>
+﻿@using SRC.Web.Portal.Models;
+@model EducationModel
 
-<div class="modal fade modal-dialog-center" id="educationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-url="@Url.Action("Detail", "Education")">
-    @*<iframe class="modal-dialog modal-lg" src="/education/detail/5"></iframe>*@
-    <div class="modal-dialog modal-lg" id="divModal">
-        @* @Html.Action("Detail", "Education", new { id = "123", @class = "modal-dialog modal-lg" })*@
+@if (Model.EducationList == null || Model.EducationList.Count == 0)
+{
+    <div class="alert alert-warning"     role="alert">
+        <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+        <span class="sr-only">Uyarı:</span>
+        Eğitim kaydı bulunamadı.
     </div>
-</div>
+    return;
+}
 
-<table class="table table-hover p-table">
+<table class="table table-hover p-table" id="tblEducation">
     <thead>
         <tr>
             <th>Eğitim Adı</th>
             <th>Eğitmen</th>
-            <th>Kontenjan</th>
+            @*<th>Kontenjan</th>*@
             <th>Süre</th>
             <th>Şehir</th>
             <th>Durum</th>
@@ -21,24 +24,23 @@
         </tr>
     </thead>
     <tbody>
-
-        @foreach (var education in Model)
+        @foreach (var education in Model.EducationList)
         {
             <tr>
                 <td class="p-name">
-                    <a data-toggle="modal" type="detail" href="#educationModal">@education.Name</a>
+                    <a data-toggle="modal" type="educationdetail" href="#educationModal" id="@education.Id">@education.Name</a>
                     <br>
                     <small>@education.FormattedEducationDate</small>
                 </td>
                 <td>
                     <a data-toggle="modal" type="educator" href="#educationModal">@education.Contact.Name</a>
                 </td>
-                <td class="p-progress">
-                    <div class="progress progress-xs">
-                        <div style="width: 87%;" class="progress-bar progress-bar-success"></div>
-                    </div>
-                    <small>10% Dolu </small>
-                </td>
+                @*<td class="p-progress">
+                        <div class="progress progress-xs">
+                            <div style="width: 87%;" class="progress-bar progress-bar-success"></div>
+                        </div>
+                        <small>10% Dolu </small>
+                    </td>*@
                 <td>
                     <span class="label label-primary">@education.EducationPeriod.Value gün</span>
                 </td>
@@ -55,24 +57,6 @@
             </tr>
         }
     </tbody>
+
 </table>
-
-@section TEST{
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("a[type='detail']").click(function () {
-                alert("HELLO");
-                @*$.ajax({
-                    url: '@Url.Action("Detail", "Education")',
-                    type: 'GET',
-                    data: { id: 222 }
-                }).success(function (result) {
-                    $("#divModal").html(result);
-                });*@
-            });
-        });
-    </script>
-
-}
 

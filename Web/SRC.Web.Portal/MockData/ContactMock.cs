@@ -11,8 +11,9 @@ namespace SRC.Web.Portal.MockData
     {
         public static Contact GetContact()
         {
-            Contact contact  = new Contact();
-            contact.Id = Guid.NewGuid();
+            Contact contact = new Contact();
+            contact.Id = Guid.Parse("d5d39c8c-08f0-443b-bc46-349c21334b82");
+            contact.Name = "Burak Yılmaz";
             contact.FirstName = "Burak";
             contact.LastName = "Yılmaz";
             contact.BirthDate = DateTime.Now.AddYears(-20);
