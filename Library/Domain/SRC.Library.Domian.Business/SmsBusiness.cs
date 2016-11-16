@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SRC.Library.Constants.LogKey;
+using SRC.Library.Data.Interfaces;
 using SRC.Library.Data.SqlDao;
 using SRC.Library.Domain.Business.Interfaces;
 using SRC.Library.Entities;
@@ -15,12 +16,12 @@ namespace SRC.Library.Domain.Business
 {
     public class SmsBusiness : ISmsBusiness
     {
-        private BaseSqlDao<SmsEnt> _baseDao;
+        private IBaseDao<SmsEnt> _baseDao;
         private const string SUBJECT_REMEMBER_PASSWORD = "Şifre Hatırlatma Servisi";
 
-        public SmsBusiness(BaseSqlDao<SmsEnt> baseDao)
+        public SmsBusiness(IBaseDao<SmsEnt> baseDao)
         {
-            _baseDao = baseDao;
+            _baseDao = (BaseSqlDao<SmsEnt>) baseDao;
         }
 
         public void CreateRememberPasswordSms(Contact contact, string password)

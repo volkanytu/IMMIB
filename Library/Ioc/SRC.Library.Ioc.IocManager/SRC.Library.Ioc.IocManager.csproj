@@ -75,6 +75,14 @@
       <Project>{69420626-41fa-4559-ad2a-d38eb2cf0585}</Project>
       <Name>SRC.Library.Data.SqlDao</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Domain\SRC.Library.Domain.Facade\SRC.Library.Domain.Facade.csproj">
+      <Project>{d8d6efb7-d1eb-4df7-9879-752e086a2a89}</Project>
+      <Name>SRC.Library.Domain.Facade</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Domain\SRC.Library.Domian.Business\SRC.Library.Domain.Business.csproj">
+      <Project>{739ADE97-68B3-4B60-88BD-0D4D93374333}</Project>
+      <Name>SRC.Library.Domain.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\SRC.Library.Common\SRC.Library.Common.csproj">
       <Project>{13229fe4-c206-4917-8a42-2ea185ef8f86}</Project>
       <Name>SRC.Library.Common</Name>

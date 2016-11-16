@@ -6,19 +6,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Autofac;
+using SRC.Library.Domain.Business.Interfaces;
+using SRC.Library.Domain.Facade.Interfaces;
+using SRC.Library.Entities;
 
 namespace SRC.Web.Portal.Controllers
 {
     public class HomeController : Controller
     {
-        public HomeController()
+
+        private IContactBusiness _contactBusiness;
+        private IContactFacade _contactFacade;
+
+
+        public HomeController(IContactBusiness contactBusiness, IContactFacade contactFacade)
         {
+            _contactBusiness = contactBusiness;
+            _contactFacade = contactFacade;
+
             //TEST için
-            LoggedUser.Current = ContactMock.GetContact();
+            //LoggedUser.Current = ContactMock.GetContact();
         }
 
         public ActionResult Index(HomePageModel model)
         {
+
+            EntityReferenceWrapper r = _contactFacade.CheckLogin("ali", "veli", "120,");
             model = new HomePageModel();
             model.SliderData = DynamicPageMock.GetDynamicPages();
             model.ComingEducations = EducationMock.GetComingEducations();

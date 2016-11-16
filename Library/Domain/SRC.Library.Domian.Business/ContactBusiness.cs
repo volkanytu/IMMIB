@@ -10,15 +10,16 @@ using System.Threading.Tasks;
 using SRC.Library.Constants.LogKey;
 using SRC.Library.Entities.CustomEntities;
 using SRC.Library.Common;
+using SRC.Library.Data.Interfaces;
 
 namespace SRC.Library.Domain.Business
 {
     public class ContactBusiness : IContactBusiness
     {
-        private BaseSqlDao<Contact> _baseDao;
+        private IBaseDao<Contact> _baseDao;
         private IContactDao _contactDao;
 
-        public ContactBusiness(BaseSqlDao<Contact> baseDao, IContactDao contactDao)
+        public ContactBusiness(IBaseDao<Contact> baseDao, IContactDao contactDao)
         {
             _baseDao = baseDao;
             _contactDao = contactDao;

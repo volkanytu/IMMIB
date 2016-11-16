@@ -41,6 +41,8 @@
   <ItemGroup>
     <Compile Include="ContactFacade.cs" />
     <Compile Include="EducationFacade.cs" />
+    <Compile Include="Interfaces\IEducationFacade.cs" />
+    <Compile Include="Interfaces\IContactFacade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -64,6 +66,7 @@
       <Name>SRC.Library.Domain.Business</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -16,7 +16,8 @@ namespace SRC.Web.Portal
             var builder = new ContainerBuilder();
 
             #region | IOC REGISTER |
-            //IocContainerBuilder.RegisterDataAccess(builder);
+            IocContainerBuilder.RegisterDataAccess(builder);
+            IocContainerBuilder.RegisterPortal(builder);
             //IocContainerBuilder.RegisterLogManager(builder, APPLICATION_NAME, LogEntity.LogClientType.ELASTIC);
             //IocContainerBuilder.RegisterInterceptors(builder);
             #endregion

@@ -7,13 +7,14 @@ using SRC.Library.Business.Interfaces;
 using SRC.Library.Common;
 using SRC.Library.Constants.LogKey;
 using SRC.Library.Domain.Business.Interfaces;
+using SRC.Library.Domain.Facade.Interfaces;
 using SRC.Library.Entities;
 using SRC.Library.Entities.CrmEntities;
 using SRC.Library.Entities.CustomEntities;
 
 namespace SRC.Library.Domain.Facade
 {
-    public class ContactFacade
+    public class ContactFacade : IContactFacade
     {
         private IContactBusiness _contactBusiness;
         private ISmsBusiness _smsBusiness;
@@ -76,7 +77,7 @@ namespace SRC.Library.Domain.Facade
             _baseContactBusiness.Update(contact);
         }
 
-        private void CreateLoginLog(EntityReferenceWrapper contact, string ipAddress)
+        public void CreateLoginLog(EntityReferenceWrapper contact, string ipAddress)
         {
             ipAddress.CheckNull("Ip adresi boş!", LoginLogKeys.IP_ADDRESS_NULL, contact.Id.ToString());
 

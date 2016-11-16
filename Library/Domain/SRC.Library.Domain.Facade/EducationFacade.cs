@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 using SRC.Library.Business.Interfaces;
 using SRC.Library.Constants.LogKey;
 using SRC.Library.Domain.Business.Interfaces;
+using SRC.Library.Domain.Facade.Interfaces;
 using SRC.Library.Entities;
 using SRC.Library.Entities.CrmEntities;
 
 namespace SRC.Library.Domain.Facade
 {
-    public class EducationFacade
+    public class EducationFacade : IEducationFacade
     {
         private IEducationBusiness _educationBusiness;
         private IEducationAttendanceBusiness _educationAttendanceBusiness;
