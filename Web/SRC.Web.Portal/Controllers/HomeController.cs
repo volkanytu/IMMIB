@@ -32,7 +32,7 @@ namespace SRC.Web.Portal.Controllers
         public ActionResult Index(HomePageModel model)
         {
 
-            EntityReferenceWrapper r = _contactFacade.CheckLogin("ali", "veli", "120,");
+            //EntityReferenceWrapper r = _contactFacade.CheckLogin("ali", "veli", "120,");
             model = new HomePageModel();
             model.SliderData = DynamicPageMock.GetDynamicPages();
             model.ComingEducations = EducationMock.GetComingEducations();

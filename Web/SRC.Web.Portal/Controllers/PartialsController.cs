@@ -71,5 +71,12 @@ namespace SRC.Web.Portal.Controllers
             return PartialView(model);
         }
 
+        public PartialViewResult ProfileInformation(Contact _model)
+        {
+            //_model = LoggedUser.Current;
+
+            return PartialView(_model);
+        }
+
     }
 }

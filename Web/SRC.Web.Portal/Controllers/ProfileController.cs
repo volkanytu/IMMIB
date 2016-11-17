@@ -55,6 +55,12 @@ namespace SRC.Web.Portal.Controllers
             return RedirectToAction("Edit");
         }
 
+        public ActionResult SignUp(Contact model)
+        {
+            //model = LoggedUser.Current;
+            return View(model);
+        }
+
         public PartialViewResult EducationList(List<EducationAttendance> model)
         {
 

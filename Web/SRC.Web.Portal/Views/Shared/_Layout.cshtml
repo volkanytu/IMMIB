@@ -45,7 +45,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-warning pull-left">Şifremi Unuttum</button>
-                        <button type="button" class="btn btn-info">Üye Ol</button>
+                        <button id="btnSignUp" type="button" class="btn btn-info">Üye Ol</button>
                         <button type="button" class="btn btn-primary">Giriş</button>
                     </div>
                 </div><!-- /.modal-content -->
@@ -79,6 +79,10 @@
                 }).success(function (result) {
                     $("#divModal").html(result);
                 });
+            });
+
+            $("#btnSignUp").click(function () {
+                window.location.href = "/Profile/SignUp";
             });
         });
 

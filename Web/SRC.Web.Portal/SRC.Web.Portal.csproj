@@ -2261,6 +2261,8 @@
     <Content Include="Views\Partials\HeaderMenu.cshtml" />
     <Content Include="Views\Profile\Education.cshtml" />
     <Content Include="Views\Partials\ProfileMenu.cshtml" />
+    <Content Include="Views\Partials\ProfileInformation.cshtml" />
+    <Content Include="Views\Profile\SignUp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Library\Domain\SRC.Library.Domain.Facade\SRC.Library.Domain.Facade.csproj">
