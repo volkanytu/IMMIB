@@ -33,8 +33,8 @@ namespace SRC.Library.Entities.CrmEntities
         [CrmFieldName(KEY_LOGIN_COUNT)]
         public int? LoginCount { get; set; }
 
-        public const string KEY_LOGICAL_NAME = "new_login";
-        public const string KEY_LOGIN_ID = "new_loginid";
+        public const string KEY_LOGICAL_NAME = "new_loginlog";
+        public const string KEY_LOGIN_ID = "new_loginlogid";
         public const string KEY_NAME = "new_name";  
         public const string KEY_CONTACT_ID = "new_contactid";
         public const string KEY_LOGIN_DATE = "new_logindate";

@@ -6,15 +6,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SRC.Library.Domain.Facade;
+using SRC.Library.Domain.Facade.Interfaces;
 using SRC.Library.Entities;
 
 namespace SRC.Web.Portal.Controllers
 {
     public class ProfileController : Controller
     {
-        public ProfileController()
-        {
+        private IContactFacade _contactFacade;
 
+        public ProfileController(IContactFacade contactFacade)
+        {
+            _contactFacade = contactFacade;
         }
 
         public ActionResult Index()
@@ -59,6 +63,18 @@ namespace SRC.Web.Portal.Controllers
         {
             //model = LoggedUser.Current;
             return View(model);
+        }
+
+        public ActionResult CheckLogin(string userName, string password)
+        {
+            if (!string.IsNullOrWhiteSpace(userName) && !string.IsNullOrWhiteSpace(password))
+            {
+               EntityReferenceWrapper loggedUser = _contactFacade.CheckLogin(userName, password, "192.168.2.1");
+
+                LoggedUser.Current = ContactMock.GetContact();
+            }
+           
+            return RedirectToAction("Index");
         }
 
         public PartialViewResult EducationList(List<EducationAttendance> model)

@@ -32,21 +32,21 @@
                         <h4 class="modal-title">Giriş / Kayıt</h4>
                     </div>
                     <div class="modal-body">
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" action="/Profile/CheckLogin" id="formLogin">
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                                <input type="text" class="form-control input-lg" placeholder="Kullanıcı adı" />
+                                <input type="text" class="form-control input-lg" placeholder="Kullanıcı adı" name="userName"/>
                             </div>
                             <div class="input-group" style="margin-top:10px;">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                                <input type="password" class="form-control input-lg" placeholder="Şifre" />
+                                <input type="password" name="password" class="form-control input-lg" placeholder="Şifre" />
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-warning pull-left">Şifremi Unuttum</button>
                         <button id="btnSignUp" type="button" class="btn btn-info">Üye Ol</button>
-                        <button type="button" class="btn btn-primary">Giriş</button>
+                        <button id="btnLogin" type="submit" class="btn btn-primary">Giriş</button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
@@ -83,6 +83,10 @@
 
             $("#btnSignUp").click(function () {
                 window.location.href = "/Profile/SignUp";
+            });
+
+            $("#btnLogin").click(function () {
+                $("#formLogin").submit();
             });
         });
 

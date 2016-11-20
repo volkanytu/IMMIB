@@ -14,6 +14,7 @@ namespace SRC.Library.Constants.SqlQueries
 	                                        ,C.FullName
 	                                        ,C.FirstName
 	                                        ,C.LastName
+                                            ,C.FullName
 	                                        ,C.new_username AS UserName
 	                                        ,C.new_password AS Password
 	                                        ,C.new_firstlogindate AS FirstLoginDate
@@ -58,6 +59,7 @@ namespace SRC.Library.Constants.SqlQueries
 	                                                ,C.FullName
 	                                                ,C.FirstName
 	                                                ,C.LastName
+                                                    ,C.FullName
 	                                                ,C.new_username AS UserName
 	                                                ,C.new_password AS Password
 	                                                ,C.new_firstlogindate AS FirstLoginDate
@@ -99,9 +101,10 @@ namespace SRC.Library.Constants.SqlQueries
         #region | GET_CONTACT_BY_USERNAME |
         public const string GET_CONTACT_BY_USERNAME = @"SELECT
 	                                                C.ContactId AS Id
-	                                                ,C.FullName
+	                                                ,C.FullName As Name
 	                                                ,C.FirstName
 	                                                ,C.LastName
+                                                    ,C.FullName
 	                                                ,C.new_username AS UserName
 	                                                ,C.new_password AS Password
 	                                                ,C.new_firstlogindate AS FirstLoginDate
@@ -142,7 +145,7 @@ namespace SRC.Library.Constants.SqlQueries
         #region | GET_CONTACT_BY_USERNAME_PASSWORD |
         public const string GET_CONTACT_BY_USERNAME_PASSWORD = @"SELECT
 	                                                C.ContactId AS Id
-	                                                ,C.FullName
+	                                                ,C.FullName  As Name
 	                                                ,C.FirstName
 	                                                ,C.LastName
 	                                                ,C.new_username AS UserName
