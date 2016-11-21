@@ -33,7 +33,15 @@
                                 <p><span>Doğum Tarihi</span>: @Model.Contact.BirthDate</p>
                             </div>
                             <div class="bio-row">
-                                <p><span>Cinsiyet </span>: @Model.Contact.Gender.Value</p>
+                                @if (Model.Contact.Gender != null)
+                                {
+                                     <p><span>Cinsiyet </span>: @Model.Contact.Gender.Value</p>
+                                }
+                                else
+                                {
+                                     <p><span>Cinsiyet </span>: </p>
+                                }
+                               
                             </div>
                             <div class="bio-row">
                                 <p><span>Cep Telefonu </span>: @Model.Contact.MobilePhone</p>
@@ -42,7 +50,15 @@
                                 <p><span>Email </span>: @Model.Contact.EmailAddress</p>
                             </div>
                             <div class="bio-row">
-                                <p><span>Gsm Operatörü </span>: @Model.Contact.GsmOperator.Name</p>
+                                @if (Model.Contact.GsmOperator != null)
+                                {
+                                    <p><span>Gsm Operatörü </span>: @Model.Contact.GsmOperator.Name</p>
+                                }
+                                else
+                                {
+                                    <p><span>Gsm Operatörü </span>: </p>
+                                }
+                                
                             </div>
                             <div class="bio-row">
                                 <p><span>İş Telefonu </span>: @Model.Contact.WorkPhone</p>
@@ -63,7 +79,7 @@
         $(document).ready(function () {
             $("a").click(function () {
                 $.ajax({
-                    url: '@Url.Action("EducationList", "Education")',
+                    url: '@Url.Action("EducationList", "Education", new { querymodel = new EducationQueryModel() { EducationList = Model.EducationList } })',
                     type: 'POST',
                     data: @Html.Raw(Json.Encode(Model.Attendances))
                     }).success(function (result) {

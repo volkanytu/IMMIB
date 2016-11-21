@@ -29,7 +29,7 @@ namespace SRC.Library.Domain.Facade
             _baseContactBusiness = baseContactBusiness;
         }
 
-        public EntityReferenceWrapper CheckLogin(string userName, string password, string ipAddress)
+        public Contact CheckLogin(string userName, string password, string ipAddress)
         {
             string hashedPassword = password.ToSHA1();
             var contact = _contactBusiness.GetContact(userName, hashedPassword);
@@ -40,7 +40,7 @@ namespace SRC.Library.Domain.Facade
 
             this.CreateLoginLog(contact.ToEntityReferenceWrapper(), ipAddress);
 
-            return contact.ToEntityReferenceWrapper();
+            return contact;
         }
 
         public void RememberPassWord(string userName)
@@ -69,6 +69,13 @@ namespace SRC.Library.Domain.Facade
         {
             contact.CheckNull("Üye bilgileri boş olamaz!", ContactLogKeys.CONTACT_NULL);
             return _baseContactBusiness.Insert(contact);
+        }
+
+        public Contact GetContact(Guid? contactId)
+        {
+            contactId.CheckNull("Üye bilgisi boş olamaz!", ContactLogKeys.CONTACT_ID_NULL);
+
+            return _baseContactBusiness.Get((Guid)contactId);
         }
 
         public void UpdateContact(Contact contact)

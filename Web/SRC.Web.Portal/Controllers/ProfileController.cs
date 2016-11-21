@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SRC.Library.Domain.Business.Interfaces;
 using SRC.Library.Domain.Facade;
 using SRC.Library.Domain.Facade.Interfaces;
 using SRC.Library.Entities;
@@ -15,17 +16,19 @@ namespace SRC.Web.Portal.Controllers
     public class ProfileController : Controller
     {
         private IContactFacade _contactFacade;
+        private IEducationFacade _educationFacade;
 
-        public ProfileController(IContactFacade contactFacade)
+        public ProfileController(IContactFacade contactFacade, IEducationFacade educationFacade)
         {
             _contactFacade = contactFacade;
+            _educationFacade = educationFacade;
         }
 
         public ActionResult Index()
         {
             ProfilePageModel model = new ProfilePageModel();
             model.Contact = LoggedUser.Current;
-            model.Attendances = AttendanceMock.GetAttendances();
+            model.Attendances = _educationFacade.GetContactAttendances(LoggedUser.Current.Id);//AttendanceMock.GetAttendances();
 
             return View(model);
         }
@@ -59,19 +62,33 @@ namespace SRC.Web.Portal.Controllers
             return RedirectToAction("Edit");
         }
 
+        //TODO: Burada şimdilik 2 ayrı metod yaptım
         public ActionResult SignUp(Contact model)
         {
+           
             //model = LoggedUser.Current;
+            
             return View(model);
+        }
+
+        public ActionResult Kaydet(Contact model)
+        {
+            Guid? contactId = _contactFacade.CreateContact(model);
+
+
+            LoggedUser.Current = _contactFacade.GetContact(contactId);
+            //model = LoggedUser.Current;
+
+            return RedirectToAction("Index");
         }
 
         public ActionResult CheckLogin(string userName, string password)
         {
             if (!string.IsNullOrWhiteSpace(userName) && !string.IsNullOrWhiteSpace(password))
             {
-               EntityReferenceWrapper loggedUser = _contactFacade.CheckLogin(userName, password, "192.168.2.1");
+               Contact loggedUser = _contactFacade.CheckLogin(userName, password, "192.168.2.1");
 
-                LoggedUser.Current = ContactMock.GetContact();
+               LoggedUser.Current = loggedUser;
             }
            
             return RedirectToAction("Index");
