@@ -56,13 +56,12 @@ namespace SRC.Library.Domain.Facade
             _smsBusiness.CreateRememberPasswordSms(contact, generatedPassword);
         }
 
-        public void UpdatePassWord(Guid? contactId, string password, string newPassword)
+        public void UpdatePassWord(Guid? contactId, string password)
         {
             contactId.CheckNull("Üye bilgisi boş olamaz!", ContactLogKeys.CONTACT_ID_NULL);
             password.CheckNull("Eski şifre boş olamaz!", ContactLogKeys.PASSWORD_NULL, contactId.ToString());
-            password.CheckNull("Yeni şifre boş olamaz!", ContactLogKeys.PASSWORD_NULL, contactId.ToString());
            
-            _contactBusiness.UpdatePassword((Guid)contactId, password, newPassword);
+            _contactBusiness.UpdatePassword((Guid)contactId, password);
         }
 
         public Guid? CreateContact(Contact contact)

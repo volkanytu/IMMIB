@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SRC.Library.Business.Interfaces;
+using SRC.Library.Common;
 using SRC.Library.Domain.Business.Interfaces;
 using SRC.Library.Domain.Facade;
 using SRC.Library.Domain.Facade.Interfaces;
@@ -28,7 +30,7 @@ namespace SRC.Web.Portal.Controllers
         {
             ProfilePageModel model = new ProfilePageModel();
             model.Contact = LoggedUser.Current;
-            model.Attendances = _educationFacade.GetContactAttendances(LoggedUser.Current.Id);//AttendanceMock.GetAttendances();
+            //model.Attendances = _educationFacade.GetContactAttendances(LoggedUser.Current.Id);//AttendanceMock.GetAttendances();
 
             return View(model);
         }
@@ -37,7 +39,8 @@ namespace SRC.Web.Portal.Controllers
         {
             ProfilePageModel model = new ProfilePageModel();
             model.Contact = LoggedUser.Current;
-            model.Attendances = AttendanceMock.GetAttendances();
+            //model.Attendances = _educationFacade.GetContactAttendances(model.Contact.Id);
+            //model.Attendances = AttendanceMock.GetAttendances();
 
             return View(model);
         }
@@ -46,20 +49,12 @@ namespace SRC.Web.Portal.Controllers
         {
             ProfilePageModel model = new ProfilePageModel();
             model.Contact = LoggedUser.Current;
-            model.Attendances = AttendanceMock.GetAttendances()
-                .Where(a => a.Status.ToEnum<EducationAttendance.StatusCode>() == (EducationAttendance.StatusCode)type).ToList();
+            model.Attendances = _educationFacade.GetContactAttendances(LoggedUser.Current.Id).Where(a => a.Status.ToEnum<EducationAttendance.StatusCode>() == (EducationAttendance.StatusCode)type).ToList();
 
-            model.EducationList = EducationMock.GetEducations().Where(e => e.Status != null
+            model.EducationList = _educationFacade.GetEducationsOfAttendances(model.Attendances).Where(e => e.Status != null
                                         && model.Attendances.Select(m => m.Education.Id).ToList().Contains(e.Id)).ToList();
 
             return View(model);
-        }
-
-        public ActionResult ChangePassword(Contact model)
-        {
-            model = new Contact();
-            model = LoggedUser.Current;
-            return RedirectToAction("Edit");
         }
 
         //TODO: Burada şimdilik 2 ayrı metod yaptım
@@ -71,12 +66,27 @@ namespace SRC.Web.Portal.Controllers
             return View(model);
         }
 
-        public ActionResult Kaydet(Contact model)
+        public ActionResult Kaydet(Contact model, string gsmOperatorId, string informedById, string cityId, string educationLevel, string genderCode)
         {
-            Guid? contactId = _contactFacade.CreateContact(model);
 
+            model.GsmOperator = gsmOperatorId.ToEntityReferenceWrapper("new_gsmoperator");
+            model.InformedBy = informedById.ToEntityReferenceWrapper("new_informedby");
+            model.City = cityId.ToEntityReferenceWrapper("new_city");
+            model.EducationLevel = new OptionSetValueWrapper() { AttributeValue = Convert.ToInt32(educationLevel) };
+            model.Gender = new OptionSetValueWrapper() { AttributeValue = Convert.ToInt32(genderCode) };
 
-            LoggedUser.Current = _contactFacade.GetContact(contactId);
+            if (LoggedUser.Current == null)
+            {
+                Guid? contactId = _contactFacade.CreateContact(model);
+                LoggedUser.Current = _contactFacade.GetContact(contactId);
+            }
+            else
+            {
+                model.Id = LoggedUser.Current.Id;
+                _contactFacade.UpdateContact(model);
+                LoggedUser.Current = _contactFacade.GetContact(model.Id);
+            }
+            
             //model = LoggedUser.Current;
 
             return RedirectToAction("Index");
@@ -94,6 +104,29 @@ namespace SRC.Web.Portal.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult ChangePassword(string oldPassword, string newPassword, string reNewPassword)
+        {
+            if (!string.IsNullOrWhiteSpace(oldPassword) && !string.IsNullOrWhiteSpace(newPassword) && !string.IsNullOrWhiteSpace(reNewPassword))
+            {
+                if (newPassword != reNewPassword)
+                {
+                    //hata
+                }
+
+                string hashedOldPassword = oldPassword.ToSHA1();
+                if (LoggedUser.Current.Password != hashedOldPassword)
+                {
+                    //Hata
+                }
+
+                _contactFacade.UpdatePassWord(LoggedUser.Current.Id,newPassword.ToSHA1());
+
+               // LoggedUser.Current = loggedUser;
+            }
+
+            return RedirectToAction("Index");
+        }
+
         public PartialViewResult EducationList(List<EducationAttendance> model)
         {
 
@@ -102,5 +135,7 @@ namespace SRC.Web.Portal.Controllers
 
             return PartialView(returnValue);
         }
+
+
     }
 }

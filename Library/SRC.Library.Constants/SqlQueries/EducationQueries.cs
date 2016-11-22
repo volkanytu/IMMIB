@@ -11,6 +11,7 @@ namespace SRC.Library.Constants.SqlQueries
         #region | GET_EDUCATION |
         public const string GET_EDUCATION = @"SELECT
 	                                            ED.new_educationId AS Id
+                                                ,ED.new_name AS Name
 	                                            ,ED.new_code AS Code
 	                                            ,ED.new_educationdefinitionid AS EducationDefinition
 	                                            ,ED.new_educationdefinitionidName AS EducationDefinitionName
@@ -49,6 +50,7 @@ namespace SRC.Library.Constants.SqlQueries
         #region | GET_EDUCATION_LIST |
         public const string GET_EDUCATION_LIST = @"SELECT
 	                                                ED.new_educationId AS Id
+                                                    ,ED.new_name AS Name
 	                                                ,ED.new_code AS Code
 	                                                ,ED.new_educationdefinitionid AS EducationDefinition
 	                                                ,ED.new_educationdefinitionidName AS EducationDefinitionName
@@ -87,6 +89,7 @@ namespace SRC.Library.Constants.SqlQueries
         #region | GET_EDUCATION_LIST_BY_START_DATE |
         public const string GET_EDUCATION_LIST_BY_START_DATE = @"SELECT
 	                                                ED.new_educationId AS Id
+                                                    ,ED.new_name AS Name
 	                                                ,ED.new_code AS Code
 	                                                ,ED.new_educationdefinitionid AS EducationDefinition
 	                                                ,ED.new_educationdefinitionidName AS EducationDefinitionName
@@ -129,6 +132,7 @@ namespace SRC.Library.Constants.SqlQueries
         #region | GET_EDUCATION_LIST_OF_ATTENDANCES |
         public const string GET_EDUCATION_LIST_OF_ATTENDANCES = @"SELECT
 	                                                ED.new_educationId AS Id
+                                                    ,ED.new_name AS Name
 	                                                ,ED.new_code AS Code
 	                                                ,ED.new_educationdefinitionid AS EducationDefinition
 	                                                ,ED.new_educationdefinitionidName AS EducationDefinitionName
@@ -159,8 +163,12 @@ namespace SRC.Library.Constants.SqlQueries
 	                                                ,ED.statuscode AS Status
                                                 FROM
 	                                                new_education ED WITH (NOLOCK)
+                                                INNER JOIN
+													new_educationattendance EA WITH (NOLOCK)
+													ON
+													ED.new_educationId = EA.new_educationid
                                                 WHERE
-													ED.new_educationId IN({0}) ";
+													EA.new_educationattendanceId IN({0}) ";
         #endregion
 
     }

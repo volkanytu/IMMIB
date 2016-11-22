@@ -30,12 +30,24 @@
                                 <p><span>Soyisim </span>: @Model.Contact.LastName</p>
                             </div>
                             <div class="bio-row">
-                                <p><span>Doğum Tarihi</span>: @Model.Contact.BirthDate</p>
+                                @if (Model.Contact.BirthDate != null)
+                                {
+                                    <p><span>Doğum Tarihi</span>: @Model.Contact.BirthDate.Value.ToString("ddMMyyyy")</p>
+                                }
+                                else
+                                {
+                                    <p><span>Doğum Tarihi</span>: @Model.Contact.BirthDate</p>
+                                }
+                                
                             </div>
                             <div class="bio-row">
-                                @if (Model.Contact.Gender != null)
+                                @if (Model.Contact.Gender != null && Model.Contact.Gender.AttributeValue == 1)
                                 {
-                                     <p><span>Cinsiyet </span>: @Model.Contact.Gender.Value</p>
+                                     <p><span>Cinsiyet </span>: Erkek</p>
+                                }
+                                else if (Model.Contact.Gender != null && Model.Contact.Gender.AttributeValue == 2)
+                                {
+                                    <p><span>Cinsiyet </span>: Kadın</p>
                                 }
                                 else
                                 {
