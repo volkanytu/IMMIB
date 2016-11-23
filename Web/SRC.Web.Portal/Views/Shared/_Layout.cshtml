@@ -24,6 +24,11 @@
             </div>
         </div>
 
+        <div class="modal fade modal-dialog-center" id="attendanceModal" tabindex="-1" role="dialog" aria-labelledby="attendanceModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" id="divModalAttendance">
+            </div>
+        </div>
+
         <div class="modal fade" tabindex="-1" role="dialog" id="loginModal">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -35,7 +40,7 @@
                         <form class="form-horizontal" action="/Profile/CheckLogin" id="formLogin">
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                                <input type="text" class="form-control input-lg" placeholder="Kullanıcı adı" name="userName"/>
+                                <input type="text" class="form-control input-lg" placeholder="Kullanıcı adı" name="userName" />
                             </div>
                             <div class="input-group" style="margin-top:10px;">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
@@ -51,7 +56,6 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
-
         @Html.Partial("_Header")
 
         @RenderBody()
@@ -78,6 +82,16 @@
                     data: { id: $(this).attr("id") }
                 }).success(function (result) {
                     $("#divModal").html(result);
+                });
+            });
+
+            $("a[type='educationAttendance']").click(function () {
+                $.ajax({
+                    url: '@Url.Action("EducationAttendance", "Education")',
+                    type: 'GET',
+                    data: { id: $(this).attr("id") }
+                }).success(function (result) {
+                    $("#divModalAttendance").html(result);
                 });
             });
 
