@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using SRC.Library.Business.Interfaces;
 using SRC.Library.Domain.Facade.Interfaces;
+using SRC.Library.Entities;
 
 namespace SRC.Web.Portal.Controllers
 {
@@ -50,19 +51,17 @@ namespace SRC.Web.Portal.Controllers
             EducationModel model = new EducationModel();
 
             //TODO: Burası ne işe yarıyor?
-            //if (LoggedUser.IsLoggedIn)
-            //{
-            //    model.AttendanceList = AttendanceMock.GetAttendances().Where(a => a.Contact.Id == LoggedUser.Current.Id).ToList();
-            //}
+            if (LoggedUser.IsLoggedIn)
+            {
+                model.AttendanceList = _educationFacade.GetContactAttendances(LoggedUser.Current.Id).Where(a => a.Status.ToEnum<EducationAttendance.StatusCode>() != EducationAttendance.StatusCode.PARTICIPANT_CANCELED).ToList();
+            }
 
             if (querymodel.EducationList != null)
             {
                 model.EducationList = querymodel.EducationList;
             }
-            else
-            {
-                //model.EducationList = EducationMock.GetEducations();
-            }
+
+            _educationFacade.SetEducationAttendance(model.EducationList, model.AttendanceList);
 
             return PartialView(model);
         }

@@ -12,5 +12,6 @@ namespace SRC.Library.Domain.Facade.Interfaces
         Guid CreateEducationAttendance(EducationAttendance educationAttendance);
         void CancelEducationAttendance(Guid? educationAttendanceId);
         Guid CreateCreditCard(CreditCardLog creditCard);
+        void SetEducationAttendance(List<Education> educations, List<EducationAttendance> educationAttendances);
     }
 }

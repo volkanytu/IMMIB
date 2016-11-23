@@ -69,6 +69,14 @@ namespace SRC.Library.Domain.Facade
             _baseEducationAttendanceBusiness.Update(educationAttendance);
         }
 
+        public void SetEducationAttendance(List<Education> educations, List<EducationAttendance> educationAttendances)
+        {
+            foreach (Education education in educations)
+            {
+               education.Attendance = educationAttendances.FirstOrDefault(p => p.Education.Id == education.Id);
+            }
+        }
+
         //TODO: Burada olması doğru mu?
         public Guid CreateCreditCard(CreditCardLog creditCard)
         {

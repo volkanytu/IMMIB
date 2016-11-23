@@ -10,5 +10,6 @@ namespace SRC.Web.Portal.Models
     {
         public List<Education> EducationList { get; set; }
         public List<EducationAttendance> AttendanceList { get; set; }
+        
     }
 }

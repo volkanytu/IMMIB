@@ -101,6 +101,8 @@ namespace SRC.Library.Entities.CrmEntities
         [CrmFieldName(KEY_INFO)]
         public string Info { get; set; }
 
+        public EducationAttendance Attendance { get; set; }
+
         public bool IsExpired
         {
             get
