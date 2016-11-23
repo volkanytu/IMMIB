@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using SRC.Library.Business.Interfaces;
 using SRC.Library.Domain.Facade.Interfaces;
 using SRC.Library.Entities;
+using SRC.Library.Entities.CustomEntities;
 
 namespace SRC.Web.Portal.Controllers
 {
@@ -18,13 +19,19 @@ namespace SRC.Web.Portal.Controllers
         private IBaseBusiness<GsmOperator> _gsmOperatorBusiness;
         private IBaseBusiness<InformedBy> _informedByBusiness;
         private IBaseBusiness<City> _cityBusiness;
+        private IBaseBusiness<DynamicPage> _dynamicPageBaseBusiness;
 
-        public PartialsController(IEducationFacade educationFacade,IBaseBusiness<GsmOperator> gsmOperatorBusiness, IBaseBusiness<InformedBy> informedByBusiness, IBaseBusiness<City> cityBusiness)
+        public PartialsController(IEducationFacade educationFacade
+            , IBaseBusiness<GsmOperator> gsmOperatorBusiness
+            , IBaseBusiness<InformedBy> informedByBusiness
+            , IBaseBusiness<City> cityBusiness
+            , IBaseBusiness<DynamicPage> dynamicPageBaseBusiness)
         {
             _educationFacade = educationFacade;
             _gsmOperatorBusiness = gsmOperatorBusiness;
             _informedByBusiness = informedByBusiness;
             _cityBusiness = cityBusiness;
+            _dynamicPageBaseBusiness = dynamicPageBaseBusiness;
         }
 
         public ActionResult Index()
@@ -113,6 +120,24 @@ namespace SRC.Web.Portal.Controllers
             returnList.Add(new SelectListItem() { Text = "Lise", Value = "2" });
             returnList.Add(new SelectListItem() { Text = "Lisans", Value = "3" });
             return returnList;
+        }
+
+        public PartialViewResult EducationAttendance(string id)
+        {
+            ResponseContainer<DynamicPage> model = new ResponseContainer<DynamicPage>();
+
+            if (!LoggedUser.IsLoggedIn)
+            {
+                model.Message = "Başvuru için giriş yapmalısınız.";
+            }
+            else
+            {
+                model.Succes = true;
+                model.Result = _dynamicPageBaseBusiness.GetList().FirstOrDefault(p => p.PageType.ToEnum<DynamicPage.PageTypeCode>() == DynamicPage.PageTypeCode.EDUCATION_APPLICATION_CONDITION);
+                ViewBag.Id = id;
+            }
+
+            return PartialView(model);
         }
 
     }

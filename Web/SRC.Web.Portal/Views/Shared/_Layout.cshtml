@@ -87,11 +87,22 @@
 
             $("a[type='educationAttendance']").click(function () {
                 $.ajax({
-                    url: '@Url.Action("EducationAttendance", "Education")',
+                    url: '@Url.Action("EducationAttendance", "Partials")',
                     type: 'GET',
                     data: { id: $(this).attr("id") }
                 }).success(function (result) {
                     $("#divModalAttendance").html(result);
+
+                    $("a[type='applyEducation']").click(function () {
+                        $.ajax({
+                            url: '@Url.Action("CreateEducationAttendance", "Education")',
+                            type: 'POST',
+                            data: { educationId: $(this).attr("id") }
+                        }).success(function (result) {
+                            $("#divModalAttendance .panel-body").html(result.Result);
+                        });
+                    });
+
                 });
             });
 
