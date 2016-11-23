@@ -69,5 +69,14 @@ namespace SRC.Web.Portal.MockData
                 PageType = DynamicPage.PageTypeCode.TRANSFER_INFORMATION.ToOptionSetValueWrapper()
             };
         }
+
+        public static DynamicPage GetAttendance()
+        {
+            return new DynamicPage
+            {
+                Content = @"Başvuru Text",
+                PageType = DynamicPage.PageTypeCode.EDUCATION_APPLICATION_CONDITION.ToOptionSetValueWrapper()
+            };
+        }
     }
 }

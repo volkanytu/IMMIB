@@ -3,7 +3,7 @@
 
 @if (Model.EducationList == null || Model.EducationList.Count == 0)
 {
-    <div class="alert alert-warning"     role="alert">
+    <div class="alert alert-warning" role="alert">
         <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
         <span class="sr-only">Uyarı:</span>
         Eğitim kaydı bulunamadı.
@@ -51,7 +51,7 @@
                     <p>@education.Status.Value</p>
                 </td>
                 <td>
-                    <a href="project_details.html" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Başvur </a>
+                    <a data-toggle="modal" type="educationAttendance" href="#attendanceModal" class="btn btn-primary btn-xs" id="@education.Id"><i class="fa fa-folder"></i> Başvur </a>
                     <a data-toggle="modal" type="detail" href="#educationModal" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Detay </a>
                 </td>
             </tr>
