@@ -73,6 +73,7 @@
     <Compile Include="CustomEntities\CustomException.cs" />
     <Compile Include="CustomEntities\LogEntity.cs" />
     <Compile Include="CustomEntities\LogItem.cs" />
+    <Compile Include="CustomEntities\ResponseContainer.cs" />
     <Compile Include="EntityMapper.cs" />
     <Compile Include="EntityReferenceWrapper.cs" />
     <Compile Include="Extensions.cs" />

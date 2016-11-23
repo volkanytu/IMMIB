@@ -5,7 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SRC.Library.Business.Interfaces;
 using SRC.Library.Domain.Facade.Interfaces;
+using SRC.Library.Entities;
+using SRC.Library.Entities.CustomEntities;
 using SRC.Web.Portal.Models;
 
 namespace SRC.Web.Portal.Controllers
@@ -13,10 +16,14 @@ namespace SRC.Web.Portal.Controllers
     public class EducationController : Controller
     {
         private IEducationFacade _educationFacade;
+        private IBaseBusiness<EducationAttendance> _educationAttendanceBaseBusiness;
+        private IBaseBusiness<DynamicPage> _dynamicPageBaseBusiness;
 
-        public EducationController(IEducationFacade educationFacade)
+        public EducationController(IEducationFacade educationFacade, IBaseBusiness<EducationAttendance> educationAttendanceBaseBusiness, IBaseBusiness<DynamicPage> dynamicPageBaseBusiness)
         {
             _educationFacade = educationFacade;
+            _educationAttendanceBaseBusiness = educationAttendanceBaseBusiness;
+            _dynamicPageBaseBusiness = dynamicPageBaseBusiness;
         }
 
         public ActionResult Index(string month, string year)
@@ -51,6 +58,30 @@ namespace SRC.Web.Portal.Controllers
             return PartialView(model);
         }
 
+        public PartialViewResult EducationAttendance(string id)
+        {
+            DynamicPage model = _dynamicPageBaseBusiness.GetList().FirstOrDefault(p => p.PageType == DynamicPage.PageTypeCode.EDUCATION_APPLICATION_CONDITION.ToOptionSetValueWrapper());
+            ViewBag.Id = id;
+            return PartialView(model);
+        }
+
+        public ResponseContainer<string> CreateEducationAttendance(string educationId)
+        {
+            educationId.CheckNull("Lütfen eğitim seçiniz!");
+
+            ResponseContainer<string> retunValue = new ResponseContainer<string>();
+
+            EducationAttendance model = new EducationAttendance();
+            model.Contact = LoggedUser.Current.ToEntityReferenceWrapper();
+            model.Education = Guid.Parse(educationId).ToEntityReferenceWrapper<Education>();
+            model.Code = "123456";
+            var attendanceId = _educationAttendanceBaseBusiness.Insert(model);
+            model = _educationAttendanceBaseBusiness.Get(attendanceId);
+            retunValue.Id = model.Id;
+            retunValue.Result = model.Code;
+
+            return retunValue;
+        }
 
         //TODO:Bunlar başka yere alınır
         private List<SelectListItem> GetMonths()
