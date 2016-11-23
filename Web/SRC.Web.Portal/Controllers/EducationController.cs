@@ -42,7 +42,7 @@ namespace SRC.Web.Portal.Controllers
 
 
             List<Education> educations = _educationFacade.GetEducations(monthNow, yearNow);
-            EducationQueryModel model = new EducationQueryModel {EducationList = educations};
+            EducationQueryModel model = new EducationQueryModel { EducationList = educations };
             return View(model);
         }
 
@@ -58,18 +58,12 @@ namespace SRC.Web.Portal.Controllers
             return PartialView(model);
         }
 
-        public PartialViewResult EducationAttendance(string id)
-        {
-            DynamicPage model = _dynamicPageBaseBusiness.GetList().FirstOrDefault(p => p.PageType == DynamicPage.PageTypeCode.EDUCATION_APPLICATION_CONDITION.ToOptionSetValueWrapper());
-            ViewBag.Id = id;
-            return PartialView(model);
-        }
-
-        public ResponseContainer<string> CreateEducationAttendance(string educationId)
+        [HttpPost]
+        public JsonResult CreateEducationAttendance(string educationId)
         {
             educationId.CheckNull("Lütfen eğitim seçiniz!");
 
-            ResponseContainer<string> retunValue = new ResponseContainer<string>();
+            ResponseContainer<string> returnValue = new ResponseContainer<string>();
 
             EducationAttendance model = new EducationAttendance();
             model.Contact = LoggedUser.Current.ToEntityReferenceWrapper();
@@ -77,10 +71,10 @@ namespace SRC.Web.Portal.Controllers
             model.Code = "123456";
             var attendanceId = _educationAttendanceBaseBusiness.Insert(model);
             model = _educationAttendanceBaseBusiness.Get(attendanceId);
-            retunValue.Id = model.Id;
-            retunValue.Result = model.Code;
+            returnValue.Id = model.Id;
+            returnValue.Result = model.Code;
 
-            return retunValue;
+            return Json(returnValue);
         }
 
         //TODO:Bunlar başka yere alınır
