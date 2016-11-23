@@ -51,8 +51,11 @@ namespace SRC.Web.Portal.Controllers
             model.Contact = LoggedUser.Current;
             model.Attendances = _educationFacade.GetContactAttendances(LoggedUser.Current.Id).Where(a => a.Status.ToEnum<EducationAttendance.StatusCode>() == (EducationAttendance.StatusCode)type).ToList();
 
-            model.EducationList = _educationFacade.GetEducationsOfAttendances(model.Attendances).Where(e => e.Status != null
-                                        && model.Attendances.Select(m => m.Education.Id).ToList().Contains(e.Id)).ToList();
+            if (model.Attendances.Count > 0)
+            {
+                model.EducationList = _educationFacade.GetEducationsOfAttendances(model.Attendances).Where(e => e.Status != null
+                            && model.Attendances.Select(m => m.Education.Id).ToList().Contains(e.Id)).ToList();
+            }
 
             return View(model);
         }

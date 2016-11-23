@@ -49,10 +49,11 @@ namespace SRC.Web.Portal.Controllers
         {
             EducationModel model = new EducationModel();
 
-            if (LoggedUser.IsLoggedIn)
-            {
-                model.AttendanceList = AttendanceMock.GetAttendances().Where(a => a.Contact.Id == LoggedUser.Current.Id).ToList();
-            }
+            //TODO: Burası ne işe yarıyor?
+            //if (LoggedUser.IsLoggedIn)
+            //{
+            //    model.AttendanceList = AttendanceMock.GetAttendances().Where(a => a.Contact.Id == LoggedUser.Current.Id).ToList();
+            //}
 
             if (querymodel.EducationList != null)
             {
@@ -60,7 +61,7 @@ namespace SRC.Web.Portal.Controllers
             }
             else
             {
-                model.EducationList = EducationMock.GetEducations();
+                //model.EducationList = EducationMock.GetEducations();
             }
 
             return PartialView(model);
