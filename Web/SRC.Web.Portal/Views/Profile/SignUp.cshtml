@@ -1,0 +1,22 @@
+﻿@using SRC.Web.Portal.Models
+@using SRC.Library.Entities
+@using SRC.Library.Entities.CrmEntities
+@model Contact
+
+@{
+    ViewBag.Title = "Kayıt Ol";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="main-content" style="width:90%;margin:auto;">
+    <section class="wrapper site-min-height">
+        <!-- page start-->
+        <div class="row">
+            @Html.Action("ProfileInformation", "Partials", new { _model = @Model })
+        </div>
+        <!-- page end-->
+    </section>
+</section>
+
+
+

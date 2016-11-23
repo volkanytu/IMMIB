@@ -1,0 +1,196 @@
+﻿@using SRC.Web.Portal.Models
+@using SRC.Library.Entities
+@using SRC.Library.Entities.CrmEntities
+@model Contact
+
+
+<aside class="profile-info col-lg-9">
+    <section class="panel">
+        <div class="bio-graph-heading" style="padding: 10px 50px;">
+            Profil bilgilerinizi düzenleyebilirsiniz.
+        </div>
+        <div class="panel-body bio-graph-info">
+            <form class="form-horizontal" role="form" id="formLogin" action="/Profile/Kaydet">
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">İsim</label>
+                    <div class="col-lg-6">
+                        <input type="text" class="form-control" id="f-name" name="FirstName" placeholder=" " value="@Model.FirstName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Soyisim</label>
+                    <div class="col-lg-6">
+                        <input type="text" class="form-control" id="l-name" name="LastName" placeholder=" " value="@Model.LastName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Doğum Tarihi</label>
+                    <div class="col-lg-6">
+                        @if (Model.BirthDate != null)
+                        {
+                            <input class="form-control form-control-inline input-medium default-date-picker" name="BirthDate" size="16" type="text" value="@Model.BirthDate.Value.ToString("ddMMyyyy")"/>
+                        }
+                        else
+                        {
+                            <input class="form-control form-control-inline input-medium default-date-picker" name="BirthDate" size="16" type="text"/>
+                        }
+                        
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Cinsiyet</label>
+                    <div class="col-lg-6">
+                        <select class="form-control m-bot15" name="genderCode">
+                            @if (Model.Gender != null && Model.Gender.AttributeValue.ToString() == "1")
+                            {
+                                <option value="1" selected="selected">Erkek</option>
+                            }
+                            else
+                            {
+                                <option value="1">Erkek</option>
+                            }
+
+                            @if (Model.Gender != null && Model.Gender.AttributeValue.ToString() == "2")
+                            {
+                                <option value="2" selected="selected">Kadın</option>
+                            }
+                            else
+                            {
+                                <option value="2">Kadın</option>
+                            }
+
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Cep Telefonu</label>
+                    <div class="col-lg-6">
+                        <input type="text" class="form-control" id="mobile" name="MobilePhone" placeholder=" " value="@Model.MobilePhone">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Gsm Operatörünüz</label>
+                    <div class="col-lg-6">
+                        @Html.DropDownList("gsmOperatorId", null, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">İş Telefonu</label>
+                    <div class="col-lg-6">
+                        <input type="text" class="form-control" id="businessphone" name="WorkPhone" placeholder=" " value="@Model.WorkPhone">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Fax</label>
+                    <div class="col-lg-6">
+                        <input type="text" class="form-control" id="fax" name="Fax" placeholder=" " value="@Model.Fax">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">E-Posta</label>
+                    <div class="col-lg-6">
+                        <input type="text" class="form-control" id="email" name="EmailAddress" placeholder=" " value="@Model.EmailAddress">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Firma Vergi Numarası</label>
+                    <div class="col-lg-6">
+                        <input type="text" class="form-control" id="taxnumber" name="TaxNumber" placeholder=" " value="@Model.TaxNumber">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Firma Adı</label>
+                    <div class="col-lg-6">
+                        <input type="text" class="form-control" id="firm" name="CompanyName" placeholder=" " value="@Model.CompanyName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Firmadaki Pozisyonunuz</label>
+                    <div class="col-lg-6">
+                        <input type="text" class="form-control" id="firmposition" name="CompanyPosition" placeholder=" " value="@Model.CompanyPosition">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Vergi Dairesi</label>
+                    <div class="col-lg-6">
+                        @*<input type="text" class="form-control" id="taxoffice" placeholder=" " value="@Model.TaxOffice.Name">*@
+                        <input type="text" class="form-control" id="taxoffice" placeholder=" " value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Firma Adresi</label>
+                    <div class="col-lg-10">
+                        <textarea id="address" name="CompanyAddress" class="form-control" cols="30" rows="5">@Model.CompanyAddress</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Nereden Haberdar Oldunuz</label>
+                    <div class="col-lg-6">
+                        @Html.DropDownList("informedById", null, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Şehir</label>
+                    <div class="col-lg-6">
+                        @Html.DropDownList("cityId", null, new { @class = "form-control m-bot15" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Eğitim Durumunuz</label>
+                    <div class="col-lg-6">
+                        @Html.DropDownList("educationLevel", null, new { @class = "form-control m-bot15" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <button type="submit" id="btnSignUp" class="btn btn-success">Kaydet</button>
+                        <button type="button" class="btn btn-default">İptal Et</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <section>
+        <div class="panel panel-primary">
+            <div class="panel-heading"> Şifre Değiştir</div>
+            <div class="panel-body">
+                <form class="form-horizontal" role="form" method="POST" action="/Profile/ChangePassword">
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Mevcut Şifreniz</label>
+                        <div class="col-lg-6">
+                            <input type="password" name="oldPassword" class="form-control" id="r-pwd" placeholder=" ">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Yeni Şifreniz</label>
+                        <div class="col-lg-6">
+                            <input type="password" name="newPassword" class="form-control" id="n-pwd" placeholder=" ">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Yeni Şifreniz Tekrar</label>
+                        <div class="col-lg-6">
+                            <input type="password" name="reNewPassword" class="form-control" id="rt-pwd" placeholder=" ">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <button type="submit" class="btn btn-info">Kaydet</button>
+                            <button type="button" class="btn btn-default">İptal Et</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</aside>
+
+@section scripts{
+    <script>
+    //$(function () {
+    //    $("#btnSignUp").click(function () {
+    //            $("#formSignUp").submit();
+    //        });
+    //    });
+    </script>
+}
