@@ -60,17 +60,16 @@ namespace SRC.Library.Domain.Facade
         public void CancelEducationAttendance(Guid? educationAttendanceId)
         {
             educationAttendanceId.CheckNull("Eğitim katılım bilgisi boş olamaz!", EducationAttendanceLogKeys.EDUCATION_ATTENDANCE_ID_NULL);
-            EducationAttendance educationAttendance = new EducationAttendance()
-            {
-                Id = (Guid) educationAttendanceId,
-                Status = EducationAttendance.StatusCode.PARTICIPANT_CANCELED.ToOptionSetValueWrapper()
-            };
-
-            _baseEducationAttendanceBusiness.Update(educationAttendance);
+            _baseEducationAttendanceBusiness.SetState((Guid)educationAttendanceId, (int) EducationAttendance.StateCode.PASSIVE, (int) EducationAttendance.StatusCode.PARTICIPANT_CANCELED);
         }
 
         public void SetEducationAttendance(List<Education> educations, List<EducationAttendance> educationAttendances)
         {
+            if (educationAttendances == null)
+                return;
+            if (educations == null)
+                return;
+
             foreach (Education education in educations)
             {
                education.Attendance = educationAttendances.FirstOrDefault(p => p.Education.Id == education.Id);

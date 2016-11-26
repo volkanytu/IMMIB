@@ -74,52 +74,76 @@
     @RenderSection("scripts", required: false)
 
     <script>
-        $(function () {
-            $("a[type='educationdetail']").click(function () {
-                $.ajax({
-                    url: '@Url.Action("Detail", "Education")',
-                    type: 'GET',
-                    data: { id: $(this).attr("id") }
-                }).success(function (result) {
-                    $("#divModal").html(result);
-                });
+    $(function () {
+        $("a[type='educationdetail']").click(function () {
+            $.ajax({
+                url: '@Url.Action("Detail", "Education")',
+                type: 'GET',
+                data: { id: $(this).attr("id") }
+            }).success(function (result) {
+                $("#divModal").html(result);
             });
+        });
 
-            $("a[type='educationAttendance']").click(function () {
-                $.ajax({
-                    url: '@Url.Action("EducationAttendance", "Partials")',
-                    type: 'GET',
-                    data: { id: $(this).attr("id") }
-                }).success(function (result) {
-                    $("#divModalAttendance").html(result);
+        $("a[type='educationAttendance']").click(function () {
+            $.ajax({
+                url: '@Url.Action("EducationAttendances", "Partials")',
+                type: 'GET',
+                data: { id: $(this).attr("id") }
+            }).success(function (result) {
+                $("#divModalAttendance").html(result);
 
-                    $("a[type='applyEducation']").click(function () {
+                $("a[type='applyEducation']").click(function () {
+                    $.ajax({
+                        url: '@Url.Action("CreateEducationAttendance", "Education")',
+                        type: 'POST',
+                        data: { educationId: $(this).attr("id") }
+                    }).success(function (result) {
+                        $("#divModalAttendance .panel-body").html(result.Result);
+                    });
+                });
+
+            });
+        });
+
+        $("a[type='educationCancelAttendance']").click(function () {
+            $.ajax({
+                url: '@Url.Action("EducationCancelAttendances", "Partials")',
+                type: 'GET',
+                data: { id: $(this).attr("id") }
+            }).success(function (result) {
+                $("#divModalAttendance").html(result);
+
+                $("a[type='cancelEducation']").click(function () {
+                    alert("test");
                         $.ajax({
-                            url: '@Url.Action("CreateEducationAttendance", "Education")',
+                            url: '@Url.Action("CanceEducationAttendance", "Education")',
                             type: 'POST',
                             data: { educationId: $(this).attr("id") }
                         }).success(function (result) {
                             $("#divModalAttendance .panel-body").html(result.Result);
+
+                            window.location.href = '/Profile/Education?type=100000000';
                         });
                     });
 
-                });
-            });
-
-            $("#btnSignUp").click(function () {
-                window.location.href = "/Profile/SignUp";
-            });
-
-            $("#btnLogin").click(function () {
-                $("#formLogin").submit();
             });
         });
 
-        $(function () {
-            $.vegas({
-                src: 'http://egitim.immib.org.tr/jsv/istanbul_turu_1.jpg'
-            });
+        $("#btnSignUp").click(function () {
+            window.location.href = "/Profile/SignUp";
         });
+
+        $("#btnLogin").click(function () {
+            $("#formLogin").submit();
+        });
+    });
+
+    $(function () {
+        $.vegas({
+            src: 'http://egitim.immib.org.tr/jsv/istanbul_turu_1.jpg'
+        });
+    });
     </script>
 </body>
 </html>

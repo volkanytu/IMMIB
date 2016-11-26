@@ -69,6 +69,14 @@ namespace SRC.Web.Portal.Controllers
             return View(model);
         }
 
+        public ActionResult Exit()
+        {
+
+            LoggedUser.Current = null;
+
+            return RedirectToAction("Index", "Home");
+        }
+
         public ActionResult Kaydet(Contact model, string gsmOperatorId, string informedById, string cityId, string educationLevel, string genderCode)
         {
 

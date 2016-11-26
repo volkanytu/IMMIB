@@ -20,18 +20,21 @@ namespace SRC.Web.Portal.Controllers
         private IBaseBusiness<InformedBy> _informedByBusiness;
         private IBaseBusiness<City> _cityBusiness;
         private IBaseBusiness<DynamicPage> _dynamicPageBaseBusiness;
+        private IBaseBusiness<EducationAttendance> _educationAttendanceBaseBusiness;
 
         public PartialsController(IEducationFacade educationFacade
             , IBaseBusiness<GsmOperator> gsmOperatorBusiness
             , IBaseBusiness<InformedBy> informedByBusiness
             , IBaseBusiness<City> cityBusiness
-            , IBaseBusiness<DynamicPage> dynamicPageBaseBusiness)
+            , IBaseBusiness<DynamicPage> dynamicPageBaseBusiness
+            , IBaseBusiness<EducationAttendance> educationAttendanceBaseBusiness)
         {
             _educationFacade = educationFacade;
             _gsmOperatorBusiness = gsmOperatorBusiness;
             _informedByBusiness = informedByBusiness;
             _cityBusiness = cityBusiness;
             _dynamicPageBaseBusiness = dynamicPageBaseBusiness;
+            _educationAttendanceBaseBusiness = educationAttendanceBaseBusiness;
         }
 
         public ActionResult Index()
@@ -86,10 +89,13 @@ namespace SRC.Web.Portal.Controllers
 
         public PartialViewResult ProfileMenu()
         {
-            ProfilePageModel model = new ProfilePageModel();
-            model.Contact = LoggedUser.Current;
-            model.Attendances = _educationFacade.GetContactAttendances(LoggedUser.Current.Id);
 
+            ProfilePageModel model = new ProfilePageModel();
+            if (LoggedUser.IsLoggedIn)
+            {
+                model.Contact = LoggedUser.Current;
+                model.Attendances = _educationFacade.GetContactAttendances(LoggedUser.Current.Id);
+            }
             return PartialView(model);
         }
 
@@ -122,7 +128,7 @@ namespace SRC.Web.Portal.Controllers
             return returnList;
         }
 
-        public PartialViewResult EducationAttendance(string id)
+        public PartialViewResult EducationAttendances(string id)
         {
             ResponseContainer<DynamicPage> model = new ResponseContainer<DynamicPage>();
 
@@ -134,6 +140,24 @@ namespace SRC.Web.Portal.Controllers
             {
                 model.Succes = true;
                 model.Result = _dynamicPageBaseBusiness.GetList().FirstOrDefault(p => p.PageType.ToEnum<DynamicPage.PageTypeCode>() == DynamicPage.PageTypeCode.EDUCATION_APPLICATION_CONDITION);
+                ViewBag.Id = id;
+            }
+
+            return PartialView(model);
+        }
+
+        public PartialViewResult EducationCancelAttendances(string id)
+        {
+            ResponseContainer<EducationAttendance> model = new ResponseContainer<EducationAttendance>();
+
+            if (!LoggedUser.IsLoggedIn)
+            {
+                model.Message = "Başvuru için giriş yapmalısınız.";
+            }
+            else
+            {
+                model.Succes = true;
+                model.Result = _educationAttendanceBaseBusiness.Get(new Guid(id));
                 ViewBag.Id = id;
             }
 

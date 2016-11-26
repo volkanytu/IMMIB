@@ -45,6 +45,11 @@ namespace SRC.Library.Business
             return _baseDao.GetList();
         }
 
+        public void SetState(Guid Id, int stateCode, int statusCode)
+        {
+            _baseDao.SetState(Id, stateCode, statusCode);
+        }
+
         public void AssociateTo(Guid Id, EntityReferenceWrapper targetEntity, string relationShipName)
         {
             _baseDao.AssociateTo(Id, targetEntity, relationShipName);

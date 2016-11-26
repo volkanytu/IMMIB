@@ -14,5 +14,6 @@ namespace SRC.Library.Business.Interfaces
         List<TEntity> GetList();
         Guid Insert(TEntity entity);
         void Update(TEntity entity);
+        void SetState(Guid Id, int stateCode, int statusCode);
     }
 }

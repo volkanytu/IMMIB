@@ -77,6 +77,18 @@ namespace SRC.Web.Portal.Controllers
             return Json(returnValue);
         }
 
+        [HttpPost]
+        public JsonResult CanceEducationAttendance(string educationId)
+        {
+            educationId.CheckNull("Lütfen eğitim seçiniz!");
+
+            ResponseContainer<string> returnValue = new ResponseContainer<string>();
+            _educationFacade.CancelEducationAttendance(new Guid(educationId));
+            returnValue.Result = "İptal etme işleminiz başarıyla tamamlanmıştır.";
+
+            return Json(returnValue);
+        }
+
         //TODO:Bunlar başka yere alınır
         private List<SelectListItem> GetMonths()
         {

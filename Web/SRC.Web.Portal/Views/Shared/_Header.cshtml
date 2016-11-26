@@ -19,15 +19,15 @@
                         <li class="dropdown">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <img alt="" src="/img/avatar1_small.jpg">
-                                <span class="username">Volkan SERTER</span>
+                                <span class="username">@LoggedUser.Current.FirstName  @LoggedUser.Current.LastName</span>
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu extended logout">
                                 <div class="log-arrow-up"></div>
                                 <li><a href="~/Profile"><i class=" fa fa-suitcase"></i>Profilim</a></li>
                                 <li><a href="~/Profile/Edit"><i class="fa fa-cog"></i> Profil Düzenle</a></li>
-                                <li><a href="profileeducation.html"><i class="fa fa-bell-o"></i> Eğitimlerim</a></li>
-                                <li><a href="login.html"><i class="fa fa-key"></i> Çıkış</a></li>
+                                <li><a href="~/Profile"><i class="fa fa-bell-o"></i> Eğitimlerim</a></li>
+                                <li><a href="/Profile/Exit"><i class="fa fa-key"></i> Çıkış</a></li>
                             </ul>
                         </li>
                         <!-- user login dropdown end -->
