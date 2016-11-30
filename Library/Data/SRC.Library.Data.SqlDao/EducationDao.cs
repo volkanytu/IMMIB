@@ -24,6 +24,13 @@ namespace SRC.Library.Data.SqlDao
             _msCrmAccess = msCrmAccess;
         }
 
+        public List<Education> GetLastEducations()
+        {
+            DataTable dt = _sqlAccess.GetDataTable(EducationQueries.GET_EDUCATION_LIST_COMING_DONE);
+
+            return dt.ToList<Education>().ToList();
+        }
+
         public List<Education> GetEducations(DateTime startDate, DateTime endDate)
         {
             SqlParameter[] parameters = new SqlParameter[]

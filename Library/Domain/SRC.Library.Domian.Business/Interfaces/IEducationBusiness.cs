@@ -8,5 +8,6 @@ namespace SRC.Library.Domain.Business.Interfaces
     {
         List<Education> GetEducations(DateTime startDate, DateTime endDate);
         List<Education> GetEducationsOfAttendances(List<EducationAttendance> educationAttendanceList);
+        List<Education> GetLastEducations();
     }
 }

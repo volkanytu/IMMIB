@@ -39,9 +39,6 @@ namespace SRC.Web.Portal.Controllers
                 _dynamicPageBaseBusiness.GetList().Where(
                     p => p.PageType.ToEnum<DynamicPage.PageTypeCode>() == DynamicPage.PageTypeCode.ROTATOR).ToList();
 
-            model.ComingEducations = EducationMock.GetComingEducations();
-            model.DoneEducations = EducationMock.GetDoneEducations();
-
             return View(model);
         }
     }

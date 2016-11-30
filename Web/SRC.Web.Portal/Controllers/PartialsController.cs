@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SRC.Library.Business.Interfaces;
+using SRC.Library.Domain.Business.Interfaces;
 using SRC.Library.Domain.Facade.Interfaces;
 using SRC.Library.Entities;
 using SRC.Library.Entities.CustomEntities;
@@ -21,13 +22,15 @@ namespace SRC.Web.Portal.Controllers
         private IBaseBusiness<City> _cityBusiness;
         private IBaseBusiness<DynamicPage> _dynamicPageBaseBusiness;
         private IBaseBusiness<EducationAttendance> _educationAttendanceBaseBusiness;
+        private IEducationBusiness _educationBusiness;
 
         public PartialsController(IEducationFacade educationFacade
             , IBaseBusiness<GsmOperator> gsmOperatorBusiness
             , IBaseBusiness<InformedBy> informedByBusiness
             , IBaseBusiness<City> cityBusiness
             , IBaseBusiness<DynamicPage> dynamicPageBaseBusiness
-            , IBaseBusiness<EducationAttendance> educationAttendanceBaseBusiness)
+            , IBaseBusiness<EducationAttendance> educationAttendanceBaseBusiness
+            , IEducationBusiness educationBusiness)
         {
             _educationFacade = educationFacade;
             _gsmOperatorBusiness = gsmOperatorBusiness;
@@ -35,6 +38,7 @@ namespace SRC.Web.Portal.Controllers
             _cityBusiness = cityBusiness;
             _dynamicPageBaseBusiness = dynamicPageBaseBusiness;
             _educationAttendanceBaseBusiness = educationAttendanceBaseBusiness;
+            _educationBusiness = educationBusiness;
         }
 
         public ActionResult Index()
@@ -44,14 +48,14 @@ namespace SRC.Web.Portal.Controllers
 
         public PartialViewResult ComingEducations()
         {
-            var educations = EducationMock.GetComingEducations();
+            var educations = _educationBusiness.GetLastEducations().Where(p => p.IsExpired == false).ToList(); 
 
             return PartialView(educations);
         }
 
         public PartialViewResult DoneEducations()
         {
-            var educations = EducationMock.GetDoneEducations();
+            var educations = _educationBusiness.GetLastEducations().Where(p => p.IsExpired).Take(5).ToList();
 
             return PartialView(educations);
         }
