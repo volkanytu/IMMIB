@@ -40,11 +40,12 @@ namespace SRC.Library.Ioc.IocManager
         public static ContainerBuilder RegisterPortal(ContainerBuilder builder)
         {
             #region | DATA |
-            builder.Register<IBaseDao<LoginLog>>(c => new BaseSqlDao<LoginLog>(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>(),"","")).InstancePerDependency();
-            builder.Register<IBaseDao<SmsEnt>>(c => new BaseSqlDao<SmsEnt>(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>(),SmsQueries.GET_SMS,SmsQueries.GET_SMS_LIST)).InstancePerDependency();
-            builder.Register<IBaseDao<Contact>>(c => new BaseSqlDao<Contact>(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>(),ContactQueries.GET_CONTACT,ContactQueries.GET_CONTACT_LIST)).InstancePerDependency();
-            builder.Register<IBaseDao<CreditCardLog>>(c => new BaseSqlDao<CreditCardLog>(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>(), CreditCardQueries.GET_CREDIT_CARD,CreditCardQueries.GET_CREDIT_CARD_LIST)).InstancePerDependency();
+            builder.Register<IBaseDao<LoginLog>>(c => new BaseSqlDao<LoginLog>(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>(), "", "")).InstancePerDependency();
+            builder.Register<IBaseDao<SmsEnt>>(c => new BaseSqlDao<SmsEnt>(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>(), SmsQueries.GET_SMS, SmsQueries.GET_SMS_LIST)).InstancePerDependency();
+            builder.Register<IBaseDao<Contact>>(c => new BaseSqlDao<Contact>(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>(), ContactQueries.GET_CONTACT, ContactQueries.GET_CONTACT_LIST)).InstancePerDependency();
+            builder.Register<IBaseDao<CreditCardLog>>(c => new BaseSqlDao<CreditCardLog>(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>(), CreditCardQueries.GET_CREDIT_CARD, CreditCardQueries.GET_CREDIT_CARD_LIST)).InstancePerDependency();
             builder.Register<IBaseDao<EducationAttendance>>(c => new BaseSqlDao<EducationAttendance>(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>(), EducationAttendenceQueries.GET_EDUCATION_ATTENDANCE, EducationAttendenceQueries.GET_EDUCATION_ATTENDANCE_LIST)).InstancePerDependency();
+            builder.Register<IBaseDao<Education>>(c => new BaseSqlDao<Education>(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>(), EducationQueries.GET_EDUCATION, EducationQueries.GET_EDUCATION_LIST)).InstancePerDependency();
             builder.Register<IBaseDao<GsmOperator>>(c => new BaseSqlDao<GsmOperator>(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>(), GsmOperatorQueries.GET_GSM_OPERATOR, GsmOperatorQueries.GET_GSM_OPERATOR_LIST)).InstancePerDependency();
             builder.Register<IBaseDao<InformedBy>>(c => new BaseSqlDao<InformedBy>(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>(), InformedByQueries.GET_INFORMEDBY, InformedByQueries.GET_INFORMEDBY_LIST)).InstancePerDependency();
             builder.Register<IBaseDao<City>>(c => new BaseSqlDao<City>(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>(), CityQueries.GET_CITY, CityQueries.GET_CITY_LIST)).InstancePerDependency();
@@ -63,6 +64,7 @@ namespace SRC.Library.Ioc.IocManager
             builder.Register<IBaseBusiness<Contact>>(c => new BaseBusiness<Contact>(c.Resolve<IBaseDao<Contact>>())).InstancePerDependency();
             builder.Register<IBaseBusiness<CreditCardLog>>(c => new BaseBusiness<CreditCardLog>(c.Resolve<IBaseDao<CreditCardLog>>())).InstancePerDependency();
             builder.Register<IBaseBusiness<EducationAttendance>>(c => new BaseBusiness<EducationAttendance>(c.Resolve<IBaseDao<EducationAttendance>>())).InstancePerDependency();
+            builder.Register<IBaseBusiness<Education>>(c => new BaseBusiness<Education>(c.Resolve<IBaseDao<Education>>())).InstancePerDependency();
             builder.Register<IBaseBusiness<GsmOperator>>(c => new BaseBusiness<GsmOperator>(c.Resolve<IBaseDao<GsmOperator>>())).InstancePerDependency();
             builder.Register<IBaseBusiness<InformedBy>>(c => new BaseBusiness<InformedBy>(c.Resolve<IBaseDao<InformedBy>>())).InstancePerDependency();
             builder.Register<IBaseBusiness<City>>(c => new BaseBusiness<City>(c.Resolve<IBaseDao<City>>())).InstancePerDependency();
@@ -72,7 +74,7 @@ namespace SRC.Library.Ioc.IocManager
             builder.Register<IContactBusiness>(c => new ContactBusiness(c.Resolve<IBaseDao<Contact>>(), c.Resolve<IContactDao>())).InstancePerDependency();
             builder.Register<IEducationBusiness>(c => new EducationBusiness(c.Resolve<IEducationDao>())).InstancePerDependency();
             builder.Register<IEducationAttendanceBusiness>(c => new EducationAttendanceBusiness(c.Resolve<IEducationAttendanceDao>())).InstancePerDependency();
-            
+
             #endregion
 
             #region | FACADE |

@@ -18,12 +18,16 @@ namespace SRC.Web.Portal.Controllers
         private IEducationFacade _educationFacade;
         private IBaseBusiness<EducationAttendance> _educationAttendanceBaseBusiness;
         private IBaseBusiness<DynamicPage> _dynamicPageBaseBusiness;
+        private IBaseBusiness<Education> _baseEducationBusiness;
 
-        public EducationController(IEducationFacade educationFacade, IBaseBusiness<EducationAttendance> educationAttendanceBaseBusiness, IBaseBusiness<DynamicPage> dynamicPageBaseBusiness)
+        public EducationController(IEducationFacade educationFacade, IBaseBusiness<EducationAttendance> educationAttendanceBaseBusiness
+            , IBaseBusiness<DynamicPage> dynamicPageBaseBusiness
+            , IBaseBusiness<Education> baseEducationBusiness)
         {
             _educationFacade = educationFacade;
             _educationAttendanceBaseBusiness = educationAttendanceBaseBusiness;
             _dynamicPageBaseBusiness = dynamicPageBaseBusiness;
+            _baseEducationBusiness = baseEducationBusiness;
         }
 
         public ActionResult Index(string month, string year)
@@ -52,7 +56,7 @@ namespace SRC.Web.Portal.Controllers
 
             if (!string.IsNullOrWhiteSpace(id))
             {
-                model = EducationMock.GetEducations().Where(e => e.Id == Guid.Parse(id)).FirstOrDefault();
+                model = _baseEducationBusiness.Get(Guid.Parse(id));
             }
 
             return PartialView(model);
