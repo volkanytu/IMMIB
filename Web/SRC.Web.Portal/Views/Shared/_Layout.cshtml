@@ -99,7 +99,10 @@
                         type: 'POST',
                         data: { educationId: $(this).attr("id") }
                     }).success(function (result) {
-                        $("#divModalAttendance .panel-body").html(result.Result);
+                        $("#divModalAttendance .panel-body").html("" +
+                            "<p>Eğitim Katılım Talebiniz Alınmıştır, Teşekkürler.</p>" +
+                            "<p>Eğitim Katılım Kodunuz : " + result.Result.Code +"</p>"+
+                            "<a href='#' type='payment'>Ödeme yapmak için tıklayınız</a>");
                     });
                 });
 
@@ -138,6 +141,21 @@
             $("#formLogin").submit();
         });
     });
+
+    function CreditCardProcess() {
+        $("a[type='payment']").click(function () {
+            $.ajax({
+                url: '@Url.Action("CreditCard", "Education")',
+                type: 'POST',
+                data: { educationId: $(this).attr("id") }
+            }).success(function (result) {
+                $("#divModalAttendance .panel-body").html("" +
+                    "<p>Eğitim Katılım Talebiniz Alınmıştır, Teşekkürler.</p>" +
+                    "<p>Eğitim Katılım Kodunuz : " + result.Result.Code + "</p>" +
+                    "<a href='#' type='payment'>Ödeme yapmak için tıklayınız</a>");
+            });
+        });
+    }
 
     $(function () {
         $.vegas({

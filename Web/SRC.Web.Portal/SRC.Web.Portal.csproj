@@ -2266,6 +2266,7 @@
     <Content Include="Views\Profile\SignUp.cshtml" />
     <Content Include="Views\Partials\EducationAttendances.cshtml" />
     <Content Include="Views\Partials\EducationCancelAttendances.cshtml" />
+    <Content Include="Views\Partials\CreditCard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Library\Domain\SRC.Library.Domain.Facade\SRC.Library.Domain.Facade.csproj">

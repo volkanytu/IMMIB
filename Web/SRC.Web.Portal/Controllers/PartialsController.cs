@@ -122,16 +122,6 @@ namespace SRC.Web.Portal.Controllers
             return PartialView(_model);
         }
 
-        //TODO: bu da kaldırılabilir.
-        private List<SelectListItem> GetEducationLevels()
-        {
-            List<SelectListItem> returnList = new List<SelectListItem>();
-            returnList.Add(new SelectListItem() { Text = "İlköğretim", Value = "1" });
-            returnList.Add(new SelectListItem() { Text = "Lise", Value = "2" });
-            returnList.Add(new SelectListItem() { Text = "Lisans", Value = "3" });
-            return returnList;
-        }
-
         public PartialViewResult EducationAttendances(string id)
         {
             ResponseContainer<DynamicPage> model = new ResponseContainer<DynamicPage>();
@@ -166,6 +156,34 @@ namespace SRC.Web.Portal.Controllers
             }
 
             return PartialView(model);
+        }
+
+        public PartialViewResult CreditCard(string id)
+        {
+            ResponseContainer<CreditCardLog> model = new ResponseContainer<CreditCardLog>();
+
+            if (!LoggedUser.IsLoggedIn)
+            {
+                model.Message = "Başvuru için giriş yapmalısınız.";
+            }
+            else
+            {
+                model.Succes = true;
+                // model.Result = 
+                ViewBag.Id = id;
+            }
+
+            return PartialView(model);
+        }
+
+        //TODO: bu da kaldırılabilir.
+        private List<SelectListItem> GetEducationLevels()
+        {
+            List<SelectListItem> returnList = new List<SelectListItem>();
+            returnList.Add(new SelectListItem() { Text = "İlköğretim", Value = "1" });
+            returnList.Add(new SelectListItem() { Text = "Lise", Value = "2" });
+            returnList.Add(new SelectListItem() { Text = "Lisans", Value = "3" });
+            return returnList;
         }
 
     }

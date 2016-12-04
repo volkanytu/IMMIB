@@ -63,16 +63,17 @@ namespace SRC.Web.Portal.Controllers
         {
             educationId.CheckNull("Lütfen eğitim seçiniz!");
 
-            ResponseContainer<string> returnValue = new ResponseContainer<string>();
+            ResponseContainer<EducationAttendance> returnValue = new ResponseContainer<EducationAttendance>();
 
             EducationAttendance model = new EducationAttendance();
             model.Contact = LoggedUser.Current.ToEntityReferenceWrapper();
             model.Education = Guid.Parse(educationId).ToEntityReferenceWrapper<Education>();
             model.Code = "123456";
             var attendanceId = _educationAttendanceBaseBusiness.Insert(model);
+
             model = _educationAttendanceBaseBusiness.Get(attendanceId);
             returnValue.Id = model.Id;
-            returnValue.Result = model.Code;
+            returnValue.Result = model;
 
             return Json(returnValue);
         }
@@ -116,6 +117,16 @@ namespace SRC.Web.Portal.Controllers
             returnList.Add(new SelectListItem() { Text = "2018", Value = "2018" });
             returnList.Add(new SelectListItem() { Text = "2019", Value = "2019" });
             returnList.Add(new SelectListItem() { Text = "2020", Value = "2020" });
+            returnList.Add(new SelectListItem() { Text = "2021", Value = "2021" });
+            returnList.Add(new SelectListItem() { Text = "2022", Value = "2022" });
+            returnList.Add(new SelectListItem() { Text = "2023", Value = "2023" });
+            returnList.Add(new SelectListItem() { Text = "2024", Value = "2024" });
+            returnList.Add(new SelectListItem() { Text = "2025", Value = "2025" });
+            returnList.Add(new SelectListItem() { Text = "2026", Value = "2026" });
+            returnList.Add(new SelectListItem() { Text = "2027", Value = "2027" });
+            returnList.Add(new SelectListItem() { Text = "2028", Value = "2028" });
+            returnList.Add(new SelectListItem() { Text = "2029", Value = "2029" });
+            returnList.Add(new SelectListItem() { Text = "2030", Value = "2030" });
             return returnList;
         }
     }
