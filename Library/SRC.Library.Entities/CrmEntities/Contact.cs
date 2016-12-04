@@ -45,6 +45,30 @@ namespace SRC.Library.Entities.CrmEntities
         [CrmFieldName(KEY_BIRTHDATE)]
         public DateTime? BirthDate { get; set; }
 
+        public string BirthDateStr
+        {
+            get
+            {
+                if (this.BirthDate != null)
+                {
+                    return BirthDate.Value.ToString("dd.MM.yyyy");
+                }
+                return null;
+            }
+            set
+            {
+                if (!string.IsNullOrWhiteSpace(value))
+                {
+                    DateTime returnValue;
+                    bool isParseAble = DateTime.TryParse(value, out returnValue);
+                    if (isParseAble)
+                    {
+                        this.BirthDate = returnValue;
+                    }
+                }
+            }
+        }
+
         [CrmFieldDataType(CrmDataType.OPTIONSETVALUE)]
         [CrmFieldName(KEY_GENDER_CODE)]
         public OptionSetValueWrapper Gender { get; set; }

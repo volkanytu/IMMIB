@@ -26,14 +26,7 @@
                 <div class="form-group">
                     <label class="col-lg-2 control-label">Doğum Tarihi</label>
                     <div class="col-lg-6">
-                        @if (Model.BirthDate != null)
-                        {
-                            <input class="form-control form-control-inline input-medium default-date-picker" name="BirthDate" size="16" type="text" value="@Model.BirthDate.Value.ToString("ddMMyyyy")"/>
-                        }
-                        else
-                        {
-                            <input class="form-control form-control-inline input-medium default-date-picker" name="BirthDate" size="16" type="text"/>
-                        }
+                        <input class="form-control form-control-inline input-medium default-date-picker" name="BirthDateStr" size="16" type="text" value="@Model.BirthDateStr" />
                         
                     </div>
                 </div>
