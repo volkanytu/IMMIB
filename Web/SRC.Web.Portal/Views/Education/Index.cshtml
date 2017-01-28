@@ -15,7 +15,7 @@
             <header class="panel-heading">
                 Eğitim Listesi
                 <span class="pull-right">
-                    <a href="/education" class="btn btn-warning btn-xs"><i class="fa fa-refresh"></i> Yenile</a>
+                    <button type="button" id="btnRefresh" class="btn btn-warning btn-xs"><i class="fa fa-refresh"></i> Yenile</button>
                 </span>
             </header>
             <div class="panel-body">
@@ -54,6 +54,10 @@
             });
 
             $("#year").on('change', function () {
+                $("#formDate").submit();
+            });
+
+            $("#btnRefresh").on('click', function () {
                 $("#formDate").submit();
             });
 

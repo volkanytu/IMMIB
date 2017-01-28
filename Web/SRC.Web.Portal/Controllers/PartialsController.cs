@@ -55,7 +55,8 @@ namespace SRC.Web.Portal.Controllers
 
         public PartialViewResult DoneEducations()
         {
-            var educations = _educationBusiness.GetLastEducations().Where(p => p.IsExpired).Take(5).ToList();
+            var educations = _educationBusiness.GetLastEducations().Where(p => p.IsExpired 
+                && p.StartDate!=null && p.City!=null).Take(5).ToList();
 
             return PartialView(educations);
         }

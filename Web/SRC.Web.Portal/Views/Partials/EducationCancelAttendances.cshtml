@@ -19,15 +19,23 @@
                             }
                             else
                             {
-                                @Html.Raw(Model.Result.Code)
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" value="" id="chkAttendance">
-                                                <span class="label label-default"> Kodu yukarıda yazılı olan eğitimin iptalini kabul ediyorum</span>
-                                            </label>
-                                        </div>
+                                        <h4>Katılım Kodu: @Html.Raw(Model.Result.Code)</h4> 
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <label>
+                                            <input type="checkbox" value="" id="chkAttendanceCancel">
+                                            <span class="label label-default"> Kodu yukarıda yazılı olan eğitimin iptalini kabul ediyorum</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="row" id="rowCancelError" style="display:none;">
+                                    <div class="col-lg-12">
+                                        <div class="alert alert-warning" role="alert">Eğitim iptalini onaylamalısınız.</div>
                                     </div>
                                 </div>
                                 <div class="row">
