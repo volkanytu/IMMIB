@@ -18,8 +18,11 @@ namespace SRC.Library.Constants.SqlQueries
 	                                            ,ED.new_contactid AS Contact
 	                                            ,ED.new_contactidName AS ContactName
 	                                            ,ED.new_educationtype AS EducationType
+                                                ,ED.new_educationamount AS EducationAmount
 	                                            ,ED.new_quota AS Quota
 	                                            ,ED.new_leftquota AS LeftQuota
+                                                ,ED.new_studentquota AS StudentQuota
+	                                            ,ED.new_studentleftquota AS StudentLeftQuota
 	                                            ,ED.new_islimitedbysingleattend AS IsLimitedBySingleAttend
 	                                            ,ED.new_maxsingleattendcount AS MaxSingleAttendCount
 	                                            ,ED.new_ispaid AS IsPaid
@@ -57,7 +60,10 @@ namespace SRC.Library.Constants.SqlQueries
 	                                                ,ED.new_contactid AS Contact
 	                                                ,ED.new_contactidName AS ContactName
 	                                                ,ED.new_educationtype AS EducationType
+                                                    ,ED.new_educationamount AS EducationAmount
 	                                                ,ED.new_quota AS Quota
+                                                    ,ED.new_studentquota AS StudentQuota
+	                                                ,ED.new_studentleftquota AS StudentLeftQuota
 	                                                ,ED.new_leftquota AS LeftQuota
 	                                                ,ED.new_islimitedbysingleattend AS IsLimitedBySingleAttend
 	                                                ,ED.new_maxsingleattendcount AS MaxSingleAttendCount
@@ -96,8 +102,11 @@ namespace SRC.Library.Constants.SqlQueries
 	                                                ,ED.new_contactid AS Contact
 	                                                ,ED.new_contactidName AS ContactName
 	                                                ,ED.new_educationtype AS EducationType
+                                                    ,ED.new_educationamount AS EducationAmount
 	                                                ,ED.new_quota AS Quota
 	                                                ,ED.new_leftquota AS LeftQuota
+                                                    ,ED.new_studentquota AS StudentQuota
+	                                                ,ED.new_studentleftquota AS StudentLeftQuota
 	                                                ,ED.new_islimitedbysingleattend AS IsLimitedBySingleAttend
 	                                                ,ED.new_maxsingleattendcount AS MaxSingleAttendCount
 	                                                ,ED.new_ispaid AS IsPaid
@@ -140,8 +149,11 @@ namespace SRC.Library.Constants.SqlQueries
 	                                                ,ED.new_contactid AS Contact
 	                                                ,ED.new_contactidName AS ContactName
 	                                                ,ED.new_educationtype AS EducationType
+                                                    ,ED.new_educationamount AS EducationAmount
 	                                                ,ED.new_quota AS Quota
 	                                                ,ED.new_leftquota AS LeftQuota
+                                                    ,ED.new_studentquota AS StudentQuota
+	                                                ,ED.new_studentleftquota AS StudentLeftQuota
 	                                                ,ED.new_islimitedbysingleattend AS IsLimitedBySingleAttend
 	                                                ,ED.new_maxsingleattendcount AS MaxSingleAttendCount
 	                                                ,ED.new_ispaid AS IsPaid
@@ -179,8 +191,11 @@ namespace SRC.Library.Constants.SqlQueries
 	                                                ,ED.new_contactid AS Contact
 	                                                ,ED.new_contactidName AS ContactName
 	                                                ,ED.new_educationtype AS EducationType
+                                                    ,ED.new_educationamount AS EducationAmount
 	                                                ,ED.new_quota AS Quota
 	                                                ,ED.new_leftquota AS LeftQuota
+                                                    ,ED.new_studentquota AS StudentQuota
+	                                                ,ED.new_studentleftquota AS StudentLeftQuota
 	                                                ,ED.new_islimitedbysingleattend AS IsLimitedBySingleAttend
 	                                                ,ED.new_maxsingleattendcount AS MaxSingleAttendCount
 	                                                ,ED.new_ispaid AS IsPaid

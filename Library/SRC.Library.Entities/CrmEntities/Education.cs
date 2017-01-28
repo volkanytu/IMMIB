@@ -33,6 +33,11 @@ namespace SRC.Library.Entities.CrmEntities
         [CrmFieldName(KEY_EDUCATION_TYPE)]
         public OptionSetValueWrapper EducationType { get; set; }
 
+        [CrmFieldDataType(CrmDataType.DECIMAL)]
+        [CrmFieldName(KEY_EDUCATION_AMOUNT)]
+        public decimal? EducationAmount { get; set; }
+
+
         [CrmFieldDataType(CrmDataType.INT)]
         [CrmFieldName(KEY_QUOTA)]
         public int? Quota { get; set; }
@@ -40,6 +45,14 @@ namespace SRC.Library.Entities.CrmEntities
         [CrmFieldDataType(CrmDataType.INT)]
         [CrmFieldName(KEY_LEFT_QUOTA)]
         public int? LeftQuota { get; set; }
+
+        [CrmFieldDataType(CrmDataType.INT)]
+        [CrmFieldName(KEY_STUDENT_QUOTA)]
+        public int? StudentQuota { get; set; }
+
+        [CrmFieldDataType(CrmDataType.INT)]
+        [CrmFieldName(KEY_STUDENT_LEFT_QUOTA)]
+        public int? StudentLeftQuota { get; set; }
 
         [CrmFieldDataType(CrmDataType.BOOL)]
         [CrmFieldName(KEY_IS_LIMITED_SINGLE_ATTEND)]
@@ -164,8 +177,11 @@ namespace SRC.Library.Entities.CrmEntities
         public const string KEY_EDUCATION_DEFINITION_ID = "new_educationdefinitionid";
         public const string KEY_CONTACT_ID = "new_contactid";
         public const string KEY_EDUCATION_TYPE = "new_educationtype";
+        public const string KEY_EDUCATION_AMOUNT = "new_educationamount";
         public const string KEY_QUOTA = "new_quota";
         public const string KEY_LEFT_QUOTA = "new_leftquota";
+        public const string KEY_STUDENT_QUOTA = "new_quota";
+        public const string KEY_STUDENT_LEFT_QUOTA = "new_leftquota";
         public const string KEY_IS_LIMITED_SINGLE_ATTEND = "new_islimitedbysingleattend";
         public const string KEY_MAX_SINGLE_ATTEND_COUNT = "new_maxsingleattendcount";
         public const string KEY_IS_PAID = "new_ispaid";
