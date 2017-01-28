@@ -94,6 +94,17 @@
                     $("#divModalAttendance").html(result);
 
                     $("a[type='applyEducation']").click(function () {
+
+                        var isAccepted = $("#chkAttendance").is(":checked");
+
+                        if (isAccepted != true)
+                        {
+                            $("#rowApplyError").show();
+                            return;
+                        } else {
+                            $("#rowApplyError").hide();
+                        }
+
                         $.ajax({
                             url: '@Url.Action("CreateEducationAttendance", "Education")',
                             type: 'POST',
@@ -118,7 +129,16 @@
                     $("#divModalAttendance").html(result);
 
                     $("a[type='cancelEducation']").click(function () {
-                        alert("test");
+
+                        var isAccepted = $("#chkAttendanceCancel").is(":checked");
+
+                        if (isAccepted != true) {
+                            $("#rowCancelError").show();
+                            return;
+                        } else {
+                            $("#rowCancelError").hide();
+                        }
+
                         $.ajax({
                             url: '@Url.Action("CanceEducationAttendance", "Education")',
                             type: 'POST',
@@ -161,7 +181,7 @@
             var val = $(this).val();
 
             if (val == 0) { //Firma
-                
+
                 $("#divPosition").show();
                 $("#divCompany").show();
                 $("#divTaxNumber").show();
