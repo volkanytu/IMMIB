@@ -1,13 +1,21 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Error</title>
-</head>
-<body>
-    <hgroup>
-        <h1>Error.</h1>
-        <h2>An error occurred while processing your request.</h2>
-    </hgroup>
-</body>
-</html>
+﻿@model System.Web.Mvc.HandleErrorInfo
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "HATA";
+}
+<section id="main-content" style="width: 90%; margin: auto;">
+    <section class="wrapper">
+        <!-- page start-->
+        <section class="panel" style="padding: 20px;">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 style="color:red;">HATA!</h3>
+                        <h4>@Model.Exception.Message</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- page end-->
+    </section>
+</section>

@@ -129,11 +129,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\EducationController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HowtoController.cs" />
     <Compile Include="Controllers\PartialsController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Filters\ErrorAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1932,7 +1934,6 @@
     <Folder Include="assets\bootstrap-datetimepicker\build\" />
     <Folder Include="assets\jquery-file-upload\server\php\files\thumbnail\" />
     <Folder Include="assets\toastr-master\build\" />
-    <Folder Include="Filters\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

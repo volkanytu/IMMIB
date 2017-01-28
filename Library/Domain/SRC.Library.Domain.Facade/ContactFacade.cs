@@ -31,6 +31,11 @@ namespace SRC.Library.Domain.Facade
 
         public Contact CheckLogin(string userName, string password, string ipAddress)
         {
+            if (string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(password))
+            {
+                throw new CustomException("Kullanıcı adı ve şifre alanları dolu olmalıdır!", ContactLogKeys.MISSING_PARAMETER_USERNAME_PASSWORD);
+            }
+
             string hashedPassword = password.ToSHA1();
             var contact = _contactBusiness.GetContact(userName, hashedPassword);
             if (contact == null)

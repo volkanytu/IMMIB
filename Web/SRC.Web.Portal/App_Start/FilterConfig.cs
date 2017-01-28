@@ -1,4 +1,5 @@
-﻿//using SRC.Web.Portal.Filters;
+﻿using SRC.Web.Portal.Filters;
+//using SRC.Web.Portal.Filters;
 using System.Web;
 using System.Web.Mvc;
 
@@ -10,7 +11,7 @@ namespace SRC.Web.Portal
         {
             filters.Add(new HandleErrorAttribute());
 
-            //filters.Add(new AuthenticationFilter());
+            filters.Add(new ErrorAttribute());
         }
     }
 }

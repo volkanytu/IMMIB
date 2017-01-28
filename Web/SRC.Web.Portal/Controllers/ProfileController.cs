@@ -12,9 +12,11 @@ using SRC.Library.Domain.Business.Interfaces;
 using SRC.Library.Domain.Facade;
 using SRC.Library.Domain.Facade.Interfaces;
 using SRC.Library.Entities;
+using SRC.Web.Portal.Filters;
 
 namespace SRC.Web.Portal.Controllers
 {
+    [ErrorAttribute]
     public class ProfileController : Controller
     {
         private IContactFacade _contactFacade;
@@ -63,9 +65,9 @@ namespace SRC.Web.Portal.Controllers
         //TODO: Burada şimdilik 2 ayrı metod yaptım
         public ActionResult SignUp(Contact model)
         {
-           
+
             //model = LoggedUser.Current;
-            
+
             return View(model);
         }
 
@@ -97,7 +99,7 @@ namespace SRC.Web.Portal.Controllers
                 _contactFacade.UpdateContact(model);
                 LoggedUser.Current = _contactFacade.GetContact(model.Id);
             }
-            
+
             //model = LoggedUser.Current;
 
             return RedirectToAction("Index");
@@ -105,13 +107,10 @@ namespace SRC.Web.Portal.Controllers
 
         public ActionResult CheckLogin(string userName, string password)
         {
-            if (!string.IsNullOrWhiteSpace(userName) && !string.IsNullOrWhiteSpace(password))
-            {
-               Contact loggedUser = _contactFacade.CheckLogin(userName, password, "192.168.2.1");
+            Contact loggedUser = _contactFacade.CheckLogin(userName, password, "192.168.2.1");
 
-               LoggedUser.Current = loggedUser;
-            }
-           
+            LoggedUser.Current = loggedUser;
+
             return RedirectToAction("Index");
         }
 
@@ -130,9 +129,9 @@ namespace SRC.Web.Portal.Controllers
                     //Hata
                 }
 
-                _contactFacade.UpdatePassWord(LoggedUser.Current.Id,newPassword.ToSHA1());
+                _contactFacade.UpdatePassWord(LoggedUser.Current.Id, newPassword.ToSHA1());
 
-               // LoggedUser.Current = loggedUser;
+                // LoggedUser.Current = loggedUser;
             }
 
             return RedirectToAction("Index");

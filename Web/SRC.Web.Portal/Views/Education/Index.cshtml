@@ -3,104 +3,104 @@
 @model EducationQueryModel
 
 
-    @{
-        ViewBag.Title = "Eğitim Takvimi";
-        Layout = "~/Views/Shared/_Layout.cshtml";
-    }
+@{
+    ViewBag.Title = "Eğitim Takvimi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-    <section id="main-content" style="width: 90%; margin: auto;">
-        <section class="wrapper">
-            <!-- page start-->
-            <section class="panel" style="padding: 20px;">
-                <header class="panel-heading">
-                    Eğitim Listesi
-                    <span class="pull-right">
-                        <a href="/education" class="btn btn-warning btn-xs"><i class="fa fa-refresh"></i> Yenile</a>
-                    </span>
-                </header>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-2">
-                            <button type="button" class="btn btn-primary"><i class="fa fa-backward"></i> Önceki Ay</button>
-                        </div>
-                        <div class="col-md-8">
-                            <form id="formDate" class="form-inline text-center" role="form" action="/Education/Index/">
-                                <div class="form-group">
-                                    @Html.DropDownList("month", null, new { @class = "form-control", @name = "month", @id="month" })
-                                </div>
-                                <div class="form-group">
-                                    @Html.DropDownList("year", null, new { @class = "form-control", @name = "year", @id = "year" })
-                                </div>
-                            </form>
-                        </div>
-                        <div class="col-md-2">
-                            <button type="button" id="btnNext" class="btn btn-primary">Sonraki Ay <i class="fa fa-forward"></i></button>
-                        </div>
+<section id="main-content" style="width: 90%; margin: auto;">
+    <section class="wrapper">
+        <!-- page start-->
+        <section class="panel" style="padding: 20px;">
+            <header class="panel-heading">
+                Eğitim Listesi
+                <span class="pull-right">
+                    <a href="/education" class="btn btn-warning btn-xs"><i class="fa fa-refresh"></i> Yenile</a>
+                </span>
+            </header>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-2">
+                        <button type="button" id="btnBack" class="btn btn-primary"><i class="fa fa-backward"></i> Önceki Ay</button>
+                    </div>
+                    <div class="col-md-8">
+                        <form id="formDate" class="form-inline text-center" role="form" action="/Education/Index/">
+                            <div class="form-group">
+                                @Html.DropDownList("month", null, new { @class = "form-control", @name = "month", @id = "month" })
+                            </div>
+                            <div class="form-group">
+                                @Html.DropDownList("year", null, new { @class = "form-control", @name = "year", @id = "year" })
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" id="btnNext" class="btn btn-primary">Sonraki Ay <i class="fa fa-forward"></i></button>
                     </div>
                 </div>
+            </div>
 
-                @Html.Action("EducationList", "Partials", new { querymodel = Model })
+            @Html.Action("EducationList", "Partials", new { querymodel = Model })
 
-            </section>
-            <!-- page end-->
         </section>
+        <!-- page end-->
     </section>
+</section>
 
-    @section scripts{
-        <script>
-            $(function () {
-                $("#month").on('change', function () {
-                    $("#formDate").submit();
-                });
-
-                $("#year").on('change', function () {
-                    $("#formDate").submit();
-                });
-
-                $("#btnNext").on('click', function () {
-
-                    var month = 1;
-                    var year = null;
-
-                    var currentMonth = $("#month").val();
-                    var currentYear = $("#year").val();
-
-                    if (currentMonth != 12)
-                    {
-                        month = currentMonth++;
-                    }
-                    else if(currentMonth==12)
-                    {
-                        year = currentYear++;
-                    }
-
-                    $("#month").val(month);
-                    $("#year").val(year);
-
-                    $("#formDate").submit();
-                });
-
-                $("#btnBack").on('click', function () {
-
-                    var month = 12;
-                    var year = null;
-
-                    var currentMonth = $("#month").val();
-                    var currentYear = $("#year").val();
-
-                    if (currentMonth != 1) {
-                        month = currentMonth--;
-                    }
-                    else if (currentMonth == 1) {
-                        year = currentYear--;
-                    }
-
-                    $("#month").val(month);
-                    $("#year").val(year);
-
-                    $("#formDate").submit();
-                });
-
+@section scripts{
+    <script>
+        $(function () {
+            $("#month").on('change', function () {
+                $("#formDate").submit();
             });
-        </script>
-    }
+
+            $("#year").on('change', function () {
+                $("#formDate").submit();
+            });
+
+            $("#btnNext").on('click', function () {
+
+                var month = 1;
+                var year = null;
+
+                var currentMonth = parseInt($("#month").val());
+                var currentYear = parseInt($("#year").val());
+                var year = currentYear;
+
+                if (currentMonth != 12) {
+                    month = currentMonth+1;
+                }
+                else if (currentMonth == 12) {
+                    year = currentYear+1;
+                }
+
+                $("#month").val(month);
+                $("#year").val(year);
+
+                $("#formDate").submit();
+            });
+
+            $("#btnBack").on('click', function () {
+
+                var month = 12;
+                var year = null;
+
+                var currentMonth = parseInt($("#month").val());
+                var currentYear = parseInt($("#year").val());
+                var year = currentYear;
+
+                if (currentMonth != 1) {
+                    month = currentMonth - 1;
+                }
+                else if (currentMonth == 1) {
+                    year = currentYear - 1;
+                }
+
+                $("#month").val(month);
+                $("#year").val(year);
+
+                $("#formDate").submit();
+            });
+
+        });
+    </script>
+}

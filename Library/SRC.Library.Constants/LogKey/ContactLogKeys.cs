@@ -14,5 +14,6 @@ namespace SRC.Library.Constants.LogKey
         public const string PASSWORD_NULL = "PASSWORD_NULL";
         public const string CONTACT_NULL = "CONTACT_NULL";
         public const string CONTACT_ID_NULL = "CONTACT_ID_NULL";
+        public const string MISSING_PARAMETER_USERNAME_PASSWORD = "MISSING_PARAMETER_USERNAME_PASSWORD";
     }
 }
