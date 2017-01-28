@@ -48,11 +48,24 @@
                     <p>@education.City.Name</p>
                 </td>
                 <td>
-                    <p>@education.Status.Value</p>
+                    @if (education.IsExpired)
+                    {
+                        <span class="label label-danger">Eğitim Gerçekleşti</span>
+                    }
+                    else if (education.LeftQuota == null || education.LeftQuota < 1)
+                    {
+                        <span class="label label-warning">Kontenjan Doldu</span>
+                    }
+                    else
+                    {
+                        <span class="label label-success">Başvuru Açık</span>
+                    }
+
+
                 </td>
                 <td>
-                    @if(!education.IsExpired)
-                    { 
+                    @if (!education.IsExpired)
+                    {
                         if (education.Attendance == null)
                         {
                             <a data-toggle="modal" type="educationAttendance" href="#attendanceModal" class="btn btn-primary btn-xs" id="@education.Id"><i class="fa fa-folder"></i> Başvur </a>

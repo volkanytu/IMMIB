@@ -74,51 +74,51 @@
     @RenderSection("scripts", required: false)
 
     <script>
-    $(function () {
-        $("a[type='educationdetail']").click(function () {
-            $.ajax({
-                url: '@Url.Action("Detail", "Education")',
-                type: 'GET',
-                data: { id: $(this).attr("id") }
-            }).success(function (result) {
-                $("#divModal").html(result);
-            });
-        });
-
-        $("a[type='educationAttendance']").click(function () {
-            $.ajax({
-                url: '@Url.Action("EducationAttendances", "Partials")',
-                type: 'GET',
-                data: { id: $(this).attr("id") }
-            }).success(function (result) {
-                $("#divModalAttendance").html(result);
-
-                $("a[type='applyEducation']").click(function () {
-                    $.ajax({
-                        url: '@Url.Action("CreateEducationAttendance", "Education")',
-                        type: 'POST',
-                        data: { educationId: $(this).attr("id") }
-                    }).success(function (result) {
-                        $("#divModalAttendance .panel-body").html("" +
-                            "<p>Eğitim Katılım Talebiniz Alınmıştır, Teşekkürler.</p>" +
-                            "<p>Eğitim Katılım Kodunuz : " + result.Result.Code +"</p>"+
-                            "<a href='#' type='payment'>Ödeme yapmak için tıklayınız</a>");
-                    });
+        $(function () {
+            $("a[type='educationdetail']").click(function () {
+                $.ajax({
+                    url: '@Url.Action("Detail", "Education")',
+                    type: 'GET',
+                    data: { id: $(this).attr("id") }
+                }).success(function (result) {
+                    $("#divModal").html(result);
                 });
-
             });
-        });
 
-        $("a[type='educationCancelAttendance']").click(function () {
-            $.ajax({
-                url: '@Url.Action("EducationCancelAttendances", "Partials")',
-                type: 'GET',
-                data: { id: $(this).attr("id") }
-            }).success(function (result) {
-                $("#divModalAttendance").html(result);
+            $("a[type='educationAttendance']").click(function () {
+                $.ajax({
+                    url: '@Url.Action("EducationAttendances", "Partials")',
+                    type: 'GET',
+                    data: { id: $(this).attr("id") }
+                }).success(function (result) {
+                    $("#divModalAttendance").html(result);
 
-                $("a[type='cancelEducation']").click(function () {
-                    alert("test");
+                    $("a[type='applyEducation']").click(function () {
+                        $.ajax({
+                            url: '@Url.Action("CreateEducationAttendance", "Education")',
+                            type: 'POST',
+                            data: { educationId: $(this).attr("id") }
+                        }).success(function (result) {
+                            $("#divModalAttendance .panel-body").html("" +
+                                "<p>Eğitim Katılım Talebiniz Alınmıştır, Teşekkürler.</p>" +
+                                "<p>Eğitim Katılım Kodunuz : " + result.Result.Code + "</p>" +
+                                "<a href='#' type='payment'>Ödeme yapmak için tıklayınız</a>");
+                        });
+                    });
+
+                });
+            });
+
+            $("a[type='educationCancelAttendance']").click(function () {
+                $.ajax({
+                    url: '@Url.Action("EducationCancelAttendances", "Partials")',
+                    type: 'GET',
+                    data: { id: $(this).attr("id") }
+                }).success(function (result) {
+                    $("#divModalAttendance").html(result);
+
+                    $("a[type='cancelEducation']").click(function () {
+                        alert("test");
                         $.ajax({
                             url: '@Url.Action("CanceEducationAttendance", "Education")',
                             type: 'POST',
@@ -130,38 +130,58 @@
                         });
                     });
 
+                });
+            });
+
+            $("#btnSignUp").click(function () {
+                window.location.href = "/Profile/SignUp";
+            });
+
+            $("#btnLogin").click(function () {
+                $("#formLogin").submit();
             });
         });
 
-        $("#btnSignUp").click(function () {
-            window.location.href = "/Profile/SignUp";
+        function CreditCardProcess() {
+            $("a[type='payment']").click(function () {
+                $.ajax({
+                    url: '@Url.Action("CreditCard", "Education")',
+                    type: 'POST',
+                    data: { educationId: $(this).attr("id") }
+                }).success(function (result) {
+                    $("#divModalAttendance .panel-body").html("" +
+                        "<p>Eğitim Katılım Talebiniz Alınmıştır, Teşekkürler.</p>" +
+                        "<p>Eğitim Katılım Kodunuz : " + result.Result.Code + "</p>" +
+                        "<a href='#' type='payment'>Ödeme yapmak için tıklayınız</a>");
+                });
+            });
+        }
+
+        $("input[name='sample-radio']").change(function () {
+            var val = $(this).val();
+
+            if (val == 0) { //Firma
+                
+                $("#divPosition").show();
+                $("#divCompany").show();
+                $("#divTaxNumber").show();
+                $("#divWorkPhone").show();
+
+            }
+            else if (val == 1) //Öğrenci
+            {
+                $("#divPosition").hide();
+                $("#divCompany").hide();
+                $("#divTaxNumber").hide();
+                $("#divWorkPhone").hide();
+            }
         });
 
-        $("#btnLogin").click(function () {
-            $("#formLogin").submit();
-        });
-    });
-
-    function CreditCardProcess() {
-        $("a[type='payment']").click(function () {
-            $.ajax({
-                url: '@Url.Action("CreditCard", "Education")',
-                type: 'POST',
-                data: { educationId: $(this).attr("id") }
-            }).success(function (result) {
-                $("#divModalAttendance .panel-body").html("" +
-                    "<p>Eğitim Katılım Talebiniz Alınmıştır, Teşekkürler.</p>" +
-                    "<p>Eğitim Katılım Kodunuz : " + result.Result.Code + "</p>" +
-                    "<a href='#' type='payment'>Ödeme yapmak için tıklayınız</a>");
+        $(function () {
+            $.vegas({
+                src: 'http://egitim.immib.org.tr/jsv/istanbul_turu_1.jpg'
             });
         });
-    }
-
-    $(function () {
-        $.vegas({
-            src: 'http://egitim.immib.org.tr/jsv/istanbul_turu_1.jpg'
-        });
-    });
     </script>
 </body>
 </html>

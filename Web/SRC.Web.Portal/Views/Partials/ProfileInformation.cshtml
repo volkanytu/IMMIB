@@ -4,13 +4,20 @@
 @model Contact
 
 
-<aside class="profile-info col-lg-9">
+<aside class="profile-info col-lg-12">
     <section class="panel">
         <div class="bio-graph-heading" style="padding: 10px 50px;">
             Profil bilgilerinizi düzenleyebilirsiniz.
         </div>
         <div class="panel-body bio-graph-info">
             <form class="form-horizontal" role="form" id="formLogin" action="/Profile/Kaydet">
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Kayıt Tipi</label>
+                    <div class="col-lg-6 text-left">
+                        <input name="sample-radio" id="rd_Company" value="0" type="radio" checked /> Firma Çalışanı
+                        <input name="sample-radio" id="rd_Student" value="1" type="radio" style="margin-left:20px;" /> Öğrenci
+                    </div>
+                </div>
                 <div class="form-group">
                     <label class="col-lg-2 control-label">İsim</label>
                     <div class="col-lg-6">
@@ -27,7 +34,7 @@
                     <label class="col-lg-2 control-label">Doğum Tarihi</label>
                     <div class="col-lg-6">
                         <input class="form-control form-control-inline input-medium default-date-picker" name="BirthDateStr" size="16" type="text" value="@Model.BirthDateStr" />
-                        
+
                     </div>
                 </div>
                 <div class="form-group">
@@ -61,22 +68,10 @@
                         <input type="text" class="form-control" id="mobile" name="MobilePhone" placeholder=" " value="@Model.MobilePhone">
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="col-lg-2 control-label">Gsm Operatörünüz</label>
-                    <div class="col-lg-6">
-                        @Html.DropDownList("gsmOperatorId", null, new { @class = "form-control" })
-                    </div>
-                </div>
-                <div class="form-group">
+                <div class="form-group" id="divWorkPhone">
                     <label class="col-lg-2 control-label">İş Telefonu</label>
                     <div class="col-lg-6">
                         <input type="text" class="form-control" id="businessphone" name="WorkPhone" placeholder=" " value="@Model.WorkPhone">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-lg-2 control-label">Fax</label>
-                    <div class="col-lg-6">
-                        <input type="text" class="form-control" id="fax" name="Fax" placeholder=" " value="@Model.Fax">
                     </div>
                 </div>
                 <div class="form-group">
@@ -85,41 +80,22 @@
                         <input type="text" class="form-control" id="email" name="EmailAddress" placeholder=" " value="@Model.EmailAddress">
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="divTaxNumber">
                     <label class="col-lg-2 control-label">Firma Vergi Numarası</label>
                     <div class="col-lg-6">
                         <input type="text" class="form-control" id="taxnumber" name="TaxNumber" placeholder=" " value="@Model.TaxNumber">
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="divCompany">
                     <label class="col-lg-2 control-label">Firma Adı</label>
                     <div class="col-lg-6">
                         <input type="text" class="form-control" id="firm" name="CompanyName" placeholder=" " value="@Model.CompanyName">
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="divPosition">
                     <label class="col-lg-2 control-label">Firmadaki Pozisyonunuz</label>
                     <div class="col-lg-6">
                         <input type="text" class="form-control" id="firmposition" name="CompanyPosition" placeholder=" " value="@Model.CompanyPosition">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-lg-2 control-label">Vergi Dairesi</label>
-                    <div class="col-lg-6">
-                        @*<input type="text" class="form-control" id="taxoffice" placeholder=" " value="@Model.TaxOffice.Name">*@
-                        <input type="text" class="form-control" id="taxoffice" placeholder=" " value="">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-lg-2 control-label">Firma Adresi</label>
-                    <div class="col-lg-10">
-                        <textarea id="address" name="CompanyAddress" class="form-control" cols="30" rows="5">@Model.CompanyAddress</textarea>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-lg-2 control-label">Nereden Haberdar Oldunuz</label>
-                    <div class="col-lg-6">
-                        @Html.DropDownList("informedById", null, new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="form-group">
@@ -180,10 +156,10 @@
 
 @section scripts{
     <script>
-    //$(function () {
-    //    $("#btnSignUp").click(function () {
-    //            $("#formSignUp").submit();
-    //        });
-    //    });
+        //$(function () {
+        //    $("#btnSignUp").click(function () {
+        //            $("#formSignUp").submit();
+        //        });
+        //    });
     </script>
 }
