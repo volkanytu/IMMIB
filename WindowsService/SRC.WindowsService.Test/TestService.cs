@@ -3,6 +3,7 @@ using SRC.Library.Business.Interfaces;
 using SRC.Library.Entities.CrmEntities;
 using SRC.WindowsService.TestService;
 using SRC.WindowsService.TestService.Interfaces;
+using SRC.WindowsService.TestService.SmsApi;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -19,14 +20,14 @@ namespace SRC.WindowsService.TestService
         private readonly IContainer _container;
         private IServiceManager _serviceManager;
         private IBaseBusiness<SmsEnt> _baseBusiness;
-        //private MessageServices MS = new MessageServices();
+        private SmsManager _smsManager;
         public TestService()
         {
             InitializeComponent();
 
             _container = IocContainerConfig.BuildIocContainer();
             _baseBusiness = _container.Resolve<IBaseBusiness<SmsEnt>>();
-
+            _smsManager = new SmsManager();
             _serviceManager = _container.Resolve<IServiceManager>();
         }
 
@@ -50,8 +51,14 @@ namespace SRC.WindowsService.TestService
 
         private void StartOperation()
         {
-            List<SmsEnt> smsList = _baseBusiness.GetList();
+            string sessionId = _smsManager.GetSession();
 
+            List<SmsEnt> smsList = _baseBusiness.GetList();
+            foreach (var smsEntity in smsList)
+            {
+                smsEntity.MessageStatus = _smsManager.SendSms(smsEntity, sessionId);
+                _baseBusiness.Update(smsEntity);
+            }
 
             Task t = Task.Factory.StartNew(() =>
             {
