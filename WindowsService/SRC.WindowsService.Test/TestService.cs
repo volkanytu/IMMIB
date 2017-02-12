@@ -1,4 +1,6 @@
 ﻿using Autofac;
+using SRC.Library.Business.Interfaces;
+using SRC.Library.Entities.CrmEntities;
 using SRC.WindowsService.TestService;
 using SRC.WindowsService.TestService.Interfaces;
 using System;
@@ -16,12 +18,14 @@ namespace SRC.WindowsService.TestService
     {
         private readonly IContainer _container;
         private IServiceManager _serviceManager;
-
+        private IBaseBusiness<SmsEnt> _baseBusiness;
+        //private MessageServices MS = new MessageServices();
         public TestService()
         {
             InitializeComponent();
 
             _container = IocContainerConfig.BuildIocContainer();
+            _baseBusiness = _container.Resolve<IBaseBusiness<SmsEnt>>();
 
             _serviceManager = _container.Resolve<IServiceManager>();
         }
@@ -46,6 +50,9 @@ namespace SRC.WindowsService.TestService
 
         private void StartOperation()
         {
+            List<SmsEnt> smsList = _baseBusiness.GetList();
+
+
             Task t = Task.Factory.StartNew(() =>
             {
                 _serviceManager.Start();

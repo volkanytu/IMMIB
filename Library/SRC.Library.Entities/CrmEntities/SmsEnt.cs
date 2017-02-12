@@ -57,6 +57,9 @@ namespace SRC.Library.Entities.CrmEntities
         public enum StatusCode
         {
             ACTIVE = 1,
+            WAITING_SEND = 100000000,
+            SENT = 100000001,
+            CANT_SEND = 100000002,
             PASSIVE = 2
         }
     }

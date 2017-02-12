@@ -51,7 +51,7 @@ namespace SRC.Library.Ioc.IocManager
             builder.Register<IBaseDao<City>>(c => new BaseSqlDao<City>(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>(), CityQueries.GET_CITY, CityQueries.GET_CITY_LIST)).InstancePerDependency();
             builder.Register<IBaseDao<DynamicPage>>(c => new BaseSqlDao<DynamicPage>(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>(), DynamicPageQueries.GET_DYNAMIC_PAGE, DynamicPageQueries.GET_DYNAMIC_PAGE_LIST)).InstancePerDependency();
 
-
+                    
             builder.Register<IContactDao>(c => new ContactDao(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>())).InstancePerDependency();
             builder.Register<IEducationDao>(c => new EducationDao(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>())).InstancePerDependency();
             builder.Register<IEducationAttendanceDao>(c => new EducationAttendanceDao(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>())).InstancePerDependency();

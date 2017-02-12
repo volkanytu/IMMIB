@@ -35,5 +35,12 @@ namespace SRC.Library.Data.SqlDao
 
             return dt.ToList<EducationAttendance>().ToList();
         }
+
+        public List<EducationAttendance> GetEducationAttendancesForExpectedPayments()
+        {
+            DataTable dt = _sqlAccess.GetDataTable(EducationAttendenceQueries.GET_EDUCATION_EXPECTED_PAYMENT);
+
+            return dt.ToList<EducationAttendance>().ToList();
+        }
     }
 }

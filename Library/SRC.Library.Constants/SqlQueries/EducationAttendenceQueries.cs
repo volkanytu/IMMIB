@@ -83,5 +83,24 @@ namespace SRC.Library.Constants.SqlQueries
                                                                 EA.StateCode = 0";
 
         #endregion
+
+        #region | GET_EDUCATION_EXPECTED_PAYMENT |
+        public const string GET_EDUCATION_EXPECTED_PAYMENT = @"SELECT 
+	                                                                EA.new_educationattendanceId AS Id
+                                                                FROM
+	                                                                new_educationattendance EA WITH (NOLOCK)
+                                                                INNER JOIN
+	                                                                new_education E WITH (NOLOCK)
+	                                                                ON
+	                                                                E.new_educationId = EA.new_educationid
+                                                                WHERE 
+	                                                                EA.StateCode = 0
+	                                                                AND
+	                                                                EA.statuscode = 100000000
+	                                                                AND
+	                                                                E.statecode = 0
+	                                                                AND
+	                                                                DATEDIFF(DAY,GETDATE(),DATEADD(DAY,1,E.new_startdate)) <3";
+        #endregion
     }
 }

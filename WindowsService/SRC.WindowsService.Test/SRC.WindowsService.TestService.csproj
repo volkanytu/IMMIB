@@ -76,6 +76,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Library\Data\SRC.Library.Data.Interfaces\SRC.Library.Data.Interfaces.csproj">
+      <Project>{49BE302D-3B93-487B-B3A1-5E4A3460BEF4}</Project>
+      <Name>SRC.Library.Data.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library\Data\SRC.Library.Data.SqlDao\SRC.Library.Data.SqlDao.csproj">
+      <Project>{69420626-41FA-4559-AD2A-D38EB2CF0585}</Project>
+      <Name>SRC.Library.Data.SqlDao</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Library\Domain\SRC.Library.Domain.Facade\SRC.Library.Domain.Facade.csproj">
       <Project>{d8d6efb7-d1eb-4df7-9879-752e086a2a89}</Project>
       <Name>SRC.Library.Domain.Facade</Name>
@@ -109,7 +117,9 @@
       <Name>SRC.Library.LogManager</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
