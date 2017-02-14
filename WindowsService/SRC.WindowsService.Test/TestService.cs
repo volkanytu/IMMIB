@@ -19,15 +19,16 @@ namespace SRC.WindowsService.TestService
     {
         private readonly IContainer _container;
         private IServiceManager _serviceManager;
-        private IBaseBusiness<SmsEnt> _baseBusiness;
-        private SmsManager _smsManager;
+        //private IBaseBusiness<SmsEnt> _baseBusiness;
+        //private SmsManager _smsManager;
+
         public TestService()
         {
             InitializeComponent();
 
             _container = IocContainerConfig.BuildIocContainer();
-            _baseBusiness = _container.Resolve<IBaseBusiness<SmsEnt>>();
-            _smsManager = new SmsManager();
+            //_baseBusiness = _container.Resolve<IBaseBusiness<SmsEnt>>();
+            //_smsManager = new SmsManager();
             _serviceManager = _container.Resolve<IServiceManager>();
         }
 
@@ -51,21 +52,12 @@ namespace SRC.WindowsService.TestService
 
         private void StartOperation()
         {
-            string sessionId = _smsManager.GetSession();
+            //Task t = Task.Factory.StartNew(() =>
+            //{
+            _serviceManager.Start();
+            //});
 
-            List<SmsEnt> smsList = _baseBusiness.GetList();
-            foreach (var smsEntity in smsList)
-            {
-                smsEntity.MessageStatus = _smsManager.SendSms(smsEntity, sessionId);
-                _baseBusiness.Update(smsEntity);
-            }
-
-            Task t = Task.Factory.StartNew(() =>
-            {
-                _serviceManager.Start();
-            });
-
-            t.Wait();
+            //t.Wait();
         }
 
         private void StopOperation()

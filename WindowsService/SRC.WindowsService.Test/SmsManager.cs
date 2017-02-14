@@ -1,4 +1,5 @@
 ﻿using SRC.Library.Entities.CrmEntities;
+using SRC.WindowsService.TestService.Interfaces;
 using SRC.WindowsService.TestService.SmsApi;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SRC.WindowsService.TestService
 {
-    public class SmsManager
+    public class SmsManager : ISmsManager
     {
         //Taşınacak
         private string _accountNumber = "2014cib5967";

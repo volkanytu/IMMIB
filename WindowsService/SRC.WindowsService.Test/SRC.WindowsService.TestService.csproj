@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="App_Start\IoCContainerConfig.cs" />
     <Compile Include="Interfaces\IServiceManager.cs" />
+    <Compile Include="ISmsManager.cs" />
     <Compile Include="Libs\ServiceManager.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>

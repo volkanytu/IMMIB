@@ -33,9 +33,10 @@ namespace SRC.WindowsService.TestService
 
             builder.Register<IBaseDao<SmsEnt>>(c => new BaseSqlDao<SmsEnt>(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>(), SmsQueries.GET_SMS, SmsQueries.GET_SMS_LIST)).InstancePerDependency();
             builder.Register<IBaseBusiness<SmsEnt>>(c => new BaseBusiness<SmsEnt>(c.Resolve<IBaseDao<SmsEnt>>())).InstancePerDependency();
+            builder.Register<ISmsManager>(c => new SmsManager()).InstancePerDependency();
 
-
-            builder.Register<IServiceManager>(c => new ServiceManager())
+            builder.Register<IServiceManager>(c => new ServiceManager(c.Resolve<IBaseBusiness<SmsEnt>>()
+                ,c.Resolve<ISmsManager>()))
                 .InstancePerLifetimeScope()
                 .InterceptedBy(typeof(LogInterceptor));
 
