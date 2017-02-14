@@ -1,5 +1,7 @@
 ﻿using SRC.Library.Business.Interfaces;
 using SRC.Library.Entities.CrmEntities;
+using SRC.Library.Interfaces.SmsManager;
+using SRC.Library.SmsManager.Libs;
 using SRC.WindowsService.TestService.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -62,12 +64,21 @@ namespace SRC.WindowsService.TestService.Libs
 
             foreach (var smsEntity in smsList)
             {
-                if (!isDisposed)
+                if (isDisposed)
                 {
                     break;
                 }
 
-                smsEntity.MessageStatus = _smsManager.SendSms(smsEntity, sessionId);
+                MessageResponse response = _smsManager.SendSms(smsEntity, sessionId);
+                if (response.Results != null)
+                {
+                    foreach (var r in response.Results)
+                    {
+                        smsEntity.MessageID = r.MessageID;
+                        smsEntity.MessageStatus = r.Status;
+                    }
+                }
+
                 _baseSmsBusiness.Update(smsEntity);
             }
         }

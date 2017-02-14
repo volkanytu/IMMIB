@@ -3,7 +3,6 @@ using SRC.Library.Business.Interfaces;
 using SRC.Library.Entities.CrmEntities;
 using SRC.WindowsService.TestService;
 using SRC.WindowsService.TestService.Interfaces;
-using SRC.WindowsService.TestService.SmsApi;
 using System;
 using System.Collections.Generic;
 using System.Data;

@@ -1,9 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SRC.WindowsService.TestService.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
   <Profiles />
-  <Settings>
-    <Setting Name="SRC_WindowsService_TestService_SmsApi_MessageServices" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://api.dataport.com.tr/MessageServices.asmx</Value>
-    </Setting>
-  </Settings>
+  <Settings />
 </SettingsFile>

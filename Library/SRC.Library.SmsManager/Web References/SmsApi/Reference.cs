@@ -13,7 +13,7 @@
 // 
 #pragma warning disable 1591
 
-namespace SRC.WindowsService.TestService.SmsApi {
+namespace SRC.Library.SmsManager.SmsApi {
     using System;
     using System.Web.Services;
     using System.Diagnostics;
@@ -59,7 +59,7 @@ namespace SRC.WindowsService.TestService.SmsApi {
         
         /// <remarks/>
         public MessageServices() {
-            this.Url = global::SRC.WindowsService.TestService.Properties.Settings.Default.SRC_WindowsService_TestService_SmsApi_MessageServices;
+            this.Url = global::SRC.Library.SmsManager.Properties.Settings.Default.SRC_Library_SmsManager_SmsApi_MessageServices;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
                 this.useDefaultCredentialsSetExplicitly = false;

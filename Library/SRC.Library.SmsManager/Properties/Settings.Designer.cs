@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SRC.WindowsService.TestService.Properties {
+namespace SRC.Library.SmsManager.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -20,6 +20,16 @@ namespace SRC.WindowsService.TestService.Properties {
         public static Settings Default {
             get {
                 return defaultInstance;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://api.dataport.com.tr/MessageServices.asmx")]
+        public string SRC_Library_SmsManager_SmsApi_MessageServices {
+            get {
+                return ((string)(this["SRC_Library_SmsManager_SmsApi_MessageServices"]));
             }
         }
     }

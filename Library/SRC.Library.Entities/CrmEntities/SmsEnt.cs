@@ -37,6 +37,10 @@ namespace SRC.Library.Entities.CrmEntities
         [CrmFieldName(KEY_MESSAGE_STATUS)]
         public string MessageStatus { get; set; }
 
+        [CrmFieldDataType(CrmDataType.STRING)]
+        [CrmFieldName(KEY_MESSAGE_ID)]
+        public string MessageID { get; set; }
+
         public const string REMEMBER_PASSWORD_TEXT = "SN. {0}, IMMIB Eğitim Portalı şifreniz: {1} olarak değiştirilmiştir. Teşekkürler...";
 
         public const string KEY_LOGICAL_NAME = "new_sms";
@@ -47,7 +51,7 @@ namespace SRC.Library.Entities.CrmEntities
         public const string KEY_MESSAGE = "new_message";
         public const string KEY_MESSAGE_STATE = "new_messagestate";
         public const string KEY_MESSAGE_STATUS = "new_messagestatustext";
-
+        public const string KEY_MESSAGE_ID = "new_messageid";
         public enum StateCode
         {
             ACTIVE = 0,

@@ -121,6 +121,19 @@ namespace SRC.Library.Common
             return value;
         }
 
+        public static string RemoveInvalidCharactersByAscii(this string value,Dictionary<int,int> invalidCharacterNumbers)
+        {
+            foreach (var item in invalidCharacterNumbers)
+            {
+                string removeCharacter = char.ConvertFromUtf32(item.Key);
+                string replaceCharacter = char.ConvertFromUtf32(item.Value);
+
+                value = value.Replace(removeCharacter, replaceCharacter);
+            }
+
+            return value;
+        }
+
         public static string ToSHA1(this string value)
         {
             if (string.IsNullOrWhiteSpace(value))
@@ -128,6 +141,11 @@ namespace SRC.Library.Common
                 return null;
             }
             return Encryption.SHA1Hash(value);
+        }
+
+        public static int ToInteger(this object value)
+        {
+            return Convert.ToInt32(value);
         }
 
         public static TSource ArgsToClass<TSource>(this string[] args) where TSource : new()

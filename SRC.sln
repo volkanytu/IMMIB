@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{47E0633D-6E0C-4B2B-87EE-AD355CEBAEC5}"
 EndProject
@@ -50,6 +50,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SRC.ConsoleApp.ScheduledJobs", "ConsoleApp\SRC.ConsoleApp.ScheduledJobs\SRC.ConsoleApp.ScheduledJobs.csproj", "{17F7F1A2-E262-42CC-90EC-B29819A4A942}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SRC.WindowsService.TestService", "WindowsService\SRC.WindowsService.Test\SRC.WindowsService.TestService.csproj", "{0986BBB3-F9CA-4E56-B6FE-A56AB6C67B5A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SRC.Library.SmsManager", "Library\SRC.Library.SmsManager\SRC.Library.SmsManager.csproj", "{6E1DDDFB-FD39-407A-8D1B-E2D4D26DA849}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -121,6 +123,10 @@ Global
 		{0986BBB3-F9CA-4E56-B6FE-A56AB6C67B5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0986BBB3-F9CA-4E56-B6FE-A56AB6C67B5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0986BBB3-F9CA-4E56-B6FE-A56AB6C67B5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E1DDDFB-FD39-407A-8D1B-E2D4D26DA849}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E1DDDFB-FD39-407A-8D1B-E2D4D26DA849}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E1DDDFB-FD39-407A-8D1B-E2D4D26DA849}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E1DDDFB-FD39-407A-8D1B-E2D4D26DA849}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -145,5 +151,6 @@ Global
 		{7FD54DA4-71DD-4DDF-A996-AA9EE2B46C59} = {04AAD9AD-9630-494B-8F64-ACC621C60CBF}
 		{17F7F1A2-E262-42CC-90EC-B29819A4A942} = {D7A68D73-42E5-46B8-A373-E573A0E32A56}
 		{0986BBB3-F9CA-4E56-B6FE-A56AB6C67B5A} = {1B3C9D1B-A725-4A0E-BE0B-CA9B08D35113}
+		{6E1DDDFB-FD39-407A-8D1B-E2D4D26DA849} = {47E0633D-6E0C-4B2B-87EE-AD355CEBAEC5}
 	EndGlobalSection
 EndGlobal
