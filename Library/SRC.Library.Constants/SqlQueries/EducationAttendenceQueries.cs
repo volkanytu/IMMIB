@@ -100,7 +100,7 @@ namespace SRC.Library.Constants.SqlQueries
 	                                                                AND
 	                                                                E.statecode = 0
 	                                                                AND
-	                                                                DATEDIFF(DAY,GETDATE(),DATEADD(DAY,1,E.new_startdate)) <3";
+	                                                                DATEDIFF(DAY,GETDATE(),DATEADD(DAY,1,E.new_startdate)) <@remainDay";
         #endregion
     }
 }

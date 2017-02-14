@@ -7,6 +7,6 @@ namespace SRC.Library.Data.SqlDao.Interfaces
     public interface IEducationAttendanceDao
     {
         List<EducationAttendance> GetEducationAttendances(Guid contactId);
-        List<EducationAttendance> GetEducationAttendancesForExpectedPayments();
+        List<EducationAttendance> GetEducationAttendancesForExpectedPayments(int remainDay);
     }
 }

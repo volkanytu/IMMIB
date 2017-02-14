@@ -129,5 +129,50 @@ namespace SRC.Library.Common
             }
             return Encryption.SHA1Hash(value);
         }
+
+        public static TSource ArgsToClass<TSource>(this string[] args) where TSource : new()
+        {
+            char[] splitChar = "=".ToCharArray();
+
+            if (args == null)
+            {
+                return default(TSource);
+            }
+
+            Dictionary<string, string> argsDict = new Dictionary<string, string>();
+
+            foreach (var arg in args)
+            {
+                string[] splittedValues = arg.Split(splitChar, StringSplitOptions.RemoveEmptyEntries);
+                argsDict.Add(splittedValues.FirstOrDefault(), splittedValues.LastOrDefault());
+            }
+
+            var obj = new TSource();
+
+            const BindingFlags flags = BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic;
+            var objFieldNames = (from PropertyInfo aProp in typeof(TSource).GetProperties(flags)
+                                 where
+                                 aProp.CanWrite
+                                 select new
+                                 {
+                                     Name = aProp.Name
+                                     ,
+                                     Type = Nullable.GetUnderlyingType(aProp.PropertyType) ?? aProp.PropertyType
+                                 }).ToList();
+
+            foreach (var aField in objFieldNames)
+            {
+                var propertyInfos = obj.GetType().GetProperty(aField.Name);
+
+                if (argsDict.ContainsKey(aField.Name))
+                {
+                    var qsValue = argsDict[aField.Name];
+
+                    propertyInfos.SetValue(obj, qsValue, null);
+                }
+            }
+
+            return obj;
+        }
     }
 }

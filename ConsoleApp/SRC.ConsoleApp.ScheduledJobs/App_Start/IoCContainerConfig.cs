@@ -25,13 +25,13 @@ namespace SRC.ConsoleApp.ScheduledJobs
     {
         public static string APPLICATION_NAME = "SCHEDULED_JOBS";
 
-        public static IContainer BuildIocContainer()
+        public static IContainer BuildIocContainer(string jobName)
         {
             var builder = new ContainerBuilder();
 
             #region | IOC REGISTER |
             IocContainerBuilder.RegisterDataAccess(builder);
-            IocContainerBuilder.RegisterLogManager(builder, APPLICATION_NAME, LogEntity.LogClientType.ELASTIC);
+            IocContainerBuilder.RegisterLogManager(builder, string.Format("{0}.{1}", APPLICATION_NAME, jobName), LogEntity.LogClientType.ELASTIC);
             //IocContainerBuilder.RegisterInterceptors(builder);
             #endregion
 
@@ -41,8 +41,8 @@ namespace SRC.ConsoleApp.ScheduledJobs
             builder.Register<IEducationAttendanceDao>(c => new EducationAttendanceDao(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>())).InstancePerDependency();
             builder.Register<IEducationAttendanceBusiness>(c => new EducationAttendanceBusiness(c.Resolve<IEducationAttendanceDao>())).InstancePerDependency();
 
-            builder.Register<BaseJob>(c => new TestJob(c.Resolve<ILogManager>(), c.Resolve<IBaseBusiness<EducationAttendance>>(), c.Resolve<IEducationAttendanceBusiness>()))
-                .Keyed<BaseJob>(JobType.TestJob.ToString())
+            builder.Register<BaseJob>(c => new PassiveUnPaidAttendance(c.Resolve<ILogManager>(), c.Resolve<IBaseBusiness<EducationAttendance>>(), c.Resolve<IEducationAttendanceBusiness>()))
+                .Keyed<BaseJob>(JobType.PassiveUnPaidAttendance.ToString())
                 .InstancePerLifetimeScope()
                 .InterceptedBy(typeof(LogInterceptor));
 

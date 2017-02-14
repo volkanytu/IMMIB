@@ -8,6 +8,6 @@ namespace SRC.ConsoleApp.ScheduledJobs
 {
     public enum JobType
     {
-        TestJob,
+        PassiveUnPaidAttendance,
     }
 }

@@ -8,17 +8,17 @@ using SRC.ConsoleApp.ScheduledJobs.Jobs;
 
 namespace SRC.ConsoleApp.ScheduledJobs
 {
-    public class Program    
+    public class Program
     {
         static void Main(string[] args)
         {
 
-            //if (args == null || args.Length == 0)
-            //    return;
+            if (args == null || args.Length == 0)
+                return;
 
-            //var firstArg = args.FirstOrDefault();
-            var firstArg = "TestJob";
-            var container = IocContainerConfig.BuildIocContainer();
+            var firstArg = args.FirstOrDefault();
+
+            var container = IocContainerConfig.BuildIocContainer(firstArg);
 
             var job = container.ResolveKeyed<BaseJob>(firstArg);
 

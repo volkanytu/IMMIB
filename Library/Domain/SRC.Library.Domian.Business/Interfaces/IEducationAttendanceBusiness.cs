@@ -7,6 +7,6 @@ namespace SRC.Library.Domain.Business.Interfaces
     public interface IEducationAttendanceBusiness
     {
         List<EducationAttendance> GetEducations(Guid contactId);
-        List<EducationAttendance> GetEducationAttendancesForExpectedPayments();
+        List<EducationAttendance> GetEducationAttendancesForExpectedPayments(int remainDay);
     }
 }

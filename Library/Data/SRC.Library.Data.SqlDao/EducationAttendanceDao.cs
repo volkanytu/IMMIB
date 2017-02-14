@@ -36,9 +36,14 @@ namespace SRC.Library.Data.SqlDao
             return dt.ToList<EducationAttendance>().ToList();
         }
 
-        public List<EducationAttendance> GetEducationAttendancesForExpectedPayments()
+        public List<EducationAttendance> GetEducationAttendancesForExpectedPayments(int remainDay)
         {
-            DataTable dt = _sqlAccess.GetDataTable(EducationAttendenceQueries.GET_EDUCATION_EXPECTED_PAYMENT);
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@remainDay",remainDay)
+            };
+
+            DataTable dt = _sqlAccess.GetDataTable(EducationAttendenceQueries.GET_EDUCATION_EXPECTED_PAYMENT, parameters);
 
             return dt.ToList<EducationAttendance>().ToList();
         }
