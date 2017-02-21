@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6C6ACF75-343C-4B62-B131-75FE56C582C8}</ProjectGuid>
+    <ProjectGuid>{C74EF597-ACDA-4720-BB2D-2D89F4F7C895}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SRC.Library.Ioc.IocManager</RootNamespace>
-    <AssemblyName>SRC.Library.Ioc.IocManager</AssemblyName>
+    <RootNamespace>SRC.Plugins.CrmPlugin</RootNamespace>
+    <AssemblyName>SRC.Plugins.CrmPlugin</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -33,27 +33,43 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>SRC.Library.Ioc.IocManager.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>SRC.Plugins.CrmPlugin.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Autofac, Version=4.1.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Autofac.4.1.1\lib\net45\Autofac.dll</HintPath>
+      <HintPath>..\..\packages\Autofac.4.1.1\lib\net45\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Autofac.Extras.DynamicProxy, Version=4.1.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Autofac.Extras.DynamicProxy.4.1.0\lib\net45\Autofac.Extras.DynamicProxy.dll</HintPath>
+      <HintPath>..\..\packages\Autofac.Extras.DynamicProxy.4.1.0\lib\net45\Autofac.Extras.DynamicProxy.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Castle.Core, Version=3.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Castle.Core.3.2.2\lib\net45\Castle.Core.dll</HintPath>
+      <HintPath>..\..\packages\Castle.Core.3.2.2\lib\net45\Castle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Crm.Sdk.Proxy, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.CrmSdk.CoreAssemblies.7.1.0\lib\net45\Microsoft.Crm.Sdk.Proxy.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.IdentityModel.6.1.7600.16394\lib\net35\Microsoft.IdentityModel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Xrm.Sdk, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.CrmSdk.CoreAssemblies.7.1.0\lib\net45\Microsoft.Xrm.Sdk.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -61,58 +77,59 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BasePlugin.cs" />
+    <Compile Include="BasePluginTask.cs" />
+    <Compile Include="Education\EducationPreCreate.cs" />
+    <Compile Include="Entities\EntityContainer.cs" />
+    <Compile Include="Entities\SetStateEntity.cs" />
+    <Compile Include="Entities\Enums.cs" />
+    <Compile Include="Interfaces\IBasePluginTask.cs" />
     <Compile Include="IocContainerBuilder.cs" />
+    <Compile Include="PluginTasks\EducationTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="SRC.Library.Ioc.IocManager.snk" />
+    <None Include="SRC.Plugins.CrmPlugin.snk" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\..\Data\SRC.Library.Data.ElasticDao\SRC.Library.Data.ElasticDao.csproj">
+    <ProjectReference Include="..\..\Library\Data\SRC.Library.Data.ElasticDao\SRC.Library.Data.ElasticDao.csproj">
       <Project>{bfcc2314-0eda-4c5d-8b40-f958c999eee3}</Project>
       <Name>SRC.Library.Data.ElasticDao</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\SRC.Library.Data.Interfaces\SRC.Library.Data.Interfaces.csproj">
+    <ProjectReference Include="..\..\Library\Data\SRC.Library.Data.Interfaces\SRC.Library.Data.Interfaces.csproj">
       <Project>{49be302d-3b93-487b-b3a1-5e4a3460bef4}</Project>
       <Name>SRC.Library.Data.Interfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\SRC.Library.Data.SqlDao\SRC.Library.Data.SqlDao.csproj">
+    <ProjectReference Include="..\..\Library\Data\SRC.Library.Data.SqlDao\SRC.Library.Data.SqlDao.csproj">
       <Project>{69420626-41fa-4559-ad2a-d38eb2cf0585}</Project>
       <Name>SRC.Library.Data.SqlDao</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Domain\SRC.Library.Domain.Facade\SRC.Library.Domain.Facade.csproj">
+    <ProjectReference Include="..\..\Library\Domain\SRC.Library.Domain.Facade\SRC.Library.Domain.Facade.csproj">
       <Project>{d8d6efb7-d1eb-4df7-9879-752e086a2a89}</Project>
       <Name>SRC.Library.Domain.Facade</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Domain\SRC.Library.Domian.Business\SRC.Library.Domain.Business.csproj">
-      <Project>{739ADE97-68B3-4B60-88BD-0D4D93374333}</Project>
+    <ProjectReference Include="..\..\Library\Domain\SRC.Library.Domian.Business\SRC.Library.Domain.Business.csproj">
+      <Project>{739ade97-68b3-4b60-88bd-0d4d93374333}</Project>
       <Name>SRC.Library.Domain.Business</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\SRC.Library.Common\SRC.Library.Common.csproj">
+    <ProjectReference Include="..\..\Library\Ioc\SRC.Library.Ioc.IocManager\SRC.Library.Ioc.IocManager.csproj">
+      <Project>{6c6acf75-343c-4b62-b131-75fe56c582c8}</Project>
+      <Name>SRC.Library.Ioc.IocManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library\SRC.Library.Common\SRC.Library.Common.csproj">
       <Project>{13229fe4-c206-4917-8a42-2ea185ef8f86}</Project>
       <Name>SRC.Library.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\SRC.Library.Constants\SRC.Library.Constants.csproj">
+    <ProjectReference Include="..\..\Library\SRC.Library.Constants\SRC.Library.Constants.csproj">
       <Project>{a99b9f74-4e1e-4ed3-96ba-c60963dff937}</Project>
       <Name>SRC.Library.Constants</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\SRC.Library.Entities\SRC.Library.Entities.csproj">
+    <ProjectReference Include="..\..\Library\SRC.Library.Entities\SRC.Library.Entities.csproj">
       <Project>{b8161203-76e4-4500-92c5-4c98b17b75ef}</Project>
       <Name>SRC.Library.Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\SRC.Library.LogManager\SRC.Library.LogManager.csproj">
-      <Project>{0d8d367b-1381-462c-8398-ff309f7d270c}</Project>
-      <Name>SRC.Library.LogManager</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\SRC.Library.RestClient\SRC.Library.RestClient.csproj">
-      <Project>{c746f8ae-0a8f-4faf-a54a-1c96e16ad1a3}</Project>
-      <Name>SRC.Library.RestClient</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SRC.Library.Ioc.Interceptor\SRC.Library.Ioc.Interceptor.csproj">
-      <Project>{5d948cc9-a8f5-4e80-a665-d01029732fc9}</Project>
-      <Name>SRC.Library.Ioc.Interceptor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
