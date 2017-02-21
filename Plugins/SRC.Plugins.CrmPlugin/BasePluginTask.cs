@@ -20,9 +20,9 @@ namespace SRC.Plugins.CrmPlugin
         private const string STATE = "State";
         private const string PLUGIN_ENTITY_ID_PROPERTY_NAME = "Id";
 
-        protected IPluginExecutionContext _context;
-        protected PluginOperation _pluginOperation;
-        protected EntityContainer _entityContainer;
+        protected IPluginExecutionContext Context;
+        protected PluginOperation PluginOperation;
+        protected EntityContainer EntityContainer;
 
 
         public BasePluginTask()
@@ -32,9 +32,9 @@ namespace SRC.Plugins.CrmPlugin
 
         protected Entity GetEntity()
         {
-            if (_context.InputParameters.Contains(ENTITY_ATTRIBUTE_NAME))
+            if (Context.InputParameters.Contains(ENTITY_ATTRIBUTE_NAME))
             {
-                return (Entity)_context.InputParameters[ENTITY_ATTRIBUTE_NAME];
+                return (Entity)Context.InputParameters[ENTITY_ATTRIBUTE_NAME];
             }
 
             return null;
@@ -42,9 +42,9 @@ namespace SRC.Plugins.CrmPlugin
 
         protected Entity GetPreImage()
         {
-            if (_context.PreEntityImages.Contains(PRE_IMAGE_ATTRIBUTE_NAME))
+            if (Context.PreEntityImages.Contains(PRE_IMAGE_ATTRIBUTE_NAME))
             {
-                return (Entity)_context.PreEntityImages[PRE_IMAGE_ATTRIBUTE_NAME];
+                return (Entity)Context.PreEntityImages[PRE_IMAGE_ATTRIBUTE_NAME];
             }
 
             return null;
@@ -52,9 +52,9 @@ namespace SRC.Plugins.CrmPlugin
 
         protected Entity GetPostImage()
         {
-            if (_context.PostEntityImages.Contains(POST_IMAGE_ATTRIBUTE_NAME))
+            if (Context.PostEntityImages.Contains(POST_IMAGE_ATTRIBUTE_NAME))
             {
-                return (Entity)_context.PostEntityImages[POST_IMAGE_ATTRIBUTE_NAME];
+                return (Entity)Context.PostEntityImages[POST_IMAGE_ATTRIBUTE_NAME];
             }
 
             return null;
@@ -62,15 +62,15 @@ namespace SRC.Plugins.CrmPlugin
 
         protected SetStateEntity GetSetStateEntity()
         {
-            if (_context.InputParameters.Contains(ENTITY_MONIKER)
-                && _context.InputParameters.Contains(STATUS)
-                && _context.InputParameters.Contains(STATE))
+            if (Context.InputParameters.Contains(ENTITY_MONIKER)
+                && Context.InputParameters.Contains(STATUS)
+                && Context.InputParameters.Contains(STATE))
             {
                 return new SetStateEntity()
                 {
-                    EntityMoniker = (EntityReference)_context.InputParameters[ENTITY_MONIKER],
-                    Status = (OptionSetValue)_context.InputParameters[STATUS],
-                    State = (OptionSetValue)_context.InputParameters[STATE]
+                    EntityMoniker = (EntityReference)Context.InputParameters[ENTITY_MONIKER],
+                    Status = (OptionSetValue)Context.InputParameters[STATUS],
+                    State = (OptionSetValue)Context.InputParameters[STATE]
                 };
 
             }
@@ -85,7 +85,7 @@ namespace SRC.Plugins.CrmPlugin
                 Input = this.GetEntity(),
                 PreImage = this.GetPreImage(),
                 PostImage = this.GetPostImage(),
-                UserId = this._context.UserId,
+                UserId = this.Context.UserId,
                 SetStateInput = this.GetSetStateEntity()
             };
 
@@ -142,9 +142,9 @@ namespace SRC.Plugins.CrmPlugin
 
         public void Process(IPluginExecutionContext context, PluginOperation pluginOperation)
         {
-            _context = context;
-            _pluginOperation = pluginOperation;
-            _entityContainer = GetEntityContainer();
+            Context = context;
+            PluginOperation = pluginOperation;
+            EntityContainer = GetEntityContainer();
 
             try
             {
@@ -179,7 +179,7 @@ namespace SRC.Plugins.CrmPlugin
             {
                 if (string.IsNullOrWhiteSpace(ex.ContextIdentifier))
                 {
-                    string contextIdentifier = (_entityContainer.EntityId ?? Guid.Empty).ToString();
+                    string contextIdentifier = (EntityContainer.EntityId ?? Guid.Empty).ToString();
                     ex.ContextIdentifier = contextIdentifier;
                 }
 
@@ -187,7 +187,7 @@ namespace SRC.Plugins.CrmPlugin
             }
             catch (Exception ex)
             {
-                string contextIdentifier = (_entityContainer.EntityId ?? Guid.Empty).ToString();
+                string contextIdentifier = (EntityContainer.EntityId ?? Guid.Empty).ToString();
                 string logKey = ex.GetType().Name;
 
                 throw new CustomException(ex.Message, logKey, contextIdentifier);
