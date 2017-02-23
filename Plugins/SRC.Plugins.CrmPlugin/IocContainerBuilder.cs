@@ -1,5 +1,7 @@
 ﻿using Autofac;
+using SRC.Library.Business.Interfaces;
 using SRC.Library.Domain.Business.Interfaces;
+using SRC.Library.Entities.CrmEntities;
 using SRC.Library.Ioc.IocManager;
 using SRC.Plugins.CrmPlugin.Entities;
 using SRC.Plugins.CrmPlugin.Interfaces;
@@ -29,7 +31,7 @@ namespace SRC.Plugins.CrmPlugin
         {
             var builder = IocContainerBuilder.RegisterPlugin(new ContainerBuilder());
 
-            builder.Register<IBasePluginTask>(c => new EducationTask(c.Resolve<IEducationBusiness>()))
+            builder.Register<IBasePluginTask>(c => new EducationTask(c.Resolve<IEducationBusiness>(), c.Resolve<IEducationAttendanceBusiness>(), c.Resolve<IBaseBusiness<EducationAttendance>>()))
                 .Keyed<IBasePluginTask>(TaskType.EDUCATION)
                 .InstancePerDependency();
 

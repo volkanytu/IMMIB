@@ -208,7 +208,8 @@ namespace SRC.Library.Entities.CrmEntities
         {
             ACTIVE = 1,
             PASSIVE = 2,
-            PUBLISHED = 100000000
+            PUBLISHED = 100000000,
+            CANCELED = 100000001
         }
 
         public enum EducationTypeCode

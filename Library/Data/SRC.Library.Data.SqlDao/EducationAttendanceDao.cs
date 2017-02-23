@@ -47,5 +47,17 @@ namespace SRC.Library.Data.SqlDao
 
             return dt.ToList<EducationAttendance>().ToList();
         }
+
+        public List<EducationAttendance> GetEducationAttendancesForEducation(Guid educationId)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@educationId",educationId)
+            };
+
+            DataTable dt = _sqlAccess.GetDataTable(EducationAttendenceQueries.GET_EDUCATION_ATTENDANCE_LIST_BY_EDUCATION, parameters);
+
+            return dt.ToList<EducationAttendance>().ToList();
+        }
     }
 }

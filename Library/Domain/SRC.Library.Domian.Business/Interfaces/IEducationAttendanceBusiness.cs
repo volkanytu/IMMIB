@@ -8,5 +8,7 @@ namespace SRC.Library.Domain.Business.Interfaces
     {
         List<EducationAttendance> GetEducations(Guid contactId);
         List<EducationAttendance> GetEducationAttendancesForExpectedPayments(int remainDay);
+        List<EducationAttendance> GetEducationAttendancesForEducation(Guid educationId);
+
     }
 }
