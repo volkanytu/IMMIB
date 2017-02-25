@@ -52,19 +52,12 @@ namespace SRC.Plugins.CrmPlugin.PluginTasks
 
         protected override void SetState()
         {
-            var targetEntity = (EntityReference)EntityContainer.SetStateInput.EntityMoniker; 
-            if (targetEntity.LogicalName == Library.Entities.CrmEntities.Education.KEY_LOGICAL_NAME)
-            {
-                OptionSetValue statusCode = (OptionSetValue)EntityContainer.SetStateInput.Status;
+            var targetEntity = (EntityReference)EntityContainer.SetStateInput.EntityMoniker;
+            OptionSetValue statusCode = (OptionSetValue)EntityContainer.SetStateInput.Status;
 
-                if (statusCode.Value == (int)Library.Entities.CrmEntities.Education.StatusCode.CANCELED)
-                {
-                    List<EducationAttendance> attendances = _educationAttendanceBusiness.GetEducationAttendancesForEducation(targetEntity.Id);
-                    foreach (var attendance in attendances)
-                    {
-                        _baseEducationAttendanceBusiness.SetState(targetEntity.Id, (int)EducationAttendance.StateCode.PASSIVE, (int)EducationAttendance.StatusCode.EVENT_CANCELED);
-                    }
-                }
+            if (statusCode.Value == (int)Library.Entities.CrmEntities.Education.StatusCode.CANCELED)
+            {
+                _educationAttendanceBusiness.CancelAllEducationAttendaces(targetEntity.Id);
             }
         }
     }

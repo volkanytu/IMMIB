@@ -39,7 +39,8 @@ namespace SRC.ConsoleApp.ScheduledJobs
             builder.Register<IBaseBusiness<EducationAttendance>>(c => new BaseBusiness<EducationAttendance>(c.Resolve<IBaseDao<EducationAttendance>>())).InstancePerDependency();
 
             builder.Register<IEducationAttendanceDao>(c => new EducationAttendanceDao(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>())).InstancePerDependency();
-            builder.Register<IEducationAttendanceBusiness>(c => new EducationAttendanceBusiness(c.Resolve<IEducationAttendanceDao>())).InstancePerDependency();
+            builder.Register<IEducationAttendanceBusiness>(c => new EducationAttendanceBusiness(c.Resolve<IEducationAttendanceDao>()
+                , c.Resolve<IBaseDao<EducationAttendance>>())).InstancePerDependency();
 
             builder.Register<BaseJob>(c => new PassiveUnPaidAttendance(c.Resolve<ILogManager>(), c.Resolve<IBaseBusiness<EducationAttendance>>(), c.Resolve<IEducationAttendanceBusiness>()))
                 .Keyed<BaseJob>(JobType.PassiveUnPaidAttendance.ToString())

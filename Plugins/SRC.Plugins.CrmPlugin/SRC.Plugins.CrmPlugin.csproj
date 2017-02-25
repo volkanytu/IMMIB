@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="BasePlugin.cs" />
     <Compile Include="BasePluginTask.cs" />
+    <Compile Include="Education\EducationPostState.cs" />
     <Compile Include="Education\EducationPreCreate.cs" />
     <Compile Include="Entities\EntityContainer.cs" />
     <Compile Include="Entities\SetStateEntity.cs" />

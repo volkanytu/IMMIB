@@ -73,7 +73,8 @@ namespace SRC.Library.Ioc.IocManager
 
             builder.Register<IContactBusiness>(c => new ContactBusiness(c.Resolve<IBaseDao<Contact>>(), c.Resolve<IContactDao>())).InstancePerDependency();
             builder.Register<IEducationBusiness>(c => new EducationBusiness(c.Resolve<IEducationDao>())).InstancePerDependency();
-            builder.Register<IEducationAttendanceBusiness>(c => new EducationAttendanceBusiness(c.Resolve<IEducationAttendanceDao>())).InstancePerDependency();
+            builder.Register<IEducationAttendanceBusiness>(c => new EducationAttendanceBusiness(c.Resolve<IEducationAttendanceDao>()
+                , c.Resolve<IBaseDao<EducationAttendance>>())).InstancePerDependency();
 
             #endregion
 
@@ -142,7 +143,8 @@ namespace SRC.Library.Ioc.IocManager
 
             builder.Register<IContactBusiness>(c => new ContactBusiness(c.Resolve<IBaseDao<Contact>>(), c.Resolve<IContactDao>())).InstancePerDependency();
             builder.Register<IEducationBusiness>(c => new EducationBusiness(c.Resolve<IEducationDao>())).InstancePerDependency();
-            builder.Register<IEducationAttendanceBusiness>(c => new EducationAttendanceBusiness(c.Resolve<IEducationAttendanceDao>())).InstancePerDependency();
+            builder.Register<IEducationAttendanceBusiness>(c => new EducationAttendanceBusiness(c.Resolve<IEducationAttendanceDao>()
+                , c.Resolve<IBaseDao<EducationAttendance>>())).InstancePerDependency();
 
             #endregion
 

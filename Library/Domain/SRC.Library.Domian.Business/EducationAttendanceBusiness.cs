@@ -7,16 +7,19 @@ using SRC.Library.Data.SqlDao;
 using SRC.Library.Data.SqlDao.Interfaces;
 using SRC.Library.Domain.Business.Interfaces;
 using SRC.Library.Entities.CrmEntities;
+using SRC.Library.Data.Interfaces;
 
 namespace SRC.Library.Domain.Business
 {
     public class EducationAttendanceBusiness : IEducationAttendanceBusiness
     {
         private IEducationAttendanceDao _educationAttendanceDao;
+        private IBaseDao<EducationAttendance> _educationAttendanceBaseDao;
 
-        public EducationAttendanceBusiness(IEducationAttendanceDao educationAttendanceDao)
+        public EducationAttendanceBusiness(IEducationAttendanceDao educationAttendanceDao, IBaseDao<EducationAttendance> educationAttendanceBaseDao)
         {
             _educationAttendanceDao = educationAttendanceDao;
+            _educationAttendanceBaseDao = educationAttendanceBaseDao;
         }
 
         public List<EducationAttendance> GetEducations(Guid contactId)
@@ -32,6 +35,15 @@ namespace SRC.Library.Domain.Business
         public List<EducationAttendance> GetEducationAttendancesForEducation(Guid educationId)
         {
             return _educationAttendanceDao.GetEducationAttendancesForEducation(educationId);
+        }
+
+        public void CancelAllEducationAttendaces(Guid educationId)
+        {
+            var attendanceList = this.GetEducationAttendancesForEducation(educationId);
+            foreach (var attendance in attendanceList)
+            {
+                _educationAttendanceBaseDao.SetState(attendance.Id, (int)EducationAttendance.StateCode.PASSIVE, (int)EducationAttendance.StatusCode.EVENT_CANCELED);
+            }
         }
     }
 }
