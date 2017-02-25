@@ -55,7 +55,7 @@ namespace SRC.Plugins.CrmPlugin.PluginTasks
             var targetEntity = (EntityReference)EntityContainer.SetStateInput.EntityMoniker;
             OptionSetValue statusCode = (OptionSetValue)EntityContainer.SetStateInput.Status;
 
-            if (statusCode.Value == (int)Library.Entities.CrmEntities.Education.StatusCode.CANCELED)
+            if (statusCode.Value == (int)Education.StatusCode.CANCELED)
             {
                 _educationAttendanceBusiness.CancelAllEducationAttendaces(targetEntity.Id);
             }

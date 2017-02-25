@@ -2,7 +2,7 @@
 using SRC.Plugins.CrmPlugin.Entities;
 using System;
 
-namespace SRC.Plugins.CrmPlugin.Education
+namespace SRC.Plugins.CrmPlugin.EducationPlugin
 {
     public class EducationPostState : BasePlugin, IPlugin
     {

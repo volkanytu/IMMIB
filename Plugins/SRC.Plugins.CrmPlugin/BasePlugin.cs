@@ -1,6 +1,8 @@
 ﻿using Autofac;
 using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Query;
 using SRC.Library.Data.SqlDao.Interfaces;
+using SRC.Library.Entities.CrmEntities;
 using SRC.Plugins.CrmPlugin.Entities;
 using SRC.Plugins.CrmPlugin.Interfaces;
 using System;
@@ -36,6 +38,63 @@ namespace SRC.Plugins.CrmPlugin
 
                 pluginTask.Process(context, pluginOperation);
             }
+
+            return msCrmAccess.ServiceID.ToString();
+        }
+
+        public string DoWorkTest(TaskType taskType, PluginOperation pluginOperation, Guid? userId = null, string entityName = null, Guid? entityId = null)
+        {
+            IPluginExecutionContext context = new RemoteExecutionContext();
+
+            IContainer container = IocContainerConfig.Container;
+
+            IMsCrmAccess msCrmAccess = container.Resolve<IMsCrmAccess>();
+            IOrganizationService service = msCrmAccess.GetCrmService();
+
+            IBasePluginTask pluginTask = container.ResolveKeyed<IBasePluginTask>(taskType);
+
+            Entity entity = service.Retrieve(entityName, entityId.Value, new ColumnSet(true));
+            //entity["entitymoniker"] = entity.ToEntityReference();
+            //entity["statecode"] = new OptionSetValue((int)Education.StateCode.PASSIVE);
+            //entity["statuscode"] = new OptionSetValue((int)Education.StatusCode.CANCELED);
+
+            //Entity preImage = service.Retrieve(entityName, entityId.Value, new ColumnSet(true));
+            //Entity postImage = service.Retrieve(entityName, entityId.Value, new ColumnSet(true));
+            //postImage["statecode"] = new OptionSetValue((int)SAHIBINDEN.Library.Entities.CrmEntities.Appointment.StateCode.CANCELED);
+            //postImage["statuscode"] = new OptionSetValue((int)SAHIBINDEN.Library.Entities.CrmEntities.Appointment.StatusCode.CANCELLED);
+
+            //context.InputParameters.Add("Target", entity);
+            context.InputParameters.Add("EntityMoniker", entity.ToEntityReference());
+            context.InputParameters.Add("State", new OptionSetValue((int)Education.StateCode.PASSIVE));
+            context.InputParameters.Add("Status", new OptionSetValue((int)Education.StatusCode.CANCELED));
+
+            //context.PreEntityImages.Add("PreImage", preImage);
+            //context.PostEntityImages.Add("PostImage", postImage);
+
+            pluginTask.Process(context, pluginOperation);
+
+            return msCrmAccess.ServiceID.ToString();
+        }
+
+        public string DoWorkTest(TaskType taskType, PluginOperation pluginOperation, Entity entity, Guid? userId = null, string entityName = null)
+        {
+            IPluginExecutionContext context = new RemoteExecutionContext();
+
+            IContainer container = IocContainerConfig.Container;
+
+            IMsCrmAccess msCrmAccess = container.Resolve<IMsCrmAccess>();
+            IOrganizationService service = msCrmAccess.GetCrmService();
+
+            IBasePluginTask pluginTask = container.ResolveKeyed<IBasePluginTask>(taskType);
+
+            //Entity preImage = service.Retrieve(entityName, entityId.Value, new ColumnSet(true));
+            //Entity postImage = service.Retrieve(entityName, entityId.Value, new ColumnSet(true));
+
+            context.InputParameters.Add("Target", entity);
+            //context.PreEntityImages.Add("PreImage", preImage);
+            //context.PostEntityImages.Add("PostImage", postImage);
+
+            pluginTask.Process(context, pluginOperation);
 
             return msCrmAccess.ServiceID.ToString();
         }

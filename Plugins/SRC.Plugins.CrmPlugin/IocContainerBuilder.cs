@@ -29,7 +29,8 @@ namespace SRC.Plugins.CrmPlugin
 
         private static IContainer GetContainer()
         {
-            var builder = IocContainerBuilder.RegisterPlugin(new ContainerBuilder());
+            var builder = IocContainerBuilder.RegisterDataAccess(new ContainerBuilder()); 
+            IocContainerBuilder.RegisterPlugin(builder);
 
             builder.Register<IBasePluginTask>(c => new EducationTask(c.Resolve<IEducationBusiness>(), c.Resolve<IEducationAttendanceBusiness>(), c.Resolve<IBaseBusiness<EducationAttendance>>()))
                 .Keyed<IBasePluginTask>(TaskType.EDUCATION)

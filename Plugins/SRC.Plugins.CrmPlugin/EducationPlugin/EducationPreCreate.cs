@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SRC.Plugins.CrmPlugin.Education
+namespace SRC.Plugins.CrmPlugin.EducationPlugin
 {
     public class EducationPreCreate : BasePlugin, IPlugin
     {
