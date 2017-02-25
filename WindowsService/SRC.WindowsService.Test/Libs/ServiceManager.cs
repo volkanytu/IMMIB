@@ -76,6 +76,8 @@ namespace SRC.WindowsService.TestService.Libs
                     {
                         smsEntity.MessageID = r.MessageID;
                         smsEntity.MessageStatus = r.Status;
+
+                        //TODO: Update StatusCode
                     }
                 }
 

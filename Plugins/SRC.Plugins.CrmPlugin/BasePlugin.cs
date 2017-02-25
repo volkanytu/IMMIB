@@ -54,6 +54,7 @@ namespace SRC.Plugins.CrmPlugin
             IBasePluginTask pluginTask = container.ResolveKeyed<IBasePluginTask>(taskType);
 
             Entity entity = service.Retrieve(entityName, entityId.Value, new ColumnSet(true));
+
             //entity["entitymoniker"] = entity.ToEntityReference();
             //entity["statecode"] = new OptionSetValue((int)Education.StateCode.PASSIVE);
             //entity["statuscode"] = new OptionSetValue((int)Education.StatusCode.CANCELED);
