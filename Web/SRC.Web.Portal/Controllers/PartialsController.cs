@@ -48,15 +48,15 @@ namespace SRC.Web.Portal.Controllers
 
         public PartialViewResult ComingEducations()
         {
-            var educations = _educationBusiness.GetLastEducations().Where(p => p.IsExpired == false).ToList(); 
+            var educations = _educationBusiness.GetLastEducations().Where(p => p.IsExpired == false).ToList();
 
             return PartialView(educations);
         }
 
         public PartialViewResult DoneEducations()
         {
-            var educations = _educationBusiness.GetLastEducations().Where(p => p.IsExpired 
-                && p.StartDate!=null && p.City!=null).Take(5).ToList();
+            var educations = _educationBusiness.GetLastEducations().Where(p => p.IsExpired
+                && p.StartDate != null && p.City != null).Take(5).ToList();
 
             return PartialView(educations);
         }
@@ -83,11 +83,12 @@ namespace SRC.Web.Portal.Controllers
 
         public PartialViewResult HeaderMenu()
         {
-            List<HeaderMenuItem> model = new List<HeaderMenuItem>();
-            model.Add(new HeaderMenuItem() { Name = "Ana Sayfa", Link = "/", ControllerName = "Home" });
-            model.Add(new HeaderMenuItem() { Name = "Eğitim Takvimi", Link = "/Education", ControllerName = "Education" });
-            model.Add(new HeaderMenuItem() { Name = "Nasıl Başvurabilirim?", Link = "/Howto", ControllerName = "Howto" });
-            model.Add(new HeaderMenuItem() { Name = "İletişim", Link = "/Contact", ControllerName = "Contact" });
+            var model = new List<HeaderMenuItem>{
+                     new HeaderMenuItem() { Name = "Ana Sayfa", Link = "/", ControllerName = "Home" },
+                     new HeaderMenuItem() { Name = "Eğitim Takvimi", Link = "/Education", ControllerName = "Education" },
+                     new HeaderMenuItem() { Name = "Nasıl Başvurabilirim?", Link = "/Howto", ControllerName = "Howto" },
+                     new HeaderMenuItem() { Name = "İletişim", Link = "/Contact", ControllerName = "Contact" },
+                };
 
             return PartialView(model);
         }

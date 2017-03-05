@@ -1,0 +1,19 @@
+﻿@using SRC.Web.NewPortal.Models
+
+<div class="horizontal-menu navbar-collapse collapse">
+    <ul class="nav navbar-nav">
+        @{
+            var menuItemList = new List<HeaderMenuItem>{
+                     new HeaderMenuItem() { Name = "Ana Sayfa", Link = "/", ControllerName = "Home" },
+                     new HeaderMenuItem() { Name = "Eğitim Takvimi", Link = "/Education", ControllerName = "Education" },
+                     new HeaderMenuItem() { Name = "Nasıl Başvurabilirim?", Link = "/Howto", ControllerName = "Howto" },
+                     new HeaderMenuItem() { Name = "İletişim", Link = "/Contact", ControllerName = "Contact" },
+                };
+
+            foreach (var item in menuItemList)
+            {
+                <li class="@item.ClassDetails @item.ActiveClass"><a href="@item.Link">@item.Name</a></li>
+            }
+        }
+    </ul>
+</div>

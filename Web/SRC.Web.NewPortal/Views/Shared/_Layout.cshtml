@@ -1,0 +1,45 @@
+﻿@using SRC.Web.NewPortal;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="immib">
+    <meta name="author" content="SRC Soft">
+    <meta name="keyword" content="immib, egitim, istanbul, maden, metal">
+    <link rel="shortcut icon" href="img/favicon.png">
+    <title>@ViewBag.Title | İMMİB Eğitim</title>
+
+    <script type="text/javascript">
+        var baseUrl = "@Url.Content("~")";
+        var userId = "@Request["userId"]";
+    </script>
+
+    @Styles.Render(BundleConfig.BundleStyleMain)
+
+    @RenderSection("head", false)
+
+</head>
+<body class="full-width" data-ng-app="main">
+    @Html.Partial("Partials/_LoadingModal")
+
+    <section id="container" class="">
+
+        @Html.Partial("Partials/_ErrorContainer")
+
+        @Html.Partial("Partials/_Header")
+
+        @RenderBody()
+
+        @Html.Partial("Partials/_Footer")
+
+    </section>
+
+    @Scripts.Render(BundleConfig.BundleJsMain)
+
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>
+

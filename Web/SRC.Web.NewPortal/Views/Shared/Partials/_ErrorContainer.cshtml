@@ -1,0 +1,19 @@
+﻿@if (ViewBag.InfoMessage != null || TempData["InfoMessage"] != null || ViewBag.ErrorMessage != null || TempData["ErrorMessage"] != null)
+{
+    if (ViewBag.InfoMessage != null || TempData["InfoMessage"] != null)
+    {
+        <div class="alert alert-success">
+            <div class="infoMessageTxt">
+                @Html.Raw(ViewBag.InfoMessage) @Html.Raw(TempData["InfoMessage"])
+            </div>
+        </div>
+    }
+    else if (ViewBag.ErrorMessage != null || TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">
+            <div class="infoMessageTxt">
+                @Html.Raw(ViewBag.ErrorMessage) @Html.Raw(TempData["ErrorMessage"])
+            </div>
+        </div>
+    }
+}
