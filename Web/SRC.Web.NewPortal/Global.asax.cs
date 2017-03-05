@@ -18,6 +18,8 @@ namespace SRC.Web.NewPortal
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            IocContainerConfig.BuildIocContainer();
         }
     }
 }

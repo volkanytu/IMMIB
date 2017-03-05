@@ -134,7 +134,7 @@ namespace SRC.Web.Portal.Controllers
             }
             else
             {
-                model.Succes = true;
+                model.Success = true;
                 model.Result = _dynamicPageBaseBusiness.GetList().FirstOrDefault(p => p.PageType.ToEnum<DynamicPage.PageTypeCode>() == DynamicPage.PageTypeCode.EDUCATION_APPLICATION_CONDITION);
                 ViewBag.Id = id;
             }
@@ -152,7 +152,7 @@ namespace SRC.Web.Portal.Controllers
             }
             else
             {
-                model.Succes = true;
+                model.Success = true;
                 model.Result = _educationAttendanceBaseBusiness.Get(new Guid(id));
                 ViewBag.Id = id;
             }
@@ -170,7 +170,7 @@ namespace SRC.Web.Portal.Controllers
             }
             else
             {
-                model.Succes = true;
+                model.Success = true;
                 // model.Result = 
                 ViewBag.Id = id;
             }

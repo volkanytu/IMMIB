@@ -146,4 +146,16 @@ var appRoot = angular.module('main', ['ngRoute', 'ngGrid', 'ngResource', 'ui.gri
             }
         };
     }])
+    .factory("flexSlider", [function () {
+        return function(){
+            $(window).load(function () {
+                $('.flexslider').flexslider({
+                    animation: "slide",
+                    start: function (slider) {
+                        $('body').removeClass('loading');
+                    }
+                });
+            });
+        };
+    }])
     ;

@@ -4,6 +4,13 @@
     $.vegas({
         src: 'http://egitim.immib.org.tr/jsv/istanbul_turu_1.jpg'
     });
+
+    $('.flexslider').flexslider({
+        animation: "slide",
+        start: function (slider) {
+            $('body').removeClass('loading');
+        }
+    });
 });
 
 var showAlertMessageAsDialog = function () {
