@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F4D6E343-8211-435F-A032-DE1DCFC3287A}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SRC.ConsoleApp.Test</RootNamespace>
+    <AssemblyName>SRC.ConsoleApp.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Crm.Sdk.Proxy, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.CrmSdk.CoreAssemblies.7.1.0\lib\net45\Microsoft.Crm.Sdk.Proxy.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.IdentityModel.6.1.7600.16394\lib\net35\Microsoft.IdentityModel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Xrm.Sdk, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.CrmSdk.CoreAssemblies.7.1.0\lib\net45\Microsoft.Xrm.Sdk.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="PluginDebug.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Library\Data\SRC.Library.Data.ElasticDao\SRC.Library.Data.ElasticDao.csproj">
+      <Project>{bfcc2314-0eda-4c5d-8b40-f958c999eee3}</Project>
+      <Name>SRC.Library.Data.ElasticDao</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library\Data\SRC.Library.Data.Interfaces\SRC.Library.Data.Interfaces.csproj">
+      <Project>{49be302d-3b93-487b-b3a1-5e4a3460bef4}</Project>
+      <Name>SRC.Library.Data.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library\Data\SRC.Library.Data.SqlDao\SRC.Library.Data.SqlDao.csproj">
+      <Project>{69420626-41fa-4559-ad2a-d38eb2cf0585}</Project>
+      <Name>SRC.Library.Data.SqlDao</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library\Domain\SRC.Library.Domain.Facade\SRC.Library.Domain.Facade.csproj">
+      <Project>{d8d6efb7-d1eb-4df7-9879-752e086a2a89}</Project>
+      <Name>SRC.Library.Domain.Facade</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library\Domain\SRC.Library.Domian.Business\SRC.Library.Domain.Business.csproj">
+      <Project>{739ade97-68b3-4b60-88bd-0d4d93374333}</Project>
+      <Name>SRC.Library.Domain.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library\Ioc\SRC.Library.Ioc.Interceptor\SRC.Library.Ioc.Interceptor.csproj">
+      <Project>{5d948cc9-a8f5-4e80-a665-d01029732fc9}</Project>
+      <Name>SRC.Library.Ioc.Interceptor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library\Ioc\SRC.Library.Ioc.IocManager\SRC.Library.Ioc.IocManager.csproj">
+      <Project>{6c6acf75-343c-4b62-b131-75fe56c582c8}</Project>
+      <Name>SRC.Library.Ioc.IocManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library\SRC.Library.Common\SRC.Library.Common.csproj">
+      <Project>{13229fe4-c206-4917-8a42-2ea185ef8f86}</Project>
+      <Name>SRC.Library.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library\SRC.Library.Constants\SRC.Library.Constants.csproj">
+      <Project>{a99b9f74-4e1e-4ed3-96ba-c60963dff937}</Project>
+      <Name>SRC.Library.Constants</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library\SRC.Library.Entities\SRC.Library.Entities.csproj">
+      <Project>{b8161203-76e4-4500-92c5-4c98b17b75ef}</Project>
+      <Name>SRC.Library.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library\SRC.Library.LogManager\SRC.Library.LogManager.csproj">
+      <Project>{0d8d367b-1381-462c-8398-ff309f7d270c}</Project>
+      <Name>SRC.Library.LogManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Plugins\SRC.Plugins.CrmPlugin\SRC.Plugins.CrmPlugin.csproj">
+      <Project>{c74ef597-acda-4720-bb2d-2d89f4f7c895}</Project>
+      <Name>SRC.Plugins.CrmPlugin</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
