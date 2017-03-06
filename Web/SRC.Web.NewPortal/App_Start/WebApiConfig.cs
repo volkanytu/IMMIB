@@ -14,7 +14,7 @@ namespace SRC.Web.NewPortal
 
             config.Routes.MapHttpRoute(
                 "DefaultApi",
-                "{controller}/{action}/{id}",
+                "api/{controller}/{action}/{id}",
                 new { id = RouteParameter.Optional }
             );
         }

@@ -16,7 +16,8 @@ namespace SRC.Web.NewPortal
         public const string BundleStyleAngularUi = "~/content/style/angular-ui";
         public const string BundleJsAngularUi = "~/bundles/js/angular-ui";
 
-        public const string BundleJsAngularHome = "~/bundles/js/angular-app-calculator";
+        public const string BundleJsAngularAppMain = "~/bundles/js/angular-app-main";
+
 
         public static void RegisterBundles(BundleCollection bundles)
         {
@@ -76,11 +77,13 @@ namespace SRC.Web.NewPortal
                     "~/js/angular-ui/ui-grid.min.js",
                 }));
 
-            bundles.Add(CreateScriptBundle(BundleJsAngularHome, new[]
+            bundles.Add(CreateScriptBundle(BundleJsAngularAppMain, new[]
                 {
                     "~/app/common/app.js",
-                    "~/app/home/app-route.js",
+                    "~/app/common/app-route.js",
                     "~/app/home/controllers/*.js",
+                    "~/app/education/controllers/*.js",
+                    "~/app/pages/controllers/*.js",
                 }));
         }
 

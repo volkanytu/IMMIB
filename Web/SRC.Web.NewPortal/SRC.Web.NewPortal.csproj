@@ -145,7 +145,9 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\DynamicPageApiController.cs" />
     <Compile Include="Controllers\EducationApiController.cs" />
+    <Compile Include="Controllers\EducationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PagesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -158,10 +160,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\common\app-route.js" />
     <Content Include="app\common\app.js" />
-    <Content Include="app\home\app-route.js" />
+    <Content Include="app\education\controllers\EducationListCtrl.js" />
+    <Content Include="app\education\views\education-detail.html" />
+    <Content Include="app\education\views\education-list.html" />
     <Content Include="app\home\controllers\HomeCtrl.js" />
     <Content Include="app\home\views\index.html" />
+    <Content Include="app\pages\controllers\ContactCtrl.js" />
+    <Content Include="app\pages\controllers\HowtoCtrl.js" />
+    <Content Include="app\pages\views\contact.html" />
+    <Content Include="app\pages\views\howto.html" />
     <Content Include="assets\advanced-datatable\docs\34cdb56b2c.html" />
     <Content Include="assets\advanced-datatable\docs\DataTable.defaults.columns.html" />
     <Content Include="assets\advanced-datatable\docs\DataTable.defaults.html" />
@@ -1738,6 +1747,7 @@
     <Content Include="css\tasks.css" />
     <Content Include="css\yamm.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\flexslider-icon.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="img\404_icon.png" />
@@ -2162,6 +2172,12 @@
     <Content Include="assets\xchart\README.md" />
     <Content Include="css\bootstrap-theme.css.map" />
     <Content Include="css\bootstrap.css.map" />
+    <Content Include="fonts\flexslider-icon.eot" />
+    <Content Include="fonts\flexslider-icon.ttf" />
+    <Content Include="fonts\flexslider-icon.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -2188,6 +2204,9 @@
     <Content Include="Views\Shared\Partials\_LoadingModal.cshtml" />
     <Content Include="Views\Shared\Partials\_NavBar.cshtml" />
     <Content Include="Views\Shared\Partials\_HeaderMenu.cshtml" />
+    <Content Include="Views\Education\Index.cshtml" />
+    <Content Include="Views\Pages\HowTo.cshtml" />
+    <Content Include="Views\Pages\Contact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Library\Domain\SRC.Library.Domain.Facade\SRC.Library.Domain.Facade.csproj">
@@ -2220,9 +2239,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>

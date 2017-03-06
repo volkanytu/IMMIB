@@ -7,6 +7,21 @@ var appRoot = angular.module('main', ['ngRoute', 'ngGrid', 'ngResource', 'ui.gri
     }])
 
     // DIRECTIVES
+    .directive('isActiveNav', ['$location', function ($location) {
+        return {
+            restrict: 'A',
+            link: function (scope, element) {
+                scope.location = $location;
+                scope.$watch('location.path()', function (currentPath) {
+                    if (currentPath === element[0].attributes['href'].nodeValue) {
+                        element.parent().addClass('active');
+                    } else {
+                        element.parent().removeClass('active');
+                    }
+                });
+            }
+        };
+    }])
     .directive('loading', ['$http', function ($http) {
         return {
             restrict: 'A',
@@ -37,11 +52,25 @@ var appRoot = angular.module('main', ['ngRoute', 'ngGrid', 'ngResource', 'ui.gri
             }
         };
     })
+    .directive('onFinishRender', function ($timeout) {
+        return {
+            restrict: 'A',
+            link: function (scope, element, attr) {
+                if (scope.$last === true) {
+                    $timeout(function () {
+                        scope.$emit(attr.onFinishRender);
+                    });
+                }
+            }
+        }
+    })
 
-    // CONFIGS
-    .config(['$httpProvider', function($httpProvider) {
+
+           // CONFIGS
+    .config(['$httpProvider', '$locationProvider', function ($httpProvider, $locationProvider) {
         $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
         $httpProvider.interceptors.push("baseInterceptor");
+        $locationProvider.html5Mode({ enabled: true, requireBase: false });
     }])
 
     // FILTERS
@@ -101,6 +130,13 @@ var appRoot = angular.module('main', ['ngRoute', 'ngGrid', 'ngResource', 'ui.gri
             $(modalHtml).modal();
         };
     }])
+    .factory('commonFunc', ['$rootScope', '$location', function ($rootScope, $location) {
+        return function () {
+            $rootScope.getClass = function (path) {
+                return ($location.path().substr(0, path.length) === path) ? 'active' : '';
+            };
+        };
+    }])
     .factory("baseInterceptor", ["$q", '$rootScope', function ($q, $rootScope) {
         return {
             'request': function (config) {
@@ -139,7 +175,7 @@ var appRoot = angular.module('main', ['ngRoute', 'ngGrid', 'ngResource', 'ui.gri
                     url: dataUrl,
                     method: "POST",
                     data: basketObj,
-                }).success(function(data) {
+                }).success(function (data) {
                     if (typeof callbackFn == "function")
                         callbackFn.call(this, data);
                 });
@@ -147,15 +183,13 @@ var appRoot = angular.module('main', ['ngRoute', 'ngGrid', 'ngResource', 'ui.gri
         };
     }])
     .factory("flexSlider", [function () {
-        return function(){
-            $(window).load(function () {
-                $('.flexslider').flexslider({
-                    animation: "slide",
-                    start: function (slider) {
-                        $('body').removeClass('loading');
-                    }
-                });
+        return function () {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                start: function (slider) {
+                    $('body').removeClass('loading');
+                }
             });
         };
     }])
-    ;
+;

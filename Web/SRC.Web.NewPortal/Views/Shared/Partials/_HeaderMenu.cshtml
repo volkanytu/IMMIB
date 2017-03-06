@@ -2,18 +2,21 @@
 
 <div class="horizontal-menu navbar-collapse collapse">
     <ul class="nav navbar-nav">
-        @{
-            var menuItemList = new List<HeaderMenuItem>{
+        @*@{
+    var menuItemList = new List<HeaderMenuItem>{
                      new HeaderMenuItem() { Name = "Ana Sayfa", Link = "/", ControllerName = "Home" },
                      new HeaderMenuItem() { Name = "Eğitim Takvimi", Link = "/Education", ControllerName = "Education" },
                      new HeaderMenuItem() { Name = "Nasıl Başvurabilirim?", Link = "/Howto", ControllerName = "Howto" },
                      new HeaderMenuItem() { Name = "İletişim", Link = "/Contact", ControllerName = "Contact" },
                 };
 
-            foreach (var item in menuItemList)
-            {
-                <li class="@item.ClassDetails @item.ActiveClass"><a href="@item.Link">@item.Name</a></li>
-            }
-        }
+    foreach (var item in menuItemList)
+    {
+        <li class="@item.ClassDetails @item.ActiveClass" data-ng-class="getClass('@item.Link')"><a href="@item.Link">@item.Name</a></li>
+    }*@
+        <li><a data-is-active-nav href="/Home/">Ana Sayfa</a></li>
+        <li><a data-is-active-nav href="/Education/">Eğitim Takvimi</a></li>
+        <li><a data-is-active-nav href="/Pages/HowTo/">Nasıl Başvurabilirim?</a></li>
+        <li><a data-is-active-nav href="/Pages/Contact/">İletişim?</a></li>
     </ul>
 </div>

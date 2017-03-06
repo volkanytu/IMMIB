@@ -8,7 +8,9 @@
                         <section class="slider">
                             <div class="flexslider">
                                 <ul class="slides">
-                                    <li data-ng-repeat="slide in SliderData">{{trustHtml(slide.Content);}}</li>
+                                    <li data-ng-repeat="slide in SliderData" data-on-finish-render="ngRepeatFinished">
+                                        <span data-ng-bind-html="trustHtml(slide.Content)"></span>
+                                    </li>
                                 </ul>
 
                             </div>
@@ -24,6 +26,22 @@
                         <div class="text-center mbot30">
                             <h3 class="timeline-title">YAKLAŞAN EĞİTİMLER</h3>
                         </div>
+                        <div class="timeline">
+                            <article class="timeline-item {{education.alt}}" data-ng-repeat="education in ComingEducations">
+                                <div class="timeline-desk">
+                                    <div class="panel">
+                                        <div class="panel-body">
+                                            <span class="{{education.arrow}}"></span>
+                                            <span class="timeline-icon {{education.color}}"></span>
+                                            <span class="timeline-date">{{education.City.Name}}</span>
+                                            <h1 class="{{education.color}}">{{education.FormattedEducationDate}}</h1>
+                                            <p><a style="color:gray;" href="javascript:;" id="{{education.Id}}" data-ng-click="education.Edit()">{{education.Name}}</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="clearfix">&nbsp;</div>
                     </div>
                 </section>
             </div>
@@ -33,6 +51,22 @@
                         <div class="text-center mbot30">
                             <h3 class="timeline-title">GERÇEKLEŞEN EĞİTİMLER</h3>
                         </div>
+                        <div class="timeline">
+                            <article class="timeline-item {{education.alt}}" data-ng-repeat="education in DoneEducations">
+                                <div class="timeline-desk">
+                                    <div class="panel">
+                                        <div class="panel-body">
+                                            <span class="{{education.arrow}}"></span>
+                                            <span class="timeline-icon {{education.color}}"></span>
+                                            <span class="timeline-date">{{education.City.Name}}</span>
+                                            <h1 class="{{education.color}}">{{education.FormattedEducationDate}}</h1>
+                                            <p><a style="color:gray;" href="javascript:;" id="{{education.Id}}" data-ng-click="education.Edit()">{{education.Name}}</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="clearfix">&nbsp;</div>
                     </div>
                 </section>
             </div>
