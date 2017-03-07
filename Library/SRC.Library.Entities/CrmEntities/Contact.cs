@@ -73,6 +73,10 @@ namespace SRC.Library.Entities.CrmEntities
         [CrmFieldName(KEY_GENDER_CODE)]
         public OptionSetValueWrapper Gender { get; set; }
 
+        [CrmFieldDataType(CrmDataType.OPTIONSETVALUE)]
+        [CrmFieldName(KEY_CUSTOMER_TYPE_CODE)]
+        public OptionSetValueWrapper CustomerType { get; set; }
+
         [CrmFieldDataType(CrmDataType.STRING)]
         [CrmFieldName(KEY_MOBILE_PHONE)]
         public string MobilePhone { get; set; }
@@ -155,6 +159,7 @@ namespace SRC.Library.Entities.CrmEntities
         public const string KEY_FIRST_LOGIN_DATE = "new_firstlogindate";
         public const string KEY_ID_NO = "new_idno";
         public const string KEY_BIRTHDATE = "birthdate";
+        public const string KEY_CUSTOMER_TYPE_CODE = "customertypecode";
         public const string KEY_GENDER_CODE = "gendercode";
         public const string KEY_MOBILE_PHONE = "mobilephone";
         public const string KEY_GSM_OPERATOR_ID = "new_gsmoperatorid";
@@ -192,6 +197,12 @@ namespace SRC.Library.Entities.CrmEntities
         {
             MALE = 1,
             FEMALE = 2
+        }
+
+        public enum CustomerTypeCode
+        {
+            CUSTOMER = 1,
+            STUDENT = 2
         }
 
         public enum EducationLevelCode

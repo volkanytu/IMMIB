@@ -9,5 +9,6 @@ namespace SRC.Library.Data.SqlDao.Interfaces
         List<EducationAttendance> GetEducationAttendances(Guid contactId);
         List<EducationAttendance> GetEducationAttendancesForExpectedPayments(int remainDay);
         List<EducationAttendance> GetEducationAttendancesForEducation(Guid educationId);
+        int GetEducationAttendancesCountByMonth(Guid contactId, DateTime educationStartDate);
     }
 }

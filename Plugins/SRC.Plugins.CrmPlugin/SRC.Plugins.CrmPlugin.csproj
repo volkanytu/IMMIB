@@ -86,6 +86,7 @@
     <Compile Include="Entities\Enums.cs" />
     <Compile Include="Interfaces\IBasePluginTask.cs" />
     <Compile Include="IocContainerBuilder.cs" />
+    <Compile Include="PluginTasks\EducationAttendanceTask.cs" />
     <Compile Include="PluginTasks\EducationTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

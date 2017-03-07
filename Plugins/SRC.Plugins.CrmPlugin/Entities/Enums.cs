@@ -12,7 +12,8 @@ namespace SRC.Plugins.CrmPlugin.Entities
 
     public enum TaskType
     {
-        EDUCATION
+        EDUCATION,
+        EDUCATION_ATTENDANCE
     }
 
     public enum PluginOperation

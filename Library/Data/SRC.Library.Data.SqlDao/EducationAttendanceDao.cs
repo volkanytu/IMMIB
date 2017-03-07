@@ -59,5 +59,15 @@ namespace SRC.Library.Data.SqlDao
 
             return dt.ToList<EducationAttendance>().ToList();
         }
+
+        public int GetEducationAttendancesCountByMonth(Guid contactId, DateTime educationStartDate)
+        {
+            SqlParameter[] parameters = {
+                new SqlParameter("@contactId",contactId),
+                new SqlParameter("@date",educationStartDate)
+            };
+
+            return (int)_sqlAccess.ExecuteScalar(EducationAttendenceQueries.GET_EDUCATION_ATTENDANCE_BY_MONTH, parameters);
+        }
     }
 }

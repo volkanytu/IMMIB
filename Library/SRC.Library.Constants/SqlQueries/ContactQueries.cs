@@ -20,7 +20,8 @@ namespace SRC.Library.Constants.SqlQueries
 	                                        ,C.new_firstlogindate AS FirstLoginDate
 	                                        ,C.new_idno AS IdNo
 	                                        ,C.BirthDate AS BirthDate
-	                                        ,C.GenderCode AS Gender
+	                                        ,C.CustomerTypeCode AS CustomerType
+                                            ,C.GenderCode AS Gender
 	                                        ,C.MobilePhone
 	                                        ,C.new_gsmoperatorid AS GsmOperator
 	                                        ,C.new_gsmoperatoridName AS GsmOperatorName
@@ -65,6 +66,7 @@ namespace SRC.Library.Constants.SqlQueries
 	                                                ,C.new_firstlogindate AS FirstLoginDate
 	                                                ,C.new_idno AS IdNo
 	                                                ,C.BirthDate AS BirthDate
+                                                    ,C.CustomerTypeCode AS CustomerType
 	                                                ,C.GenderCode AS Gender
 	                                                ,C.MobilePhone
 	                                                ,C.new_gsmoperatorid AS GsmOperator
@@ -110,6 +112,7 @@ namespace SRC.Library.Constants.SqlQueries
 	                                                ,C.new_firstlogindate AS FirstLoginDate
 	                                                ,C.new_idno AS IdNo
 	                                                ,C.BirthDate AS BirthDate
+                                                    ,C.CustomerTypeCode AS CustomerType
 	                                                ,C.GenderCode AS Gender
 	                                                ,C.MobilePhone
 	                                                ,C.new_gsmoperatorid AS GsmOperator
@@ -153,6 +156,7 @@ namespace SRC.Library.Constants.SqlQueries
 	                                                ,C.new_firstlogindate AS FirstLoginDate
 	                                                ,C.new_idno AS IdNo
 	                                                ,C.BirthDate AS BirthDate
+                                                    ,C.CustomerTypeCode AS CustomerType
 	                                                ,C.GenderCode AS Gender
 	                                                ,C.MobilePhone
 	                                                ,C.new_gsmoperatorid AS GsmOperator

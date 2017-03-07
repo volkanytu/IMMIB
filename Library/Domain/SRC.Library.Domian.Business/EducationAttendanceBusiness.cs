@@ -45,5 +45,10 @@ namespace SRC.Library.Domain.Business
                 _educationAttendanceBaseDao.SetState(attendance.Id, (int)EducationAttendance.StateCode.PASSIVE, (int)EducationAttendance.StatusCode.EVENT_CANCELED);
             }
         }
+
+        public int GetEducationAttendancesCountByMonth(Guid contactId, DateTime educationStartDate)
+        {
+            return _educationAttendanceDao.GetEducationAttendancesCountByMonth(contactId, educationStartDate);
+        }
     }
 }

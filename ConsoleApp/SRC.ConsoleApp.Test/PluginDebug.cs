@@ -21,7 +21,7 @@ namespace SRC.ConsoleApp.Test
         {
             Entity ent = objectValue.ToCrmEntity();
 
-            base.DoWorkTest(taskType, pluginOperation, null, entityName);
+            base.DoWorkTest(taskType, pluginOperation,ent, null, entityName);
         }
     }
 }

@@ -129,5 +129,23 @@ namespace SRC.Library.Constants.SqlQueries
 
 
         #endregion
+
+        //TODO: Bu query'ye status code enumları nasıl ekleriz?
+        #region GET_EDUCATION_ATTENDANCE_BY_MONTH
+
+        public const string GET_EDUCATION_ATTENDANCE_BY_MONTH = @"DECLARE @StartDate DATETIME = DATEADD(HOUR,-3,DATEADD(month, DATEDIFF(month, 0, @date ), 0))
+                                                                    DECLARE @EndDate DATETIME = DATEADD(HOUR,-3,DATEADD(mm, DATEDIFF(m,0,@date )+1,0))
+
+                                                                    SELECT
+	                                                                    COUNT(0)
+                                                                    FROM
+	                                                                    new_educationattendance EA WITH (NOLOCK)
+                                                                    WHERE
+	                                                                    EA.new_contactid = @contactId
+	                                                                    AND
+	                                                                    EA.new_educationstartdate BETWEEN @StartDate AND @EndDate
+	                                                                    AND
+	                                                                    EA.StatusCode IN(100000000,100000001,100000002,100000003,100000004)";
+        #endregion
     }
 }

@@ -60,6 +60,14 @@ namespace SRC.Library.Domain.Facade
         public void CancelEducationAttendance(Guid? educationAttendanceId)
         {
             educationAttendanceId.CheckNull("Eğitim katılım bilgisi boş olamaz!", EducationAttendanceLogKeys.EDUCATION_ATTENDANCE_ID_NULL);
+
+            //TODO: Ücreti ödenen katılımlar iptal edilemez
+            EducationAttendance attendance = _baseEducationAttendanceBusiness.Get((Guid) educationAttendanceId);
+            if (attendance.Status.ToEnum<EducationAttendance.StatusCode>() == EducationAttendance.StatusCode.REGISTRATION_CONFIRMED)
+            {
+                throw new Exception("İade işlemleri için eğitim birimi ile görüşebilirsiniz");
+            }
+
             _baseEducationAttendanceBusiness.SetState((Guid)educationAttendanceId, (int) EducationAttendance.StateCode.PASSIVE, (int) EducationAttendance.StatusCode.PARTICIPANT_CANCELED);
         }
 

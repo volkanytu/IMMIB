@@ -36,6 +36,10 @@ namespace SRC.Plugins.CrmPlugin
                 .Keyed<IBasePluginTask>(TaskType.EDUCATION)
                 .InstancePerDependency();
 
+            builder.Register<IBasePluginTask>(c => new EducationAttendanceTask(c.Resolve<IEducationAttendanceBusiness>(), c.Resolve<IBaseBusiness<Contact>>(), c.Resolve<IBaseBusiness<Education>>()))
+               .Keyed<IBasePluginTask>(TaskType.EDUCATION_ATTENDANCE)
+               .InstancePerDependency();
+
             return builder.Build();
         }
     }
