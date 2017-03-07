@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Web.Http;
 
 namespace SRC.Web.NewPortal.Controllers
@@ -48,27 +49,46 @@ namespace SRC.Web.NewPortal.Controllers
         {
             ResponseContainer<List<Education>> returnValue = new ResponseContainer<List<Education>>();
 
-            returnValue.Result = EducationMock.GetDoneEducations();
+            returnValue.Result = EducationMock.GetComingEducations();
             returnValue.Success = true;
 
             return returnValue;
         }
 
-        public ResponseContainer<List<Education>> GetList()
+        public ResponseContainer<List<Education>> GetList(string month, string year)
         {
             ResponseContainer<List<Education>> returnValue = new ResponseContainer<List<Education>>();
 
-            returnValue.Result = EducationMock.GetDoneEducations();
+            int monthNow = int.Parse(month);
+            int yearNow = int.Parse(year);
+
+            //returnValue.Result = _educationFacade.GetEducations(monthNow, yearNow);
+            returnValue.Result = EducationMock.GetComingEducations().Where(e => e.StartDate.Value.Month == monthNow
+                && e.StartDate.Value.Year == yearNow).ToList();
             returnValue.Success = true;
 
             return returnValue;
         }
 
-        public ResponseContainer<Education> GetEducation()
+        public ResponseContainer<Education> GetEducation(string id)
         {
             ResponseContainer<Education> returnValue = new ResponseContainer<Education>();
 
-            returnValue.Result = EducationMock.GetDoneEducations().FirstOrDefault();
+            returnValue.Result = EducationMock.GetEducations().Where(e => e.Id == Guid.Parse(id)).FirstOrDefault();
+            returnValue.Success = true;
+
+            return returnValue;
+        }
+
+        [HttpPost]
+        public ResponseContainer<EducationAttendance> ApplyEducation(string id)
+        {
+            ResponseContainer<EducationAttendance> returnValue = new ResponseContainer<EducationAttendance>();
+
+            Thread.Sleep(2000);
+
+            returnValue.Result = AttendanceMock.GetAttendances().FirstOrDefault();
+            returnValue.Message = "İşlem sırasında bir hata ile karşılaşıldı.";
             returnValue.Success = true;
 
             return returnValue;

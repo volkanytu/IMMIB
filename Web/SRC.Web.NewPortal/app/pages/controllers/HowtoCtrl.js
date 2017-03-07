@@ -1,6 +1,6 @@
 ﻿var appMain = angular.module('main');
 
-appMain.controller('HowtoCtrl', ['$scope', '$sce', '$http', '$routeParams', 'safeApply', 'alertModal', 'basketProvider', 'commonFunc', function ($scope, $sce, $http, $routeParams, safeApply, alertModal, basketProvider, commonFunc) {
+appMain.controller('HowtoCtrl', ['$scope', '$sce', '$http', '$routeParams', 'safeApply', 'alertModal', 'commonFunc', function ($scope, $sce, $http, $routeParams, safeApply, alertModal, commonFunc) {
 
     $scope.howtoPageDataUrl = $scope.baseUrl + 'api/dynamicpageapi/GetPage';
 

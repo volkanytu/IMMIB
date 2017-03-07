@@ -78,5 +78,10 @@ namespace SRC.Web.NewPortal.MockData
                 PageType = DynamicPage.PageTypeCode.EDUCATION_APPLICATION_CONDITION.ToOptionSetValueWrapper()
             };
         }
+
+        public static DynamicPage GetApply()
+        {
+            return GetDynamicPages().FirstOrDefault();
+        }
     }
 }

@@ -1,0 +1,53 @@
+﻿var appMain = angular.module('main');
+
+appMain.controller('EducationDetailCtrl', ['$scope', '$sce', '$http', '$routeParams', 'safeApply', 'alertModal', 'commonFunc', function ($scope, $sce, $http, $routeParams, safeApply, alertModal, commonFunc) {
+
+    $scope.educationListDataUrl = $scope.baseUrl + 'api/educationapi/GetEducation';
+
+    $scope.trustHtml = function (content) {
+        return $sce.trustAsHtml(content);
+    };
+
+    $http({
+        url: $scope.educationListDataUrl,
+        method: "GET",
+        params: {
+            id: $routeParams.id
+        }
+    }).success(function (data) {
+        if (data && data.Success && data.Result) {
+            $scope.Education = data.Result;
+
+            var obj = $scope.Education;
+
+            obj.Apply = function (educationObject) {
+
+                var education = $scope.Education;
+                $("#applyModal").modal();
+                $('#applyModal').on('hidden.bs.modal', function () {
+                    if ($scope.$$childHead.operationComplete) {
+                        window.location.reload();
+                    }
+                });
+
+                $scope.selectedEducation = education;
+            };
+
+            if ($scope.Education.IsExpired) {
+                $scope.Education.class = "label-danger";
+                $scope.Education.StatusText = "Eğitim Gerçekleşti";
+                $scope.showApply = false;
+            }
+            else if ($scope.Education.LeftQuota == null || $scope.Education.LeftQuota < 1) {
+                $scope.Education.class = "label-warning";
+                $scope.Education.StatusText = "Kontenjan Doldu";
+                $scope.showApply = false;
+            }
+            else {
+                $scope.Education.class = "label-success";
+                $scope.Education.StatusText = "Başvuru Açık";
+                $scope.showApply = true;
+            }
+        }
+    });
+}]);

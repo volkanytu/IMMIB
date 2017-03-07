@@ -66,6 +66,7 @@ var appRoot = angular.module('main', ['ngRoute', 'ngGrid', 'ngResource', 'ui.gri
     })
 
 
+
            // CONFIGS
     .config(['$httpProvider', '$locationProvider', function ($httpProvider, $locationProvider) {
         $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
@@ -154,31 +155,6 @@ var appRoot = angular.module('main', ['ngRoute', 'ngGrid', 'ngResource', 'ui.gri
                     window.location.reload();
                 }
                 return $q.reject(rejection);
-            }
-        };
-    }])
-    .factory("basketProvider", ['$rootScope', '$http', function ($rootScope, $http) {
-        var dataUrl = $rootScope.baseUrl + 'api/AddToBasket';
-
-        return {
-            add: function (basketObj, callbackFn) {
-                if (typeof basketObj != "undefined" && basketObj != null) {
-                    basketObj.userId = $rootScope.userId;
-                    basketObj.systemUserId = $rootScope.systemUserId;
-                    basketObj.accountId = $rootScope.accountId;
-                    basketObj.categoryId = $rootScope.categoryId;
-                    basketObj.cityId = $rootScope.cityId;
-                    basketObj.oppFrameId = $rootScope.oppFrameId;
-                }
-
-                $http({
-                    url: dataUrl,
-                    method: "POST",
-                    data: basketObj,
-                }).success(function (data) {
-                    if (typeof callbackFn == "function")
-                        callbackFn.call(this, data);
-                });
             }
         };
     }])

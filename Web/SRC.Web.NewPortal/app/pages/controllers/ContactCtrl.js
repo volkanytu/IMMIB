@@ -1,6 +1,6 @@
 ﻿var appMain = angular.module('main');
 
-appMain.controller('ContactCtrl', ['$scope', '$sce', '$http', '$routeParams', 'safeApply', 'alertModal', 'basketProvider', 'commonFunc', function ($scope, $sce, $http, $routeParams, safeApply, alertModal, basketProvider, commonFunc) {
+appMain.controller('ContactCtrl', ['$scope', '$sce', '$http', '$routeParams', 'safeApply', 'alertModal', 'commonFunc', function ($scope, $sce, $http, $routeParams, safeApply, alertModal, commonFunc) {
 
     $scope.contactPageDataUrl = $scope.baseUrl + 'api/dynamicpageapi/GetPage';
 

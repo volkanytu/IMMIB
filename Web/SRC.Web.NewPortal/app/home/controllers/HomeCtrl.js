@@ -1,6 +1,6 @@
 ﻿var appMain = angular.module('main');
 
-appMain.controller('HomeCtrl', ['$scope', '$sce', '$http', '$routeParams', 'safeApply', 'alertModal', 'basketProvider', 'flexSlider', 'commonFunc', function ($scope, $sce, $http, $routeParams, safeApply, alertModal, basketProvider, flexSlider, commonFunc) {
+appMain.controller('HomeCtrl', ['$scope', '$sce', '$http', '$routeParams', 'safeApply', 'alertModal', 'flexSlider', 'commonFunc', function ($scope, $sce, $http, $routeParams, safeApply, alertModal,flexSlider, commonFunc) {
     commonFunc();
 
     $scope.sliderPageDataUrl = $scope.baseUrl + 'api/dynamicpageapi/GetSliderPageList';
@@ -41,9 +41,9 @@ appMain.controller('HomeCtrl', ['$scope', '$sce', '$http', '$routeParams', 'safe
 
                 var obj = $scope.ComingEducations[education];
 
-                obj.Edit = function () {
-                    alert(this.Name);
-                };
+                //obj.Edit = function () {
+                //    window.location.href = "/Education/Index/" + education.Id;
+                //};
 
                 if (counter % 2 == 0) {
                     obj.color = "green";
@@ -76,9 +76,10 @@ appMain.controller('HomeCtrl', ['$scope', '$sce', '$http', '$routeParams', 'safe
 
                 var obj = $scope.DoneEducations[education];
 
-                obj.Edit = function () {
-                    alert(this.Name);
-                };
+                //obj.Edit = function () {
+
+                //    window.location.href = "/Education/Index/" + education.Id;
+                //};
 
                 if (counter % 2 == 0) {
                     obj.color = "green";

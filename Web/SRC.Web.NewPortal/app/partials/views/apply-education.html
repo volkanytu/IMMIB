@@ -1,0 +1,51 @@
+﻿<div class="modal fade" tabindex="-1" role="dialog" data-keyboard="false" id="applyModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">{{$parent.selectedEducation.Name}}</h4>
+            </div>
+            <div class="modal-body bodyClass" data-ng-show="Attendance">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="alert alert-success alert-block fade in">
+                            <h4>
+                                <i class="fa fa-check"></i> Başarılı!
+                            </h4>
+                            <p>Eğitim başvurunuz başarılı bir şekilde alınmıştır.</p>
+                        </div>
+
+                        <h4>
+                            <i class="fa fa-info"></i> Başvuru Kodu:{{Attendance.Code}}
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body bodyClass" data-ng-hide="Attendance">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <span data-ng-bind-html="trustHtml(Page.Content)"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="checkbox">
+                            <input type="checkbox" value="" ng-model="$parent.selectedEducation.isAgreed">
+                            <span class="label label-default"> Eğitim ve başvuru koşullarını kabul ediyorum</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" data-ng-show="showWarning">
+                    <div class="col-lg-12">
+                        <div class="alert alert-warning" role="alert"><h5><i class="fa fa-warning"></i> {{errorText}}</h5></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <a type="applyEducation" class="btn btn-primary" href="javascript:;" data-ng-click="applyEducation()" data-ng-disabled="disableApply" role="button">Eğitime Başvur</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -41,9 +41,13 @@ namespace SRC.Web.NewPortal.Controllers
             {
                 returnValue.Result = DynamicPageMock.GetHowtoPage();
             }
-            else if(pageType==5) //contact
+            else if (pageType == 5) //contact
             {
                 returnValue.Result = DynamicPageMock.GetContactPage();
+            }
+            else if (pageType == 6) //apply text???
+            {
+                returnValue.Result = DynamicPageMock.GetApply();
             }
             returnValue.Success = true;
 

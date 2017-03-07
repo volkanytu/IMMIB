@@ -84,6 +84,7 @@ namespace SRC.Web.NewPortal
                     "~/app/home/controllers/*.js",
                     "~/app/education/controllers/*.js",
                     "~/app/pages/controllers/*.js",
+                    "~/app/partials/controllers/*.js"
                 }));
         }
 

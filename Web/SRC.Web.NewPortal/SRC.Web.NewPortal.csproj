@@ -162,6 +162,7 @@
   <ItemGroup>
     <Content Include="app\common\app-route.js" />
     <Content Include="app\common\app.js" />
+    <Content Include="app\education\controllers\EducationDetailCtrl.js" />
     <Content Include="app\education\controllers\EducationListCtrl.js" />
     <Content Include="app\education\views\education-detail.html" />
     <Content Include="app\education\views\education-list.html" />
@@ -171,6 +172,8 @@
     <Content Include="app\pages\controllers\HowtoCtrl.js" />
     <Content Include="app\pages\views\contact.html" />
     <Content Include="app\pages\views\howto.html" />
+    <Content Include="app\partials\controllers\ApplyEducationCtrl.js" />
+    <Content Include="app\partials\views\apply-education.html" />
     <Content Include="assets\advanced-datatable\docs\34cdb56b2c.html" />
     <Content Include="assets\advanced-datatable\docs\DataTable.defaults.columns.html" />
     <Content Include="assets\advanced-datatable\docs\DataTable.defaults.html" />

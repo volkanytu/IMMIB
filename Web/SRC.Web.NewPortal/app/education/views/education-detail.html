@@ -1,101 +1,57 @@
 ﻿<section id="main-content" style="width: 90%; margin: auto;">
+    <!-- page start-->
     <section class="wrapper">
-        <!-- page start-->
-        <section class="panel" style="padding: 20px;">
-            <header class="panel-heading">
-                Eğitim Listesi
-                <span class="pull-right">
-                    <button type="button" id="btnRefresh" class="btn btn-warning btn-xs"><i class="fa fa-refresh"></i> Yenile</button>
-                </span>
-            </header>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-2">
-                        <button type="button" id="btnBack" class="btn btn-primary"><i class="fa fa-backward"></i> Önceki Ay</button>
+        <section class="panel">
+            <div class="bio-graph-heading project-heading" style="padding:10px 50px;">
+                <strong> {{Education.Name}} </strong>
+                <p><small>{{Education.Code}}</small> </p>
+            </div>
+            <div class="panel-body bio-graph-info">
+                <div class="row p-details">
+                    <div class="bio-row">
+                        <p><span class="bold">Eğitmen </span>: {{Education.Contact.Name}}</p>
                     </div>
-                    <div class="col-md-8">
-                        <form id="formDate" class="form-inline text-center" role="form" action="/Education/Index/">
-                            <div class="form-group">
-                                
-                            </div>
-                            <div class="form-group">
-                                
-                            </div>
-                        </form>
+                    <div class="bio-row">
+                        <p><span class="bold">Durum </span>: <span class="label {{Education.class}}">{{Education.StatusText}}</span></p>
                     </div>
-                    <div class="col-md-2">
-                        <button type="button" id="btnNext" class="btn btn-primary">Sonraki Ay <i class="fa fa-forward"></i></button>
+                    <div class="bio-row">
+                        <p><span class="bold">Kayıt Tarihi </span>: {{Education.FormattedRecordDate}} </p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span class="bold">Eğitim Tarihi</span>: {{Education.FormattedEducationDate}} </p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span class="bold">Eğitim Saati </span>: <a href="#">{{Education.FormattedEducationHour}}</a></p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span class="bold">Şehir </span>: {{Education.City.Name}}</p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span class="bold">Eğitim Yeri </span>: Dış Ticaret Kompleksi-Yenibosna </p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span class="bold">Kontenjan </span>: {{Education.Quota}} Kişi </p>
+                    </div>
+                    <div class="bio-row">
+                        <a href="javascript:;" class="btn btn-primary btn-xs" data-ng-click="Education.Apply(this)" data-ng-show="showApply"><i class="fa fa-folder"></i> Başvur </a>
+                        <a href="javascript:;" class="btn btn-danger btn-xs"><i class="fa fa-folder"></i> İptal </a>
                     </div>
                 </div>
             </div>
-
-            <table class="table table-hover p-table" id="tblEducation">
-                <thead>
-                    <tr>
-                        <th>Eğitim Adı</th>
-                        <th>Eğitmen</th>
-                        <th>Süre</th>
-                        <th>Şehir</th>
-                        <th>Durum</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr data-ng-repeat="education in EducationList">
-                        <td class="p-name">
-                            <a href="javascript:;">{{education.Name}}</a>
-                            <br>
-                            <small>{{education.FormattedEducationDate}}</small>
-                        </td>
-                        <td>
-                            <p>{{education.Contact.Name}}</p>
-                        </td>
-                        <td>
-                            <span class="label label-primary">{{education.EducationPeriod.Value}} gün</span>
-                        </td>
-                        <td>
-                            <p>{{education.City.Name}}</p>
-                        </td>
-                        <td>
-                            <span class="label label-{{education.class}}">{{education.StatusText}}</span>
-                            <!--@if (education.IsExpired)
-                            {
-                            <span class="label label-danger">Eğitim Gerçekleşti</span>
-                            }
-                            else if (education.LeftQuota == null || education.LeftQuota < 1)
-                            {
-                            <span class="label label-warning">Kontenjan Doldu</span>
-                            }
-                            else
-                            {
-                            <span class="label label-success">Başvuru Açık</span>
-                            }-->
-                        </td>
-                        <td>
-                            <a href="javascript:;" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Başvur </a>
-                            <a href="javascript:;" class="btn btn-danger btn-xs"><i class="fa fa-folder"></i> İptal </a>
-                            <a href="javascript:;" class="btn btn-info btn-xs"><i class="fa fa-folder"></i> Detay </a>
-
-                            <!--@if (!education.IsExpired)
-                            {
-                            if (education.Attendance == null)
-                            {
-                            <a data-toggle="modal" type="educationAttendance" href="#attendanceModal" class="btn btn-primary btn-xs" id="@education.Id"><i class="fa fa-folder"></i> Başvur </a>
-                            }
-                            else
-                            {
-                            <a data-toggle="modal" type="educationCancelAttendance" href="#attendanceModal" class="btn btn-danger btn-xs" id="@education.Attendance.Id"><i class="fa fa-ban"></i> İptal </a>
-                            }
-                            }
-                            <a data-toggle="modal" type="educationdetail" href="#educationModal" class="btn btn-info btn-xs" id="@education.Id"><i class="fa fa-pencil"></i> Detay </a>-->
-
-                        </td>
-                    </tr>
-                </tbody>
-
-            </table>
-
+        </section>
+        <section class="panel">
+            <header class="panel-heading">
+                Eğitim Detayı
+            </header>
+            <div class="panel-body">
+                <span data-ng-bind-html="trustHtml(Education.Info)"></span>
+            </div>
         </section>
         <!-- page end-->
+
+        <div ng-controller="ApplyEducationCtrl">
+            <div ng-include="'/app/partials/views/apply-education.html'" ng-model="selectedEducation"></div>
+        </div>
     </section>
+    <!-- page end-->
 </section>

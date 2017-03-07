@@ -1,11 +1,11 @@
 ﻿angular.module('main')
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
-            .when('/Pages/HowTo', {
+            .when('/Pages/HowTo/', {
                 templateUrl: baseUrl + "app/pages/views/howto.html",
                 controller: 'HowtoCtrl'
             })
-            .when('/Pages/Contact', {
+            .when('/Pages/Contact/', {
                 templateUrl: baseUrl + "app/pages/views/contact.html",
                 controller: 'ContactCtrl'
             })
@@ -13,7 +13,7 @@
                 templateUrl: baseUrl + "app/education/views/education-list.html",
                 controller: 'EducationListCtrl'
             })
-            .when('/Education/detail', {
+            .when('/Education/Index/:id', {
                 templateUrl: baseUrl + "app/education/views/education-detail.html",
                 controller: 'EducationDetailCtrl'
             })
