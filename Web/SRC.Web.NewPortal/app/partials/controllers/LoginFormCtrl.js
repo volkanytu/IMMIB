@@ -15,7 +15,7 @@ appMain.controller('LoginFormCtrl', ['$scope', '$sce', '$http', '$routeParams', 
     };
 
     $scope.SignIn = function () {
-        alert("SIGN IN");
+        window.location.href = $scope.baseUrl + "Profile/New/";
     };
 
     $scope.Login = function () {

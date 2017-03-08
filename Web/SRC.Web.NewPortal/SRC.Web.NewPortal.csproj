@@ -149,6 +149,7 @@
     <Compile Include="Controllers\EducationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PagesController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="filters\WebApiSessionAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -178,6 +179,10 @@
     <Content Include="app\partials\controllers\LoginFormCtrl.js" />
     <Content Include="app\partials\views\apply-education.html" />
     <Content Include="app\partials\views\login-form.html" />
+    <Content Include="app\profile\controllers\EditProfileCtrl.js" />
+    <Content Include="app\profile\controllers\NewProfileCtrl.js" />
+    <Content Include="app\profile\views\edit-profile.html" />
+    <Content Include="app\profile\views\new-profile.html" />
     <Content Include="assets\advanced-datatable\docs\34cdb56b2c.html" />
     <Content Include="assets\advanced-datatable\docs\DataTable.defaults.columns.html" />
     <Content Include="assets\advanced-datatable\docs\DataTable.defaults.html" />
@@ -2214,6 +2219,8 @@
     <Content Include="Views\Education\Index.cshtml" />
     <Content Include="Views\Pages\HowTo.cshtml" />
     <Content Include="Views\Pages\Contact.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Profile\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Library\Domain\SRC.Library.Domain.Facade\SRC.Library.Domain.Facade.csproj">
