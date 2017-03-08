@@ -3,6 +3,7 @@ using SRC.Library.Domain.Business.Interfaces;
 using SRC.Library.Entities.CrmEntities;
 using SRC.Library.Entities.CustomEntities;
 using SRC.Web.NewPortal.MockData;
+using SRC.Web.NewPortal.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,6 +73,7 @@ namespace SRC.Web.NewPortal.Controllers
 
         public ResponseContainer<Education> GetEducation(string id)
         {
+            var asd = LoggedUser.Current;
             ResponseContainer<Education> returnValue = new ResponseContainer<Education>();
 
             returnValue.Result = EducationMock.GetEducations().Where(e => e.Id == Guid.Parse(id)).FirstOrDefault();

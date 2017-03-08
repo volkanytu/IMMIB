@@ -1,0 +1,36 @@
+﻿<div class="modal fade" tabindex="-1" role="dialog" id="login">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Giriş / Kayıt</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <form class="form-horizontal">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                <input type="text" class="form-control input-lg" placeholder="Kullanıcı adı" data-ng-model="userName" />
+                            </div>
+                            <div class="input-group" style="margin-top:10px;">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                                <input type="password" class="form-control input-lg" placeholder="Şifre" data-ng-model="password" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row" data-ng-show="showWarning" style="margin-top:10px;">
+                    <div class="col-lg-12">
+                        <div class="alert alert-warning" role="alert"><h5><i class="fa fa-warning"></i> {{errorText}}</h5></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning pull-left" data-ng-disabled="disableButtons" data-ng-click="RememberPassword()">Şifremi Unuttum</button>
+                <button type="button" class="btn btn-info" data-ng-disabled="disableButtons" data-ng-click="SignIn()">Üye Ol</button>
+                <button type="button" class="btn btn-primary" data-ng-disabled="disableButtons" data-ng-click="Login()">Giriş</button>
+            </div>
+        </div>
+    </div>
+</div>

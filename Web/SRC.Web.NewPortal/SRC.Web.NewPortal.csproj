@@ -143,11 +143,13 @@
     <Compile Include="App_Start\IocContainerConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ContactApiController.cs" />
     <Compile Include="Controllers\DynamicPageApiController.cs" />
     <Compile Include="Controllers\EducationApiController.cs" />
     <Compile Include="Controllers\EducationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PagesController.cs" />
+    <Compile Include="filters\WebApiSessionAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -173,7 +175,9 @@
     <Content Include="app\pages\views\contact.html" />
     <Content Include="app\pages\views\howto.html" />
     <Content Include="app\partials\controllers\ApplyEducationCtrl.js" />
+    <Content Include="app\partials\controllers\LoginFormCtrl.js" />
     <Content Include="app\partials\views\apply-education.html" />
+    <Content Include="app\partials\views\login-form.html" />
     <Content Include="assets\advanced-datatable\docs\34cdb56b2c.html" />
     <Content Include="assets\advanced-datatable\docs\DataTable.defaults.columns.html" />
     <Content Include="assets\advanced-datatable\docs\DataTable.defaults.html" />

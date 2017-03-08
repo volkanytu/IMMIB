@@ -32,6 +32,10 @@
 
         @RenderBody()
 
+        <div ng-controller="LoginFormCtrl">
+            <div ng-include="'/app/partials/views/login-form.html'"></div>
+        </div>
+
         @Html.Partial("Partials/_Footer")
 
     </section>
