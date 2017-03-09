@@ -152,7 +152,21 @@ var appRoot = angular.module('main', ['ngRoute', 'ngGrid', 'ngResource', 'ui.gri
             },
             'responseError': function (rejection) {
                 if (rejection.status == 401) {
-                    window.location.reload();
+                    var modalHtml = '' +
+                                    '<div class="modal fade" tabindex="-1" role="dialog" data-keyboard="false">' +
+                                    '   <div class="modal-dialog" role="document">' +
+                                    '       <div class="modal-content">' +
+                                    '           <div class="modal-header">' +
+                                    '               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' +
+                                    '               <h4 class="modal-title">HATA</h4>' +
+                                    '           </div>' +
+                                    '       <div class="modal-body error">İşlem yapmak istediğiniz sayfa için giriş yapmanlısınız. </br> Giriş yapıp tekrar deneyiniz.</div>' +
+                                    '   </div>' +
+                                    '</div></div>';
+
+                    $(modalHtml).modal().on('hidden.bs.modal', function () {
+                        window.location.href = baseUrl;
+                    });
                 }
                 return $q.reject(rejection);
             }
