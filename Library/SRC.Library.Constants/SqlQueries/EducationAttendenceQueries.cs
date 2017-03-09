@@ -147,5 +147,14 @@ namespace SRC.Library.Constants.SqlQueries
 	                                                                    AND
 	                                                                    EA.StatusCode IN(100000000,100000001,100000002,100000003,100000004)";
         #endregion
+
+        #region | GET_EDUCATION_ATTENDANCE_COUNT_BY_EDUCATION |
+        public const string GET_EDUCATION_ATTENDANCE_COUNT_BY_EDUCATION = @"SELECT
+	                                                            COUNT(0)
+                                                            FROM
+	                                                            new_educationattendance EA WITH (NOLOCK)
+                                                            WHERE
+                                                                EA.new_educationid = @educationId";
+        #endregion
     }
 }

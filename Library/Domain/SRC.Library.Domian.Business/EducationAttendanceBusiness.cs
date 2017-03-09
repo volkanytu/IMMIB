@@ -50,5 +50,10 @@ namespace SRC.Library.Domain.Business
         {
             return _educationAttendanceDao.GetEducationAttendancesCountByMonth(contactId, educationStartDate);
         }
+
+        public string GetEducationAttendanceCode(Guid educationId, string educationCode)
+        {
+            return educationCode+"/"+(11 + _educationAttendanceDao.GetEducationAttendancesCountForEducation(educationId));
+        }
     }
 }

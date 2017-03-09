@@ -22,7 +22,8 @@ namespace SRC.Plugins.CrmPlugin.PluginTasks
 
         protected override void PreCreate()
         {
-            throw new NotImplementedException();
+            var targetEntity = EntityContainer.Input;
+            targetEntity[Education.KEY_CODE] = _educationBusiness.GetEducationCode();
         }
 
         protected override void PostCreate()

@@ -37,6 +37,7 @@ namespace SRC.Plugins.CrmPlugin.PluginTasks
             }
 
             targetEntity[EducationAttendance.KEY_EDUCATION_START_DATE] = education.StartDate.Value;
+            targetEntity[EducationAttendance.KEY_CODE] = _educationAttendanceBusiness.GetEducationAttendanceCode(education.Id,education.Code);
         }
 
         protected override void PostCreate()

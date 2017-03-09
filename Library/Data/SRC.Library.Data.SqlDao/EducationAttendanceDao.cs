@@ -69,5 +69,15 @@ namespace SRC.Library.Data.SqlDao
 
             return (int)_sqlAccess.ExecuteScalar(EducationAttendenceQueries.GET_EDUCATION_ATTENDANCE_BY_MONTH, parameters);
         }
+
+        public int GetEducationAttendancesCountForEducation(Guid educationId)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@educationId",educationId)
+            };
+
+            return (int)_sqlAccess.ExecuteScalar(EducationAttendenceQueries.GET_EDUCATION_ATTENDANCE_COUNT_BY_EDUCATION, parameters);
+        }
     }
 }

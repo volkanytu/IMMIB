@@ -197,6 +197,7 @@ namespace SRC.Library.Entities.CrmEntities
         public const string KEY_RECORD_END_DATE = "new_recordenddate";
         public const string KEY_EDUCATION_PERIOD = "new_educationperiod";
         public const string KEY_INFO = "new_info";
+        public const string KEY_EDUCATION_CODE_VALUE = "new_educationcodevalue";
 
         public enum StateCode
         {
