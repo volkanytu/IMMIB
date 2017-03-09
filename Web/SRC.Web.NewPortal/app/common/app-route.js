@@ -18,6 +18,10 @@
                 controller: 'EducationDetailCtrl'
             })
             .when('/Profile/', {
+                templateUrl: baseUrl + "app/profile/views/home-profile.html",
+                controller: 'HomeProfileCtrl'
+            })
+            .when('/Profile/Edit/', {
                 templateUrl: baseUrl + "app/profile/views/edit-profile.html",
                 controller: 'EditProfileCtrl'
             })

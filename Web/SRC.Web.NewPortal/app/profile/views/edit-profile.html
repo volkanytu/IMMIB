@@ -2,46 +2,140 @@
     <section class="wrapper site-min-height">
         <!-- page start-->
         <div class="row">
-            <aside class="profile-nav col-lg-3">
+            <div ng-controller="ProfileMenuCtrl">
+                <div ng-include="'/app/partials/views/profile-menu.html'" ng-model="Contact"></div>
+            </div>
+            <aside class="profile-info col-lg-9">
                 <section class="panel">
-                    <div class="user-heading round">
-                        <a href="#">
-                            <img src="../../img/profile-avatar.jpg" alt="">
-                        </a>
-                        <h1>{{Contact.Name}}</h1>
-                        <p>{{Contact.EmailAddress}}</p>
+                    <div class="bio-graph-heading" style="padding: 10px 50px;">
+                        Profil bilgilerinizi düzenleyebilirsiniz.
                     </div>
-                    <ul class="nav nav-pills nav-stacked">
-                        <li class="active"><a href="~/Profile"> <i class="fa fa-user"></i> Profil</a></li>
-                        <li><a href="~/Profile/Edit"> <i class="fa fa-edit"></i> Profil Düzenle</a></li>
-                        <li>
-                            <a href="/Profile/Education?type=100000000">
-                                <i class="fa fa-credit-card"></i><small>Ödeme Bekleyen Eğitimler</small>
-                                <span class="label label-danger pull-right r-activity">
-                                    <!--@Model.Attendances.Where(a => a.Status.ToEnum<educationattendance.statuscode>() == EducationAttendance.StatusCode.WAITING_PAYMENT).ToList().Count-->
-                                    1
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/Profile/Education?type=100000004">
-                                <i class="fa fa-flag"></i> Katıldığım Eğitimler
-                                <span class="label label-info pull-right r-activity">
-                                    <!--@Model.Attendances.Where(a => a.Status.ToEnum<educationattendance.statuscode>() == EducationAttendance.StatusCode.JOINED).ToList().Count-->
-                                    2
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/Profile/Education?type=100000001">
-                                <i class="fa fa-check"></i> Onaylanan Eğitimler
-                                <span class="label label-success pull-right r-activity">
-                                    <!--@Model.Attendances.Where(a => a.Status.ToEnum<educationattendance.statuscode>() == EducationAttendance.StatusCode.REGISTRATION_CONFIRMED).ToList().Count-->
-                                    3
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
+                    <div class="panel-body bio-graph-info">
+                        <form class="form-horizontal" role="form" id="formLogin" action="/Profile/Kaydet">
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Kayıt Tipi</label>
+                                <div class="col-lg-6 text-left">
+                                    <input name="sample-radio" id="rd_Company" value="0" type="radio" checked /> Firma Çalışanı
+                                    <input name="sample-radio" id="rd_Student" value="1" type="radio" style="margin-left:20px;" /> Öğrenci
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">İsim</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" id="f-name" name="FirstName" placeholder=" " ng-model="Contact.FirstName">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Soyisim</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" id="l-name" name="LastName" placeholder=" " ng-model="Contact.LastName">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Doğum Tarihi</label>
+                                <div class="col-lg-6">
+                                    <input class="form-control form-control-inline input-medium default-date-picker" size="16" type="text" ng-model="Contact.BirthDateStr" />
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Cinsiyet</label>
+                                <div class="col-lg-6">
+                                    <select class="form-control m-bot15" name="genderCode">
+                                        <option value="1">Erkek</option>
+                                        <option value="2">Kadın</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Cep Telefonu</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" id="mobile" placeholder=" " ng-model="Contact.MobilePhone">
+                                </div>
+                            </div>
+                            <div class="form-group" id="divWorkPhone">
+                                <label class="col-lg-2 control-label">İş Telefonu</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" id="businessphone" placeholder=" " ng-model="Contact.WorkPhone">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">E-Posta</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" id="email" placeholder=" " ng-model="Contact.EmailAddress">
+                                </div>
+                            </div>
+                            <div class="form-group" id="divTaxNumber">
+                                <label class="col-lg-2 control-label">Firma Vergi Numarası</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" id="taxnumber" placeholder=" " ng-model="Contact.TaxNumber">
+                                </div>
+                            </div>
+                            <div class="form-group" id="divCompany">
+                                <label class="col-lg-2 control-label">Firma Adı</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" id="firm" placeholder=" " ng-model="Contact.CompanyName">
+                                </div>
+                            </div>
+                            <div class="form-group" id="divPosition">
+                                <label class="col-lg-2 control-label">Firmadaki Pozisyonunuz</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" id="firmposition" placeholder=" " ng-model="Contact.CompanyPosition">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Şehir</label>
+                                <div class="col-lg-6">
+                                    <!--@Html.DropDownList("cityId", null, new { @class = "form-control m-bot15" })-->
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Eğitim Durumunuz</label>
+                                <div class="col-lg-6">
+                                    <!--@Html.DropDownList("educationLevel", null, new { @class = "form-control m-bot15" })-->
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <button type="submit" id="btnSignUp" class="btn btn-success">Kaydet</button>
+                                    <button type="button" class="btn btn-default">İptal Et</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+                <section>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading"> Şifre Değiştir</div>
+                        <div class="panel-body">
+                            <form class="form-horizontal" role="form" method="POST" action="/Profile/ChangePassword">
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Mevcut Şifreniz</label>
+                                    <div class="col-lg-6">
+                                        <input type="password" ng-model="oldPassword" class="form-control" placeholder=" ">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Yeni Şifreniz</label>
+                                    <div class="col-lg-6">
+                                        <input type="password" ng-model="newPassword" class="form-control" placeholder=" ">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Yeni Şifreniz Tekrar</label>
+                                    <div class="col-lg-6">
+                                        <input type="password" ng-model="reNewPassword" class="form-control" placeholder=" ">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-offset-2 col-lg-10">
+                                        <button type="submit" class="btn btn-info">Kaydet</button>
+                                        <button type="button" class="btn btn-default">İptal Et</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </section>
             </aside>
         </div>
