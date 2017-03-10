@@ -1,7 +1,9 @@
 ﻿using SRC.Library.Business.Interfaces;
 using SRC.Library.Domain.Business.Interfaces;
+using SRC.Library.Domain.Facade.Interfaces;
 using SRC.Library.Entities.CrmEntities;
 using SRC.Library.Entities.CustomEntities;
+using SRC.Web.NewPortal.filters;
 using SRC.Web.NewPortal.MockData;
 using SRC.Web.NewPortal.Models;
 using System;
@@ -17,10 +19,12 @@ namespace SRC.Web.NewPortal.Controllers
     public class EducationApiController : ApiController
     {
         private IEducationBusiness _educationBusiness;
+        private IEducationFacade _educationFacade;
 
-        public EducationApiController(IEducationBusiness educationBusiness)
+        public EducationApiController(IEducationBusiness educationBusiness, IEducationFacade educationFacade)
         {
             _educationBusiness = educationBusiness;
+            _educationFacade = educationFacade;
         }
 
         public ResponseContainer<List<Education>> GetComingEducationList()
@@ -66,6 +70,16 @@ namespace SRC.Web.NewPortal.Controllers
             //returnValue.Result = _educationFacade.GetEducations(monthNow, yearNow);
             returnValue.Result = EducationMock.GetComingEducations().Where(e => e.StartDate.Value.Month == monthNow
                 && e.StartDate.Value.Year == yearNow).ToList();
+
+            List<EducationAttendance> contactAttendanceList = null;
+
+            if (LoggedUser.IsLoggedIn)
+            {
+                contactAttendanceList = AttendanceMock.GetAttendances();
+
+                _educationFacade.SetEducationAttendance(returnValue.Result, contactAttendanceList);
+            }
+
             returnValue.Success = true;
 
             return returnValue;
@@ -73,16 +87,26 @@ namespace SRC.Web.NewPortal.Controllers
 
         public ResponseContainer<Education> GetEducation(string id)
         {
-            var asd = LoggedUser.Current;
             ResponseContainer<Education> returnValue = new ResponseContainer<Education>();
 
             returnValue.Result = EducationMock.GetEducations().Where(e => e.Id == Guid.Parse(id)).FirstOrDefault();
+
+            List<EducationAttendance> contactAttendanceList = null;
+
+            if (LoggedUser.IsLoggedIn)
+            {
+                contactAttendanceList = AttendanceMock.GetAttendances();
+
+                _educationFacade.SetEducationAttendance(returnValue.Result, contactAttendanceList);
+            }
+
             returnValue.Success = true;
 
             return returnValue;
         }
 
         [HttpPost]
+        [AuthenticationFilter]
         public ResponseContainer<EducationAttendance> ApplyEducation(string id)
         {
             ResponseContainer<EducationAttendance> returnValue = new ResponseContainer<EducationAttendance>();
@@ -90,6 +114,21 @@ namespace SRC.Web.NewPortal.Controllers
             Thread.Sleep(2000);
 
             returnValue.Result = AttendanceMock.GetAttendances().FirstOrDefault();
+            returnValue.Message = "İşlem sırasında bir hata ile karşılaşıldı.";
+            returnValue.Success = true;
+
+            return returnValue;
+        }
+
+        [HttpPost]
+        [AuthenticationFilter]
+        public ResponseContainer<bool> CancelAttendance(string id)
+        {
+            ResponseContainer<bool> returnValue = new ResponseContainer<bool>();
+
+            Thread.Sleep(1000);
+
+            returnValue.Result = true;
             returnValue.Message = "İşlem sırasında bir hata ile karşılaşıldı.";
             returnValue.Success = true;
 

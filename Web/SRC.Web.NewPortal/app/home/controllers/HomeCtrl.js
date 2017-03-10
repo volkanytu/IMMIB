@@ -1,6 +1,6 @@
 ﻿var appMain = angular.module('main');
 
-appMain.controller('HomeCtrl', ['$scope', '$sce', '$http', '$routeParams', 'safeApply', 'alertModal', 'flexSlider', 'commonFunc', function ($scope, $sce, $http, $routeParams, safeApply, alertModal,flexSlider, commonFunc) {
+appMain.controller('HomeCtrl', ['$scope', '$sce', '$http', '$routeParams', 'safeApply', 'alertModal', 'flexSlider', 'commonFunc', function ($scope, $sce, $http, $routeParams, safeApply, alertModal, flexSlider, commonFunc) {
     commonFunc();
 
     $scope.sliderPageDataUrl = $scope.baseUrl + 'api/dynamicpageapi/GetSliderPageList';

@@ -22,15 +22,36 @@ appMain.controller('EducationDetailCtrl', ['$scope', '$sce', '$http', '$routePar
 
             obj.Apply = function (educationObject) {
 
+                if ($scope.isLoggedIn == "False") {
+
+                    alertModal("Başvuru yapmak için giriş yapmalısınız!", "warning");
+
+                    return;
+                }
+
                 var education = $scope.Education;
                 $("#applyModal").modal();
                 $('#applyModal').on('hidden.bs.modal', function () {
-                    if ($scope.$$childHead.operationComplete) {
+                    if ($scope.selectedEducation.operationComplete) {
                         window.location.reload();
                     }
                 });
 
                 $scope.selectedEducation = education;
+            };
+
+            obj.Cancel = function (educationObject) {
+
+                var education = educationObject.Education;
+                $("#cancelModal").modal();
+
+                $('#cancelModal').on('hidden.bs.modal', function () {
+                    if ($scope.selectedAttendance.operationComplete) {
+                        window.location.reload();
+                    }
+                });
+
+                $scope.selectedAttendance = education.Attendance;
             };
 
             if ($scope.Education.IsExpired) {
@@ -46,7 +67,7 @@ appMain.controller('EducationDetailCtrl', ['$scope', '$sce', '$http', '$routePar
             else {
                 $scope.Education.class = "label-success";
                 $scope.Education.StatusText = "Başvuru Açık";
-                $scope.showApply = true;
+                $scope.showApply = $scope.Education.Attendance == null;
             }
         }
     });

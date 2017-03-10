@@ -1,4 +1,4 @@
-﻿<section id="main-content" style="width: 90%; margin: auto;" data-ng-show="EducationList.length>0">
+﻿<section id="main-content" style="width: 90%; margin: auto;">
     <section class="wrapper">
         <!-- page start-->
         <section class="panel" style="padding: 20px;">
@@ -41,6 +41,10 @@
                 <div ng-include="'/app/partials/views/apply-education.html'" ng-model="selectedEducation"></div>
             </div>
 
+            <div ng-controller="CancelAttendanceCtrl">
+                <div ng-include="'/app/partials/views/cancel-attendance.html'" ng-model="selectedAttendance"></div>
+            </div>
+
             <div data-ng-show="EducationList.length>0">
                 <table class="table table-hover p-table">
                     <thead>
@@ -74,7 +78,7 @@
                             </td>
                             <td>
                                 <a href="javascript:;" class="btn btn-primary btn-xs" data-ng-click="education.Apply(this)" data-ng-show="education.showApply"><i class="fa fa-folder"></i> Başvur </a>
-                                <a href="javascript:;" class="btn btn-danger btn-xs"><i class="fa fa-folder"></i> İptal </a>
+                                <a href="javascript:;" class="btn btn-danger btn-xs" data-ng-click="education.Cancel(this)" ng-show="education.Attendance!=null"><i class="fa fa-folder"></i> İptal </a>
                                 <a href="/Education/Index/{{education.Id}}" class="btn btn-info btn-xs"><i class="fa fa-folder"></i> Detay </a>
 
                                 <!--@if (!education.IsExpired)

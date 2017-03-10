@@ -60,7 +60,7 @@ namespace SRC.Library.Domain.Facade
         public void CancelEducationAttendance(Guid? educationAttendanceId)
         {
             educationAttendanceId.CheckNull("Eğitim katılım bilgisi boş olamaz!", EducationAttendanceLogKeys.EDUCATION_ATTENDANCE_ID_NULL);
-            _baseEducationAttendanceBusiness.SetState((Guid)educationAttendanceId, (int) EducationAttendance.StateCode.PASSIVE, (int) EducationAttendance.StatusCode.PARTICIPANT_CANCELED);
+            _baseEducationAttendanceBusiness.SetState((Guid)educationAttendanceId, (int)EducationAttendance.StateCode.PASSIVE, (int)EducationAttendance.StatusCode.PARTICIPANT_CANCELED);
         }
 
         public void SetEducationAttendance(List<Education> educations, List<EducationAttendance> educationAttendances)
@@ -72,8 +72,18 @@ namespace SRC.Library.Domain.Facade
 
             foreach (Education education in educations)
             {
-               education.Attendance = educationAttendances.FirstOrDefault(p => p.Education.Id == education.Id);
+                education.Attendance = educationAttendances.FirstOrDefault(p => p.Education.Id == education.Id);
             }
+        }
+
+        public void SetEducationAttendance(Education education, List<EducationAttendance> educationAttendances)
+        {
+            if (educationAttendances == null)
+                return;
+            if (education == null)
+                return;
+
+            education.Attendance = educationAttendances.FirstOrDefault(p => p.Education.Id == education.Id);
         }
 
         //TODO: Burada olması doğru mu?
@@ -81,6 +91,6 @@ namespace SRC.Library.Domain.Facade
         {
             creditCard.CheckNull("Kredi kartı bilgisi boş olamaz!", CreditCardLogKeys.CREDIT_CARD_NULL);
             return _baseCreditCardBusiness.Insert(creditCard);
-        } 
+        }
     }
 }

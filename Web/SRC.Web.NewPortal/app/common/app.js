@@ -4,6 +4,10 @@ var appRoot = angular.module('main', ['ngRoute', 'ngGrid', 'ngResource', 'ui.gri
     .run(["$rootScope", function ($rootScope) {
         $rootScope.baseUrl = baseUrl;
         $rootScope.userId = userId;
+        $rootScope.isLoggedIn = isLoggedIn;
+        $rootScope.$on('$routeUpdate', function () {
+            $route.reload();
+        });
     }])
 
     // DIRECTIVES

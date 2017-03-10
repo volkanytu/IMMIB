@@ -41,13 +41,18 @@ appMain.controller('ApplyEducationCtrl', ['$scope', '$sce', '$http', '$routePara
                 if (data && data.Success && data.Result) {
                     $scope.Attendance = data.Result;
 
-                    $scope.operationComplete = true;
+                    $scope.$parent.selectedEducation.operationComplete = true;
                 }
                 else {
                     $scope.errorText = data.Message;
                     $scope.showWarning = true;
                 }
 
+                $scope.disableApply = false;
+            })
+            .error(function (err) {
+                $scope.errorText = err.Message;
+                $scope.showWarning = true;
                 $scope.disableApply = false;
             });
         }

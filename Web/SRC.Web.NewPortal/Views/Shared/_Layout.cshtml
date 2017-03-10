@@ -14,6 +14,7 @@
     <script type="text/javascript">
         var baseUrl = "@Url.Content("~")";
         var userId = "@Request["userId"]";
+        var isLoggedIn = "@SRC.Web.NewPortal.Models.LoggedUser.IsLoggedIn";
     </script>
 
     @Styles.Render(BundleConfig.BundleStyleMain)
@@ -46,4 +47,3 @@
 
 </body>
 </html>
-
