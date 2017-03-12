@@ -1,0 +1,22 @@
+﻿@using SRC.Web.NewPortal
+
+@{
+    ViewBag.Title = "Profil Düzele";
+}
+
+@section head
+{
+    @Styles.Render(BundleConfig.BundleStyleAngular)
+    @Styles.Render(BundleConfig.BundleStyleAngularUi)
+}
+
+<div>
+    <div class="ng-view"></div>
+</div>
+
+@section scripts
+{
+    @Scripts.Render(BundleConfig.BundleJsAngular)
+    @Scripts.Render(BundleConfig.BundleJsAngularUi)
+    @Scripts.Render(BundleConfig.BundleJsAngularAppMain)
+}
