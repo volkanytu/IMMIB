@@ -81,6 +81,7 @@ appMain.controller('EducationDetailCtrl', ['$scope', '$sce', '$http', '$routePar
                     }
                 });
 
+                education.Attendance.Amount = education.EducationAmount;
                 $scope.selectedAttendance = education.Attendance;
             };
 

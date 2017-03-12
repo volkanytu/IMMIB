@@ -20,6 +20,18 @@ appMain.controller('LoginFormCtrl', ['$scope', '$sce', '$http', '$routeParams', 
 
     $scope.Login = function () {
 
+        var userName = $scope.$$childHead.userName;
+        var password = $scope.$$childHead.password;
+
+        if (userName == null || typeof (userName) == "undefined"
+            || password == null || typeof (password) == "undefined") {
+
+            $scope.errorText = "Kullanıcı adı ve şifre alanları dolu olmalıdır.";
+            $scope.showWarning = true;
+
+            return;
+        }
+
         $scope.showWarning = false;
         $scope.disableButtons = true;
         $scope.errorText = null;
@@ -28,8 +40,8 @@ appMain.controller('LoginFormCtrl', ['$scope', '$sce', '$http', '$routeParams', 
             url: $scope.loginDataUrl,
             method: "POST",
             params: {
-                userName: $scope.$$childHead.userName,
-                password: $scope.$$childHead.password
+                userName: userName,
+                password: password
             }
         }).success(function (data) {
             if (data && data.Success && data.Result) {
@@ -43,6 +55,10 @@ appMain.controller('LoginFormCtrl', ['$scope', '$sce', '$http', '$routeParams', 
             }
 
             $scope.disableButtons = false;
+        })
+        .error(function (err) {
+            $scope.errorText = err.Message;
+            $scope.showWarning = true;
         });
     };
 }]);

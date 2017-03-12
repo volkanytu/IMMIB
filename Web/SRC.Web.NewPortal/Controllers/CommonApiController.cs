@@ -63,5 +63,18 @@ namespace SRC.Web.NewPortal.Controllers
             return returnValue;
         }
 
+        public ResponseContainer<List<OptionSetValueWrapper>> GetInstallmentTypes()
+        {
+            ResponseContainer<List<OptionSetValueWrapper>> returnValue = new ResponseContainer<List<OptionSetValueWrapper>>();
+
+            Thread.Sleep(1000);
+
+            returnValue.Result = AttendanceMock.GetInstallmentTypes();
+            returnValue.Success = true;
+
+
+            return returnValue;
+        }
+
     }
 }

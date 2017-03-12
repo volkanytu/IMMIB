@@ -134,5 +134,20 @@ namespace SRC.Web.NewPortal.Controllers
 
             return returnValue;
         }
+
+        [HttpPost]
+        [AuthenticationFilter]
+        public ResponseContainer<bool> PayEducation(CreditCardLog creditCardData)
+        {
+            ResponseContainer<bool> returnValue = new ResponseContainer<bool>();
+
+            Thread.Sleep(1000);
+
+            returnValue.Result = true;
+            returnValue.Success = true;
+            returnValue.Message = "Ödeme başarılı bir şekilde alınmıştır.";
+
+            return returnValue;
+        }
     }
 }

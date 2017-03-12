@@ -37,5 +37,23 @@ namespace SRC.Web.NewPortal.MockData
                 }
             };
         }
+
+        public static List<OptionSetValueWrapper> GetInstallmentTypes()
+        {
+            return new List<OptionSetValueWrapper>
+            {
+                new OptionSetValueWrapper{ AttributeValue=1, Value="1"},
+                new OptionSetValueWrapper{ AttributeValue=2, Value="2"},
+                new OptionSetValueWrapper{ AttributeValue=3, Value="3"},
+                new OptionSetValueWrapper{ AttributeValue=4, Value="4"},
+                new OptionSetValueWrapper{ AttributeValue=5, Value="5"},
+                new OptionSetValueWrapper{ AttributeValue=6, Value="6"},
+                new OptionSetValueWrapper{ AttributeValue=7, Value="7"},
+                new OptionSetValueWrapper{ AttributeValue=8, Value="8"},
+                new OptionSetValueWrapper{ AttributeValue=9, Value="9"},
+
+
+            };
+        }
     }
 }

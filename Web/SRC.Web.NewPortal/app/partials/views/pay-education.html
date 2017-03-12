@@ -26,44 +26,51 @@
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Tutar</label>
                         <div class="col-lg-10">
-                            <p>{{$parent.selectedAttendance.Education.Name}} TL</p>
+                            <p>{{$parent.selectedAttendance.Amount}} TL</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Taksit Sayısı</label>
+                        <div class="col-lg-4">
+                            <select class="form-control m-bot15" ng-model="CreditCardData.InstallmentType"
+                                    ng-options="installmentType as installmentType.Value for installmentType in InstallmentTypes"></select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-2 control-label">İsim</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" placeholder="İsim" ng-model="Payment.FullName">
+                            <input type="text" class="form-control" placeholder="İsim" ng-model="CreditCardData.FullName">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Kart No</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" placeholder="Kart No" ng-model="Payment.CardNo">
+                            <input type="text" class="form-control" placeholder="Kart No" ng-model="CreditCardData.CardNumber">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Ay</label>
                         <div class="col-lg-4">
-                            <input type="text" class="form-control" placeholder="Ay" ng-model="Payment.Month">
+                            <input type="number" pattern=".{2,2}" required title="iki haneli sayı olmalıdır" min="2" max="2" class="form-control" placeholder="Ay" ng-model="CreditCardData.ExpireMonth">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Yıl</label>
                         <div class="col-lg-4">
-                            <input type="text" class="form-control" placeholder="Yıl" ng-model="Payment.Year">
+                            <input type="number" pattern=".{4,4}" required title="Dört haneli sayı olmalıdır" min="4" max="4" class="form-control" placeholder="Yıl" ng-model="CreditCardData.ExpireYear">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-2 control-label">CVC No</label>
                         <div class="col-lg-4">
-                            <input type="password" class="form-control" placeholder="CVC No" ng-model="Payment.CVC">
+                            <input type="password" pattern=".{3,3}" required title="3 haneli sayı olmalıdır" min="3" max="3" class="form-control" placeholder="CVC No" ng-model="CreditCardData.Cvc">
                         </div>
                     </div>
                 </form>
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="checkbox">
-                            <input type="checkbox" value="" ng-model="$parent.selectedEducation.isAgreed">
+                            <input type="checkbox" value="" ng-model="$parent.selectedAttendance.isAgreed">
                             <span class="label label-default"> Ödeme koşullarını kabul ediyorum</span>
                         </div>
                     </div>
@@ -75,7 +82,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
-                        <a type="applyEducation" class="btn btn-primary" href="javascript:;" data-ng-click="payEducation()" data-ng-disabled="disableApply" role="button">Ödeme Yap</a>
+                        <a type="applyEducation" class="btn btn-primary" href="javascript:;" data-ng-click="payEducation()" data-ng-disabled="disablePay" role="button">Ödeme Yap</a>
                     </div>
                 </div>
             </div>

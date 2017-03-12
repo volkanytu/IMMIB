@@ -18,6 +18,14 @@ namespace SRC.Library.Entities.CrmEntities
         public string Name { get; set; }
 
         [CrmFieldDataType(CrmDataType.STRING)]
+        [CrmFieldName(KEY_FULL_NAME)]
+        public string FullName { get; set; }
+
+        [CrmFieldDataType(CrmDataType.STRING)]
+        [CrmFieldName(KEY_CARD_NUMBER)]
+        public string CardNumber { get; set; }
+
+        [CrmFieldDataType(CrmDataType.STRING)]
         [CrmFieldName(KEY_CVC)]
         public string Cvc { get; set; }
 
@@ -45,9 +53,12 @@ namespace SRC.Library.Entities.CrmEntities
         [CrmFieldName(KEY_RESULT)]
         public string Result { get; set; }
 
+        public Guid? AttendanceId { get; set; }
+
         public const string KEY_LOGICAL_NAME = "new_creditcardlog";
         public const string KEY_CREDIT_CARD_LOG_ID = "new_creditcardlogid";
         public const string KEY_NAME = "new_name";
+        public const string KEY_CARD_NUMBER = "new_cardnumber";
         public const string KEY_CVC = "new_cvc";
         public const string KEY_EXPIRE_MONTH = "new_expiremonth";
         public const string KEY_EXPIRE_YEAR = "new_expireyear";
@@ -55,6 +66,7 @@ namespace SRC.Library.Entities.CrmEntities
         public const string KEY_INSTALLMENT_TYPE = "new_installmenttype";
         public const string KEY_RESULT_CODE = "new_resultcode";
         public const string KEY_RESULT = "new_resultmessage";
+        public const string KEY_FULL_NAME = "new_fullname";
 
         public enum StateCode
         {
