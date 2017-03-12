@@ -102,6 +102,98 @@ var appRoot = angular.module('main', ['ngRoute', 'ngGrid', 'ngResource', 'ui.gri
             }
         };
     }])
+    .factory('commonValues', ['$rootScope', '$http', function ($rootScope, $http) {
+
+        var getCitiesDataUrl = $rootScope.baseUrl + 'api/commonapi/GetCities';
+        var getEducationLevelsDataUrl = $rootScope.baseUrl + 'api/commonapi/GetEducationLevels';
+        var getGenderCodesDataUrl = $rootScope.baseUrl + 'api/commonapi/GetGenderCodes';
+        var installmentTypesDataUrl = $rootScope.baseUrl + 'api/commonapi/GetInstallmentTypes';
+        return {
+            getCities: function (onSuccess, onError) {
+                $http({
+                    url: getCitiesDataUrl,
+                    method: "GET",
+                    async: false,
+                    params: {
+
+                    }
+                }).success(function (data) {
+                    if (data && data.Success && data.Result) {
+                        onSuccess(data.Result);
+                    }
+                })
+                .error(function (err) {
+                    onError(err);
+                });
+            },
+            getEducationLevels: function (onSuccess, onError) {
+                $http({
+                    url: getEducationLevelsDataUrl,
+                    method: "GET",
+                    async: false,
+                    params: {
+
+                    }
+                }).success(function (data) {
+                    if (data && data.Success && data.Result) {
+                        onSuccess(data.Result);
+                    }
+                })
+                .error(function (err) {
+                    onError(err);
+                });
+            },
+            getGenderCodes: function (onSuccess, onError) {
+                $http({
+                    url: getGenderCodesDataUrl,
+                    method: "GET",
+                    async: false,
+                    params: {
+
+                    }
+                }).success(function (data) {
+                    if (data && data.Success && data.Result) {
+                        onSuccess(data.Result);
+                    }
+                })
+                .error(function (err) {
+                    onError(err);
+                });
+            },
+            getInstallmentTypes: function (onSuccess, onError) {
+                $http({
+                    url: installmentTypesDataUrl,
+                    method: "GET",
+                    async: false,
+                    params: {
+
+                    }
+                }).success(function (data) {
+                    if (data && data.Success && data.Result) {
+                        onSuccess(data.Result);
+                    }
+                })
+                .error(function (err) {
+                    onError(err);
+                });
+            }
+        };
+
+        return function ($scope, fn) {
+            var phase = $scope.$root.$$phase;
+            if (phase == '$apply' || phase == '$digest') {
+                if (fn) {
+                    $scope.$eval(fn);
+                }
+            } else {
+                if (fn) {
+                    $scope.$apply(fn);
+                } else {
+                    $scope.$apply();
+                }
+            }
+        };
+    }])
     .factory('alertModal', [function () {
         return function (message, dialogType, closeFunction) {
             var bodyClass = "",
@@ -132,7 +224,6 @@ var appRoot = angular.module('main', ['ngRoute', 'ngGrid', 'ngResource', 'ui.gri
                 '       </div>' +
                 '   </div>' +
                 '</div></div>';
-            $(modalHtml).modal();
 
             $(modalHtml).modal().on('hidden.bs.modal', function () {
                 if (closeFunction != null) {

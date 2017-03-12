@@ -1,6 +1,6 @@
 ﻿var appMain = angular.module('main');
 
-appMain.controller('PayEducationCtrl', ['$scope', '$sce', '$http', '$routeParams', 'safeApply', 'alertModal', 'commonFunc', function ($scope, $sce, $http, $routeParams, safeApply, alertModal, commonFunc) {
+appMain.controller('PayEducationCtrl', ['$scope', '$sce', '$http', '$routeParams', 'safeApply', 'alertModal', 'commonFunc', 'commonValues', function ($scope, $sce, $http, $routeParams, safeApply, alertModal, commonFunc, commonValues) {
 
     $scope.payEducationDataUrl = $scope.baseUrl + 'api/educationapi/PayEducation';
     $scope.installmentTypesDataUrl = $scope.baseUrl + 'api/commonapi/GetInstallmentTypes';
@@ -9,16 +9,8 @@ appMain.controller('PayEducationCtrl', ['$scope', '$sce', '$http', '$routeParams
         return $sce.trustAsHtml(content);
     };
 
-    $http({
-        url: $scope.installmentTypesDataUrl,
-        method: "GET",
-        params: {
-
-        }
-    }).success(function (data) {
-        if (data && data.Success && data.Result) {
-            $scope.InstallmentTypes = data.Result;
-        }
+    commonValues.getInstallmentTypes(function (data) {
+        $scope.InstallmentTypes = data;
     });
 
     $scope.CreditCardData = {};

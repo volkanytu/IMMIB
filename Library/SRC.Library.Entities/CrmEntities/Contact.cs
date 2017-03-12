@@ -145,6 +145,17 @@ namespace SRC.Library.Entities.CrmEntities
         [CrmFieldName(KEY_INFO)]
         public string Info { get; set; }
 
+        [CrmFieldDataType(CrmDataType.OPTIONSETVALUE)]
+        [CrmFieldName(KEY_CUSTOMER_TYPE_CODE)]
+        public OptionSetValueWrapper CustomerType { get; set; }
+
+        [CrmFieldDataType(CrmDataType.ENTITYREFERENCE)]
+        [CrmFieldName(KEY_PARENT_CUSTOMER_ID)]
+        public EntityReferenceWrapper ParentCustomer { get; set; }
+
+        public string RePassword { get; set; }
+        public string NewPassword { get; set; }
+
         public const string KEY_LOGICAL_NAME = "contact";
         public const string KEY_CONTACT_ID = "contactid";
         public const string KEY_FULLNAME = "fullname";
@@ -174,6 +185,8 @@ namespace SRC.Library.Entities.CrmEntities
         public const string KEY_IS_EDUCATOR = "new_iseducator";
         public const string KEY_IS_ASSOCIATION_EMPLOYEE = "new_isassociationemployee";
         public const string KEY_INFO = "new_info";
+        public const string KEY_CUSTOMER_TYPE_CODE = "customertypecode";
+        public const string KEY_PARENT_CUSTOMER_ID = "parentcustomerid";
 
         public enum StateCode
         {
@@ -199,6 +212,12 @@ namespace SRC.Library.Entities.CrmEntities
             PRIMARY_SCHOOL = 1,
             HIGH_SCHOOL = 2,
             DEGREE = 3
+        }
+
+        public enum CustomerTypeCode
+        {
+            COMPANY_WORKER = 1,
+            STUDENT = 2
         }
     }
 }

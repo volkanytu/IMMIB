@@ -11,12 +11,12 @@
                         Profil bilgilerinizi düzenleyebilirsiniz.
                     </div>
                     <div class="panel-body bio-graph-info">
-                        <form class="form-horizontal" role="form" id="formLogin" action="/Profile/Kaydet">
+                        <form class="form-horizontal" role="form">
                             <div class="form-group">
                                 <label class="col-lg-2 control-label">Kayıt Tipi</label>
                                 <div class="col-lg-6 text-left">
-                                    <input name="sample-radio" id="rd_Company" value="0" type="radio" checked /> Firma Çalışanı
-                                    <input name="sample-radio" id="rd_Student" value="1" type="radio" style="margin-left:20px;" /> Öğrenci
+                                    <input name="sample-radio" id="rd_Company" value="0" type="radio" checked disabled /> Firma Çalışanı
+                                    <input name="sample-radio" id="rd_Student" value="1" type="radio" style="margin-left:20px;" disabled /> Öğrenci
                                 </div>
                             </div>
                             <div class="form-group">
@@ -41,10 +41,8 @@
                             <div class="form-group">
                                 <label class="col-lg-2 control-label">Cinsiyet</label>
                                 <div class="col-lg-6">
-                                    <select class="form-control m-bot15" name="genderCode">
-                                        <option value="1">Erkek</option>
-                                        <option value="2">Kadın</option>
-                                    </select>
+                                    <select class="form-control m-bot15" ng-model="Contact.Gender"
+                                            ng-options="gender as gender.Value for gender in GenderCodes"></select>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -68,13 +66,13 @@
                             <div class="form-group" id="divTaxNumber">
                                 <label class="col-lg-2 control-label">Firma Vergi Numarası</label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" id="taxnumber" placeholder=" " ng-model="Contact.TaxNumber">
+                                    <input type="text" class="form-control" id="taxnumber" placeholder=" " readonly ng-model="Contact.TaxNumber">
                                 </div>
                             </div>
                             <div class="form-group" id="divCompany">
                                 <label class="col-lg-2 control-label">Firma Adı</label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" id="firm" placeholder=" " ng-model="Contact.CompanyName">
+                                    <input type="text" class="form-control" id="firm" placeholder=" " readonly ng-model="Contact.CompanyName">
                                 </div>
                             </div>
                             <div class="form-group" id="divPosition">
@@ -86,19 +84,20 @@
                             <div class="form-group">
                                 <label class="col-lg-2 control-label">Şehir</label>
                                 <div class="col-lg-6">
-                                    <!--@Html.DropDownList("cityId", null, new { @class = "form-control m-bot15" })-->
+                                    <select class="form-control m-bot15" ng-model="Contact.City"
+                                            ng-options="city as city.Name for city in Cities"></select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-2 control-label">Eğitim Durumunuz</label>
                                 <div class="col-lg-6">
-                                    <!--@Html.DropDownList("educationLevel", null, new { @class = "form-control m-bot15" })-->
+                                    <select class="form-control m-bot15" ng-model="Contact.EducationLevel"
+                                            ng-options="level as level.Value for level in EducationLevels"></select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-lg-offset-2 col-lg-10">
-                                    <button type="submit" id="btnSignUp" class="btn btn-success">Kaydet</button>
-                                    <button type="button" class="btn btn-default">İptal Et</button>
+                                    <button type="button" class="btn btn-success" ng-disabled="disableSave" data-ng-click="updateContact()">Kaydet</button>
                                 </div>
                             </div>
                         </form>
@@ -108,29 +107,28 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading"> Şifre Değiştir</div>
                         <div class="panel-body">
-                            <form class="form-horizontal" role="form" method="POST" action="/Profile/ChangePassword">
+                            <form class="form-horizontal" role="form">
                                 <div class="form-group">
-                                    <label class="col-lg-2 control-label">Mevcut Şifreniz</label>
+                                    <label class="col-lg-2 control-label">Mevcut Şifre</label>
                                     <div class="col-lg-6">
                                         <input type="password" ng-model="oldPassword" class="form-control" placeholder=" ">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-2 control-label">Yeni Şifreniz</label>
+                                    <label class="col-lg-2 control-label">Yeni Şifre</label>
                                     <div class="col-lg-6">
                                         <input type="password" ng-model="newPassword" class="form-control" placeholder=" ">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-2 control-label">Yeni Şifreniz Tekrar</label>
+                                    <label class="col-lg-2 control-label">Yeni Şifre Tekrar</label>
                                     <div class="col-lg-6">
                                         <input type="password" ng-model="reNewPassword" class="form-control" placeholder=" ">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-lg-offset-2 col-lg-10">
-                                        <button type="submit" class="btn btn-info">Kaydet</button>
-                                        <button type="button" class="btn btn-default">İptal Et</button>
+                                        <button type="button" class="btn btn-info" data-ng-disabled="disableSave" data-ng-click="changePassword()">Kaydet</button>
                                     </div>
                                 </div>
                             </form>

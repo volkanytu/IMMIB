@@ -1,6 +1,7 @@
 ﻿using SRC.Library.Business.Interfaces;
 using SRC.Library.Domain.Business.Interfaces;
 using SRC.Library.Domain.Facade.Interfaces;
+using SRC.Library.Entities;
 using SRC.Library.Entities.CrmEntities;
 using SRC.Library.Entities.CustomEntities;
 using SRC.Web.NewPortal.filters;
@@ -87,6 +88,55 @@ namespace SRC.Web.NewPortal.Controllers
             //returnValue.Message = "Kayıt sırasında bir hata ile karşılaşıldı.";
 
             return returnValue;
+        }
+
+        [HttpPost]
+        [AuthenticationFilter]
+        public ResponseContainer<bool> UpdateProfile(Contact contact)
+        {
+            ResponseContainer<bool> returnValue = new ResponseContainer<bool>();
+
+            Thread.Sleep(1000);
+
+            returnValue.Success = true;
+            returnValue.Result = true;
+
+            returnValue.Message = "Üyelik bilgileri başarı ile güncellenmiştir.";
+            //returnValue.Message = "Güncelleme sırasında bir hata ile karşılaşıldı.";
+
+            return returnValue;
+        }
+
+        [HttpPost]
+        [AuthenticationFilter]
+        public ResponseContainer<bool> ChangePassword(string oldPassword, string newPassword, string reNewPassword)
+        {
+            ResponseContainer<bool> returnValue = new ResponseContainer<bool>();
+
+            Thread.Sleep(1000);
+
+            returnValue.Success = true;
+            returnValue.Result = true;
+
+            returnValue.Message = "Şifreniz başarı ile güncellenmiştir.";
+            //returnValue.Message = "Şifre güncelleme sırasında bir hata ile karşılaşıldı.";
+
+            return returnValue;
+        }
+
+        public ResponseContainer<EntityReferenceWrapper> GetCompany(string taxNumber)
+        {
+            ResponseContainer<EntityReferenceWrapper> returnValue = new ResponseContainer<EntityReferenceWrapper>();
+
+            Thread.Sleep(1000);
+
+            returnValue.Success = true;
+            returnValue.Result = new EntityReferenceWrapper { Id = Guid.NewGuid(), Name = "VOLKAN A.Ş", LogicalName = "account" };
+
+            //returnValue.Message = "Fİrma arama sırasında hata ile karşılaşıldı.";
+
+            return returnValue;
+
         }
     }
 }

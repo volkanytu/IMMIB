@@ -1,54 +1,50 @@
 ﻿var appMain = angular.module('main');
 
-appMain.controller('NewProfileCtrl', ['$scope', '$sce', '$http', '$routeParams', 'safeApply', 'alertModal', 'commonFunc', function ($scope, $sce, $http, $routeParams, safeApply, alertModal, commonFunc) {
+appMain.controller('NewProfileCtrl', ['$scope', '$sce', '$http', '$routeParams', 'safeApply', 'alertModal', 'commonFunc', 'commonValues', function ($scope, $sce, $http, $routeParams, safeApply, alertModal, commonFunc, commonValues) {
 
-    $scope.getCitiesDataUrl = $scope.baseUrl + 'api/commonapi/GetCities';
-    $scope.getEducationLevelsDataUrl = $scope.baseUrl + 'api/commonapi/GetEducationLevels';
-    $scope.getGenderCodesDataUrl = $scope.baseUrl + 'api/commonapi/GetGenderCodes';
     $scope.saveNewProfileDataUrl = $scope.baseUrl + 'api/contactapi/SaveNewProfile';
+    $scope.getCompanyDataUrl = $scope.baseUrl + 'api/contactapi/GetCompany';
 
     $scope.Contact = null;
     $scope.recordType = "0";
 
-    $http({
-        url: $scope.getCitiesDataUrl,
-        method: "GET",
-        params: {
-
-        }
-    }).success(function (data) {
-        if (data && data.Success && data.Result) {
-            $scope.Cities = data.Result;
-        }
+    commonValues.getCities(function (data) {
+        $scope.Cities = data;
     });
 
-    $http({
-        url: $scope.getEducationLevelsDataUrl,
-        method: "GET",
-        params: {
-
-        }
-    }).success(function (data) {
-        if (data && data.Success && data.Result) {
-            $scope.EducationLevels = data.Result;
-        }
+    commonValues.getEducationLevels(function (data) {
+        $scope.EducationLevels = data;
     });
 
-    $http({
-        url: $scope.getGenderCodesDataUrl,
-        method: "GET",
-        params: {
-
-        }
-    }).success(function (data) {
-        if (data && data.Success && data.Result) {
-            $scope.GenderCodes = data.Result;
-        }
+    commonValues.getGenderCodes(function (data) {
+        $scope.GenderCodes = data;
     });
 
     $scope.Save = function () {
 
-        var asd = $scope.Contact;
+        var password = $scope.Contact.Password;
+        var rePassword = $scope.Contact.RePassword;
+
+        if (password == null || typeof (password) == "undefined"
+            || rePassword == null || typeof (rePassword) == "undefined"
+            || password != rePassword) {
+
+            alertModal("Şifre ve Şifre tekrar alanları dolu ve aynı olmalıdır.", "error");
+
+            return;
+        }
+
+        $scope.Contact.CustomerType = {};
+        $scope.Contact.CustomerType.AttributeValue = $scope.recordType;
+
+        if ($scope.recordType == "0") //Firma çalışanı ise
+        {
+            if ($scope.Contact.ParentCustomer == null || typeof ($scope.Contact.ParentCustomer) == "undefined") {
+                alertModal("Firma çalışanı olarak kayıt olabilmek için Vergi numarası ile Firma kontrolü yapmalısınız.", "error");
+
+                return;
+            }
+        }
 
         $http({
             url: $scope.saveNewProfileDataUrl,
@@ -73,6 +69,34 @@ appMain.controller('NewProfileCtrl', ['$scope', '$sce', '$http', '$routeParams',
         .error(function (err) {
             alertModal(err.Message, "error");
             $scope.disableSave = false;
+        });
+    };
+
+    $scope.checkCompany = function () {
+
+        if ($scope.Contact.TaxNumber == null || typeof ($scope.Contact.TaxNumber) == "undefined") {
+            alertModal("Firma arama için vergi numarası girmelisiniz.", "error");
+
+            return;
+        }
+
+        $http({
+            url: $scope.getCompanyDataUrl,
+            method: "GET",
+            params: {
+                taxNumber: $scope.Contact.TaxNumber
+            }
+        }).success(function (data) {
+            if (data && data.Success && data.Result) {
+                $scope.Contact.ParentCustomer = data.Result;
+                $scope.Contact.CompanyName = data.Result.Name;
+            }
+            else {
+                alertModal("Firma bulunamadı. Lütfen eğitim birimi ile iletişime geçiniz.", "error");
+            }
+        })
+        .error(function (err) {
+            alertModal(err.Message, "error");
         });
     };
 }]);
