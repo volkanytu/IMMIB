@@ -26,7 +26,7 @@
                 controller: 'EditProfileCtrl'
             })
             .when('/Profile/New/', {
-                templateUrl: baseUrl + "app/education/views/new-profile.html",
+                templateUrl: baseUrl + "app/profile/views/new-profile.html",
                 controller: 'NewProfileCtrl'
             })
             .when('/Home/', {

@@ -143,6 +143,7 @@
     <Compile Include="App_Start\IocContainerConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CommonApiController.cs" />
     <Compile Include="Controllers\ContactApiController.cs" />
     <Compile Include="Controllers\DynamicPageApiController.cs" />
     <Compile Include="Controllers\EducationApiController.cs" />
@@ -179,10 +180,12 @@
     <Content Include="app\partials\controllers\CancelAttendanceCtrl.js" />
     <Content Include="app\partials\controllers\ApplyEducationCtrl.js" />
     <Content Include="app\partials\controllers\LoginFormCtrl.js" />
+    <Content Include="app\partials\controllers\PayEducationCtrl.js" />
     <Content Include="app\partials\controllers\ProfileMenuCtrl.js" />
     <Content Include="app\partials\views\apply-education.html" />
     <Content Include="app\partials\views\cancel-attendance.html" />
     <Content Include="app\partials\views\login-form.html" />
+    <Content Include="app\partials\views\pay-education.html" />
     <Content Include="app\partials\views\profile-menu.html" />
     <Content Include="app\profile\controllers\EditProfileCtrl.js" />
     <Content Include="app\profile\controllers\HomeProfileCtrl.js" />

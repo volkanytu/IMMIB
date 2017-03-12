@@ -103,7 +103,7 @@ var appRoot = angular.module('main', ['ngRoute', 'ngGrid', 'ngResource', 'ui.gri
         };
     }])
     .factory('alertModal', [function () {
-        return function (message, dialogType) {
+        return function (message, dialogType, closeFunction) {
             var bodyClass = "",
                 modalTitle = "Bilgi";
             switch (dialogType) {
@@ -133,6 +133,12 @@ var appRoot = angular.module('main', ['ngRoute', 'ngGrid', 'ngResource', 'ui.gri
                 '   </div>' +
                 '</div></div>';
             $(modalHtml).modal();
+
+            $(modalHtml).modal().on('hidden.bs.modal', function () {
+                if (closeFunction != null) {
+                    closeFunction();
+                }
+            });
         };
     }])
     .factory('commonFunc', ['$rootScope', '$location', function ($rootScope, $location) {
@@ -142,7 +148,7 @@ var appRoot = angular.module('main', ['ngRoute', 'ngGrid', 'ngResource', 'ui.gri
             };
         };
     }])
-    .factory("baseInterceptor", ["$q", '$rootScope', function ($q, $rootScope) {
+    .factory("baseInterceptor", ["$q", '$rootScope', 'alertModal', function ($q, $rootScope, alertModal) {
         return {
             'request': function (config) {
                 //config.timeout = 5000;
@@ -156,21 +162,12 @@ var appRoot = angular.module('main', ['ngRoute', 'ngGrid', 'ngResource', 'ui.gri
             },
             'responseError': function (rejection) {
                 if (rejection.status == 401) {
-                    var modalHtml = '' +
-                                    '<div class="modal fade" tabindex="-1" role="dialog" data-keyboard="false">' +
-                                    '   <div class="modal-dialog" role="document">' +
-                                    '       <div class="modal-content">' +
-                                    '           <div class="modal-header">' +
-                                    '               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' +
-                                    '               <h4 class="modal-title">HATA</h4>' +
-                                    '           </div>' +
-                                    '       <div class="modal-body error">İşlem yapmak istediğiniz sayfa için giriş yapmanlısınız. </br> Giriş yapıp tekrar deneyiniz.</div>' +
-                                    '   </div>' +
-                                    '</div></div>';
 
-                    $(modalHtml).modal().on('hidden.bs.modal', function () {
+                    alertModal("İşlem yapmak istediğiniz sayfa için giriş yapmalısınız. </br> Giriş yapıp tekrar deneyiniz.", "error", function () {
                         window.location.href = baseUrl;
                     });
+
+                    isLoggedIn = "False";
                 }
                 return $q.reject(rejection);
             }

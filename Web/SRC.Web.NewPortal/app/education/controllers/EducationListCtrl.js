@@ -85,9 +85,39 @@ appMain.controller('EducationListCtrl', ['$scope', '$sce', '$http', '$routeParam
                     obj.Cancel = function (educationObject) {
 
                         var education = educationObject.education;
+
+                        if (education.Attendance.IsPaymentDone == true) {
+
+                            alertModal("Eğitim katılımını iptal etmek için eğitim birimi ile görüşünüz.", "info");
+
+                            return;
+                        }
+
                         $("#cancelModal").modal();
 
                         $('#cancelModal').on('hidden.bs.modal', function () {
+                            if ($scope.selectedAttendance.operationComplete) {
+                                window.location.reload();
+                            }
+                        });
+
+                        $scope.selectedAttendance = education.Attendance;
+                    };
+
+                    obj.Pay = function (educationObject) {
+
+                        var education = educationObject.education;
+
+                        if (education.Attendance.IsPaymentDone == true) {
+
+                            alertModal("Eğitim için ödemeniz alınmıştır.", "info");
+
+                            return;
+                        }
+
+                        $("#paymentModal").modal();
+
+                        $('#paymentModal').on('hidden.bs.modal', function () {
                             if ($scope.selectedAttendance.operationComplete) {
                                 window.location.reload();
                             }

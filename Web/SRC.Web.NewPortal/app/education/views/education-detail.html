@@ -35,6 +35,7 @@
                     <div class="bio-row">
                         <a href="javascript:;" class="btn btn-primary btn-xs" data-ng-click="Education.Apply(this)" data-ng-show="showApply"><i class="fa fa-folder"></i> Başvur </a>
                         <a href="javascript:;" class="btn btn-danger btn-xs" data-ng-click="Education.Cancel(this)" ng-show="Education.Attendance!=null"><i class="fa fa-folder"></i> İptal </a>
+                        <a href="javascript:;" class="btn btn-warning btn-xs" data-ng-click="Education.Pay(this)" ng-show="Education.Attendance!=null"><i class="fa fa-folder"></i> Ödeme Yap </a>
                     </div>
                 </div>
             </div>
@@ -55,6 +56,10 @@
 
         <div ng-controller="CancelAttendanceCtrl">
             <div ng-include="'/app/partials/views/cancel-attendance.html'" ng-model="selectedAttendance"></div>
+        </div>
+
+        <div ng-controller="PayEducationCtrl">
+            <div ng-include="'/app/partials/views/pay-education.html'" ng-model="selectedAttendance"></div>
         </div>
     </section>
     <!-- page end-->

@@ -1,0 +1,84 @@
+﻿<div class="modal fade" tabindex="-1" role="dialog" data-keyboard="false" id="paymentModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">{{$parent.selectedAttendance.Education.Name}}</h4>
+            </div>
+            <div class="modal-body bodyClass" data-ng-show="Payment">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="alert alert-success alert-block fade in">
+                            <h4>
+                                <i class="fa fa-check"></i> Başarılı!
+                            </h4>
+                            <p>Eğitim başvurunuz başarılı bir şekilde alınmıştır.</p>
+                        </div>
+
+                        <h4>
+                            <i class="fa fa-info"></i> Başvuru Kodu:{{Attendance.Code}}
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body bodyClass" data-ng-hide="Attendance">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Tutar</label>
+                        <div class="col-lg-10">
+                            <p>{{$parent.selectedAttendance.Education.Name}} TL</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">İsim</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" placeholder="İsim" ng-model="Payment.FullName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Kart No</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" placeholder="Kart No" ng-model="Payment.CardNo">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Ay</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" placeholder="Ay" ng-model="Payment.Month">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Yıl</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" placeholder="Yıl" ng-model="Payment.Year">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">CVC No</label>
+                        <div class="col-lg-4">
+                            <input type="password" class="form-control" placeholder="CVC No" ng-model="Payment.CVC">
+                        </div>
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="checkbox">
+                            <input type="checkbox" value="" ng-model="$parent.selectedEducation.isAgreed">
+                            <span class="label label-default"> Ödeme koşullarını kabul ediyorum</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" data-ng-show="showWarning">
+                    <div class="col-lg-12">
+                        <div class="alert alert-warning" role="alert"><h5><i class="fa fa-warning"></i> {{errorText}}</h5></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <a type="applyEducation" class="btn btn-primary" href="javascript:;" data-ng-click="payEducation()" data-ng-disabled="disableApply" role="button">Ödeme Yap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

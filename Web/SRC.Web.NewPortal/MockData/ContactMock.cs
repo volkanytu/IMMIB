@@ -62,5 +62,35 @@ namespace SRC.Web.NewPortal.MockData
 
             return contact;
         }
+
+        public static List<EntityReferenceWrapper> GetCities()
+        {
+            return new List<EntityReferenceWrapper>
+            {
+                new EntityReferenceWrapper{ Id=Guid.NewGuid(), Name="İstanbul", LogicalName="new_city"},
+                new EntityReferenceWrapper{ Id=Guid.NewGuid(), Name="İzmir", LogicalName="new_city"}
+            };
+        }
+
+        public static List<OptionSetValueWrapper> GetEducationLevels()
+        {
+            return new List<OptionSetValueWrapper>
+            {
+                new OptionSetValueWrapper{ AttributeValue=1, Value="İlköğretim"},
+                new OptionSetValueWrapper{ AttributeValue=2, Value="Lise"},
+                new OptionSetValueWrapper{ AttributeValue=3, Value="Lisans"},
+            };
+        }
+
+        public static List<OptionSetValueWrapper> GetGenderCodes()
+        {
+            return new List<OptionSetValueWrapper>
+            {
+                new OptionSetValueWrapper{ AttributeValue=1, Value="Kadın"},
+                new OptionSetValueWrapper{ AttributeValue=2, Value="Erkek"},
+            };
+        }
+
+
     }
 }

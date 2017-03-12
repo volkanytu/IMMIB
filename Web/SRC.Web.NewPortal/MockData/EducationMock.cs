@@ -29,6 +29,7 @@ namespace SRC.Web.NewPortal.MockData
                     ,RecordStartDate=DateTime.Now.AddDays(7)
                     ,RecordEndDate=DateTime.Now.AddDays(8)
                     ,Quota=15
+                     ,EducationAmount=1200
                 }
                 ,new Education
                 {
