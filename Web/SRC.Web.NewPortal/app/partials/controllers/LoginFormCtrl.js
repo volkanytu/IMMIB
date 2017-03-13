@@ -23,8 +23,8 @@ appMain.controller('LoginFormCtrl', ['$scope', '$sce', '$http', '$routeParams', 
         var userName = $scope.$$childHead.userName;
         var password = $scope.$$childHead.password;
 
-        if (userName == null || typeof (userName) == "undefined"
-            || password == null || typeof (password) == "undefined") {
+        if (userName == null || typeof (userName) == "undefined" || userName == ""
+            || password == null || typeof (password) == "undefined" || password == "") {
 
             $scope.errorText = "Kullanıcı adı ve şifre alanları dolu olmalıdır.";
             $scope.showWarning = true;

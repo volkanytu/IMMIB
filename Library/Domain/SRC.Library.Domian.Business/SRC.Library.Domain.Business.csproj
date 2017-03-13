@@ -46,9 +46,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseBusiness.cs" />
+    <Compile Include="AccountBusiness.cs" />
     <Compile Include="ContactBusiness.cs" />
     <Compile Include="EducationAttendanceBusiness.cs" />
     <Compile Include="EducationBusiness.cs" />
+    <Compile Include="Interfaces\IAccountBusiness.cs" />
     <Compile Include="Interfaces\IEducationAttendanceBusiness.cs" />
     <Compile Include="Interfaces\IEducationBusiness.cs" />
     <Compile Include="Interfaces\IContactBusiness.cs" />

@@ -15,6 +15,7 @@ using System.Threading;
 using System.Web.Http;
 using SRC.Library.Entities;
 using System.Configuration;
+using SRC.Library.Common;
 
 namespace SRC.Web.NewPortal.Controllers
 {
@@ -24,17 +25,20 @@ namespace SRC.Web.NewPortal.Controllers
         private IEducationFacade _educationFacade;
         private IBaseBusiness<Education> _baseEducationBusiness;
         private IBaseBusiness<EducationAttendance> _educationAttendanceBaseBusiness;
+        private IBaseBusiness<CreditCardLog> _creditCardLogBaseBusiness;
 
         private bool isMockActive = bool.Parse(ConfigurationManager.AppSettings["isMockActive"]);
 
         public EducationApiController(IEducationBusiness educationBusiness, IEducationFacade educationFacade
             , IBaseBusiness<Education> baseEducationBusiness
-            , IBaseBusiness<EducationAttendance> educationAttendanceBaseBusiness)
+            , IBaseBusiness<EducationAttendance> educationAttendanceBaseBusiness
+            , IBaseBusiness<CreditCardLog> creditCardLogBaseBusiness)
         {
             _educationBusiness = educationBusiness;
             _educationFacade = educationFacade;
             _baseEducationBusiness = baseEducationBusiness;
             _educationAttendanceBaseBusiness = educationAttendanceBaseBusiness;
+            _creditCardLogBaseBusiness = creditCardLogBaseBusiness;
         }
 
         public ResponseContainer<List<Education>> GetComingEducationList()
@@ -266,7 +270,16 @@ namespace SRC.Web.NewPortal.Controllers
             }
             else
             {
-                //TODO:PAYMENT
+                if (creditCardData.AttendanceId != null)
+                {
+                    creditCardData.EducationAttendance = creditCardData.AttendanceId.Value.ToEntityReferenceWrapper<EducationAttendance>();
+                }
+
+                _creditCardLogBaseBusiness.Insert(creditCardData);
+
+                returnValue.Result = true;
+                returnValue.Success = true;
+                returnValue.Message = "Ödeme başarılı bir şekilde alınmıştır.";
             }
 
             return returnValue;
@@ -317,7 +330,7 @@ namespace SRC.Web.NewPortal.Controllers
             {
                 var attendances = AttendanceMock.GetAttendances();
 
-                ContactAttendanceSummary summary = new ContactAttendanceSummary();  
+                ContactAttendanceSummary summary = new ContactAttendanceSummary();
                 summary.Contact = LoggedUser.Current.ToEntityReferenceWrapper();
 
                 if (attendances != null && attendances.Count > 0)

@@ -24,12 +24,16 @@ namespace SRC.Web.NewPortal.Controllers
     {
         private IContactBusiness _contactBusiness;
         private IContactFacade _contactFacade;
+        private IAccountBusiness _accountBusiness;
+
         private bool isMockActive = bool.Parse(ConfigurationManager.AppSettings["isMockActive"]);
 
-        public ContactApiController(IContactBusiness contactBusiness, IContactFacade contactFacade)
+        public ContactApiController(IContactBusiness contactBusiness, IContactFacade contactFacade
+            , IAccountBusiness accountBusiness)
         {
             _contactBusiness = contactBusiness;
             _contactFacade = contactFacade;
+            _accountBusiness = accountBusiness;
         }
 
         [HttpPost]
@@ -197,11 +201,22 @@ namespace SRC.Web.NewPortal.Controllers
                 returnValue.Success = true;
                 returnValue.Result = new EntityReferenceWrapper { Id = Guid.NewGuid(), Name = "VOLKAN A.Ş", LogicalName = "account" };
 
-                //returnValue.Message = "Fİrma arama sırasında hata ile karşılaşıldı.";
+                //returnValue.Message = "Firma arama sırasında hata ile karşılaşıldı.";
             }
             else
             {
+                var account = _accountBusiness.GetAccount(taxNumber);
 
+                if (account != null)
+                {
+                    returnValue.Result = account.ToEntityReferenceWrapper();
+                    returnValue.Success = true;
+                    returnValue.Message = "Vergi numarası ile eşleşen firma kaydı bulundu.";
+                }
+                else
+                {
+                    returnValue.Message = "İlgili vergi numarası ile eşleşen bir firma kaydı bulunamadı.";
+                }
             }
 
             return returnValue;
