@@ -57,6 +57,10 @@ namespace SRC.Library.Entities.CrmEntities
         [CrmFieldName(KEY_PAYMENT_TYPE)]
         public OptionSetValueWrapper EducationStartDate {get; set; }
 
+        [CrmFieldDataType(CrmDataType.ENTITYREFERENCE)]
+        [CrmFieldName(KEY_CREDIT_CARD_LOG_ID)]
+        public EntityReferenceWrapper CreditCardLog { get; set; }
+
         public const string KEY_LOGICAL_NAME = "new_educationattendance";
         public const string KEY_EDUCATION_ATTENDANCE_ID = "new_educationattendanceid";
         public const string KEY_NAME = "new_name";
@@ -70,6 +74,7 @@ namespace SRC.Library.Entities.CrmEntities
         public const string KEY_BANK_CONFIRMATION_CODE = "new_bankconfirmationcode";
         public const string KEY_PAYMENT_TYPE = "new_paymenttype";
         public const string KEY_EDUCATION_START_DATE = "new_educationstartdate";
+        public const string KEY_CREDIT_CARD_LOG_ID = "new_creditcardlogid";
 
         public enum StateCode
         {

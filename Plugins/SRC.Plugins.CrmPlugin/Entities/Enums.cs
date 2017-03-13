@@ -13,7 +13,8 @@ namespace SRC.Plugins.CrmPlugin.Entities
     public enum TaskType
     {
         EDUCATION,
-        EDUCATION_ATTENDANCE
+        EDUCATION_ATTENDANCE,
+        CREDIT_CARD_LOG
     }
 
     public enum PluginOperation

@@ -52,6 +52,16 @@ namespace SRC.Library.Entities
             }
         }
 
+        public static EntityReferenceWrapper ToEntityReferenceWrapper(this Guid id, string logicalName)
+        {
+            EntityReferenceWrapper returnValue = new EntityReferenceWrapper()
+            {
+                Id = id,
+                LogicalName = logicalName
+            };
+            return returnValue;
+        }
+
         public static string GetDescription(this Enum value)
         {
             var type = value.GetType();

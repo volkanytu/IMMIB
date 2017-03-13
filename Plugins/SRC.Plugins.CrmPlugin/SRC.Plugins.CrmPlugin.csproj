@@ -79,9 +79,10 @@
   <ItemGroup>
     <Compile Include="BasePlugin.cs" />
     <Compile Include="BasePluginTask.cs" />
+    <Compile Include="CreditCardLogPlugin\CreditCardLogPostCreate.cs" />
     <Compile Include="EducationAttendancePlugin\EducationAttendancePostCreate.cs" />
     <Compile Include="EducationAttendancePlugin\EducationAttendancePreCreate.cs" />
-    <Compile Include="EducationAttendancePlugin\EducationAttendancePostUpdate.cs" />
+    <Compile Include="Entities\EducationAttendancePostUpdate.cs" />
     <Compile Include="EducationPlugin\EducationPostState.cs" />
     <Compile Include="EducationPlugin\EducationPreCreate.cs" />
     <Compile Include="Entities\EntityContainer.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Entities\Enums.cs" />
     <Compile Include="Interfaces\IBasePluginTask.cs" />
     <Compile Include="IocContainerBuilder.cs" />
+    <Compile Include="PluginTasks\CreditCardLogTask.cs" />
     <Compile Include="PluginTasks\EducationAttendanceTask.cs" />
     <Compile Include="PluginTasks\EducationTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

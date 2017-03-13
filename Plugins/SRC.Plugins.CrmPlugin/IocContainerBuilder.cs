@@ -40,6 +40,10 @@ namespace SRC.Plugins.CrmPlugin
                .Keyed<IBasePluginTask>(TaskType.EDUCATION_ATTENDANCE)
                .InstancePerDependency();
 
+            builder.Register<IBasePluginTask>(c => new CreditCardLogTask(c.Resolve<IBaseBusiness<CreditCardLog>>(), c.Resolve<IBaseBusiness<EducationAttendance>>()))
+               .Keyed<IBasePluginTask>(TaskType.CREDIT_CARD_LOG)
+               .InstancePerDependency();
+
             return builder.Build();
         }
     }

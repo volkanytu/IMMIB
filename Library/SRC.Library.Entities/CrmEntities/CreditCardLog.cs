@@ -41,9 +41,9 @@ namespace SRC.Library.Entities.CrmEntities
         [CrmFieldName(KEY_INSTALLMENT_TYPE)]
         public OptionSetValueWrapper InstallmentType { get; set; }
 
-        [CrmFieldDataType(CrmDataType.INT)]
+        [CrmFieldDataType(CrmDataType.STRING)]
         [CrmFieldName(KEY_RESULT_CODE)]
-        public int? ResultCode { get; set; }
+        public string ResultCode { get; set; }
 
         [CrmFieldDataType(CrmDataType.STRING)]
         [CrmFieldName(KEY_RESULT)]
