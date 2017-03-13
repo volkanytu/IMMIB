@@ -181,7 +181,7 @@ namespace SRC.Web.NewPortal.Controllers
 
                 if (LoggedUser.IsLoggedIn)
                 {
-                    contactAttendanceList = AttendanceMock.GetAttendances();
+                    contactAttendanceList = _educationFacade.GetContactAttendances(LoggedUser.Current.Id);
 
                     _educationFacade.SetEducationAttendance(returnValue.Result, contactAttendanceList);
                 }
@@ -316,13 +316,18 @@ namespace SRC.Web.NewPortal.Controllers
             }
             else
             {
-                var attendances = _educationFacade.GetContactAttendances(LoggedUser.Current.Id);
+                var attendances = _educationFacade.GetContactAttendances(LoggedUser.Current.Id)
+                    .Where(a => a.Status.ToEnum<EducationAttendance.StatusCode>() == (EducationAttendance.StatusCode)status).ToList();
 
-                var educationList = _educationFacade.GetEducationsOfAttendances(attendances);
+                if (attendances.Count > 0)
+                {
+                    var educationList = _educationFacade.GetEducationsOfAttendances(attendances);
 
-                _educationFacade.SetEducationAttendance(educationList, attendances);
+                    _educationFacade.SetEducationAttendance(educationList, attendances);
 
-                returnValue.Result = educationList;
+                    returnValue.Result = educationList;
+                }
+
                 returnValue.Success = true;
                 returnValue.Message = "Üye eğitim ve eğitim katılımları çekildi.";
             }

@@ -140,7 +140,7 @@ appMain.controller('MyEducationsCtrl', ['$scope', '$sce', '$http', '$routeParams
                 }
             }
             else {
-                alertModal(data.Message, "error");
+                //alertModal(data.Message, "error");
             }
         })
         .error(function (err) {

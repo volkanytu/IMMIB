@@ -46,6 +46,11 @@ namespace SRC.Library.Data.SqlDao
 
         public List<Education> GetEducationsOfAttendances(List<EducationAttendance> educationAttendanceList)
         {
+            if(educationAttendanceList==null || educationAttendanceList.Count==0)
+            {
+                return null;
+            }
+
             string inClause = "'" + string.Join("','", educationAttendanceList.Select(x => x.Id.ToString())) + "'";
 
             DataTable dt = _sqlAccess.GetDataTable(string.Format(EducationQueries.GET_EDUCATION_LIST_OF_ATTENDANCES, inClause));

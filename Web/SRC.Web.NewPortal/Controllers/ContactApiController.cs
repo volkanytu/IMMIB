@@ -92,9 +92,12 @@ namespace SRC.Web.NewPortal.Controllers
         {
             ResponseContainer<Contact> returnValue = new ResponseContainer<Contact>();
 
-            returnValue.Result = LoggedUser.Current;
+            returnValue.Result = _contactFacade.GetContact(LoggedUser.Current.Id);
             returnValue.Success = true;
             returnValue.Message = "Üye bilgisi çekildi.";
+
+            LoggedUser.Current = returnValue.Result;
+
             return returnValue;
         }
 
