@@ -13,6 +13,8 @@ using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Web.Http;
+using SRC.Library.Entities;
+using System.Configuration;
 
 namespace SRC.Web.NewPortal.Controllers
 {
@@ -20,20 +22,38 @@ namespace SRC.Web.NewPortal.Controllers
     {
         private IEducationBusiness _educationBusiness;
         private IEducationFacade _educationFacade;
+        private IBaseBusiness<Education> _baseEducationBusiness;
+        private IBaseBusiness<EducationAttendance> _educationAttendanceBaseBusiness;
 
-        public EducationApiController(IEducationBusiness educationBusiness, IEducationFacade educationFacade)
+        private bool isMockActive = bool.Parse(ConfigurationManager.AppSettings["isMockActive"]);
+
+        public EducationApiController(IEducationBusiness educationBusiness, IEducationFacade educationFacade
+            , IBaseBusiness<Education> baseEducationBusiness
+            , IBaseBusiness<EducationAttendance> educationAttendanceBaseBusiness)
         {
             _educationBusiness = educationBusiness;
             _educationFacade = educationFacade;
+            _baseEducationBusiness = baseEducationBusiness;
+            _educationAttendanceBaseBusiness = educationAttendanceBaseBusiness;
         }
 
         public ResponseContainer<List<Education>> GetComingEducationList()
         {
             ResponseContainer<List<Education>> returnValue = new ResponseContainer<List<Education>>();
 
-            //returnValue.Result = _educationBusiness.GetLastEducations().Where(p => p.IsExpired == false).ToList();
-            returnValue.Result = EducationMock.GetComingEducations();
-            returnValue.Success = true;
+            if (isMockActive)
+            {
+                //returnValue.Result = _educationBusiness.GetLastEducations().Where(p => p.IsExpired == false).ToList();
+                returnValue.Result = EducationMock.GetComingEducations();
+                returnValue.Success = true;
+            }
+            else
+            {
+                returnValue.Result = _educationBusiness.GetLastEducations().Where(p => p.IsExpired == false).ToList();
+                returnValue.Success = true;
+                returnValue.Message = "Yaklaşan eğitimler çekildi.";
+
+            }
 
             return returnValue;
         }
@@ -42,10 +62,20 @@ namespace SRC.Web.NewPortal.Controllers
         {
             ResponseContainer<List<Education>> returnValue = new ResponseContainer<List<Education>>();
 
-            //returnValue.Result = _educationBusiness.GetLastEducations().Where(p => p.IsExpired
-            //                        && p.StartDate != null && p.City != null).Take(5).ToList();
-            returnValue.Result = EducationMock.GetDoneEducations();
-            returnValue.Success = true;
+            if (isMockActive)
+            {
+                //returnValue.Result = _educationBusiness.GetLastEducations().Where(p => p.IsExpired
+                //                        && p.StartDate != null && p.City != null).Take(5).ToList();
+                returnValue.Result = EducationMock.GetDoneEducations();
+                returnValue.Success = true;
+            }
+            else
+            {
+                returnValue.Result = _educationBusiness.GetLastEducations().Where(p => p.IsExpired
+                                                                                    && p.StartDate != null && p.City != null).Take(5).ToList();
+                returnValue.Success = true;
+                returnValue.Message = "Tamamlanan eğitimler çekildi.";
+            }
 
             return returnValue;
         }
@@ -54,8 +84,27 @@ namespace SRC.Web.NewPortal.Controllers
         {
             ResponseContainer<List<Education>> returnValue = new ResponseContainer<List<Education>>();
 
-            returnValue.Result = EducationMock.GetComingEducations();
-            returnValue.Success = true;
+            if (isMockActive)
+            {
+                returnValue.Result = EducationMock.GetComingEducations();
+                returnValue.Success = true;
+            }
+            else
+            {
+                returnValue.Result = _educationFacade.GetEducations(DateTime.Now.Month, DateTime.Now.Year);
+
+                List<EducationAttendance> contactAttendanceList = null;
+
+                if (LoggedUser.IsLoggedIn)
+                {
+                    contactAttendanceList = _educationFacade.GetContactAttendances(LoggedUser.Current.Id);
+
+                    _educationFacade.SetEducationAttendance(returnValue.Result, contactAttendanceList);
+                }
+
+                returnValue.Success = true;
+                returnValue.Message = "Eğitim listesi çekildi.";
+            }
 
             return returnValue;
         }
@@ -67,17 +116,36 @@ namespace SRC.Web.NewPortal.Controllers
             int monthNow = int.Parse(month);
             int yearNow = int.Parse(year);
 
-            //returnValue.Result = _educationFacade.GetEducations(monthNow, yearNow);
-            returnValue.Result = EducationMock.GetComingEducations().Where(e => e.StartDate.Value.Month == monthNow
-                && e.StartDate.Value.Year == yearNow).ToList();
-
-            List<EducationAttendance> contactAttendanceList = null;
-
-            if (LoggedUser.IsLoggedIn)
+            if (isMockActive)
             {
-                contactAttendanceList = AttendanceMock.GetAttendances();
+                //returnValue.Result = _educationFacade.GetEducations(monthNow, yearNow);
+                returnValue.Result = EducationMock.GetComingEducations().Where(e => e.StartDate.Value.Month == monthNow
+                    && e.StartDate.Value.Year == yearNow).ToList();
 
-                _educationFacade.SetEducationAttendance(returnValue.Result, contactAttendanceList);
+                List<EducationAttendance> contactAttendanceList = null;
+
+                if (LoggedUser.IsLoggedIn)
+                {
+                    contactAttendanceList = AttendanceMock.GetAttendances();
+
+                    _educationFacade.SetEducationAttendance(returnValue.Result, contactAttendanceList);
+                }
+            }
+            else
+            {
+                returnValue.Result = _educationFacade.GetEducations(monthNow, yearNow);
+
+                List<EducationAttendance> contactAttendanceList = null;
+
+                if (LoggedUser.IsLoggedIn)
+                {
+                    contactAttendanceList = _educationFacade.GetContactAttendances(LoggedUser.Current.Id);
+
+                    _educationFacade.SetEducationAttendance(returnValue.Result, contactAttendanceList);
+                }
+
+                returnValue.Success = true;
+                returnValue.Message = "Eğitim listesi çekildi.";
             }
 
             returnValue.Success = true;
@@ -89,18 +157,38 @@ namespace SRC.Web.NewPortal.Controllers
         {
             ResponseContainer<Education> returnValue = new ResponseContainer<Education>();
 
-            returnValue.Result = EducationMock.GetEducations().Where(e => e.Id == Guid.Parse(id)).FirstOrDefault();
-
-            List<EducationAttendance> contactAttendanceList = null;
-
-            if (LoggedUser.IsLoggedIn)
+            if (isMockActive)
             {
-                contactAttendanceList = AttendanceMock.GetAttendances();
+                returnValue.Result = EducationMock.GetEducations().Where(e => e.Id == Guid.Parse(id)).FirstOrDefault();
 
-                _educationFacade.SetEducationAttendance(returnValue.Result, contactAttendanceList);
+                List<EducationAttendance> contactAttendanceList = null;
+
+                if (LoggedUser.IsLoggedIn)
+                {
+                    contactAttendanceList = AttendanceMock.GetAttendances();
+
+                    _educationFacade.SetEducationAttendance(returnValue.Result, contactAttendanceList);
+                }
+
+                returnValue.Success = true;
+            }
+            else
+            {
+                returnValue.Result = _baseEducationBusiness.Get(Guid.Parse(id));
+
+                List<EducationAttendance> contactAttendanceList = null;
+
+                if (LoggedUser.IsLoggedIn)
+                {
+                    contactAttendanceList = AttendanceMock.GetAttendances();
+
+                    _educationFacade.SetEducationAttendance(returnValue.Result, contactAttendanceList);
+                }
+
+                returnValue.Success = true;
+                returnValue.Message = "Eğitim detayı çekildi.";
             }
 
-            returnValue.Success = true;
 
             return returnValue;
         }
@@ -111,11 +199,28 @@ namespace SRC.Web.NewPortal.Controllers
         {
             ResponseContainer<EducationAttendance> returnValue = new ResponseContainer<EducationAttendance>();
 
-            Thread.Sleep(2000);
+            if (isMockActive)
+            {
+                Thread.Sleep(1000);
 
-            returnValue.Result = AttendanceMock.GetAttendances().FirstOrDefault();
-            returnValue.Message = "İşlem sırasında bir hata ile karşılaşıldı.";
-            returnValue.Success = true;
+                returnValue.Result = AttendanceMock.GetAttendances().FirstOrDefault();
+                returnValue.Message = "İşlem sırasında bir hata ile karşılaşıldı.";
+                returnValue.Success = true;
+            }
+            else
+            {
+                var attendance = new EducationAttendance
+                {
+                    Contact = LoggedUser.Current.ToEntityReferenceWrapper(),
+                    Education = Guid.Parse(id).ToEntityReferenceWrapper<Education>()
+                };
+
+                var attendanceId = _educationAttendanceBaseBusiness.Insert(attendance);
+
+                returnValue.Result = _educationAttendanceBaseBusiness.Get(attendanceId);
+                returnValue.Success = true;
+                returnValue.Message = "Eğitim katılımı talebiniz başarıyla alınmıştır.";
+            }
 
             return returnValue;
         }
@@ -126,11 +231,21 @@ namespace SRC.Web.NewPortal.Controllers
         {
             ResponseContainer<bool> returnValue = new ResponseContainer<bool>();
 
-            Thread.Sleep(1000);
+            if (isMockActive)
+            {
+                Thread.Sleep(1000);
 
-            returnValue.Result = true;
-            returnValue.Message = "İşlem sırasında bir hata ile karşılaşıldı.";
-            returnValue.Success = true;
+                returnValue.Result = true;
+                returnValue.Message = "İşlem sırasında bir hata ile karşılaşıldı.";
+                returnValue.Success = true;
+            }
+            else
+            {
+                _educationFacade.CancelEducationAttendance(new Guid(id));
+                returnValue.Success = true;
+                returnValue.Result = true;
+                returnValue.Message = "Eğitim katılımı iptali başarıyla tamamlanmıştır.";
+            }
 
             return returnValue;
         }
@@ -141,34 +256,101 @@ namespace SRC.Web.NewPortal.Controllers
         {
             ResponseContainer<bool> returnValue = new ResponseContainer<bool>();
 
-            Thread.Sleep(1000);
+            if (isMockActive)
+            {
+                Thread.Sleep(1000);
 
-            returnValue.Result = true;
-            returnValue.Success = true;
-            returnValue.Message = "Ödeme başarılı bir şekilde alınmıştır.";
+                returnValue.Result = true;
+                returnValue.Success = true;
+                returnValue.Message = "Ödeme başarılı bir şekilde alınmıştır.";
+            }
+            else
+            {
+                //TODO:PAYMENT
+            }
 
             return returnValue;
         }
 
         [AuthenticationFilter]
-        public ResponseContainer<List<Education>> GetEducationByStatus(int status)
+        public ResponseContainer<List<Education>> GetContactEducationByStatus(int status)
         {
             ResponseContainer<List<Education>> returnValue = new ResponseContainer<List<Education>>();
 
-            //returnValue.Result = _educationBusiness.GetLastEducations().Where(p => p.IsExpired
-            //                        && p.StartDate != null && p.City != null).Take(5).ToList();
-            returnValue.Result = EducationMock.GetComingEducations();
-
-            List<EducationAttendance> contactAttendanceList = null;
-
-            if (LoggedUser.IsLoggedIn)
+            if (isMockActive)
             {
-                contactAttendanceList = AttendanceMock.GetAttendances();
+                returnValue.Result = EducationMock.GetComingEducations();
 
-                _educationFacade.SetEducationAttendance(returnValue.Result, contactAttendanceList);
+                List<EducationAttendance> contactAttendanceList = null;
+
+                if (LoggedUser.IsLoggedIn)
+                {
+                    contactAttendanceList = AttendanceMock.GetAttendances();
+
+                    _educationFacade.SetEducationAttendance(returnValue.Result, contactAttendanceList);
+                }
+
+                returnValue.Success = true;
+            }
+            else
+            {
+                var attendances = _educationFacade.GetContactAttendances(LoggedUser.Current.Id);
+
+                var educationList = _educationFacade.GetEducationsOfAttendances(attendances);
+
+                _educationFacade.SetEducationAttendance(educationList, attendances);
+
+                returnValue.Result = educationList;
+                returnValue.Success = true;
+                returnValue.Message = "Üye eğitim ve eğitim katılımları çekildi.";
             }
 
-            returnValue.Success = true;
+            return returnValue;
+        }
+
+        [AuthenticationFilter]
+        public ResponseContainer<ContactAttendanceSummary> GetContactAttendanceSummary()
+        {
+            ResponseContainer<ContactAttendanceSummary> returnValue = new ResponseContainer<ContactAttendanceSummary>();
+
+            if (isMockActive)
+            {
+                var attendances = AttendanceMock.GetAttendances();
+
+                ContactAttendanceSummary summary = new ContactAttendanceSummary();  
+                summary.Contact = LoggedUser.Current.ToEntityReferenceWrapper();
+
+                if (attendances != null && attendances.Count > 0)
+                {
+                    summary.ConfirmedCount = attendances.Where(a => a.Status.ToEnum<EducationAttendance.StatusCode>() == EducationAttendance.StatusCode.REGISTRATION_CONFIRMED).ToList().Count;
+                    summary.JoinedCount = attendances.Where(a => a.Status.ToEnum<EducationAttendance.StatusCode>() == EducationAttendance.StatusCode.JOINED).ToList().Count;
+                    summary.WaitingPaymentCount = attendances.Where(a => a.Status.ToEnum<EducationAttendance.StatusCode>() == EducationAttendance.StatusCode.WAITING_PAYMENT).ToList().Count;
+                }
+
+                returnValue.Result = summary;
+                returnValue.Success = true;
+
+                returnValue.Message = "Üye eğitim katılım özeti çekildi.";
+            }
+            else
+            {
+                var attendances = _educationFacade.GetContactAttendances(LoggedUser.Current.Id);
+
+                ContactAttendanceSummary summary = new ContactAttendanceSummary();
+                summary.Contact = LoggedUser.Current.ToEntityReferenceWrapper();
+
+                if (attendances != null && attendances.Count > 0)
+                {
+                    summary.ConfirmedCount = attendances.Where(a => a.Status.ToEnum<EducationAttendance.StatusCode>() == EducationAttendance.StatusCode.REGISTRATION_CONFIRMED).ToList().Count;
+                    summary.JoinedCount = attendances.Where(a => a.Status.ToEnum<EducationAttendance.StatusCode>() == EducationAttendance.StatusCode.JOINED).ToList().Count;
+                    summary.WaitingPaymentCount = attendances.Where(a => a.Status.ToEnum<EducationAttendance.StatusCode>() == EducationAttendance.StatusCode.WAITING_PAYMENT).ToList().Count;
+                }
+
+                returnValue.Result = summary;
+                returnValue.Success = true;
+
+                returnValue.Message = "Üye eğitim katılım özeti çekildi.";
+            }
 
             return returnValue;
         }

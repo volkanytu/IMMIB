@@ -188,6 +188,25 @@ namespace SRC.Library.Entities.CrmEntities
         public const string KEY_CUSTOMER_TYPE_CODE = "customertypecode";
         public const string KEY_PARENT_CUSTOMER_ID = "parentcustomerid";
 
+        public static List<OptionSetValueWrapper> GetEducationLevels()
+        {
+            return new List<OptionSetValueWrapper>
+            {
+                new OptionSetValueWrapper{ AttributeValue=1, Value="İlköğretim"},
+                new OptionSetValueWrapper{ AttributeValue=2, Value="Lise"},
+                new OptionSetValueWrapper{ AttributeValue=3, Value="Lisans"},
+            };
+        }
+
+        public static List<OptionSetValueWrapper> GetGenderCodes()
+        {
+            return new List<OptionSetValueWrapper>
+            {
+                new OptionSetValueWrapper{ AttributeValue=1, Value="Kadın"},
+                new OptionSetValueWrapper{ AttributeValue=2, Value="Erkek"},
+            };
+        }
+
         public enum StateCode
         {
             ACTIVE = 0,

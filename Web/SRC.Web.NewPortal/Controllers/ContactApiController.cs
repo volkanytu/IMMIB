@@ -13,7 +13,10 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
+using System.Web;
 using System.Web.Http;
+using SRC.Library.Common;
+using System.Configuration;
 
 namespace SRC.Web.NewPortal.Controllers
 {
@@ -21,6 +24,7 @@ namespace SRC.Web.NewPortal.Controllers
     {
         private IContactBusiness _contactBusiness;
         private IContactFacade _contactFacade;
+        private bool isMockActive = bool.Parse(ConfigurationManager.AppSettings["isMockActive"]);
 
         public ContactApiController(IContactBusiness contactBusiness, IContactFacade contactFacade)
         {
@@ -33,14 +37,27 @@ namespace SRC.Web.NewPortal.Controllers
         {
             ResponseContainer<Contact> returnValue = new ResponseContainer<Contact>();
 
-            Thread.Sleep(1000);
+            Contact loggedUser = null;
 
-            //Contact loggedUser = _contactFacade.CheckLogin(userName, password, "192.168.2.1");
-            Contact loggedUser = ContactMock.GetContact();
-            returnValue.Result = loggedUser;
-            returnValue.Success = true;
-            returnValue.Message = "Hatalı kullanıcı veya şifre.";
-            LoggedUser.Current = loggedUser;
+            if (isMockActive)
+            {
+                Thread.Sleep(1000);
+
+                loggedUser = ContactMock.GetContact();
+                returnValue.Result = loggedUser;
+                returnValue.Success = true;
+                //returnValue.Message = "Hatalı kullanıcı veya şifre.";
+                LoggedUser.Current = loggedUser;
+            }
+            else
+            {
+                loggedUser = _contactFacade.CheckLogin(userName, password, HttpContext.Current.Request.UserHostAddress);
+                LoggedUser.Current = loggedUser;
+
+                returnValue.Result = loggedUser;
+                returnValue.Success = true;
+                returnValue.Message = "Üye girişi başarılı.";
+            }
 
             return returnValue;
         }
@@ -50,12 +67,10 @@ namespace SRC.Web.NewPortal.Controllers
         {
             ResponseContainer<bool> returnValue = new ResponseContainer<bool>();
 
-            Thread.Sleep(1000);
-
             LoggedUser.Current = null;
-
             returnValue.Success = true;
             returnValue.Result = true;
+            returnValue.Message = "Üye çıkışı başarılı";
 
             return returnValue;
         }
@@ -65,12 +80,9 @@ namespace SRC.Web.NewPortal.Controllers
         {
             ResponseContainer<Contact> returnValue = new ResponseContainer<Contact>();
 
-            Thread.Sleep(1000);
-
             returnValue.Result = LoggedUser.Current;
             returnValue.Success = true;
-
-
+            returnValue.Message = "Üye bilgisi çekildi.";
             return returnValue;
         }
 
@@ -79,13 +91,24 @@ namespace SRC.Web.NewPortal.Controllers
         {
             ResponseContainer<bool> returnValue = new ResponseContainer<bool>();
 
-            Thread.Sleep(1000);
+            if (isMockActive)
+            {
+                Thread.Sleep(1000);
 
-            returnValue.Success = true;
-            returnValue.Result = true;
+                returnValue.Success = true;
+                returnValue.Result = true;
 
-            returnValue.Message = "Üyelik başvurusu başarı ile kaydedilmiştir.";
-            //returnValue.Message = "Kayıt sırasında bir hata ile karşılaşıldı.";
+                returnValue.Message = "Üyelik başvurusu başarı ile kaydedilmiştir.";
+                //returnValue.Message = "Kayıt sırasında bir hata ile karşılaşıldı.";
+            }
+            else
+            {
+                var newContactId = _contactFacade.CreateContact(contact);
+
+                returnValue.Success = true;
+                returnValue.Result = true;
+                returnValue.Message = "Üyelik başvurusu tamamlanmıştır.";
+            }
 
             return returnValue;
         }
@@ -96,13 +119,25 @@ namespace SRC.Web.NewPortal.Controllers
         {
             ResponseContainer<bool> returnValue = new ResponseContainer<bool>();
 
-            Thread.Sleep(1000);
+            if (isMockActive)
+            {
+                Thread.Sleep(1000);
 
-            returnValue.Success = true;
-            returnValue.Result = true;
+                returnValue.Success = true;
+                returnValue.Result = true;
 
-            returnValue.Message = "Üyelik bilgileri başarı ile güncellenmiştir.";
-            //returnValue.Message = "Güncelleme sırasında bir hata ile karşılaşıldı.";
+                returnValue.Message = "Üyelik bilgileri başarı ile güncellenmiştir.";
+                //returnValue.Message = "Güncelleme sırasında bir hata ile karşılaşıldı.";
+            }
+            else
+            {
+                contact.Id = LoggedUser.Current.Id;
+                _contactFacade.UpdateContact(contact);
+
+                returnValue.Success = true;
+                returnValue.Result = true;
+                returnValue.Message = "Üyelik bilgileri güncellendi.";
+            }
 
             return returnValue;
         }
@@ -113,13 +148,40 @@ namespace SRC.Web.NewPortal.Controllers
         {
             ResponseContainer<bool> returnValue = new ResponseContainer<bool>();
 
-            Thread.Sleep(1000);
+            if (isMockActive)
+            {
+                Thread.Sleep(1000);
 
-            returnValue.Success = true;
-            returnValue.Result = true;
+                returnValue.Success = true;
+                returnValue.Result = true;
 
-            returnValue.Message = "Şifreniz başarı ile güncellenmiştir.";
-            //returnValue.Message = "Şifre güncelleme sırasında bir hata ile karşılaşıldı.";
+                returnValue.Message = "Şifreniz başarı ile güncellenmiştir.";
+                //returnValue.Message = "Şifre güncelleme sırasında bir hata ile karşılaşıldı.";
+            }
+            else
+            {
+                if (!string.IsNullOrWhiteSpace(oldPassword) && !string.IsNullOrWhiteSpace(newPassword) && !string.IsNullOrWhiteSpace(reNewPassword))
+                {
+                    string hashedOldPassword = oldPassword.ToSHA1();
+
+                    if (newPassword != reNewPassword)
+                    {
+                        returnValue.Message = "Girilen şifreler uyuşmamaktadır.";
+                    }
+                    else if (LoggedUser.Current.Password != hashedOldPassword)
+                    {
+                        returnValue.Message = "Hatalı eksi şifre bilgisi.";
+                    }
+                    else
+                    {
+                        _contactFacade.UpdatePassWord(LoggedUser.Current.Id, newPassword.ToSHA1());
+
+                        returnValue.Success = true;
+                        returnValue.Result = true;
+                        returnValue.Message = "Şifre değişikliği gerçekleşmiştir.";
+                    }
+                }
+            }
 
             return returnValue;
         }
@@ -128,15 +190,21 @@ namespace SRC.Web.NewPortal.Controllers
         {
             ResponseContainer<EntityReferenceWrapper> returnValue = new ResponseContainer<EntityReferenceWrapper>();
 
-            Thread.Sleep(1000);
+            if (isMockActive)
+            {
+                Thread.Sleep(1000);
 
-            returnValue.Success = true;
-            returnValue.Result = new EntityReferenceWrapper { Id = Guid.NewGuid(), Name = "VOLKAN A.Ş", LogicalName = "account" };
+                returnValue.Success = true;
+                returnValue.Result = new EntityReferenceWrapper { Id = Guid.NewGuid(), Name = "VOLKAN A.Ş", LogicalName = "account" };
 
-            //returnValue.Message = "Fİrma arama sırasında hata ile karşılaşıldı.";
+                //returnValue.Message = "Fİrma arama sırasında hata ile karşılaşıldı.";
+            }
+            else
+            {
+
+            }
 
             return returnValue;
-
         }
     }
 }

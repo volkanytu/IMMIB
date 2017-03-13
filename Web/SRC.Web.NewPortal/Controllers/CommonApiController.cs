@@ -6,6 +6,7 @@ using SRC.Web.NewPortal.filters;
 using SRC.Web.NewPortal.MockData;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -17,6 +18,7 @@ namespace SRC.Web.NewPortal.Controllers
     public class CommonApiController : ApiController
     {
         private IBaseBusiness<City> _cityBusiness;
+        private bool isMockActive = bool.Parse(ConfigurationManager.AppSettings["isMockActive"]);
 
         public CommonApiController(IBaseBusiness<City> cityBusiness)
         {
@@ -27,12 +29,20 @@ namespace SRC.Web.NewPortal.Controllers
         {
             ResponseContainer<List<EntityReferenceWrapper>> returnValue = new ResponseContainer<List<EntityReferenceWrapper>>();
 
-            Thread.Sleep(1000);
+            if (isMockActive)
+            {
+                Thread.Sleep(1000);
 
-            //returnValue.Result = _cityBusiness.GetList();
-            returnValue.Result = ContactMock.GetCities();
-            returnValue.Success = true;
-
+                returnValue.Result = ContactMock.GetCities();
+                returnValue.Success = true;
+            }
+            else
+            {
+                var cityList = _cityBusiness.GetList().Select(c => c.ToEntityReferenceWrapper()).ToList();
+                returnValue.Result = cityList;
+                returnValue.Success = true;
+                returnValue.Message = "İl listesi çekildi.";
+            }
 
             return returnValue;
         }
@@ -41,11 +51,19 @@ namespace SRC.Web.NewPortal.Controllers
         {
             ResponseContainer<List<OptionSetValueWrapper>> returnValue = new ResponseContainer<List<OptionSetValueWrapper>>();
 
-            Thread.Sleep(1000);
+            if (isMockActive)
+            {
+                Thread.Sleep(1000);
 
-            returnValue.Result = ContactMock.GetEducationLevels();
-            returnValue.Success = true;
-
+                returnValue.Result = ContactMock.GetEducationLevels();
+                returnValue.Success = true;
+            }
+            else
+            {
+                returnValue.Result = Contact.GetEducationLevels();
+                returnValue.Success = true;
+                returnValue.Message = "Eğitim seviyeleri çekildi.";
+            }
 
             return returnValue;
         }
@@ -54,11 +72,19 @@ namespace SRC.Web.NewPortal.Controllers
         {
             ResponseContainer<List<OptionSetValueWrapper>> returnValue = new ResponseContainer<List<OptionSetValueWrapper>>();
 
-            Thread.Sleep(1000);
+            if (isMockActive)
+            {
+                Thread.Sleep(1000);
 
-            returnValue.Result = ContactMock.GetGenderCodes();
-            returnValue.Success = true;
-
+                returnValue.Result = ContactMock.GetGenderCodes();
+                returnValue.Success = true;
+            }
+            else
+            {
+                returnValue.Result = Contact.GetGenderCodes();
+                returnValue.Success = true;
+                returnValue.Message = "Cinsiyet listesi çekildi.";
+            }
 
             return returnValue;
         }
@@ -67,11 +93,19 @@ namespace SRC.Web.NewPortal.Controllers
         {
             ResponseContainer<List<OptionSetValueWrapper>> returnValue = new ResponseContainer<List<OptionSetValueWrapper>>();
 
-            Thread.Sleep(1000);
+            if (isMockActive)
+            {
+                Thread.Sleep(1000);
 
-            returnValue.Result = AttendanceMock.GetInstallmentTypes();
-            returnValue.Success = true;
-
+                returnValue.Result = AttendanceMock.GetInstallmentTypes();
+                returnValue.Success = true;
+            }
+            else
+            {
+                returnValue.Result = CreditCardLog.GetInstallmentTypes();
+                returnValue.Success = true;
+                returnValue.Message = "Taksit sayıları çekildi.";
+            }
 
             return returnValue;
         }

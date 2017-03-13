@@ -2,7 +2,7 @@
 
 appMain.controller('MyEducationsCtrl', ['$scope', '$sce', '$http', '$routeParams', 'safeApply', 'alertModal', 'commonFunc', function ($scope, $sce, $http, $routeParams, safeApply, alertModal, commonFunc) {
 
-    $scope.educationListByStatusDataUrl = $scope.baseUrl + 'api/educationapi/GetEducationByStatus';
+    $scope.educationListByStatusDataUrl = $scope.baseUrl + 'api/educationapi/GetContactEducationByStatus';
     $scope.educationListDataUrl = $scope.baseUrl + 'api/educationapi/GetList';
     $scope.getProfileDataUrl = $scope.baseUrl + 'api/contactapi/GetContact';
 

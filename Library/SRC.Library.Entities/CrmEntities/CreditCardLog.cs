@@ -53,6 +53,10 @@ namespace SRC.Library.Entities.CrmEntities
         [CrmFieldName(KEY_RESULT)]
         public string Result { get; set; }
 
+        [CrmFieldDataType(CrmDataType.ENTITYREFERENCE)]
+        [CrmFieldName(KEY_EDUCATION_ATTENDANCE_ID)]
+        public EntityReferenceWrapper EducationAttendance { get; set; }
+
         public Guid? AttendanceId { get; set; }
 
         public const string KEY_LOGICAL_NAME = "new_creditcardlog";
@@ -67,6 +71,25 @@ namespace SRC.Library.Entities.CrmEntities
         public const string KEY_RESULT_CODE = "new_resultcode";
         public const string KEY_RESULT = "new_resultmessage";
         public const string KEY_FULL_NAME = "new_fullname";
+        public const string KEY_EDUCATION_ATTENDANCE_ID = "new_educationattendanceid";
+
+        public static List<OptionSetValueWrapper> GetInstallmentTypes()
+        {
+            return new List<OptionSetValueWrapper>
+            {
+                new OptionSetValueWrapper{ AttributeValue=1, Value="1"},
+                new OptionSetValueWrapper{ AttributeValue=2, Value="2"},
+                new OptionSetValueWrapper{ AttributeValue=3, Value="3"},
+                new OptionSetValueWrapper{ AttributeValue=4, Value="4"},
+                new OptionSetValueWrapper{ AttributeValue=5, Value="5"},
+                new OptionSetValueWrapper{ AttributeValue=6, Value="6"},
+                new OptionSetValueWrapper{ AttributeValue=7, Value="7"},
+                new OptionSetValueWrapper{ AttributeValue=8, Value="8"},
+                new OptionSetValueWrapper{ AttributeValue=9, Value="9"},
+
+
+            };
+        }
 
         public enum StateCode
         {

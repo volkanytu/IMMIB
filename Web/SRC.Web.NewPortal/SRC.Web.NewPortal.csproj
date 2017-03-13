@@ -169,6 +169,7 @@
     <Content Include="app\common\app.js" />
     <Content Include="app\education\controllers\EducationDetailCtrl.js" />
     <Content Include="app\education\controllers\EducationListCtrl.js" />
+    <Content Include="app\education\factories\EducationFactory.js" />
     <Content Include="app\education\views\education-detail.html" />
     <Content Include="app\education\views\education-list.html" />
     <Content Include="app\home\controllers\HomeCtrl.js" />

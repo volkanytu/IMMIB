@@ -1,6 +1,6 @@
 ﻿var appMain = angular.module('main');
 
-appMain.controller('EducationListCtrl', ['$scope', '$sce', '$http', '$routeParams', 'safeApply', 'alertModal', 'commonFunc', function ($scope, $sce, $http, $routeParams, safeApply, alertModal, commonFunc) {
+appMain.controller('EducationListCtrl', ['$scope', '$sce', '$http', '$routeParams', 'safeApply', 'alertModal', 'commonFunc', 'educationFactory', function ($scope, $sce, $http, $routeParams, safeApply, alertModal, commonFunc, educationFactory) {
 
     commonFunc();
 
