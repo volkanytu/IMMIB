@@ -189,9 +189,11 @@
     <Content Include="app\partials\views\profile-menu.html" />
     <Content Include="app\profile\controllers\EditProfileCtrl.js" />
     <Content Include="app\profile\controllers\HomeProfileCtrl.js" />
+    <Content Include="app\profile\controllers\MyEducationsCtrl.js" />
     <Content Include="app\profile\controllers\NewProfileCtrl.js" />
     <Content Include="app\profile\views\edit-profile.html" />
     <Content Include="app\profile\views\home-profile.html" />
+    <Content Include="app\profile\views\my-educations.html" />
     <Content Include="app\profile\views\new-profile.html" />
     <Content Include="assets\advanced-datatable\docs\34cdb56b2c.html" />
     <Content Include="assets\advanced-datatable\docs\DataTable.defaults.columns.html" />
@@ -2232,6 +2234,7 @@
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Profile\New.cshtml" />
     <Content Include="Views\Profile\Edit.cshtml" />
+    <Content Include="Views\Profile\Education.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Library\Domain\SRC.Library.Domain.Facade\SRC.Library.Domain.Facade.csproj">

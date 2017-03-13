@@ -29,6 +29,10 @@
                 templateUrl: baseUrl + "app/profile/views/new-profile.html",
                 controller: 'NewProfileCtrl'
             })
+            .when('/Profile/Education/:status', {
+                templateUrl: baseUrl + "app/profile/views/my-educations.html",
+                controller: 'MyEducationsCtrl'
+            })
             .when('/Home/', {
                 templateUrl: baseUrl + "app/home/views/index.html",
                 controller: 'HomeCtrl'

@@ -8,10 +8,10 @@
             <p>{{$parent.Contact.EmailAddress}}</p>
         </div>
         <ul class="nav nav-pills nav-stacked">
-            <li class="active"><a href="~/Profile"> <i class="fa fa-user"></i> Profil</a></li>
-            <li><a href="/Profile/Edit/"> <i class="fa fa-edit"></i> Profil Düzenle</a></li>
+            <li><a data-is-active-nav href="/Profile/"> <i class="fa fa-user"></i> Profil</a></li>
+            <li><a data-is-active-nav href="/Profile/Edit/"> <i class="fa fa-edit"></i> Profil Düzenle</a></li>
             <li>
-                <a href="/Profile/Education?type=100000000">
+                <a data-is-active-nav href="/Profile/Education/100000000">
                     <i class="fa fa-credit-card"></i><small>Ödeme Bekleyen Eğitimler</small>
                     <span class="label label-danger pull-right r-activity">
                         <!--@Model.Attendances.Where(a => a.Status.ToEnum<educationattendance.statuscode>() == EducationAttendance.StatusCode.WAITING_PAYMENT).ToList().Count-->
@@ -20,7 +20,7 @@
                 </a>
             </li>
             <li>
-                <a href="/Profile/Education?type=100000004">
+                <a data-is-active-nav href="/Profile/Education/100000004">
                     <i class="fa fa-flag"></i> Katıldığım Eğitimler
                     <span class="label label-info pull-right r-activity">
                         <!--@Model.Attendances.Where(a => a.Status.ToEnum<educationattendance.statuscode>() == EducationAttendance.StatusCode.JOINED).ToList().Count-->
@@ -29,7 +29,7 @@
                 </a>
             </li>
             <li>
-                <a href="/Profile/Education?type=100000001">
+                <a data-is-active-nav href="/Profile/Education/100000001">
                     <i class="fa fa-check"></i> Onaylanan Eğitimler
                     <span class="label label-success pull-right r-activity">
                         <!--@Model.Attendances.Where(a => a.Status.ToEnum<educationattendance.statuscode>() == EducationAttendance.StatusCode.REGISTRATION_CONFIRMED).ToList().Count-->

@@ -9,54 +9,28 @@
             <aside class="profile-info col-lg-9">
                 <section class="panel">
                     <div class="bio-graph-heading" style="padding:10px 50px;">
-                        &nbsp;
+                        Profil Özeti
                     </div>
                     <div class="panel-body bio-graph-info" id="divContent">
-                        <h1>Profil Özeti</h1>
+                        <!--<h1>Profil Özeti</h1>-->
                         <div class="row">
                             <div class="bio-row">
-                                <p><span>İsim </span>: {{Contact.FirstName}}</p>
+                                <p><span class="bold">İsim </span>: {{Contact.FirstName}}</p>
                             </div>
                             <div class="bio-row">
-                                <p><span>Soyisim </span>: {{Contact.LastName}}</p>
+                                <p><span class="bold">Soyisim </span>: {{Contact.LastName}}</p>
                             </div>
                             <div class="bio-row">
-                                <p><span>Doğum Tarihi</span>: {{Contact.BirthDateStr}}</p>
-
+                                <p><span class="bold">Doğum Tarihi</span>: {{Contact.BirthDateStr}}</p>
                             </div>
                             <div class="bio-row">
-                                <!--@if (Model.Contact.Gender != null && Model.Contact.Gender.AttributeValue == 1)
-                                {
-                                <p><span>Cinsiyet </span>: Erkek</p>
-                                }
-                                else if (Model.Contact.Gender != null && Model.Contact.Gender.AttributeValue == 2)
-                                {
-                                <p><span>Cinsiyet </span>: Kadın</p>
-                                }
-                                else
-                                {
-                                <p><span>Cinsiyet </span>: </p>
-                                }-->
+                                <p><span class="bold">Cep Telefonu </span>: {{Contact.MobilePhone}}</p>
                             </div>
                             <div class="bio-row">
-                                <p><span>Cep Telefonu </span>: {{Contact.MobilePhone}}</p>
+                                <p><span class="bold">Email </span>: {{Contact.EmailAddress}}</p>
                             </div>
                             <div class="bio-row">
-                                <p><span>Email </span>: {{Contact.EmailAddress}}</p>
-                            </div>
-                            <div class="bio-row">
-                                <!--@if (Model.Contact.GsmOperator != null)
-                                {
-                                <p><span>Gsm Operatörü </span>: @Model.Contact.GsmOperator.Name</p>
-                                }
-                                else
-                                {
-                                <p><span>Gsm Operatörü </span>: </p>
-                                }-->
-
-                            </div>
-                            <div class="bio-row">
-                                <p><span>İş Telefonu </span>: {{Contact.WorkPhone}}</p>
+                                <p><span class="bold">İş Telefonu </span>: {{Contact.WorkPhone}}</p>
                             </div>
                         </div>
                     </div>

@@ -1,0 +1,79 @@
+﻿<section id="main-content" style="width:90%;margin:auto;" ng-show="Contact">
+    <section class="wrapper site-min-height">
+        <!-- page start-->
+        <div class="row">
+            <div ng-controller="ProfileMenuCtrl">
+                <div ng-include="'/app/partials/views/profile-menu.html'" ng-model="Contact"></div>
+            </div>
+
+            <aside class="profile-info col-lg-9">
+                <section class="panel" style="padding: 20px;">
+                    <header class="panel-heading">
+                        {{headerText}}
+                    </header>
+                    <div class="alert alert-warning" role="alert" data-ng-hide="EducationList.length>0">
+                        <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+                        <span class="sr-only">Uyarı:</span>
+                        Eğitim kaydı bulunamadı.
+                    </div>
+
+                    <div ng-controller="ApplyEducationCtrl">
+                        <div ng-include="'/app/partials/views/apply-education.html'" ng-model="selectedEducation"></div>
+                    </div>
+
+                    <div ng-controller="CancelAttendanceCtrl">
+                        <div ng-include="'/app/partials/views/cancel-attendance.html'" ng-model="selectedAttendance"></div>
+                    </div>
+                    <div ng-controller="PayEducationCtrl">
+                        <div ng-include="'/app/partials/views/pay-education.html'" ng-model="selectedAttendance"></div>
+                    </div>
+
+
+                    <div data-ng-show="EducationList.length>0">
+                        <table class="table table-hover p-table">
+                            <thead>
+                                <tr>
+                                    <th>Eğitim Adı</th>
+                                    <th>Eğitmen</th>
+                                    <th>Süre</th>
+                                    <th>Şehir</th>
+                                    <th>Durum</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-repeat="education in EducationList">
+                                    <td class="p-name">
+                                        <a href="/Education/Index/{{education.Id}}">{{education.Name}}</a>
+                                        <br>
+                                        <small>{{education.FormattedEducationDate}}</small>
+                                    </td>
+                                    <td>
+                                        <p>{{education.Contact.Name}}</p>
+                                    </td>
+                                    <td>
+                                        <span class="label label-primary">{{education.EducationPeriod}} gün</span>
+                                    </td>
+                                    <td>
+                                        <p>{{education.City.Name}}</p>
+                                    </td>
+                                    <td>
+                                        <span class="label {{education.class}}">{{education.StatusText}}</span>
+                                    </td>
+                                    <td>
+                                        <a href="javascript:;" class="btn btn-primary btn-xs" data-ng-click="education.Apply(this)" data-ng-show="education.showApply"><i class="fa fa-folder"></i> Başvur </a>
+                                        <a href="javascript:;" class="btn btn-danger btn-xs" data-ng-click="education.Cancel(this)" ng-show="education.Attendance!=null"><i class="fa fa-folder"></i> İptal </a>
+                                        <a href="javascript:;" class="btn btn-warning btn-xs" data-ng-click="education.Pay(this)" ng-show="education.Attendance!=null"><i class="fa fa-folder"></i> Ödeme Yap </a>
+                                        <a href="/Education/Index/{{education.Id}}" class="btn btn-info btn-xs"><i class="fa fa-folder"></i> Detay </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                </section>
+            </aside>
+        </div>
+        <!-- page end-->
+    </section>
+</section>

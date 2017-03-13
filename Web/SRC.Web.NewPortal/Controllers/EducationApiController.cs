@@ -149,5 +149,28 @@ namespace SRC.Web.NewPortal.Controllers
 
             return returnValue;
         }
+
+        [AuthenticationFilter]
+        public ResponseContainer<List<Education>> GetEducationByStatus(int status)
+        {
+            ResponseContainer<List<Education>> returnValue = new ResponseContainer<List<Education>>();
+
+            //returnValue.Result = _educationBusiness.GetLastEducations().Where(p => p.IsExpired
+            //                        && p.StartDate != null && p.City != null).Take(5).ToList();
+            returnValue.Result = EducationMock.GetComingEducations();
+
+            List<EducationAttendance> contactAttendanceList = null;
+
+            if (LoggedUser.IsLoggedIn)
+            {
+                contactAttendanceList = AttendanceMock.GetAttendances();
+
+                _educationFacade.SetEducationAttendance(returnValue.Result, contactAttendanceList);
+            }
+
+            returnValue.Success = true;
+
+            return returnValue;
+        }
     }
 }

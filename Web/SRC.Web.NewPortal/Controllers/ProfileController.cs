@@ -29,5 +29,12 @@ namespace SRC.Web.NewPortal.Controllers
 
             return View();
         }
+
+        public ActionResult Education()
+        {
+            ViewBag.Title = "Eğitimlerim";
+
+            return View();
+        }
     }
 }

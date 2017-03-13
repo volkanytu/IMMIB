@@ -42,7 +42,7 @@ appMain.controller('PayEducationCtrl', ['$scope', '$sce', '$http', '$routeParams
                 if (data && data.Success && data.Result) {
 
                     alertModal(data.Message, "success", function () {
-                        window.location.href = $scope.baseUrl;
+                        window.location.reload();
                     });
                 }
                 else {
