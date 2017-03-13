@@ -6,6 +6,8 @@ appMain.controller('LoginFormCtrl', ['$scope', '$sce', '$http', '$routeParams', 
     $scope.userName = null;
     $scope.password = null;
 
+    //$("#loginForm").validate();
+
     $scope.trustHtml = function (content) {
         return $sce.trustAsHtml(content);
     };

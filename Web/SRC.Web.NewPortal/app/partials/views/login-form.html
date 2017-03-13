@@ -8,14 +8,14 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-lg-12">
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" id="loginForm">
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                                <input type="text" class="form-control input-lg" placeholder="Kullanıcı adı" data-ng-model="userName" />
+                                <input type="text" class="form-control input-lg" placeholder="Kullanıcı adı" data-ng-model="userName" required />
                             </div>
                             <div class="input-group" style="margin-top:10px;">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                                <input type="password" class="form-control input-lg" placeholder="Şifre" data-ng-model="password" />
+                                <input type="password" class="form-control input-lg" placeholder="Şifre" data-ng-model="password" required />
                             </div>
                         </form>
                     </div>

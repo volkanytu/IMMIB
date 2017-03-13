@@ -13,5 +13,6 @@ namespace SRC.Library.Domain.Facade.Interfaces
         void UpdateContact(Contact contact);
         void CreateLoginLog(EntityReferenceWrapper contact, string ipAddress);
         Contact GetContact(Guid? contactId);
+        bool CheckUserExists(string userName);
     }
 }

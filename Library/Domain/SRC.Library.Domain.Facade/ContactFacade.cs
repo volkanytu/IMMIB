@@ -65,7 +65,7 @@ namespace SRC.Library.Domain.Facade
         {
             contactId.CheckNull("Üye bilgisi boş olamaz!", ContactLogKeys.CONTACT_ID_NULL);
             password.CheckNull("Eski şifre boş olamaz!", ContactLogKeys.PASSWORD_NULL, contactId.ToString());
-           
+
             _contactBusiness.UpdatePassword((Guid)contactId, password);
         }
 
@@ -101,6 +101,13 @@ namespace SRC.Library.Domain.Facade
             };
 
             _baseBusiness.Insert(log);
+        }
+
+        public bool CheckUserExists(string userName)
+        {
+            var contact = _contactBusiness.GetContact(userName);
+
+            return contact != null;
         }
 
 

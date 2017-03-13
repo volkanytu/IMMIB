@@ -107,11 +107,19 @@ namespace SRC.Web.NewPortal.Controllers
             }
             else
             {
-                var newContactId = _contactFacade.CreateContact(contact);
+                if (!_contactFacade.CheckUserExists(contact.EmailAddress))
+                {
+                    contact.UserName = contact.EmailAddress;
+                    var newContactId = _contactFacade.CreateContact(contact);
 
-                returnValue.Success = true;
-                returnValue.Result = true;
-                returnValue.Message = "Üyelik başvurusu tamamlanmıştır.";
+                    returnValue.Success = true;
+                    returnValue.Result = true;
+                    returnValue.Message = "Üyelik başvurusu tamamlanmıştır.";
+                }
+                else
+                {
+                    returnValue.Message = "Girmiş olduğunuz email adresi başka bir üye tarafından kullanılmaktadır.";
+                }
             }
 
             return returnValue;
