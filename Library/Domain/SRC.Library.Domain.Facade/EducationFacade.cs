@@ -60,7 +60,15 @@ namespace SRC.Library.Domain.Facade
         public void CancelEducationAttendance(Guid? educationAttendanceId)
         {
             educationAttendanceId.CheckNull("Eğitim katılım bilgisi boş olamaz!", EducationAttendanceLogKeys.EDUCATION_ATTENDANCE_ID_NULL);
-            _baseEducationAttendanceBusiness.SetState((Guid)educationAttendanceId, (int)EducationAttendance.StateCode.PASSIVE, (int)EducationAttendance.StatusCode.PARTICIPANT_CANCELED);
+
+            //TODO: Ücreti ödenen katılımlar iptal edilemez
+            EducationAttendance attendance = _baseEducationAttendanceBusiness.Get((Guid) educationAttendanceId);
+            if (attendance.Status.ToEnum<EducationAttendance.StatusCode>() == EducationAttendance.StatusCode.REGISTRATION_CONFIRMED)
+            {
+                throw new Exception("İade işlemleri için eğitim birimi ile görüşebilirsiniz");
+            }
+
+            _baseEducationAttendanceBusiness.SetState((Guid)educationAttendanceId, (int) EducationAttendance.StateCode.PASSIVE, (int) EducationAttendance.StatusCode.PARTICIPANT_CANCELED);
         }
 
         public void SetEducationAttendance(List<Education> educations, List<EducationAttendance> educationAttendances)
@@ -72,7 +80,7 @@ namespace SRC.Library.Domain.Facade
 
             foreach (Education education in educations)
             {
-                education.Attendance = educationAttendances.FirstOrDefault(p => p.Education.Id == education.Id);
+               education.Attendance = educationAttendances.FirstOrDefault(p => p.Education.Id == education.Id);
             }
         }
 
@@ -91,6 +99,6 @@ namespace SRC.Library.Domain.Facade
         {
             creditCard.CheckNull("Kredi kartı bilgisi boş olamaz!", CreditCardLogKeys.CREDIT_CARD_NULL);
             return _baseCreditCardBusiness.Insert(creditCard);
-        }
+        } 
     }
 }

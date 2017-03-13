@@ -10,6 +10,8 @@ namespace SRC.Library.Domain.Business.Interfaces
         List<EducationAttendance> GetEducationAttendancesForExpectedPayments(int remainDay);
         List<EducationAttendance> GetEducationAttendancesForEducation(Guid educationId);
         void CancelAllEducationAttendaces(Guid educationId);
+        int GetEducationAttendancesCountByMonth(Guid contactId, DateTime educationStartDate);
+        string GetEducationAttendanceCode(Guid educationId, string educationCode);
 
     }
 }

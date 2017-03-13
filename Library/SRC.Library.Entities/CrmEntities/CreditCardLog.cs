@@ -13,6 +13,10 @@ namespace SRC.Library.Entities.CrmEntities
         [CrmFieldName(KEY_CREDIT_CARD_LOG_ID)]
         public Guid Id { get; set; }
 
+        [CrmFieldDataType(CrmDataType.ENTITYREFERENCE)]
+        [CrmFieldName(KEY_EDUCATION_ATTENDANCE_ID)]
+        public EntityReferenceWrapper EducationAttendance { get; set; }
+
         [CrmFieldDataType(CrmDataType.STRING)]
         [CrmFieldName(KEY_NAME)]
         public string Name { get; set; }
@@ -45,22 +49,19 @@ namespace SRC.Library.Entities.CrmEntities
         [CrmFieldName(KEY_INSTALLMENT_TYPE)]
         public OptionSetValueWrapper InstallmentType { get; set; }
 
-        [CrmFieldDataType(CrmDataType.INT)]
+        [CrmFieldDataType(CrmDataType.STRING)]
         [CrmFieldName(KEY_RESULT_CODE)]
-        public int? ResultCode { get; set; }
+        public string ResultCode { get; set; }
 
         [CrmFieldDataType(CrmDataType.STRING)]
         [CrmFieldName(KEY_RESULT)]
         public string Result { get; set; }
 
-        [CrmFieldDataType(CrmDataType.ENTITYREFERENCE)]
-        [CrmFieldName(KEY_EDUCATION_ATTENDANCE_ID)]
-        public EntityReferenceWrapper EducationAttendance { get; set; }
-
         public Guid? AttendanceId { get; set; }
 
         public const string KEY_LOGICAL_NAME = "new_creditcardlog";
         public const string KEY_CREDIT_CARD_LOG_ID = "new_creditcardlogid";
+        public const string KEY_EDUCATION_ATTENDANCE_ID = "new_educationattendanceid";
         public const string KEY_NAME = "new_name";
         public const string KEY_CARD_NUMBER = "new_cardnumber";
         public const string KEY_CVC = "new_cvc";
@@ -71,7 +72,6 @@ namespace SRC.Library.Entities.CrmEntities
         public const string KEY_RESULT_CODE = "new_resultcode";
         public const string KEY_RESULT = "new_resultmessage";
         public const string KEY_FULL_NAME = "new_fullname";
-        public const string KEY_EDUCATION_ATTENDANCE_ID = "new_educationattendanceid";
 
         public static List<OptionSetValueWrapper> GetInstallmentTypes()
         {

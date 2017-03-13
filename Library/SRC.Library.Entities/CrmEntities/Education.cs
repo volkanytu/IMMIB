@@ -116,6 +116,32 @@ namespace SRC.Library.Entities.CrmEntities
 
         public EducationAttendance Attendance { get; set; }
 
+        public bool IsParticipantAcceptable
+        {
+            get
+            {
+                if (LeftQuota == 0)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+        }
+
+        public bool IsStudentAcceptable
+        {
+            get
+            {
+                if (StudentLeftQuota == 0)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+        }
+
         public bool IsExpired
         {
             get
@@ -180,12 +206,12 @@ namespace SRC.Library.Entities.CrmEntities
         public const string KEY_EDUCATION_AMOUNT = "new_educationamount";
         public const string KEY_QUOTA = "new_quota";
         public const string KEY_LEFT_QUOTA = "new_leftquota";
-        public const string KEY_STUDENT_QUOTA = "new_quota";
-        public const string KEY_STUDENT_LEFT_QUOTA = "new_leftquota";
+        public const string KEY_STUDENT_QUOTA = "new_studentquota";
+        public const string KEY_STUDENT_LEFT_QUOTA = "new_studentleftquota";
         public const string KEY_IS_LIMITED_SINGLE_ATTEND = "new_islimitedbysingleattend";
         public const string KEY_MAX_SINGLE_ATTEND_COUNT = "new_maxsingleattendcount";
         public const string KEY_IS_PAID = "new_ispaid";
-        public const string KEY_IS_PAYMENT_RETURN_ON_CANCEL = "new_ispaymentretunoncancel";
+        public const string KEY_IS_PAYMENT_RETURN_ON_CANCEL = "new_ispaymentreturnoncancel";
         public const string KEY_EDUCATION_PRICE = "new_educationprice";
         public const string KEY_IS_STUDENT_CAN_ATTEND = "new_isstudentcanattend";
         public const string KEY_CITY_ID = "new_cityid";
@@ -197,6 +223,7 @@ namespace SRC.Library.Entities.CrmEntities
         public const string KEY_RECORD_END_DATE = "new_recordenddate";
         public const string KEY_EDUCATION_PERIOD = "new_educationperiod";
         public const string KEY_INFO = "new_info";
+        public const string KEY_EDUCATION_CODE_VALUE = "new_educationcodevalue";
 
         public enum StateCode
         {

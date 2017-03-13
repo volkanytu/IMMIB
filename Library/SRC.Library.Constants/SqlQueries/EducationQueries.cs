@@ -226,5 +226,12 @@ namespace SRC.Library.Constants.SqlQueries
 													EA.new_educationattendanceId IN({0}) ";
         #endregion
 
+        #region | GET_EDUCATION_CODE_MAX_VALUE |
+        public const string GET_EDUCATION_CODE_MAX_VALUE = @"SELECT
+	                                                                MAX(ED.new_educationcodevalue)
+                                                                FROM
+	                                                                new_education ED WITH (NOLOCK)";
+        #endregion
+
     }
 }

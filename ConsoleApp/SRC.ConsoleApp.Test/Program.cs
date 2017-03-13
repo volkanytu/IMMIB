@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xrm.Sdk;
+using SRC.Library.Entities;
+using SRC.Library.Entities.CrmEntities;
 
 namespace SRC.ConsoleApp.Test
 {
@@ -13,7 +16,17 @@ namespace SRC.ConsoleApp.Test
         {
 
             PluginDebug pd = new PluginDebug();
-            pd.Test(TaskType.EDUCATION, PluginOperation.SET_STATE, "new_education", Guid.Parse("E7DCAAC8-39F1-E611-80D6-005056A507B1"));
+            //pd.Test(TaskType.EDUCATION_ATTENDANCE, PluginOperation.POST_UPDATE, "new_educationattendance", Guid.Parse("AB8A9CAA-FD07-E711-80D6-005056A507B1"));
+            //EducationAttendance attendance = new EducationAttendance();
+            //attendance.Id = new Guid("AB8A9CAA-FD07-E711-80D6-005056A507B1");
+            //attendance.Education = new EntityReferenceWrapper() { Id = new Guid("9D675227-3D03-E711-80D6-005056A507B1"), LogicalName = "new_education" };
+            //attendance.Contact = new EntityReferenceWrapper() { Id = new Guid("D26CC93B-23BA-E611-80CF-005056A507B1"), LogicalName = "contact" };
+            ////Education education = new Education();
+            CreditCardLog cd = new CreditCardLog();
+            cd.EducationAttendance = new EntityReferenceWrapper() { Id = new Guid("AB8A9CAA-FD07-E711-80D6-005056A507B1"), LogicalName = "new_educationattendance" };
+            cd.ResultCode = "00";
+            pd.TestPlugin(cd, TaskType.CREDIT_CARD_LOG, PluginOperation.POST_CREATE, "new_creditcardlog");
+
         }
     }
 }

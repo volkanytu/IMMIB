@@ -35,5 +35,10 @@ namespace SRC.Library.Domain.Business
         {
             return _educationDao.GetLastEducations();
         }
+
+        public int GetEducationCodeMaxValue()
+        {
+            return _educationDao.GetEducationCodeMaxValue() + 1;
+        }
     }
 }

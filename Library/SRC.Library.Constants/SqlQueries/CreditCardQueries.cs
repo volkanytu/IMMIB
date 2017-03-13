@@ -12,6 +12,8 @@ namespace SRC.Library.Constants.SqlQueries
         public const string GET_CREDIT_CARD = @"SELECT
 	                                                CL.new_creditcardlogId AS Id
 	                                                ,CL.new_name AS Name
+                                                    ,CL.new_educationattendanceid EducationAttendance
+                                                    ,CL.new_educationattendanceidName EducationAttendanceName
 	                                                ,CL.new_cvc AS Cvc
 	                                                ,CL.new_expiremonth AS ExpireMonth
 	                                                ,CL.new_expireyear AS ExpireYear
@@ -32,6 +34,8 @@ namespace SRC.Library.Constants.SqlQueries
         public const string GET_CREDIT_CARD_LIST = @"SELECT
 	                                                    CL.new_creditcardlogId AS Id
 	                                                    ,CL.new_name AS Name
+                                                        ,CL.new_educationattendanceid EducationAttendance
+                                                        ,CL.new_educationattendanceidName EducationAttendanceName
 	                                                    ,CL.new_cvc AS Cvc
 	                                                    ,CL.new_expiremonth AS ExpireMonth
 	                                                    ,CL.new_expireyear AS ExpireYear

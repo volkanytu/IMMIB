@@ -10,7 +10,7 @@ namespace SRC.Plugins.CrmPlugin.PluginTasks
     public class EducationTask : BasePluginTask
     {
         private IEducationBusiness _educationBusiness;
-        private IEducationAttendanceBusiness _educationAttendanceBusiness;
+        private readonly IEducationAttendanceBusiness _educationAttendanceBusiness;
         private IBaseBusiness<EducationAttendance> _baseEducationAttendanceBusiness;
 
         public EducationTask(IEducationBusiness educationBusiness, IEducationAttendanceBusiness educationAttendanceBusiness, IBaseBusiness<EducationAttendance> baseEducationAttendanceBusiness)
@@ -22,7 +22,10 @@ namespace SRC.Plugins.CrmPlugin.PluginTasks
 
         protected override void PreCreate()
         {
-            throw new NotImplementedException();
+            var targetEntity = EntityContainer.Input;
+            int codeValue = _educationBusiness.GetEducationCodeMaxValue();
+            targetEntity[Education.KEY_EDUCATION_CODE_VALUE] = codeValue;
+            targetEntity[Education.KEY_CODE] = "EDU-" + (10000 + codeValue);
         }
 
         protected override void PostCreate()
@@ -52,8 +55,8 @@ namespace SRC.Plugins.CrmPlugin.PluginTasks
 
         protected override void SetState()
         {
-            var targetEntity = (EntityReference)EntityContainer.SetStateInput.EntityMoniker;
-            OptionSetValue statusCode = (OptionSetValue)EntityContainer.SetStateInput.Status;
+            var targetEntity = EntityContainer.SetStateInput.EntityMoniker;
+            OptionSetValue statusCode = EntityContainer.SetStateInput.Status;
 
             if (statusCode.Value == (int)Education.StatusCode.CANCELED)
             {

@@ -51,5 +51,10 @@ namespace SRC.Library.Data.SqlDao
             DataTable dt = _sqlAccess.GetDataTable(string.Format(EducationQueries.GET_EDUCATION_LIST_OF_ATTENDANCES, inClause));
             return dt.ToList<Education>().ToList();
         }
+
+        public int GetEducationCodeMaxValue()
+        {
+            return (int)_sqlAccess.ExecuteScalar(EducationQueries.GET_EDUCATION_CODE_MAX_VALUE);
+        }
     }
 }
