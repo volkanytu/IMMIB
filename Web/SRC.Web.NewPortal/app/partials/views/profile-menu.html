@@ -14,8 +14,7 @@
                 <a data-is-active-nav href="/Profile/Education/100000000">
                     <i class="fa fa-credit-card"></i><small>Ödeme Bekleyen Eğitimler</small>
                     <span class="label label-danger pull-right r-activity">
-                        <!--@Model.Attendances.Where(a => a.Status.ToEnum<educationattendance.statuscode>() == EducationAttendance.StatusCode.WAITING_PAYMENT).ToList().Count-->
-                        1
+                        {{Summary.WaitingPaymentCount}}
                     </span>
                 </a>
             </li>
@@ -23,8 +22,7 @@
                 <a data-is-active-nav href="/Profile/Education/100000004">
                     <i class="fa fa-flag"></i> Katıldığım Eğitimler
                     <span class="label label-info pull-right r-activity">
-                        <!--@Model.Attendances.Where(a => a.Status.ToEnum<educationattendance.statuscode>() == EducationAttendance.StatusCode.JOINED).ToList().Count-->
-                        2
+                        {{Summary.JoinedCount}}
                     </span>
                 </a>
             </li>
@@ -32,8 +30,7 @@
                 <a data-is-active-nav href="/Profile/Education/100000001">
                     <i class="fa fa-check"></i> Onaylanan Eğitimler
                     <span class="label label-success pull-right r-activity">
-                        <!--@Model.Attendances.Where(a => a.Status.ToEnum<educationattendance.statuscode>() == EducationAttendance.StatusCode.REGISTRATION_CONFIRMED).ToList().Count-->
-                        3
+                        {{Summary.ConfirmedCount}}
                     </span>
                 </a>
             </li>

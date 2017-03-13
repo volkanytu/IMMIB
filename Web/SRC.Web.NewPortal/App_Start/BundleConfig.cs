@@ -84,6 +84,7 @@ namespace SRC.Web.NewPortal
                     "~/app/common/app-route.js",
                     "~/app/home/controllers/*.js",
                     "~/app/education/controllers/*.js",
+                    "~/app/education/factories/*.js",
                     "~/app/pages/controllers/*.js",
                     "~/app/partials/controllers/*.js",
                     "~/app/profile/controllers/*.js"

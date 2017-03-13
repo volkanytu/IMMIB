@@ -47,13 +47,12 @@ namespace SRC.Web.NewPortal.Controllers
 
             if (isMockActive)
             {
-                //returnValue.Result = _educationBusiness.GetLastEducations().Where(p => p.IsExpired == false).ToList();
                 returnValue.Result = EducationMock.GetComingEducations();
                 returnValue.Success = true;
             }
             else
             {
-                returnValue.Result = _educationBusiness.GetLastEducations().Where(p => p.IsExpired == false).ToList();
+                returnValue.Result = _educationBusiness.GetLastEducations().Where(p => p.IsExpired == false).Take(5).ToList();
                 returnValue.Success = true;
                 returnValue.Message = "Yaklaşan eğitimler çekildi.";
 
@@ -68,8 +67,6 @@ namespace SRC.Web.NewPortal.Controllers
 
             if (isMockActive)
             {
-                //returnValue.Result = _educationBusiness.GetLastEducations().Where(p => p.IsExpired
-                //                        && p.StartDate != null && p.City != null).Take(5).ToList();
                 returnValue.Result = EducationMock.GetDoneEducations();
                 returnValue.Success = true;
             }
