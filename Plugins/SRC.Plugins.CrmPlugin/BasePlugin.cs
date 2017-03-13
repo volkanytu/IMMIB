@@ -64,10 +64,10 @@ namespace SRC.Plugins.CrmPlugin
             //postImage["statecode"] = new OptionSetValue((int)SAHIBINDEN.Library.Entities.CrmEntities.Appointment.StateCode.CANCELED);
             //postImage["statuscode"] = new OptionSetValue((int)SAHIBINDEN.Library.Entities.CrmEntities.Appointment.StatusCode.CANCELLED);
 
-            //context.InputParameters.Add("Target", entity);
-            context.InputParameters.Add("EntityMoniker", entity.ToEntityReference());
-            context.InputParameters.Add("State", new OptionSetValue((int)Education.StateCode.PASSIVE));
-            context.InputParameters.Add("Status", new OptionSetValue((int)Education.StatusCode.CANCELED));
+            context.InputParameters.Add("Target", entity);
+            //context.InputParameters.Add("EntityMoniker", entity.ToEntityReference());
+            //context.InputParameters.Add("State", new OptionSetValue((int)EducationAttendance.StateCode.PASSIVE));
+            //context.InputParameters.Add("Status", new OptionSetValue((int)Education.StatusCode.CANCELED));
 
             //context.PreEntityImages.Add("PreImage", preImage);
             //context.PostEntityImages.Add("PostImage", postImage);

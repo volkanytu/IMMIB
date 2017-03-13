@@ -9,6 +9,6 @@ namespace SRC.Library.Data.SqlDao.Interfaces
         List<Education> GetEducations(DateTime startDate, DateTime endDate);
         List<Education> GetEducationsOfAttendances(List<EducationAttendance> educationAttendanceList);
         List<Education> GetLastEducations();
-        int GetEducationCodeValue();
+        int GetEducationCodeMaxValue();
     }
 }

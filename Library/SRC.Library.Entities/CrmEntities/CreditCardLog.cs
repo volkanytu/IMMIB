@@ -13,6 +13,10 @@ namespace SRC.Library.Entities.CrmEntities
         [CrmFieldName(KEY_CREDIT_CARD_LOG_ID)]
         public Guid Id { get; set; }
 
+        [CrmFieldDataType(CrmDataType.ENTITYREFERENCE)]
+        [CrmFieldName(KEY_EDUCATION_ATTENDANCE_ID)]
+        public EntityReferenceWrapper EducationAttendance { get; set; }
+
         [CrmFieldDataType(CrmDataType.STRING)]
         [CrmFieldName(KEY_NAME)]
         public string Name { get; set; }
@@ -47,6 +51,7 @@ namespace SRC.Library.Entities.CrmEntities
 
         public const string KEY_LOGICAL_NAME = "new_creditcardlog";
         public const string KEY_CREDIT_CARD_LOG_ID = "new_creditcardlogid";
+        public const string KEY_EDUCATION_ATTENDANCE_ID = "new_educationattendanceid";
         public const string KEY_NAME = "new_name";
         public const string KEY_CVC = "new_cvc";
         public const string KEY_EXPIRE_MONTH = "new_expiremonth";

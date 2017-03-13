@@ -36,9 +36,9 @@ namespace SRC.Library.Domain.Business
             return _educationDao.GetLastEducations();
         }
 
-        public string GetEducationCode()
+        public int GetEducationCodeMaxValue()
         {
-            return "EDU-" + (10000 + _educationDao.GetEducationCodeValue()+1);
+            return _educationDao.GetEducationCodeMaxValue() + 1;
         }
     }
 }

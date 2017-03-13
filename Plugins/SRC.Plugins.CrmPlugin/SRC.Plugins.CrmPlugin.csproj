@@ -79,7 +79,9 @@
   <ItemGroup>
     <Compile Include="BasePlugin.cs" />
     <Compile Include="BasePluginTask.cs" />
+    <Compile Include="EducationAttendancePlugin\EducationAttendancePostCreate.cs" />
     <Compile Include="EducationAttendancePlugin\EducationAttendancePreCreate.cs" />
+    <Compile Include="EducationAttendancePlugin\EducationAttendancePostUpdate.cs" />
     <Compile Include="EducationPlugin\EducationPostState.cs" />
     <Compile Include="EducationPlugin\EducationPreCreate.cs" />
     <Compile Include="Entities\EntityContainer.cs" />

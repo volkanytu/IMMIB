@@ -52,7 +52,7 @@ namespace SRC.Library.Data.SqlDao
             return dt.ToList<Education>().ToList();
         }
 
-        public int GetEducationCodeValue()
+        public int GetEducationCodeMaxValue()
         {
             return (int)_sqlAccess.ExecuteScalar(EducationQueries.GET_EDUCATION_CODE_MAX_VALUE);
         }

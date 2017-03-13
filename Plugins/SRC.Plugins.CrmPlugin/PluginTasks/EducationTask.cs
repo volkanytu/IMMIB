@@ -23,7 +23,9 @@ namespace SRC.Plugins.CrmPlugin.PluginTasks
         protected override void PreCreate()
         {
             var targetEntity = EntityContainer.Input;
-            targetEntity[Education.KEY_CODE] = _educationBusiness.GetEducationCode();
+            int codeValue = _educationBusiness.GetEducationCodeMaxValue();
+            targetEntity[Education.KEY_EDUCATION_CODE_VALUE] = codeValue;
+            targetEntity[Education.KEY_CODE] = "EDU-" + (10000 + codeValue);
         }
 
         protected override void PostCreate()
