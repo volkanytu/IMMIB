@@ -24,6 +24,12 @@ appMain.controller('HomeCtrl', ['$scope', '$sce', '$http', '$routeParams', 'safe
         if (data && data.Success && data.Result) {
             $scope.SliderData = data.Result;
         }
+        else {
+            alertModal(data.Message, "error");
+        }
+    })
+    .error(function (err) {
+        alertModal(err.Message, "error");
     });
 
     $http({
@@ -41,10 +47,6 @@ appMain.controller('HomeCtrl', ['$scope', '$sce', '$http', '$routeParams', 'safe
 
                 var obj = $scope.ComingEducations[education];
 
-                //obj.Edit = function () {
-                //    window.location.href = "/Education/Index/" + education.Id;
-                //};
-
                 if (counter % 2 == 0) {
                     obj.color = "green";
                     obj.alt = "";
@@ -59,6 +61,12 @@ appMain.controller('HomeCtrl', ['$scope', '$sce', '$http', '$routeParams', 'safe
                 counter++;
             }
         }
+        else {
+            alertModal(data.Message, "error");
+        }
+    })
+    .error(function (err) {
+        alertModal(err.Message, "error");
     });
 
     $http({
@@ -76,11 +84,6 @@ appMain.controller('HomeCtrl', ['$scope', '$sce', '$http', '$routeParams', 'safe
 
                 var obj = $scope.DoneEducations[education];
 
-                //obj.Edit = function () {
-
-                //    window.location.href = "/Education/Index/" + education.Id;
-                //};
-
                 if (counter % 2 == 0) {
                     obj.color = "green";
                     obj.alt = "";
@@ -95,5 +98,11 @@ appMain.controller('HomeCtrl', ['$scope', '$sce', '$http', '$routeParams', 'safe
                 counter++;
             }
         }
+        else {
+            alertModal(data.Message, "error");
+        }
+    })
+    .error(function (err) {
+        alertModal(err.Message, "error");
     });
 }]);

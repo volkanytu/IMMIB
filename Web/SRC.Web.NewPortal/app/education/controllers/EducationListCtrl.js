@@ -144,6 +144,12 @@ appMain.controller('EducationListCtrl', ['$scope', '$sce', '$http', '$routeParam
                     }
                 }
             }
+            else {
+                alertModal(data.Message, "error");
+            }
+        })
+        .error(function (err) {
+            alertModal(err.Message, "error");
         });
     };
 

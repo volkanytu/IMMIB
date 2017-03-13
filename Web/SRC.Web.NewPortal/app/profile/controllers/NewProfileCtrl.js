@@ -92,7 +92,7 @@ appMain.controller('NewProfileCtrl', ['$scope', '$sce', '$http', '$routeParams',
                 $scope.Contact.CompanyName = data.Result.Name;
             }
             else {
-                alertModal("Firma bulunamadı. Lütfen eğitim birimi ile iletişime geçiniz.", "error");
+                alertModal(data.Message, "error");
             }
         })
         .error(function (err) {

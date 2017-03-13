@@ -101,5 +101,11 @@ appMain.controller('EducationDetailCtrl', ['$scope', '$sce', '$http', '$routePar
                 $scope.showApply = $scope.Education.Attendance == null;
             }
         }
+        else {
+            alertModal(data.Message, "error");
+        }
+    })
+    .error(function (err) {
+        alertModal(err.Message, "error");
     });
 }]);

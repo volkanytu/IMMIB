@@ -13,8 +13,12 @@ appMain.controller('HomeProfileCtrl', ['$scope', '$sce', '$http', '$routeParams'
     }).success(function (data) {
         if (data && data.Success && data.Result) {
             $scope.Contact = data.Result;
-
-            var obj = $scope.Contact;
         }
+        else {
+            alertModal(data.Message, "error");
+        }
+    })
+    .error(function (err) {
+        alertModal(err.Message, "error");
     });
 }]);

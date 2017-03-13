@@ -11,7 +11,7 @@ appMain.controller('LoginFormCtrl', ['$scope', '$sce', '$http', '$routeParams', 
     };
 
     $scope.RememberPassword = function () {
-        alert("REMEMBER");
+        alertModal("Yapım aşamasında.", "info");
     };
 
     $scope.SignIn = function () {

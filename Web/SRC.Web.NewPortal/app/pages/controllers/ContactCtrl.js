@@ -18,6 +18,12 @@ appMain.controller('ContactCtrl', ['$scope', '$sce', '$http', '$routeParams', 's
         if (data && data.Success && data.Result) {
             $scope.Page = data.Result;
         }
+        else {
+            alertModal(data.Message, "error");
+        }
+    })
+    .error(function (err) {
+        alertModal(err.Message, "error");
     });
 
 }]);

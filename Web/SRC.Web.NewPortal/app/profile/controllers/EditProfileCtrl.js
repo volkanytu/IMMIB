@@ -48,6 +48,12 @@ appMain.controller('EditProfileCtrl', ['$scope', '$sce', '$http', '$routeParams'
                     $scope.Contact.EducationLevel = $scope.EducationLevels[elementPos];
                 }
             }
+            else {
+                alertModal(data.Message, "error");
+            }
+        })
+        .error(function (err) {
+            alertModal(err.Message, "error");
         });
     };
 
