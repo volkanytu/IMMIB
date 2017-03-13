@@ -35,7 +35,12 @@ appMain.controller('NewProfileCtrl', ['$scope', '$sce', '$http', '$routeParams',
         }
 
         $scope.Contact.CustomerType = {};
-        $scope.Contact.CustomerType.AttributeValue = $scope.recordType;
+        if ($scope.recordType == "0") {
+            $scope.Contact.CustomerType.AttributeValue = 1;
+        }
+        else {
+            $scope.Contact.CustomerType.AttributeValue = 2;
+        }
 
         if ($scope.recordType == "0") //Firma çalışanı ise
         {

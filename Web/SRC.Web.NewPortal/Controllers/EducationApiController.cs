@@ -213,7 +213,8 @@ namespace SRC.Web.NewPortal.Controllers
                 var attendance = new EducationAttendance
                 {
                     Contact = LoggedUser.Current.ToEntityReferenceWrapper(),
-                    Education = Guid.Parse(id).ToEntityReferenceWrapper<Education>()
+                    Education = Guid.Parse(id).ToEntityReferenceWrapper<Education>(),
+                    Name = string.Format("{0} {1}|{2}", LoggedUser.Current.FirstName, LoggedUser.Current.LastName, DateTime.Now.ToString("dd.MM.yyyy HH:mm"))
                 };
 
                 var attendanceId = _educationAttendanceBaseBusiness.Insert(attendance);
@@ -272,7 +273,18 @@ namespace SRC.Web.NewPortal.Controllers
                     creditCardData.EducationAttendance = creditCardData.AttendanceId.Value.ToEntityReferenceWrapper<EducationAttendance>();
                 }
 
-                _creditCardLogBaseBusiness.Insert(creditCardData);
+                var creditCardLogId = _creditCardLogBaseBusiness.Insert(creditCardData);
+
+                //TODO: Servis call yapılacak kredi kartı çekimi için
+                EducationAttendance attendance = new EducationAttendance
+                {
+                    Id = creditCardData.AttendanceId.Value,
+                    CreditCardLog = creditCardLogId.ToEntityReferenceWrapper<CreditCardLog>(),
+                    Status = EducationAttendance.StatusCode.REGISTRATION_CONFIRMED.ToOptionSetValueWrapper(),
+                    IsPaymentDone = true
+                };
+
+                _educationAttendanceBaseBusiness.Update(attendance);
 
                 returnValue.Result = true;
                 returnValue.Success = true;

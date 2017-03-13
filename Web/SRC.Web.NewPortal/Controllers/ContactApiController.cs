@@ -55,12 +55,20 @@ namespace SRC.Web.NewPortal.Controllers
             }
             else
             {
-                loggedUser = _contactFacade.CheckLogin(userName, password, HttpContext.Current.Request.UserHostAddress);
-                LoggedUser.Current = loggedUser;
+                try
+                {
+                    loggedUser = _contactFacade.CheckLogin(userName, password, HttpContext.Current.Request.UserHostAddress);
+                    LoggedUser.Current = loggedUser;
 
-                returnValue.Result = loggedUser;
-                returnValue.Success = true;
-                returnValue.Message = "Üye girişi başarılı.";
+                    returnValue.Result = loggedUser;
+                    returnValue.Success = true;
+                    returnValue.Message = "Üye girişi başarılı.";
+                }
+                catch (Exception ex)
+                {
+
+                    returnValue.Message = ex.Message;
+                }
             }
 
             return returnValue;
@@ -110,6 +118,7 @@ namespace SRC.Web.NewPortal.Controllers
                 if (!_contactFacade.CheckUserExists(contact.EmailAddress))
                 {
                     contact.UserName = contact.EmailAddress;
+                    contact.Password = contact.Password.ToSHA1();
                     var newContactId = _contactFacade.CreateContact(contact);
 
                     returnValue.Success = true;
