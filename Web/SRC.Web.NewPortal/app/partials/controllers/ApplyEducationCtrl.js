@@ -13,7 +13,7 @@ appMain.controller('ApplyEducationCtrl', ['$scope', '$sce', '$http', '$routePara
         url: $scope.applyPageDataUrl,
         method: "GET",
         params: {
-            pageType: 6
+            pageType: 7
         }
     }).success(function (data) {
         if (data && data.Success && data.Result) {

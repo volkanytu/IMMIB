@@ -51,7 +51,10 @@ namespace SRC.Library.Entities.CrmEntities
             FOOTER = 2,
             EDUCATION_APPLICATION_CONDITION = 3,
             TRANSFER_INFORMATION = 4,
-            CONTACT = 5
+            CONTACT = 5,
+            NEW_USER_CONTRACT=6,
+            APPLY_CONTRACT = 7,
+            CANCEL_CONTRACT=8
         }
     }
 }

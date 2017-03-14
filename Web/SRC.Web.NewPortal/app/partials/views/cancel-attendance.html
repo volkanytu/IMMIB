@@ -25,6 +25,11 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
+                        <span data-ng-bind-html="trustHtml(Page.Content)"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
                         <div class="checkbox">
                             <input type="checkbox" value="" ng-model="$parent.selectedAttendance.isAgreed">
                             <span class="label label-default"> Kodu yukarıda yazılı olan eğitimin iptalini kabul ediyorum</span>
