@@ -22,7 +22,6 @@ namespace SRC.Web.NewPortal
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.IgnoreList.Clear();
-
             RegisterMainBundles(bundles);
             RegisterAngularBundles(bundles);
         }

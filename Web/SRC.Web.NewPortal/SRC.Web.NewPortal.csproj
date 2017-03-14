@@ -1746,6 +1746,9 @@
     <Content Include="assets\xchart\xcharts.js" />
     <Content Include="assets\xchart\xcharts.min.css" />
     <Content Include="assets\xchart\xcharts.min.js" />
+    <Content Include="content\flexslider-icon.svg" />
+    <Content Include="content\fontawesome-webfont.svg" />
+    <Content Include="content\glyphicons-halflings-regular.svg" />
     <Content Include="css\bootstrap-reset.css" />
     <Content Include="css\bootstrap-theme-v3.2.0.css" />
     <Content Include="css\bootstrap-theme-v3.2.0.min.css" />
@@ -2203,13 +2206,28 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="content\fontawesome-webfont.eot" />
+    <Content Include="content\fontawesome-webfont.ttf" />
+    <Content Include="content\fontawesome-webfont.woff" />
+    <Content Include="content\FontAwesome.otf" />
+    <Content Include="content\flexslider-icon.eot" />
+    <Content Include="content\flexslider-icon.ttf" />
+    <Content Include="content\flexslider-icon.woff" />
+    <Content Include="content\glyphicons-halflings-regular.eot" />
+    <Content Include="content\glyphicons-halflings-regular.ttf" />
+    <Content Include="content\glyphicons-halflings-regular.woff" />
+    <None Include="Properties\PublishProfiles\publish.pubxml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

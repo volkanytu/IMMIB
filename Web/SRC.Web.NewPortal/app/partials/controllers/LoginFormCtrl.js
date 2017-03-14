@@ -20,10 +20,14 @@ appMain.controller('LoginFormCtrl', ['$scope', '$sce', '$http', '$routeParams', 
         window.location.href = $scope.baseUrl + "Profile/New/";
     };
 
-    $scope.Login = function () {
+    $scope.Login = function ($keyEvent) {
 
         var userName = $scope.$$childHead.userName;
         var password = $scope.$$childHead.password;
+
+        if ($keyEvent != null && $keyEvent.which != 13) {
+            return;
+        }
 
         if (userName == null || typeof (userName) == "undefined" || userName == ""
             || password == null || typeof (password) == "undefined" || password == "") {

@@ -56,7 +56,7 @@ var appRoot = angular.module('main', ['ngRoute', 'ngGrid', 'ngResource', 'ui.gri
             }
         };
     })
-    .directive('onFinishRender', function ($timeout) {
+    .directive('onFinishRender', ['$timeout', function ($timeout) {
         return {
             restrict: 'A',
             link: function (scope, element, attr) {
@@ -67,7 +67,7 @@ var appRoot = angular.module('main', ['ngRoute', 'ngGrid', 'ngResource', 'ui.gri
                 }
             }
         }
-    })
+    }])
 
 
 
