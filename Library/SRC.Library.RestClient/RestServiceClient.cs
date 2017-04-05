@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using RestSharp;
+using RestSharp.Authenticators;
 using SRC.Library.RestClient;
 using SRC.Library.RestClient.Interfaces;
 using System;
@@ -16,7 +17,8 @@ namespace SAHIBINDEN.ServiceLibrary.RestClientManager
             _baseUrl = baseUrl;
         }
 
-        public RestRequestInfo<TRequest, TResult> Execute<TRequest, TResult>(RestMethod restMethod, string extUrl, TRequest query, WebHeaderCollection headerCollection = null)
+        public RestRequestInfo<TRequest, TResult> Execute<TRequest, TResult>(RestMethod restMethod, string extUrl, TRequest query
+            , WebHeaderCollection headerCollection = null, IAuthenticator authenticator = null)
         {
             Method method = (Method)(int)restMethod;
 
@@ -25,6 +27,12 @@ namespace SAHIBINDEN.ServiceLibrary.RestClientManager
             returnValue.RequestDate = DateTime.Now;
 
             var client = new RestClient(_baseUrl);
+
+            if (authenticator != null)
+            {
+                //new RestSharp.Authenticators.NtlmAuthenticator()
+                client.Authenticator = authenticator;
+            }
 
             var request = new RestRequest(extUrl, method);
 
