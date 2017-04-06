@@ -99,6 +99,10 @@
       <Project>{6c6acf75-343c-4b62-b131-75fe56c582c8}</Project>
       <Name>SRC.Library.Ioc.IocManager</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Library\Services\SRC.Library.Services.Members\SRC.Library.Services.Members.csproj">
+      <Project>{57e1be05-bb83-4cd1-a3e2-ae972922b0a1}</Project>
+      <Name>SRC.Library.Services.Members</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Library\SRC.Library.Common\SRC.Library.Common.csproj">
       <Project>{13229fe4-c206-4917-8a42-2ea185ef8f86}</Project>
       <Name>SRC.Library.Common</Name>

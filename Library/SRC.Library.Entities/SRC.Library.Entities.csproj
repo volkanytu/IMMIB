@@ -72,6 +72,7 @@
     <Compile Include="CrmEntities\EntityBase.cs" />
     <Compile Include="CustomEntities\ContactAttendanceSummary.cs" />
     <Compile Include="CustomEntities\CustomException.cs" />
+    <Compile Include="CustomEntities\ImmibMember.cs" />
     <Compile Include="CustomEntities\LogEntity.cs" />
     <Compile Include="CustomEntities\LogItem.cs" />
     <Compile Include="CustomEntities\ResponseContainer.cs" />
