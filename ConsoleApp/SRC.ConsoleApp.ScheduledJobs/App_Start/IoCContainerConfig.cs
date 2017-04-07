@@ -42,8 +42,19 @@ namespace SRC.ConsoleApp.ScheduledJobs
             builder.Register<IEducationAttendanceBusiness>(c => new EducationAttendanceBusiness(c.Resolve<IEducationAttendanceDao>()
                 , c.Resolve<IBaseDao<EducationAttendance>>())).InstancePerDependency();
 
+            builder.Register<IBaseDao<Account>>(c => new BaseSqlDao<Account>(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>(), AccountQueries.GET_ACCOUNT, AccountQueries.GET_ACCOUNT_LIST)).InstancePerDependency();
+            builder.Register<IBaseBusiness<Account>>(c => new BaseBusiness<Account>(c.Resolve<IBaseDao<Account>>())).InstancePerDependency();
+
+            builder.Register<AccountDao>(c => new AccountDao(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>())).InstancePerDependency();
+            builder.Register<AccountBusiness>(c => new AccountBusiness(c.Resolve<IBaseDao<Account>>(), c.Resolve<AccountDao>())).InstancePerDependency();
+
             builder.Register<BaseJob>(c => new PassiveUnPaidAttendance(c.Resolve<ILogManager>(), c.Resolve<IBaseBusiness<EducationAttendance>>(), c.Resolve<IEducationAttendanceBusiness>()))
                 .Keyed<BaseJob>(JobType.PassiveUnPaidAttendance.ToString())
+                .InstancePerLifetimeScope()
+                .InterceptedBy(typeof(LogInterceptor));
+
+            builder.Register<BaseJob>(c => new ImmibMemberIntegration(c.Resolve<ILogManager>(), c.Resolve<IBaseBusiness<Account>>(), c.Resolve<IAccountBusiness>()))
+                .Keyed<BaseJob>(JobType.ImmibIntegration.ToString())
                 .InstancePerLifetimeScope()
                 .InterceptedBy(typeof(LogInterceptor));
 
