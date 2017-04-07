@@ -45,9 +45,13 @@ namespace SRC.Library.Entities.CrmEntities
         [CrmFieldName(KEY_TAX_NUMBER)]
         public string TaxNumber { get; set; }
 
-        [CrmFieldDataType(CrmDataType.ENTITYREFERENCE)]
+        [CrmFieldDataType(CrmDataType.STRING)]
         [CrmFieldName(KEY_TAX_OFFICE)]
-        public EntityReferenceWrapper TaxOffice { get; set; }
+        public string TaxOffice { get; set; }
+
+        [CrmFieldDataType(CrmDataType.ENTITYREFERENCE)]
+        [CrmFieldName(KEY_ASSOCIATION)]
+        public EntityReferenceWrapper Association { get; set; }
 
         [CrmFieldDataType(CrmDataType.STRING)]
         [CrmFieldName(KEY_ADDRESS)]
@@ -85,13 +89,14 @@ namespace SRC.Library.Entities.CrmEntities
         public const string KEY_EMAIL_ADDRESS = "emailaddress1";
         public const string KEY_WEB_SITE = "websiteurl";
         public const string KEY_TAX_NUMBER = "new_taxnumber";
-        public const string KEY_TAX_OFFICE = "new_taxofficeid";
+        public const string KEY_TAX_OFFICE = "new_taxoffice";
         public const string KEY_ADDRESS = "address1_line1";
         public const string KEY_REGISTRY_ID = "new_registryid";
         public const string KEY_IS_ASSOCIATION_MEMBER = "new_isassociationmember";
         public const string KEY_CITY_ID = "new_cityid";
         public const string KEY_IS_CHECKED = "new_ischecked";
         public const string KEY_IS_EDUCATION_COMPANY = "new_iseducationcompany";
+        public const string KEY_ASSOCIATION = "new_associationid";
 
         public enum StateCode
         {

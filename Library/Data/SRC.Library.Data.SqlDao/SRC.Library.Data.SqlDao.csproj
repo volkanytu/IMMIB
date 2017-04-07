@@ -102,12 +102,14 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssociationDao.cs" />
     <Compile Include="BaseSqlDao.cs" />
     <Compile Include="AccountDao.cs" />
     <Compile Include="ContactDao.cs" />
     <Compile Include="EducationAttendanceDao.cs" />
     <Compile Include="EducationDao.cs" />
     <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="Interfaces\IAssociationDao.cs" />
     <Compile Include="Interfaces\IAccountDao.cs" />
     <Compile Include="Interfaces\IEducationAttendanceDao.cs" />
     <Compile Include="Interfaces\IEducationDao.cs" />

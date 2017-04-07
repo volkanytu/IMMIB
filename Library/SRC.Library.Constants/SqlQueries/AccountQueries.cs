@@ -19,8 +19,9 @@ namespace SRC.Library.Constants.SqlQueries
 	                                        ,AC.EMailAddress1 AS EmailAddress
 	                                        ,AC.WebSiteURL AS WebSite
 	                                        ,AC.new_taxnumber AS TaxNumber
-	                                        ,AC.new_taxofficeid AS TaxOffice
-	                                        ,AC.new_taxofficeidName AS TaxOfficeName
+                                            ,AC.new_associationid AS Association
+                                            ,AC.new_associationidName AS AssociationName
+	                                        ,AC.new_taxoffice AS TaxOffice
 	                                        ,AC.Address1_Line1 AS Address
 	                                        ,AC.new_registryid AS RegistryId
 	                                        ,AC.new_isassociationmember AS IsAssociationMember
@@ -48,8 +49,9 @@ namespace SRC.Library.Constants.SqlQueries
 	                                        ,AC.EMailAddress1 AS EmailAddress
 	                                        ,AC.WebSiteURL AS WebSite
 	                                        ,AC.new_taxnumber AS TaxNumber
-	                                        ,AC.new_taxofficeid AS TaxOffice
-	                                        ,AC.new_taxofficeidName AS TaxOfficeName
+                                            ,AC.new_associationid AS Association
+                                            ,AC.new_associationidName AS AssociationName
+	                                        ,AC.new_taxoffice AS TaxOffice
 	                                        ,AC.Address1_Line1 AS Address
 	                                        ,AC.new_registryid AS RegistryId
 	                                        ,AC.new_isassociationmember AS IsAssociationMember
@@ -77,8 +79,9 @@ namespace SRC.Library.Constants.SqlQueries
 	                                        ,AC.EMailAddress1 AS EmailAddress
 	                                        ,AC.WebSiteURL AS WebSite
 	                                        ,AC.new_taxnumber AS TaxNumber
-	                                        ,AC.new_taxofficeid AS TaxOffice
-	                                        ,AC.new_taxofficeidName AS TaxOfficeName
+                                            ,AC.new_associationid AS Association
+                                            ,AC.new_associationidName AS AssociationName
+	                                        ,AC.new_taxoffice AS TaxOffice
 	                                        ,AC.Address1_Line1 AS Address
 	                                        ,AC.new_registryid AS RegistryId
 	                                        ,AC.new_isassociationmember AS IsAssociationMember

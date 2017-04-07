@@ -8,6 +8,7 @@ namespace SRC.Library.Entities.CustomEntities
 {
     public class ImmibMember
     {
+        public string UNVAN { get; set; }
         public decimal? BIRLIKKOD { get; set; }
         public string BIRLIK { get; set; }
         public DateTime GIRIS_TARIHI { get; set; }

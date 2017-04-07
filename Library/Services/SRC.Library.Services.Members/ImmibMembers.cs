@@ -21,9 +21,19 @@ namespace SRC.Library.Services.Members
 
         public List<ImmibMember> GetMembers()
         {
-            var memberList = _service.Uyelistesi(PASSWORD);
-            DataTable dt = memberList.Tables[0].AsEnumerable().Take(5).CopyToDataTable();
-            return dt.ToList<ImmibMember>();
+            return new List<ImmibMember>()
+            {
+                new ImmibMember()
+                {
+                    TCVERNO = "0040490092",
+                    UNVAN = "ACAR AKÜ",
+                    BIRLIKKOD = 1212,
+                    BIRLIK =  "İMMİB.KİMYA"
+                }
+            };
+            //var memberList = _service.Uyelistesi(PASSWORD);
+            //DataTable dt = memberList.Tables[0].AsEnumerable().Take(5).CopyToDataTable();
+            //return dt.ToList<ImmibMember>();
         }
     }
 }

@@ -15,6 +15,7 @@ using SRC.Library.Constants.SqlQueries;
 using SRC.Library.Data.SqlDao.Interfaces;
 using SRC.Library.Business.Interfaces;
 using SRC.Library.Business;
+using SRC.Library.Data.SqlDao.SRC.Library.Data.SqlDao;
 using SRC.Library.Domain.Business.Interfaces;
 using SRC.Library.Domain.Business;
 using SRC.Library.Entities.CustomEntities;
@@ -45,15 +46,23 @@ namespace SRC.ConsoleApp.ScheduledJobs
             builder.Register<IBaseDao<Account>>(c => new BaseSqlDao<Account>(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>(), AccountQueries.GET_ACCOUNT, AccountQueries.GET_ACCOUNT_LIST)).InstancePerDependency();
             builder.Register<IBaseBusiness<Account>>(c => new BaseBusiness<Account>(c.Resolve<IBaseDao<Account>>())).InstancePerDependency();
 
-            builder.Register<AccountDao>(c => new AccountDao(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>())).InstancePerDependency();
-            builder.Register<AccountBusiness>(c => new AccountBusiness(c.Resolve<IBaseDao<Account>>(), c.Resolve<AccountDao>())).InstancePerDependency();
+            builder.Register<IAccountDao>(c => new AccountDao(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>())).InstancePerDependency();
+            builder.Register<IAccountBusiness>(c => new AccountBusiness(c.Resolve<IBaseDao<Account>>(), c.Resolve<IAccountDao>())).InstancePerDependency();
+
+            builder.Register<IBaseDao<Association>>(c => new BaseSqlDao<Association>(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>(), AssociationQueries.GET_ASSOCIATION, AssociationQueries.GET_ASSOCIATION_LIST)).InstancePerDependency();
+            builder.Register<IBaseBusiness<Association>>(c => new BaseBusiness<Association>(c.Resolve<IBaseDao<Association>>())).InstancePerDependency();
+
+            builder.Register<IAssociationDao>(c => new AssociationDao(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>())).InstancePerDependency();
+            builder.Register<IAssociationBusiness>(c => new AssociationBusiness(c.Resolve<IBaseDao<Association>>(), c.Resolve<IAssociationDao>())).InstancePerDependency();
 
             builder.Register<BaseJob>(c => new PassiveUnPaidAttendance(c.Resolve<ILogManager>(), c.Resolve<IBaseBusiness<EducationAttendance>>(), c.Resolve<IEducationAttendanceBusiness>()))
                 .Keyed<BaseJob>(JobType.PassiveUnPaidAttendance.ToString())
                 .InstancePerLifetimeScope()
                 .InterceptedBy(typeof(LogInterceptor));
 
-            builder.Register<BaseJob>(c => new ImmibMemberIntegration(c.Resolve<ILogManager>(), c.Resolve<IBaseBusiness<Account>>(), c.Resolve<IAccountBusiness>()))
+            builder.Register<BaseJob>(c => new ImmibMemberIntegration(c.Resolve<ILogManager>() 
+                                        ,c.Resolve<IBaseBusiness<Account>>(), c.Resolve<IAccountBusiness>()
+                                        ,c.Resolve<IBaseBusiness<Association>>(), c.Resolve<IAssociationBusiness>()))
                 .Keyed<BaseJob>(JobType.ImmibIntegration.ToString())
                 .InstancePerLifetimeScope()
                 .InterceptedBy(typeof(LogInterceptor));
