@@ -48,13 +48,11 @@ namespace SRC.Library.Entities.CrmEntities
         [CrmFieldDataType(CrmDataType.STRING)]
         [CrmFieldName(KEY_TAX_OFFICE)]
         public string TaxOffice { get; set; }
-<<<<<<< HEAD
+
 
         [CrmFieldDataType(CrmDataType.ENTITYREFERENCE)]
         [CrmFieldName(KEY_ASSOCIATION)]
         public EntityReferenceWrapper Association { get; set; }
-=======
->>>>>>> 6a0bd5e46f42bc285e960da6979d809141d3f2a6
 
         [CrmFieldDataType(CrmDataType.STRING)]
         [CrmFieldName(KEY_ADDRESS)]

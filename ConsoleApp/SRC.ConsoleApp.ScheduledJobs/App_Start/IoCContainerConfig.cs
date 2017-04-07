@@ -62,8 +62,10 @@ namespace SRC.ConsoleApp.ScheduledJobs
                 .InterceptedBy(typeof(LogInterceptor));
 
             builder.Register<BaseJob>(c => new ImmibMemberIntegration(c.Resolve<ILogManager>() 
-                                        ,c.Resolve<IBaseBusiness<Account>>(), c.Resolve<IAccountBusiness>()
-                                        ,c.Resolve<IBaseBusiness<Association>>(), c.Resolve<IAssociationBusiness>()))
+                , c.Resolve<IBaseBusiness<Account>>()
+                , c.Resolve<IAccountBusiness>()
+                , c.Resolve<IBaseBusiness<Association>>()
+                , c.Resolve<IAssociationBusiness>()))
                 .Keyed<BaseJob>(JobType.ImmibIntegration.ToString())
                 .InstancePerLifetimeScope()
                 .InterceptedBy(typeof(LogInterceptor));
