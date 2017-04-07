@@ -32,6 +32,7 @@ namespace SRC.ConsoleApp.ScheduledJobs
             #region | IOC REGISTER |
             IocContainerBuilder.RegisterDataAccess(builder);
             IocContainerBuilder.RegisterLogManager(builder, string.Format("{0}.{1}", APPLICATION_NAME, jobName), LogEntity.LogClientType.ELASTIC);
+            IocContainerBuilder.RegisterPortal(builder);
             //IocContainerBuilder.RegisterInterceptors(builder);
             #endregion
 
@@ -55,6 +56,17 @@ namespace SRC.ConsoleApp.ScheduledJobs
 
             builder.Register<BaseJob>(c => new ImmibMemberIntegration(c.Resolve<ILogManager>(), c.Resolve<IBaseBusiness<Account>>(), c.Resolve<IAccountBusiness>()))
                 .Keyed<BaseJob>(JobType.ImmibIntegration.ToString())
+                .InstancePerLifetimeScope()
+                .InterceptedBy(typeof(LogInterceptor));
+
+            builder.Register<BaseJob>(c => new MigrateCrmData(c.Resolve<ILogManager>(), c.ResolveNamed<ISqlAccess>("CRM4")
+                , c.Resolve<IBaseBusiness<City>>()
+                , c.Resolve<IBaseBusiness<Town>>()
+                , c.Resolve<IBaseBusiness<EducationDefinition>>()
+                , c.Resolve<IBaseBusiness<Association>>()
+                , c.Resolve<IBaseBusiness<EducationLocation>>()
+                , c.Resolve<IBaseBusiness<Account>>()))
+                .Keyed<BaseJob>(JobType.MigrateCrmData.ToString())
                 .InstancePerLifetimeScope()
                 .InterceptedBy(typeof(LogInterceptor));
 

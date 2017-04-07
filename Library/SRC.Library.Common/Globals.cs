@@ -83,5 +83,11 @@ namespace SRC.Library.Common
             get { return RegistryHelper.Get.Value("LogExt"); }
         }
 
+        public static string ConnectionStringCrm4
+        {
+            get { return RegistryHelper.Get.Value("ConnectionStringCrm4"); }
+        }
+
+
     }
 }

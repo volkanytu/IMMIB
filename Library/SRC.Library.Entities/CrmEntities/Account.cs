@@ -47,7 +47,7 @@ namespace SRC.Library.Entities.CrmEntities
 
         [CrmFieldDataType(CrmDataType.ENTITYREFERENCE)]
         [CrmFieldName(KEY_TAX_OFFICE)]
-        public EntityReferenceWrapper TaxOffice { get; set; }
+        public string TaxOffice { get; set; }
 
         [CrmFieldDataType(CrmDataType.STRING)]
         [CrmFieldName(KEY_ADDRESS)]
@@ -85,7 +85,7 @@ namespace SRC.Library.Entities.CrmEntities
         public const string KEY_EMAIL_ADDRESS = "emailaddress1";
         public const string KEY_WEB_SITE = "websiteurl";
         public const string KEY_TAX_NUMBER = "new_taxnumber";
-        public const string KEY_TAX_OFFICE = "new_taxofficeid";
+        public const string KEY_TAX_OFFICE = "new_taxoffice";
         public const string KEY_ADDRESS = "address1_line1";
         public const string KEY_REGISTRY_ID = "new_registryid";
         public const string KEY_IS_ASSOCIATION_MEMBER = "new_isassociationmember";

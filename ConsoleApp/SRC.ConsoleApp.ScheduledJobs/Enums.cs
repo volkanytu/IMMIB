@@ -9,6 +9,7 @@ namespace SRC.ConsoleApp.ScheduledJobs
     public enum JobType
     {
         PassiveUnPaidAttendance,
-        ImmibIntegration
+        ImmibIntegration,
+        MigrateCrmData
     }
 }

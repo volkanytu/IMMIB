@@ -66,6 +66,8 @@
     <Compile Include="Enums.cs" />
     <Compile Include="Interfaces\IScheduledJob.cs" />
     <Compile Include="Jobs\ImmibMemberIntegration.cs" />
+    <Compile Include="Jobs\MigrateCrmData.cs" />
+    <Compile Include="MigrationLibs\Queries.cs" />
     <Compile Include="Model\PassiveUnPaidAttendanceModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
