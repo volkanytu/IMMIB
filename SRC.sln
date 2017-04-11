@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{47E0633D-6E0C-4B2B-87EE-AD355CEBAEC5}"
 EndProject
@@ -64,6 +64,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{94D647C1-A71C-4C5B-A0AF-9B29C6D879D9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SRC.Library.Services.Members", "Library\Services\SRC.Library.Services.Members\SRC.Library.Services.Members.csproj", "{57E1BE05-BB83-4CD1-A3E2-AE972922B0A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SRC.WindowsService.GenericService", "WindowsService\SRC.WindowsService.GenericService\SRC.WindowsService.GenericService.csproj", "{2B792608-F92B-4DD1-B002-5F47309D6FA6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -155,6 +157,10 @@ Global
 		{57E1BE05-BB83-4CD1-A3E2-AE972922B0A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57E1BE05-BB83-4CD1-A3E2-AE972922B0A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57E1BE05-BB83-4CD1-A3E2-AE972922B0A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B792608-F92B-4DD1-B002-5F47309D6FA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B792608-F92B-4DD1-B002-5F47309D6FA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B792608-F92B-4DD1-B002-5F47309D6FA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B792608-F92B-4DD1-B002-5F47309D6FA6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -185,5 +191,6 @@ Global
 		{5C5B7ADA-9016-4EFF-B3BF-74F3BC148438} = {04AAD9AD-9630-494B-8F64-ACC621C60CBF}
 		{94D647C1-A71C-4C5B-A0AF-9B29C6D879D9} = {47E0633D-6E0C-4B2B-87EE-AD355CEBAEC5}
 		{57E1BE05-BB83-4CD1-A3E2-AE972922B0A1} = {94D647C1-A71C-4C5B-A0AF-9B29C6D879D9}
+		{2B792608-F92B-4DD1-B002-5F47309D6FA6} = {1B3C9D1B-A725-4A0E-BE0B-CA9B08D35113}
 	EndGlobalSection
 EndGlobal
