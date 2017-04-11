@@ -56,7 +56,8 @@ namespace SRC.Web.NewPortal
                     "~/js/jquery.flexslider.js",
                     "~/assets/jquery-knob/js/jquery.knob.js",
                     "~/js/custom/common.document.ready.js",
-                    "~/js/jquery.validate.min.js"
+                    "~/js/jquery.validate.min.js",
+                    "~/js/jquery.maskedinput.js"
                 }));
         }
 

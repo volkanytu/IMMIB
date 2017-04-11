@@ -42,7 +42,7 @@
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Cep Telefonu</label>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" placeholder="Cep Telefonu" ng-model="Contact.MobilePhone">
+                            <input type="text" inputtype="phonenumber" class="form-control" placeholder="Cep Telefonu" ng-model="Contact.MobilePhone">
                         </div>
                     </div>
                     <div class="form-group" ng-hide="recordType==1">
@@ -61,7 +61,7 @@
                         <label class="col-lg-2 control-label">Firma Vergi Numarası</label>
                         <div class="col-lg-6">
                             <div class="input-group m-bot15">
-                                <input type="text" class="form-control" placeholder="Vergi Numarası" ng-model="Contact.TaxNumber">
+                                <input type="text" class="form-control" placeholder="Vergi Numarası" ng-model="Contact.TaxNumber" data-ng-blur="checkCompany()">
                                 <span class="input-group-btn">
                                     <button type="button" class="btn btn-danger" title="Firma ara" data-ng-click="checkCompany()"><i class="fa fa-search"></i></button>
                                 </span>

@@ -2,6 +2,8 @@
 
 appMain.controller('EditProfileCtrl', ['$scope', '$sce', '$http', '$routeParams', 'safeApply', 'alertModal', 'commonFunc', 'commonValues', function ($scope, $sce, $http, $routeParams, safeApply, alertModal, commonFunc, commonValues) {
 
+    $("input[inputtype='phonenumber']").mask("0(999)-999-9999");
+
     $scope.getProfileDataUrl = $scope.baseUrl + 'api/contactapi/GetContact';
     $scope.updateNewProfileDataUrl = $scope.baseUrl + 'api/contactapi/UpdateProfile';
     $scope.changePasswordDataUrl = $scope.baseUrl + 'api/contactapi/ChangePassword';

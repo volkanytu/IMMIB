@@ -26,6 +26,16 @@ var appRoot = angular.module('main', ['ngRoute', 'ngGrid', 'ngResource', 'ui.gri
             }
         };
     }])
+    .directive('formatPhone', ['$location', function ($location) {
+        return {
+            //restrict: 'A',
+            link: function (scope, element) {
+                scope.$watch(element, function () {
+                    $(element).mask("999-9999999");
+                });
+            }
+        };
+    }])
     .directive('loading', ['$http', function ($http) {
         return {
             restrict: 'A',

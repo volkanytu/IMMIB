@@ -2,6 +2,8 @@
 
 appMain.controller('NewProfileCtrl', ['$scope', '$sce', '$http', '$routeParams', 'safeApply', 'alertModal', 'commonFunc', 'commonValues', function ($scope, $sce, $http, $routeParams, safeApply, alertModal, commonFunc, commonValues) {
 
+    $("input[inputtype='phonenumber']").mask("0(999)-999-9999");
+
     $scope.saveNewProfileDataUrl = $scope.baseUrl + 'api/contactapi/SaveNewProfile';
     $scope.getCompanyDataUrl = $scope.baseUrl + 'api/contactapi/GetCompany';
 
@@ -35,7 +37,26 @@ appMain.controller('NewProfileCtrl', ['$scope', '$sce', '$http', '$routeParams',
         }
 
         $scope.Contact.CustomerType = {};
-        if ($scope.recordType == "0") {
+
+        if ($scope.Contact.FirstName == null || $scope.Contact.LastName == null ||
+            $scope.Contact.Gender == null || $scope.Contact.MobilePhone == null ||
+            $scope.Contact.EmailAddress == null || $scope.Contact.City == null) {
+
+            alertModal("Tüm alanlar dolu olmalıdır.", "error");
+
+            return;
+        }
+
+        if ($scope.recordType == "0") { //Firma ise
+
+            if ($scope.Contact.TaxNumber == null || $scope.Contact.CompanyName == null ||
+                $scope.Contact.CompanyPosition == null) {
+
+                alertModal("Tüm alanlar dolu olmalıdır.", "error");
+
+                return;
+            }
+
             $scope.Contact.CustomerType.AttributeValue = 1;
         }
         else {
@@ -51,6 +72,7 @@ appMain.controller('NewProfileCtrl', ['$scope', '$sce', '$http', '$routeParams',
             }
         }
 
+        var userNameMessage = "<br> Kullanıcı adınız mail adresinizdir.";
         $http({
             url: $scope.saveNewProfileDataUrl,
             method: "POST",
@@ -61,7 +83,7 @@ appMain.controller('NewProfileCtrl', ['$scope', '$sce', '$http', '$routeParams',
         }).success(function (data) {
             if (data && data.Success && data.Result) {
 
-                alertModal(data.Message, "success", function () {
+                alertModal(data.Message + userNameMessage, "success", function () {
                     window.location.href = $scope.baseUrl;
                 });
             }
@@ -71,10 +93,10 @@ appMain.controller('NewProfileCtrl', ['$scope', '$sce', '$http', '$routeParams',
 
             $scope.disableSave = false;
         })
-        .error(function (err) {
-            alertModal(err.Message, "error");
-            $scope.disableSave = false;
-        });
+            .error(function (err) {
+                alertModal(err.Message, "error");
+                $scope.disableSave = false;
+            });
     };
 
     $scope.checkCompany = function () {
@@ -100,8 +122,8 @@ appMain.controller('NewProfileCtrl', ['$scope', '$sce', '$http', '$routeParams',
                 alertModal(data.Message, "error");
             }
         })
-        .error(function (err) {
-            alertModal(err.Message, "error");
-        });
+            .error(function (err) {
+                alertModal(err.Message, "error");
+            });
     };
 }]);

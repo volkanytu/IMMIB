@@ -73,13 +73,13 @@ namespace SRC.ConsoleApp.ScheduledJobs.Jobs
 
             ProcessAccounts();
 
-            //ProcessContacts();
+            ProcessContacts();
 
-            //ProcessEducations();
+            ProcessEducations();
 
-            //ProcessEducationAttendances();
+            ProcessEducationAttendances();
 
-            //ProcessCreditCardLogs();
+            ProcessCreditCardLogs();
 
             Console.WriteLine("Migration İşlemi Tamamlandı");
             Console.ReadKey();
@@ -365,7 +365,7 @@ namespace SRC.ConsoleApp.ScheduledJobs.Jobs
             Console.WriteLine("Account migration is working.");
 
             var dt = _crm4SqlAccess.GetDataTable(Queries.GET_ACCOUNTS);
-            var entityList = dt.ToList<Account>();
+            var entityList = dt.ToList<Account>().Skip(49000).ToList();
 
             Console.SetCursorPosition(0, 2);
             Console.WriteLine("Record Count:{0}", entityList.Count.ToString());
