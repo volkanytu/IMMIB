@@ -11,6 +11,8 @@ namespace SRC.Library.Constants.SqlQueries
         #region | GET_CONTACT |
         public const string GET_CONTACT = @"SELECT
 	                                        C.ContactId AS Id
+                                            ,C.parentcustomerid AS Account
+                                            ,C.parentcustomeridName AS AccountName
 	                                        ,C.FullName
 	                                        ,C.FirstName
 	                                        ,C.LastName
@@ -57,6 +59,8 @@ namespace SRC.Library.Constants.SqlQueries
         #region | GET_CONTACT_LIST |
         public const string GET_CONTACT_LIST = @"SELECT
 	                                                C.ContactId AS Id
+                                                    ,C.parentcustomerid AS Account
+                                                    ,C.parentcustomeridName AS AccountName
 	                                                ,C.FullName
 	                                                ,C.FirstName
 	                                                ,C.LastName
@@ -103,6 +107,8 @@ namespace SRC.Library.Constants.SqlQueries
         #region | GET_CONTACT_BY_USERNAME |
         public const string GET_CONTACT_BY_USERNAME = @"SELECT
 	                                                C.ContactId AS Id
+                                                    ,C.parentcustomerid AS Account
+                                                    ,C.parentcustomeridName AS AccountName
 	                                                ,C.FullName As Name
 	                                                ,C.FirstName
 	                                                ,C.LastName
@@ -148,6 +154,8 @@ namespace SRC.Library.Constants.SqlQueries
         #region | GET_CONTACT_BY_USERNAME_PASSWORD |
         public const string GET_CONTACT_BY_USERNAME_PASSWORD = @"SELECT
 	                                                C.ContactId AS Id
+                                                    ,C.parentcustomerid AS Account
+                                                    ,C.parentcustomeridName AS AccountName
 	                                                ,C.FullName  As Name
 	                                                ,C.FirstName
 	                                                ,C.LastName

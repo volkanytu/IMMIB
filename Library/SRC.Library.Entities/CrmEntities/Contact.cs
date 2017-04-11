@@ -17,6 +17,10 @@ namespace SRC.Library.Entities.CrmEntities
         [CrmFieldName(KEY_FULLNAME)]
         public string Name { get; set; }
 
+        [CrmFieldDataType(CrmDataType.ENTITYREFERENCE)]
+        [CrmFieldName(KEY_ACCOUNT_ID)]
+        public EntityReferenceWrapper Account { get; set; }
+
         [CrmFieldDataType(CrmDataType.STRING)]
         [CrmFieldName(KEY_FIRSTNAME)]
         public string FirstName { get; set; }
@@ -155,9 +159,11 @@ namespace SRC.Library.Entities.CrmEntities
 
         public string RePassword { get; set; }
         public string NewPassword { get; set; }
+        public EntityReferenceWrapper Association { get; set; }
 
         public const string KEY_LOGICAL_NAME = "contact";
         public const string KEY_CONTACT_ID = "contactid";
+        public const string KEY_ACCOUNT_ID = "parentcustomerid";
         public const string KEY_FULLNAME = "fullname";
         public const string KEY_FIRSTNAME = "firstname";
         public const string KEY_LASTNAME = "lastname";

@@ -57,5 +57,15 @@ namespace SRC.Library.Constants.SqlQueries
                                                     AC.new_code = @Code";
 
         #endregion
+
+        #region | GET_ASSOCIATION_BY_EDUCATION |
+        public const string GET_ASSOCIATION_BY_EDUCATION = @"SELECT 
+	                                                            EA.new_associationid AS Id
+	                                                            ,' ' AS Name 
+                                                            FROM
+	                                                            new_new_education_new_association EA WITH (NOLOCK)
+                                                            WHERE
+	                                                            EA.new_educationid = @educationId";
+        #endregion
     }
 }
