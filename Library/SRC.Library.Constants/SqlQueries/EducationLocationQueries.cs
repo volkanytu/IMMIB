@@ -20,7 +20,7 @@ namespace SRC.Library.Constants.SqlQueries
                                                         FROM
 	                                                        new_educationlocation ED WITH (NOLOCK)
                                                         WHERE
-	                                                        ED.new_educationlocationId = @Id AND ED.StateCode = 0";
+	                                                        ED.new_educationlocationId = @Id";
 
         #endregion
 

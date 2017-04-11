@@ -72,13 +72,13 @@ namespace SRC.Library.Ioc.IocManager
                 , DynamicPageQueries.GET_DYNAMIC_PAGE, DynamicPageQueries.GET_DYNAMIC_PAGE_LIST)).InstancePerDependency();
             builder.Register<IBaseDao<EducationDefinition>>(c => new BaseSqlDao<EducationDefinition>(c.Resolve<ISqlAccess>()
                 , c.Resolve<IMsCrmAccess>()
-                , string.Empty, string.Empty)).InstancePerDependency();
+                , EducationDefinitionQueries.GET_EDUCATION_DEFINITION, EducationDefinitionQueries.GET_EDUCATION_DEFINITION_LIST)).InstancePerDependency();
             builder.Register<IBaseDao<Association>>(c => new BaseSqlDao<Association>(c.Resolve<ISqlAccess>()
                 , c.Resolve<IMsCrmAccess>()
-                , string.Empty, string.Empty)).InstancePerDependency();
+                , AssociationQueries.GET_ASSOCIATION, AssociationQueries.GET_ASSOCIATION_LIST)).InstancePerDependency();
             builder.Register<IBaseDao<EducationLocation>>(c => new BaseSqlDao<EducationLocation>(c.Resolve<ISqlAccess>()
                 , c.Resolve<IMsCrmAccess>()
-                , string.Empty, string.Empty)).InstancePerDependency();
+                , EducationLocationQueries.GET_EDUCATION_LOCATION, EducationLocationQueries.GET_EDUCATION_LOCATION_LIST)).InstancePerDependency();
 
 
 

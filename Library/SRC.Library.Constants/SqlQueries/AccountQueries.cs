@@ -34,7 +34,7 @@ namespace SRC.Library.Constants.SqlQueries
                                         FROM
 	                                        Account AC WITH (NOLOCK)
                                         WHERE
-	                                        AC.AccountId = @Id AND AC.StateCode = 0";
+	                                        AC.AccountId = @Id";
 
         #endregion
 

@@ -28,9 +28,7 @@ namespace SRC.Library.Constants.SqlQueries
                                                         FROM
 	                                                        new_educationattendance EA WITH (NOLOCK)
                                                         WHERE
-	                                                        EA.new_educationattendanceId = @Id
-                                                            AND
-	                                                        EA.StateCode = 0";
+	                                                        EA.new_educationattendanceId = @Id";
 
         #endregion
 

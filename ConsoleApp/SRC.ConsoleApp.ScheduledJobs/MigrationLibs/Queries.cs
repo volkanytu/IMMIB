@@ -219,6 +219,9 @@ namespace SRC.ConsoleApp.ScheduledJobs.MigrationLibs
                                                         ,k.New_taksitturu AS InstallmentType
                                                         ,k.New_kod AS ResultCode
                                                         ,k.New_mesaj AS Result
+                                                        ,k.New_egitimkatilimcisiid AS EducationAttendance
+                                                        ,k.New_egitimkatilimcisiidName AS EducationAttendanceName
+                                                        ,'new_educationattendance' AS EducationAttendanceTypeName
                                                     FROM
                                                     New_kredikartilogu AS k
                                                     WHERE

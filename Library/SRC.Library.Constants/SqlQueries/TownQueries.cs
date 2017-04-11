@@ -22,7 +22,7 @@ namespace SRC.Library.Constants.SqlQueries
                                                         FROM
 	                                                        new_town T WITH (NOLOCK)
                                                         WHERE
-	                                                        T.new_townId = @Id AND T.StateCode = 0";
+	                                                        T.new_townId = @Id";
 
         #endregion
 

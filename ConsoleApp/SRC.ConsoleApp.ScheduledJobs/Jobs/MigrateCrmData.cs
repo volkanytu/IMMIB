@@ -61,7 +61,7 @@ namespace SRC.ConsoleApp.ScheduledJobs.Jobs
 
         protected override void DoWork(string[] args)
         {
-            //ProcessCities();
+            ProcessCities();
 
             //ProcessTowns();
 
@@ -79,7 +79,7 @@ namespace SRC.ConsoleApp.ScheduledJobs.Jobs
 
             //ProcessEducationAttendances();
 
-            ProcessCreditCardLogs();
+            //ProcessCreditCardLogs();
 
         }
 
@@ -106,7 +106,13 @@ namespace SRC.ConsoleApp.ScheduledJobs.Jobs
 
                 try
                 {
-                    _cityBaseBusiness.Insert(entity);
+                    var city = _cityBaseBusiness.Get(entity.Id);
+
+                    if (city != null)
+                        _cityBaseBusiness.Update(entity);
+                    else
+                        _cityBaseBusiness.Insert(entity);
+
                     success++;
 
                     Console.SetCursorPosition(0, 3);
@@ -117,6 +123,9 @@ namespace SRC.ConsoleApp.ScheduledJobs.Jobs
                     error++;
                     Console.SetCursorPosition(0, 6);
                     Console.WriteLine("Process:City, Id:{0}, Message:{1}", entity.Id, ex.Message);
+
+                    FileLog.WriteToFile(string.Format("Method:{0}|Id:{1}|Message:{2}", "ProcessCities", entity.Id.ToString(), ex.Message)
+                        , Globals.FileLogPath);
                 }
 
                 Console.SetCursorPosition(0, 4);
@@ -151,7 +160,13 @@ namespace SRC.ConsoleApp.ScheduledJobs.Jobs
 
                 try
                 {
-                    _townBaseBusiness.Insert(entity);
+                    var town = _townBaseBusiness.Get(entity.Id);
+
+                    if (town != null)
+                        _townBaseBusiness.Update(entity);
+                    else
+                        _townBaseBusiness.Insert(entity);
+
                     success++;
 
                     Console.SetCursorPosition(0, 3);
@@ -162,6 +177,9 @@ namespace SRC.ConsoleApp.ScheduledJobs.Jobs
                     error++;
                     Console.SetCursorPosition(0, 6);
                     Console.WriteLine("Process:Town, Id:{0}, Message:{1}", entity.Id, ex.Message);
+
+                    FileLog.WriteToFile(string.Format("Method:{0}|Id:{1}|Message:{2}", "ProcessTowns", entity.Id.ToString(), ex.Message)
+                        , Globals.FileLogPath);
                 }
 
                 Console.SetCursorPosition(0, 4);
@@ -196,7 +214,13 @@ namespace SRC.ConsoleApp.ScheduledJobs.Jobs
 
                 try
                 {
-                    _educationDefinationBaseBusiness.Insert(entity);
+                    var educationDefination = _educationDefinationBaseBusiness.Get(entity.Id);
+
+                    if (educationDefination != null)
+                        _educationDefinationBaseBusiness.Update(entity);
+                    else
+                        _educationDefinationBaseBusiness.Insert(entity);
+
                     success++;
 
                     Console.SetCursorPosition(0, 3);
@@ -207,6 +231,9 @@ namespace SRC.ConsoleApp.ScheduledJobs.Jobs
                     error++;
                     Console.SetCursorPosition(0, 6);
                     Console.WriteLine("Process:Education Defination, Id:{0}, Message:{1}", entity.Id, ex.Message);
+
+                    FileLog.WriteToFile(string.Format("Method:{0}|Id:{1}|Message:{2}", "ProcessEducationDefinations", entity.Id.ToString(), ex.Message)
+                        , Globals.FileLogPath);
                 }
 
                 Console.SetCursorPosition(0, 4);
@@ -241,7 +268,14 @@ namespace SRC.ConsoleApp.ScheduledJobs.Jobs
 
                 try
                 {
-                    _associationBaseBusiness.Insert(entity);
+
+                    var association = _associationBaseBusiness.Get(entity.Id);
+
+                    if (association != null)
+                        _associationBaseBusiness.Update(entity);
+                    else
+                        _associationBaseBusiness.Insert(entity);
+
                     success++;
 
                     Console.SetCursorPosition(0, 3);
@@ -252,6 +286,9 @@ namespace SRC.ConsoleApp.ScheduledJobs.Jobs
                     error++;
                     Console.SetCursorPosition(0, 6);
                     Console.WriteLine("Process:Association, Id:{0}, Message:{1}", entity.Id, ex.Message);
+
+                    FileLog.WriteToFile(string.Format("Method:{0}|Id:{1}|Message:{2}", "ProcessAssociations", entity.Id.ToString(), ex.Message)
+                        , Globals.FileLogPath);
                 }
 
                 Console.SetCursorPosition(0, 4);
@@ -286,7 +323,13 @@ namespace SRC.ConsoleApp.ScheduledJobs.Jobs
 
                 try
                 {
-                    _educationLocationBaseBusiness.Insert(entity);
+                    var educationLocation = _educationLocationBaseBusiness.Get(entity.Id);
+
+                    if (educationLocation != null)
+                        _educationLocationBaseBusiness.Update(entity);
+                    else
+                        _educationLocationBaseBusiness.Insert(entity);
+
                     success++;
 
                     Console.SetCursorPosition(0, 3);
@@ -297,6 +340,9 @@ namespace SRC.ConsoleApp.ScheduledJobs.Jobs
                     error++;
                     Console.SetCursorPosition(0, 6);
                     Console.WriteLine("Process:Education Location, Id:{0}, Message:{1}", entity.Id, ex.Message);
+
+                    FileLog.WriteToFile(string.Format("Method:{0}|Id:{1}|Message:{2}", "ProcessEducationLocations", entity.Id.ToString(), ex.Message)
+                        , Globals.FileLogPath);
                 }
 
                 Console.SetCursorPosition(0, 4);
@@ -331,14 +377,14 @@ namespace SRC.ConsoleApp.ScheduledJobs.Jobs
 
                 try
                 {
-                    _accountBaseBusiness.Insert(entity);
+                    var account = _accountBaseBusiness.Get(entity.Id);
 
-                    var erAssociation = GetAccountAssociation(entity.Id);
+                    if (account != null)
+                        _accountBaseBusiness.Update(entity);
+                    else
+                        _accountBaseBusiness.Insert(entity);
 
-                    if (erAssociation != null)
-                    {
-                        _accountBaseBusiness.AssociateIn(entity.Id, erAssociation, "new_account_new_association");
-                    }
+                    AssociateToAccount(entity.Id);
 
                     success++;
 
@@ -350,6 +396,9 @@ namespace SRC.ConsoleApp.ScheduledJobs.Jobs
                     error++;
                     Console.SetCursorPosition(0, 6);
                     Console.WriteLine("Process:Account, Id:{0}, Message:{1}", entity.Id, ex.Message);
+
+                    FileLog.WriteToFile(string.Format("Method:{0}|Id:{1}|Message:{2}", "ProcessAccounts", entity.Id.ToString(), ex.Message)
+                        , Globals.FileLogPath);
                 }
 
                 Console.SetCursorPosition(0, 4);
@@ -384,8 +433,18 @@ namespace SRC.ConsoleApp.ScheduledJobs.Jobs
 
                 try
                 {
-                    entity.Password = entity.Password.ToSHA1();
-                    _contactBaseBusiness.Insert(entity);
+                    var contact = _contactBaseBusiness.Get(entity.Id);
+
+                    if (contact != null)
+                    {
+                        entity.Password = entity.Password.ToSHA1();
+                        _contactBaseBusiness.Update(entity);
+                    }
+                    else
+                    {
+                        entity.Password = entity.Password.ToSHA1();
+                        _contactBaseBusiness.Insert(entity);
+                    }
 
                     success++;
 
@@ -397,6 +456,9 @@ namespace SRC.ConsoleApp.ScheduledJobs.Jobs
                     error++;
                     Console.SetCursorPosition(0, 6);
                     Console.WriteLine("Process:Contact, Id:{0}, Message:{1}", entity.Id, ex.Message);
+
+                    FileLog.WriteToFile(string.Format("Method:{0}|Id:{1}|Message:{2}", "ProcessContacts", entity.Id.ToString(), ex.Message)
+                        , Globals.FileLogPath);
                 }
 
                 Console.SetCursorPosition(0, 4);
@@ -431,15 +493,14 @@ namespace SRC.ConsoleApp.ScheduledJobs.Jobs
 
                 try
                 {
-                    _educationBaseBusiness.Insert(entity);
+                    var education = _educationBaseBusiness.Get(entity.Id);
 
-                    var associationList = GetEducationAssociations(entity.Id);
+                    if (education != null)
+                        _educationBaseBusiness.Update(entity);
+                    else
+                        _educationBaseBusiness.Insert(entity);
 
-
-                    foreach (var association in associationList)
-                    {
-                        _educationBaseBusiness.AssociateIn(entity.Id, association, "new_new_education_new_association");
-                    }
+                    AssociateToEducation(entity.Id);
 
                     success++;
 
@@ -451,6 +512,9 @@ namespace SRC.ConsoleApp.ScheduledJobs.Jobs
                     error++;
                     Console.SetCursorPosition(0, 6);
                     Console.WriteLine("Process:Education, Id:{0}, Message:{1}", entity.Id, ex.Message);
+
+                    FileLog.WriteToFile(string.Format("Method:{0}|Id:{1}|Message:{2}", "ProcessEducations", entity.Id.ToString(), ex.Message)
+                        , Globals.FileLogPath);
                 }
 
                 Console.SetCursorPosition(0, 4);
@@ -485,7 +549,12 @@ namespace SRC.ConsoleApp.ScheduledJobs.Jobs
 
                 try
                 {
-                    _educationAttendanceBaseBusiness.Insert(entity);
+                    var educationAttendance = _educationAttendanceBaseBusiness.Get(entity.Id);
+
+                    if (educationAttendance != null)
+                        _educationAttendanceBaseBusiness.Update(entity);
+                    else
+                        _educationAttendanceBaseBusiness.Insert(entity);
 
                     success++;
 
@@ -497,6 +566,9 @@ namespace SRC.ConsoleApp.ScheduledJobs.Jobs
                     error++;
                     Console.SetCursorPosition(0, 6);
                     Console.WriteLine("Process:EducationAttendance, Id:{0}, Message:{1}", entity.Id, ex.Message);
+
+                    FileLog.WriteToFile(string.Format("Method:{0}|Id:{1}|Message:{2}", "ProcessEducationAttendances", entity.Id.ToString(), ex.Message)
+                        , Globals.FileLogPath);
                 }
 
                 Console.SetCursorPosition(0, 4);
@@ -531,7 +603,12 @@ namespace SRC.ConsoleApp.ScheduledJobs.Jobs
 
                 try
                 {
-                    _creditCardLogBaseBusiness.Insert(entity);
+                    var creditCardLog = _creditCardLogBaseBusiness.Get(entity.Id);
+
+                    if (creditCardLog != null)
+                        _creditCardLogBaseBusiness.Update(entity);
+                    else
+                        _creditCardLogBaseBusiness.Insert(entity);
 
                     success++;
 
@@ -543,6 +620,9 @@ namespace SRC.ConsoleApp.ScheduledJobs.Jobs
                     error++;
                     Console.SetCursorPosition(0, 6);
                     Console.WriteLine("Process:CreditCardLog, Id:{0}, Message:{1}", entity.Id, ex.Message);
+
+                    FileLog.WriteToFile(string.Format("Method:{0}|Id:{1}|Message:{2}", "ProcessCreditCardLogs", entity.Id.ToString(), ex.Message)
+                        , Globals.FileLogPath);
                 }
 
                 Console.SetCursorPosition(0, 4);
@@ -550,6 +630,42 @@ namespace SRC.ConsoleApp.ScheduledJobs.Jobs
 
                 Console.SetCursorPosition(0, 5);
                 Console.WriteLine("Error:{0}", error);
+            }
+        }
+
+        public void AssociateToAccount(Guid accountId)
+        {
+            try
+            {
+                var erAssociation = GetAccountAssociation(accountId);
+
+                if (erAssociation != null)
+                {
+                    _accountBaseBusiness.AssociateIn(accountId, erAssociation, "new_account_new_association");
+                }
+            }
+            catch (Exception ex)
+            {
+                FileLog.WriteToFile(string.Format("Method:{0}|Id:{1}|Message:{2}", "AssociateToAccount", accountId.ToString(), ex.Message)
+                    , Globals.FileLogPath);
+            }
+        }
+
+        public void AssociateToEducation(Guid educationId)
+        {
+            try
+            {
+                var associationList = GetEducationAssociations(educationId);
+
+                foreach (var association in associationList)
+                {
+                    _educationBaseBusiness.AssociateIn(educationId, association, "new_new_education_new_association");
+                }
+            }
+            catch (Exception ex)
+            {
+                FileLog.WriteToFile(string.Format("Method:{0}|Id:{1}|Message:{2}", "AssociateToEducation", educationId.ToString(), ex.Message)
+                    , Globals.FileLogPath);
             }
         }
 

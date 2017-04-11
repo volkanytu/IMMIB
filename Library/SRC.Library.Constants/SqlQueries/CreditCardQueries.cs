@@ -26,7 +26,7 @@ namespace SRC.Library.Constants.SqlQueries
                                                 FROM
 	                                                new_creditcardlog CL WITH (NOLOCK)
                                                 WHERE
-	                                                CL.new_creditcardlogId = @Id AND CL.StateCode = 0";
+	                                                CL.new_creditcardlogId = @Id";
 
         #endregion
 

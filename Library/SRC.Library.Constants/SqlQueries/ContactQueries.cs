@@ -50,7 +50,7 @@ namespace SRC.Library.Constants.SqlQueries
                                         FROM
 	                                        Contact C WITH (NOLOCK)
                                         WHERE
-	                                        C.ContactId = @Id AND C.StateCode = 0";
+	                                        C.ContactId = @Id";
 
         #endregion
 

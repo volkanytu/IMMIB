@@ -20,7 +20,7 @@ namespace SRC.Library.Constants.SqlQueries
                                                 FROM
 	                                                new_association AC WITH (NOLOCK)
                                                 WHERE
-	                                                AC.new_associationId = @Id AND AC.StateCode = 0";
+	                                                AC.new_associationId = @Id";
 
         #endregion
 
