@@ -25,5 +25,10 @@ namespace SRC.Library.Domain.Business
         {
             return _associationDao.GetAssociation(code);
         }
+
+        public List<Association> GetAssociationsByEducation(Guid educationId)
+        {
+            return _associationDao.GetAssociationsByEducation(educationId);
+        }
     }
 }

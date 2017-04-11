@@ -12,31 +12,40 @@ using System.Threading.Tasks;
 
 namespace SRC.Library.Data.SqlDao
 {
-    namespace SRC.Library.Data.SqlDao
+    public class AssociationDao : BaseSqlDao<Association>, IAssociationDao
     {
-        public class AssociationDao : BaseSqlDao<Association>, IAssociationDao
+        private ISqlAccess _sqlAccess;
+        private IMsCrmAccess _msCrmAccess;
+
+        public AssociationDao(ISqlAccess sqlAccess, IMsCrmAccess msCrmAccess)
+            : base(sqlAccess, msCrmAccess, AssociationQueries.GET_ASSOCIATION, AssociationQueries.GET_ASSOCIATION_LIST)
         {
-            private ISqlAccess _sqlAccess;
-            private IMsCrmAccess _msCrmAccess;
+            _sqlAccess = sqlAccess;
+            _msCrmAccess = msCrmAccess;
+        }
 
-            public AssociationDao(ISqlAccess sqlAccess, IMsCrmAccess msCrmAccess)
-                : base(sqlAccess, msCrmAccess, AssociationQueries.GET_ASSOCIATION, AssociationQueries.GET_ASSOCIATION_LIST)
-            {
-                _sqlAccess = sqlAccess;
-                _msCrmAccess = msCrmAccess;
-            }
-
-            public Association GetAssociation(int code)
-            {
-                SqlParameter[] parameters = new SqlParameter[]
+        public Association GetAssociation(int code)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
                 {
                     new SqlParameter("@code",code)
                 };
 
-                DataTable dt = _sqlAccess.GetDataTable(AssociationQueries.GET_ASSOCIATION_BY_CODE, parameters);
+            DataTable dt = _sqlAccess.GetDataTable(AssociationQueries.GET_ASSOCIATION_BY_CODE, parameters);
 
-                return dt.ToList<Association>().FirstOrDefault();
-            }
+            return dt.ToList<Association>().FirstOrDefault();
+        }
+
+        public List<Association> GetAssociationsByEducation(Guid educationId)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@education",educationId)
+                };
+
+            DataTable dt = _sqlAccess.GetDataTable(AssociationQueries.GET_ASSOCIATION_BY_EDUCATION, parameters);
+
+            return dt.ToList<Association>();
         }
     }
 

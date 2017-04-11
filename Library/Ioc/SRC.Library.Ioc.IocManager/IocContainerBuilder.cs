@@ -86,7 +86,7 @@ namespace SRC.Library.Ioc.IocManager
             builder.Register<IAccountDao>(c => new AccountDao(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>())).InstancePerDependency();
             builder.Register<IEducationDao>(c => new EducationDao(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>())).InstancePerDependency();
             builder.Register<IEducationAttendanceDao>(c => new EducationAttendanceDao(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>())).InstancePerDependency();
-
+            builder.Register<IAssociationDao>(c => new AssociationDao(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>())).InstancePerDependency();
             #endregion
 
             #region | BUSINESS |
@@ -111,12 +111,21 @@ namespace SRC.Library.Ioc.IocManager
             builder.Register<IEducationBusiness>(c => new EducationBusiness(c.Resolve<IEducationDao>())).InstancePerDependency();
             builder.Register<IEducationAttendanceBusiness>(c => new EducationAttendanceBusiness(c.Resolve<IEducationAttendanceDao>()
                 , c.Resolve<IBaseDao<EducationAttendance>>())).InstancePerDependency();
-
+            builder.Register<IAssociationBusiness>(c => new AssociationBusiness(c.Resolve<IBaseDao<Association>>(), c.Resolve<IAssociationDao>())).InstancePerDependency();
             #endregion
 
             #region | FACADE |
-            builder.Register<IContactFacade>(c => new ContactFacade(c.Resolve<IContactBusiness>(), c.Resolve<ISmsBusiness>(), c.Resolve<IBaseBusiness<LoginLog>>(), c.Resolve<IBaseBusiness<Contact>>())).InstancePerDependency();
-            builder.Register<IEducationFacade>(c => new EducationFacade(c.Resolve<IEducationBusiness>(), c.Resolve<IEducationAttendanceBusiness>(), c.Resolve<IBaseBusiness<EducationAttendance>>(), c.Resolve<IBaseBusiness<CreditCardLog>>())).InstancePerDependency();
+            builder.Register<IContactFacade>(c => new ContactFacade(
+                c.Resolve<IContactBusiness>(), 
+                c.Resolve<ISmsBusiness>(), c.Resolve<IBaseBusiness<LoginLog>>(), 
+                c.Resolve<IBaseBusiness<Contact>>(),
+                c.Resolve<IBaseBusiness<Account>>())).InstancePerDependency();
+            builder.Register<IEducationFacade>(c => new EducationFacade(
+                c.Resolve<IEducationBusiness>(), 
+                c.Resolve<IEducationAttendanceBusiness>(), 
+                c.Resolve<IBaseBusiness<EducationAttendance>>(),
+                c.Resolve<IBaseBusiness<CreditCardLog>>(),
+                c.Resolve<IAssociationBusiness>())).InstancePerDependency();
             #endregion
 
             return builder;
@@ -156,12 +165,14 @@ namespace SRC.Library.Ioc.IocManager
             builder.Register<IBaseDao<InformedBy>>(c => new BaseSqlDao<InformedBy>(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>(), InformedByQueries.GET_INFORMEDBY, InformedByQueries.GET_INFORMEDBY_LIST)).InstancePerDependency();
             builder.Register<IBaseDao<City>>(c => new BaseSqlDao<City>(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>(), CityQueries.GET_CITY, CityQueries.GET_CITY_LIST)).InstancePerDependency();
             builder.Register<IBaseDao<DynamicPage>>(c => new BaseSqlDao<DynamicPage>(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>(), DynamicPageQueries.GET_DYNAMIC_PAGE, DynamicPageQueries.GET_DYNAMIC_PAGE_LIST)).InstancePerDependency();
-
+                        builder.Register<IBaseDao<Association>>(c => new BaseSqlDao<Association>(c.Resolve<ISqlAccess>()
+                , c.Resolve<IMsCrmAccess>()
+                , AssociationQueries.GET_ASSOCIATION, AssociationQueries.GET_ASSOCIATION_LIST)).InstancePerDependency();
 
             builder.Register<IContactDao>(c => new ContactDao(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>())).InstancePerDependency();
             builder.Register<IEducationDao>(c => new EducationDao(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>())).InstancePerDependency();
             builder.Register<IEducationAttendanceDao>(c => new EducationAttendanceDao(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>())).InstancePerDependency();
-
+            builder.Register<IAssociationDao>(c => new AssociationDao(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>())).InstancePerDependency();
             #endregion
 
             #region | BUSINESS |
@@ -175,18 +186,27 @@ namespace SRC.Library.Ioc.IocManager
             builder.Register<IBaseBusiness<InformedBy>>(c => new BaseBusiness<InformedBy>(c.Resolve<IBaseDao<InformedBy>>())).InstancePerDependency();
             builder.Register<IBaseBusiness<City>>(c => new BaseBusiness<City>(c.Resolve<IBaseDao<City>>())).InstancePerDependency();
             builder.Register<IBaseBusiness<DynamicPage>>(c => new BaseBusiness<DynamicPage>(c.Resolve<IBaseDao<DynamicPage>>())).InstancePerDependency();
-
+            builder.Register<IBaseBusiness<Association>>(c => new BaseBusiness<Association>(c.Resolve<IBaseDao<Association>>())).InstancePerDependency();
 
             builder.Register<IContactBusiness>(c => new ContactBusiness(c.Resolve<IBaseDao<Contact>>(), c.Resolve<IContactDao>())).InstancePerDependency();
             builder.Register<IEducationBusiness>(c => new EducationBusiness(c.Resolve<IEducationDao>())).InstancePerDependency();
             builder.Register<IEducationAttendanceBusiness>(c => new EducationAttendanceBusiness(c.Resolve<IEducationAttendanceDao>()
                 , c.Resolve<IBaseDao<EducationAttendance>>())).InstancePerDependency();
-
+            builder.Register<IAssociationBusiness>(c => new AssociationBusiness(c.Resolve<IBaseDao<Association>>(), c.Resolve<IAssociationDao>())).InstancePerDependency();
             #endregion
 
             #region | FACADE |
-            builder.Register<IContactFacade>(c => new ContactFacade(c.Resolve<IContactBusiness>(), c.Resolve<ISmsBusiness>(), c.Resolve<IBaseBusiness<LoginLog>>(), c.Resolve<IBaseBusiness<Contact>>())).InstancePerDependency();
-            builder.Register<IEducationFacade>(c => new EducationFacade(c.Resolve<IEducationBusiness>(), c.Resolve<IEducationAttendanceBusiness>(), c.Resolve<IBaseBusiness<EducationAttendance>>(), c.Resolve<IBaseBusiness<CreditCardLog>>())).InstancePerDependency();
+            builder.Register<IContactFacade>(c => new ContactFacade(
+                c.Resolve<IContactBusiness>(),
+                c.Resolve<ISmsBusiness>(), c.Resolve<IBaseBusiness<LoginLog>>(),
+                c.Resolve<IBaseBusiness<Contact>>(),
+                c.Resolve<IBaseBusiness<Account>>())).InstancePerDependency();
+            builder.Register<IEducationFacade>(c => new EducationFacade(
+                c.Resolve<IEducationBusiness>(),
+                c.Resolve<IEducationAttendanceBusiness>(),
+                c.Resolve<IBaseBusiness<EducationAttendance>>(),
+                c.Resolve<IBaseBusiness<CreditCardLog>>(),
+                c.Resolve<IAssociationBusiness>())).InstancePerDependency();
             #endregion
 
             return builder;

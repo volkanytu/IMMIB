@@ -20,13 +20,17 @@ namespace SRC.Library.Domain.Facade
         private ISmsBusiness _smsBusiness;
         private IBaseBusiness<LoginLog> _baseBusiness;
         private IBaseBusiness<Contact> _baseContactBusiness;
+        private IBaseBusiness<Account> _baseAccountBusiness;
+
         public ContactFacade(IContactBusiness contactBusiness, ISmsBusiness smsBusiness,
-            IBaseBusiness<LoginLog> baseBusiness, IBaseBusiness<Contact> baseContactBusiness)
+            IBaseBusiness<LoginLog> baseBusiness, IBaseBusiness<Contact> baseContactBusiness,
+            IBaseBusiness<Account> baseAccountBusiness)
         {
             _contactBusiness = contactBusiness;
             _smsBusiness = smsBusiness;
             _baseBusiness = baseBusiness;
             _baseContactBusiness = baseContactBusiness;
+            _baseAccountBusiness = baseAccountBusiness;
         }
 
         public Contact CheckLogin(string userName, string password, string ipAddress)
@@ -41,6 +45,15 @@ namespace SRC.Library.Domain.Facade
             if (contact == null)
             {
                 throw new CustomException("Hatalı kullanıcı adı veya şifre!", ContactLogKeys.INVALID_USERNAME_OR_PASSWORD);
+            }
+
+            if (contact.Account != null)
+            {
+                Account account = _baseAccountBusiness.Get(contact.Account.Id);
+                if (account != null)
+                {
+                    contact.Association = account.Association;
+                }
             }
 
             this.CreateLoginLog(contact.ToEntityReferenceWrapper(), ipAddress);

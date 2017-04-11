@@ -16,19 +16,23 @@ namespace SRC.Library.Domain.Facade
     {
         private IEducationBusiness _educationBusiness;
         private IEducationAttendanceBusiness _educationAttendanceBusiness;
+        private IAssociationBusiness _associationBusiness;
         private IBaseBusiness<EducationAttendance> _baseEducationAttendanceBusiness;
         private IBaseBusiness<CreditCardLog> _baseCreditCardBusiness;
 
+
         public EducationFacade(IEducationBusiness educationBusiness, IEducationAttendanceBusiness educationAttendanceBusiness,
-            IBaseBusiness<EducationAttendance> baseBusiness, IBaseBusiness<CreditCardLog> baseCreditCardBusiness)
+            IBaseBusiness<EducationAttendance> baseBusiness, IBaseBusiness<CreditCardLog> baseCreditCardBusiness,
+            IAssociationBusiness associationBusiness)
         {
             _educationBusiness = educationBusiness;
             _educationAttendanceBusiness = educationAttendanceBusiness;
             _baseEducationAttendanceBusiness = baseBusiness;
             _baseCreditCardBusiness = baseCreditCardBusiness;
+            _associationBusiness = associationBusiness;
         }
 
-        public List<Education> GetEducations(int? month, int? year)
+        public List<Education> GetEducations(int? month, int? year, Guid? associationId = null)
         {
             month.CheckNull("Ay boş olamaz!", EducationLogKeys.MONTH_NULL);
             month.CheckNull("Yıl boş olamaz!", EducationLogKeys.YEAR_NULL);
@@ -36,7 +40,23 @@ namespace SRC.Library.Domain.Facade
             DateTime startDate = new DateTime((int)year, (int)month, 1);
             DateTime endDate = startDate.AddMonths(1);
 
-            return _educationBusiness.GetEducations(startDate, endDate);
+            List<Education> educations = _educationBusiness.GetEducations(startDate, endDate);
+            if (associationId == null) //Birlik yok ise tüm eğitimler döner
+                return educations;
+
+            if (educations == null)
+                return null;
+
+            foreach (Education education in educations)
+            {
+                education.AssociationPermissions =_associationBusiness.GetAssociationsByEducation(education.Id)
+                                                    .Select(p => new EntityReferenceWrapper()
+                                                    {
+                                                        Id = p.Id
+                                                    }).ToList();
+            }
+
+            return educations.Where(p=>p.AssociationPermissions.Contains(associationId.ToEntityReferenceWrapper())).ToList();
         }
 
         public List<Education> GetEducationsOfAttendances(List<EducationAttendance> attendances)
