@@ -1,6 +1,7 @@
 ﻿using SRC.Library.Constants.SqlQueries;
 using SRC.Library.Data.Interfaces;
 using SRC.Library.Data.SqlDao.Interfaces;
+using SRC.Library.Entities;
 using SRC.Library.Entities.CrmEntities;
 using System;
 using System.Collections.Generic;
@@ -36,16 +37,16 @@ namespace SRC.Library.Data.SqlDao
             return dt.ToList<Association>().FirstOrDefault();
         }
 
-        public List<Association> GetAssociationsByEducation(Guid educationId)
+        public List<EntityReferenceWrapper> GetAssociationErListByEducation(Guid educationId)
         {
             SqlParameter[] parameters = new SqlParameter[]
                 {
                     new SqlParameter("@education",educationId)
                 };
 
-            DataTable dt = _sqlAccess.GetDataTable(AssociationQueries.GET_ASSOCIATION_BY_EDUCATION, parameters);
+            DataTable dt = _sqlAccess.GetDataTable(AssociationQueries.GET_ASSOCIATION_ER_BY_EDUCATION, parameters);
 
-            return dt.ToList<Association>();
+            return dt.ToList<EntityReferenceWrapper>();
         }
     }
 

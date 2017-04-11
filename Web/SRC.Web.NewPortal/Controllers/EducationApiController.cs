@@ -137,7 +137,14 @@ namespace SRC.Web.NewPortal.Controllers
             }
             else
             {
-                returnValue.Result = _educationFacade.GetEducations(monthNow, yearNow);
+                Guid? associationId = null;
+
+                if (LoggedUser.IsLoggedIn && LoggedUser.Current.Association != null)
+                {
+                    associationId = LoggedUser.Current.Association.Id;
+                }
+
+                returnValue.Result = _educationFacade.GetEducations(monthNow, yearNow, associationId);
 
                 List<EducationAttendance> contactAttendanceList = null;
 

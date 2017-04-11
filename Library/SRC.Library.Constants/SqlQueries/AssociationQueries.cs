@@ -58,12 +58,17 @@ namespace SRC.Library.Constants.SqlQueries
 
         #endregion
 
-        #region | GET_ASSOCIATION_BY_EDUCATION |
-        public const string GET_ASSOCIATION_BY_EDUCATION = @"SELECT 
+        #region | GET_ASSOCIATION_ER_BY_EDUCATION |
+        public const string GET_ASSOCIATION_ER_BY_EDUCATION = @"SELECT 
 	                                                            EA.new_associationid AS Id
-	                                                            ,' ' AS Name 
+	                                                            ,a.new_name AS Name 
+	                                                            ,'new_association' AS LogicalName                                                                
                                                             FROM
-	                                                            new_new_education_new_association EA WITH (NOLOCK)
+                                                            new_new_education_new_association EA WITH (NOLOCK)
+	                                                            JOIN
+		                                                            new_association AS a
+			                                                            ON
+			                                                            EA.new_associationid=a.new_associationId
                                                             WHERE
 	                                                            EA.new_educationid = @educationId";
         #endregion

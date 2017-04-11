@@ -11,8 +11,9 @@ namespace SRC.Library.Constants.SqlQueries
         #region | GET_CONTACT |
         public const string GET_CONTACT = @"SELECT
 	                                        C.ContactId AS Id
-                                            ,C.parentcustomerid AS Account
-                                            ,C.parentcustomeridName AS AccountName
+                                            ,C.ParentCustomerId AS Account
+                                            ,C.ParentCustomerIdName AS AccountName
+                                            ,'account' AS AccountTypeName
 	                                        ,C.FullName
 	                                        ,C.FirstName
 	                                        ,C.LastName
@@ -33,6 +34,7 @@ namespace SRC.Library.Constants.SqlQueries
 	                                        ,C.EMailAddress1 AS EmailAddress
 	                                        ,C.new_universityid AS University
 	                                        ,C.new_universityidName AS UniversityName
+                                            ,'new_university' AS UniversityTypeName
 	                                        ,C.new_companyname AS CompanyName
 	                                        ,C.new_taxnumber AS TaxNumber
 	                                        ,C.new_taxofficeid AS TaxOffice
@@ -43,6 +45,7 @@ namespace SRC.Library.Constants.SqlQueries
 	                                        ,C.new_informedbyidName AS InformedByName
 	                                        ,C.new_cityid AS City
 	                                        ,C.new_cityidName AS CityName
+                                            ,'new_city' AS CityTypeName
 	                                        ,C.new_educationlevel AS EducationLevel
 	                                        ,C.new_iseducator AS IsEducator
 	                                        ,C.new_isassociationemployee AS IsAssociationEmployee
@@ -59,8 +62,9 @@ namespace SRC.Library.Constants.SqlQueries
         #region | GET_CONTACT_LIST |
         public const string GET_CONTACT_LIST = @"SELECT
 	                                                C.ContactId AS Id
-                                                    ,C.parentcustomerid AS Account
-                                                    ,C.parentcustomeridName AS AccountName
+                                                    ,C.ParentCustomerId AS Account
+                                                    ,C.ParentCustomerIdName AS AccountName
+                                                    ,'account' AS AccountTypeName
 	                                                ,C.FullName
 	                                                ,C.FirstName
 	                                                ,C.LastName
@@ -107,8 +111,9 @@ namespace SRC.Library.Constants.SqlQueries
         #region | GET_CONTACT_BY_USERNAME |
         public const string GET_CONTACT_BY_USERNAME = @"SELECT
 	                                                C.ContactId AS Id
-                                                    ,C.parentcustomerid AS Account
-                                                    ,C.parentcustomeridName AS AccountName
+                                                    ,C.ParentCustomerId AS Account
+                                                    ,C.ParentCustomerIdName AS AccountName
+                                                    ,'account' AS AccountTypeName
 	                                                ,C.FullName As Name
 	                                                ,C.FirstName
 	                                                ,C.LastName
@@ -154,8 +159,9 @@ namespace SRC.Library.Constants.SqlQueries
         #region | GET_CONTACT_BY_USERNAME_PASSWORD |
         public const string GET_CONTACT_BY_USERNAME_PASSWORD = @"SELECT
 	                                                C.ContactId AS Id
-                                                    ,C.parentcustomerid AS Account
-                                                    ,C.parentcustomeridName AS AccountName
+                                                    ,C.ParentCustomerId AS Account
+                                                    ,C.ParentCustomerIdName AS AccountName
+                                                    ,'account' AS AccountTypeName
 	                                                ,C.FullName  As Name
 	                                                ,C.FirstName
 	                                                ,C.LastName

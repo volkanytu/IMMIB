@@ -7,6 +7,7 @@ using SRC.Library.Data.Interfaces;
 using SRC.Library.Data.SqlDao.Interfaces;
 using SRC.Library.Domain.Business.Interfaces;
 using SRC.Library.Entities.CrmEntities;
+using SRC.Library.Entities;
 
 namespace SRC.Library.Domain.Business
 {
@@ -26,9 +27,9 @@ namespace SRC.Library.Domain.Business
             return _associationDao.GetAssociation(code);
         }
 
-        public List<Association> GetAssociationsByEducation(Guid educationId)
+        public List<EntityReferenceWrapper> GetAssociationErListByEducation(Guid educationId)
         {
-            return _associationDao.GetAssociationsByEducation(educationId);
+            return _associationDao.GetAssociationErListByEducation(educationId);
         }
     }
 }

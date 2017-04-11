@@ -61,7 +61,7 @@ namespace SRC.ConsoleApp.ScheduledJobs.Jobs
 
         protected override void DoWork(string[] args)
         {
-            ProcessCities();
+            //ProcessCities();
 
             //ProcessTowns();
 
@@ -71,7 +71,7 @@ namespace SRC.ConsoleApp.ScheduledJobs.Jobs
 
             //ProcessEducationLocations();
 
-            //ProcessAccounts();
+            ProcessAccounts();
 
             //ProcessContacts();
 
@@ -80,6 +80,9 @@ namespace SRC.ConsoleApp.ScheduledJobs.Jobs
             //ProcessEducationAttendances();
 
             //ProcessCreditCardLogs();
+
+            Console.WriteLine("Migration İşlemi Tamamlandı");
+            Console.ReadKey();
 
         }
 
