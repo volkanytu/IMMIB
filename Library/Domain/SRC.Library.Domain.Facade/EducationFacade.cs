@@ -53,7 +53,7 @@ namespace SRC.Library.Domain.Facade
                 education.AssociationPermissions = _associationBusiness.GetAssociationErListByEducation(education.Id);
             }
 
-            return educations.Where(p => p.AssociationPermissions.Contains(associationId.ToEntityReferenceWrapper())).ToList();
+            return educations.Where(p => p.AssociationPermissions.Any(c=>c.Id == associationId)).ToList();
         }
 
         public List<Education> GetEducationsOfAttendances(List<EducationAttendance> attendances)

@@ -41,7 +41,7 @@ namespace SRC.Library.Data.SqlDao
         {
             SqlParameter[] parameters = new SqlParameter[]
                 {
-                    new SqlParameter("@education",educationId)
+                    new SqlParameter("@educationId",educationId)
                 };
 
             DataTable dt = _sqlAccess.GetDataTable(AssociationQueries.GET_ASSOCIATION_ER_BY_EDUCATION, parameters);
