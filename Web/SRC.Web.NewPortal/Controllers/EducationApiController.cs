@@ -412,7 +412,7 @@ namespace SRC.Web.NewPortal.Controllers
 
             //oluşturduğumuz xml i vposa gönderiyoruz.
             byte[] dataStream = Encoding.UTF8.GetBytes("prmstr=" + xmlMessage);
-            HttpWebRequest webRequest = (HttpWebRequest)HttpWebRequest.Create("https://onlineodemetest.vakifbank.com.tr:4443/VposService/v3/Vposreq.aspx");//Vpos adresi
+            HttpWebRequest webRequest = (HttpWebRequest)HttpWebRequest.Create("https://onlineodeme.vakifbank.com.tr:4443/VposService/v3/Vposreq.aspx");//Vpos adresi
             webRequest.Method = "POST";
             webRequest.ContentType = "application/x-www-form-urlencoded";
             webRequest.ContentLength = dataStream.Length;
@@ -456,7 +456,7 @@ namespace SRC.Web.NewPortal.Controllers
                 returnValue.Result.Description = resultDescriptionNode.InnerText;
             }
 
-            returnValue.Message = string.Format("İşlem sonuç Kodu: {0}, Mesaj: {1}" + returnValue.Result.Code, returnValue.Result.Description);
+            returnValue.Message = string.Format("İşlem sonuç Kodu: {0}, Mesaj: {1}", returnValue.Result.Code, returnValue.Result.Description);
             returnValue.Success = true;
 
             return returnValue;
@@ -491,10 +491,10 @@ namespace SRC.Web.NewPortal.Controllers
             //yukarıda eklediğimiz node lar için değerleri ekliyoruz.
             XmlText merchantText = xmlDoc.CreateTextNode("000000000019125"); //***
             XmlText passwordtext = xmlDoc.CreateTextNode("burakarda1"); //***
-            XmlText terminalNoText = xmlDoc.CreateTextNode("Egitim17"); //***
+            XmlText terminalNoText = xmlDoc.CreateTextNode("VP001896"); //***
             XmlText transactionTypeText = xmlDoc.CreateTextNode("Sale");
             XmlText transactionIdText = xmlDoc.CreateTextNode(Guid.NewGuid().ToString("N"));
-            XmlText currencyAmountText = xmlDoc.CreateTextNode("90.50"); //tutarı nokta ile gönderdiğinizden emin olunuz.
+            XmlText currencyAmountText = xmlDoc.CreateTextNode("1.50"); //tutarı nokta ile gönderdiğinizden emin olunuz.
             XmlText currencyCodeText = xmlDoc.CreateTextNode("949");
             XmlText panText = xmlDoc.CreateTextNode("4543600299100712");
             XmlText cvvText = xmlDoc.CreateTextNode("454");

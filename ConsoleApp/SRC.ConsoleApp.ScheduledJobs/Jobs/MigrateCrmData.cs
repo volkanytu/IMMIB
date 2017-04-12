@@ -71,11 +71,11 @@ namespace SRC.ConsoleApp.ScheduledJobs.Jobs
 
             //ProcessEducationLocations();
 
-            ProcessAccounts();
+            //ProcessAccounts();
 
-            ProcessContacts();
+            //ProcessContacts();
 
-            ProcessEducations();
+            //ProcessEducations();
 
             ProcessEducationAttendances();
 
@@ -365,7 +365,7 @@ namespace SRC.ConsoleApp.ScheduledJobs.Jobs
             Console.WriteLine("Account migration is working.");
 
             var dt = _crm4SqlAccess.GetDataTable(Queries.GET_ACCOUNTS);
-            var entityList = dt.ToList<Account>().Skip(49000).ToList();
+            var entityList = dt.ToList<Account>().Skip(1).ToList();
 
             Console.SetCursorPosition(0, 2);
             Console.WriteLine("Record Count:{0}", entityList.Count.ToString());
@@ -383,7 +383,14 @@ namespace SRC.ConsoleApp.ScheduledJobs.Jobs
                     var account = _accountBaseBusiness.Get(entity.Id);
 
                     if (account != null)
-                        _accountBaseBusiness.Update(entity);
+                    {
+                        success++;
+
+                        Console.SetCursorPosition(0, 3);
+                        Console.WriteLine("Counter:{0}/{1}", counter, entityList.Count);
+                        continue;
+                    }
+                    //_accountBaseBusiness.Update(entity);
                     else
                         _accountBaseBusiness.Insert(entity);
 
@@ -440,6 +447,13 @@ namespace SRC.ConsoleApp.ScheduledJobs.Jobs
 
                     if (contact != null)
                     {
+                        success++;
+
+                        Console.SetCursorPosition(0, 3);
+                        Console.WriteLine("Counter:{0}/{1}", counter, entityList.Count);
+
+                        continue;
+
                         entity.Password = entity.Password.ToSHA1();
                         _contactBaseBusiness.Update(entity);
                     }
@@ -499,7 +513,16 @@ namespace SRC.ConsoleApp.ScheduledJobs.Jobs
                     var education = _educationBaseBusiness.Get(entity.Id);
 
                     if (education != null)
+                    {
+                        success++;
+
+                        Console.SetCursorPosition(0, 3);
+                        Console.WriteLine("Counter:{0}/{1}", counter, entityList.Count);
+
+                        continue;
+
                         _educationBaseBusiness.Update(entity);
+                    }
                     else
                         _educationBaseBusiness.Insert(entity);
 
@@ -555,9 +578,35 @@ namespace SRC.ConsoleApp.ScheduledJobs.Jobs
                     var educationAttendance = _educationAttendanceBaseBusiness.Get(entity.Id);
 
                     if (educationAttendance != null)
+                    {
+                        success++;
+
+                        Console.SetCursorPosition(0, 3);
+                        Console.WriteLine("Counter:{0}/{1}", counter, entityList.Count);
+
+                        continue;
+
                         _educationAttendanceBaseBusiness.Update(entity);
+                    }
                     else
-                        _educationAttendanceBaseBusiness.Insert(entity);
+                    {
+                        if (entity.Status.ToEnum<EducationAttendance.StatusCode>() == EducationAttendance.StatusCode.JOINED
+                            || entity.Status.ToEnum<EducationAttendance.StatusCode>() == EducationAttendance.StatusCode.DID_NOT_JOINED
+                            || entity.Status.ToEnum<EducationAttendance.StatusCode>() == EducationAttendance.StatusCode.EVENT_CANCELED
+                            || entity.Status.ToEnum<EducationAttendance.StatusCode>() == EducationAttendance.StatusCode.PARTICIPANT_CANCELED)
+                        {
+                            var status = entity.Status.AttributeValue.Value;
+                            entity.Status = null;
+
+                            _educationAttendanceBaseBusiness.Insert(entity);
+
+                            _educationAttendanceBaseBusiness.SetState(entity.Id, 1, status);
+                        }
+                        else
+                        {
+                            _educationAttendanceBaseBusiness.Insert(entity);
+                        }
+                    }
 
                     success++;
 
