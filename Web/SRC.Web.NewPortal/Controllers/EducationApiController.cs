@@ -19,6 +19,7 @@ using SRC.Library.Common;
 using System.Xml;
 using System.Text;
 using System.IO;
+using System.Web;
 
 namespace SRC.Web.NewPortal.Controllers
 {
@@ -268,6 +269,8 @@ namespace SRC.Web.NewPortal.Controllers
         {
             ResponseContainer<bool> returnValue = new ResponseContainer<bool>();
 
+            creditCardData.Id = Guid.NewGuid();
+
             if (isMockActive)
             {
                 Thread.Sleep(1000);
@@ -278,16 +281,26 @@ namespace SRC.Web.NewPortal.Controllers
             }
             else
             {
-                PreparePaymentXml(creditCardData);
-
                 if (creditCardData.AttendanceId != null)
                 {
                     creditCardData.EducationAttendance = creditCardData.AttendanceId.Value.ToEntityReferenceWrapper<EducationAttendance>();
                 }
 
+                var creditCardResult = DoPayment(creditCardData);
+
+                creditCardData.ResultCode = creditCardResult.Result.Code;
+                creditCardData.Result = string.Format("Ip:{0}|Result:{1}", HttpContext.Current.Request.UserHostAddress, creditCardResult.Result.Description);
+
                 var creditCardLogId = _creditCardLogBaseBusiness.Insert(creditCardData);
 
-                //TODO: Servis call yapılacak kredi kartı çekimi için
+                if (!creditCardResult.Success || creditCardResult.Result.Code != "0000")
+                {
+                    returnValue.Result = false;
+                    returnValue.Message = creditCardResult.Message;
+
+                    return returnValue;
+                }
+
                 EducationAttendance attendance = new EducationAttendance
                 {
                     Id = creditCardData.AttendanceId.Value,
@@ -394,7 +407,7 @@ namespace SRC.Web.NewPortal.Controllers
             return returnValue;
         }
 
-        private ResponseContainer<CreditCardResult> PreparePaymentXml(CreditCardLog creditCardData)
+        private ResponseContainer<CreditCardResult> DoPayment(CreditCardLog creditCardData)
         {
             ResponseContainer<CreditCardResult> returnValue = new ResponseContainer<CreditCardResult>
             {
@@ -487,20 +500,24 @@ namespace SRC.Web.NewPortal.Controllers
             XmlElement expiryNode = xmlDoc.CreateElement("Expiry");
             XmlElement ClientIpNode = xmlDoc.CreateElement("ClientIp");
             XmlElement transactionDeviceSourceNode = xmlDoc.CreateElement("TransactionDeviceSource");
+            //XmlElement installmentCount = xmlDoc.CreateElement("NumberOfInstallments");
+            XmlElement cardHoldersName = xmlDoc.CreateElement("CardHoldersName");
 
             //yukarıda eklediğimiz node lar için değerleri ekliyoruz.
             XmlText merchantText = xmlDoc.CreateTextNode("000000000019125"); //***
-            XmlText passwordtext = xmlDoc.CreateTextNode("burakarda1"); //***
+            XmlText passwordtext = xmlDoc.CreateTextNode("SZYF6Y8GQI"); //***
             XmlText terminalNoText = xmlDoc.CreateTextNode("VP001896"); //***
             XmlText transactionTypeText = xmlDoc.CreateTextNode("Sale");
-            XmlText transactionIdText = xmlDoc.CreateTextNode(Guid.NewGuid().ToString("N"));
-            XmlText currencyAmountText = xmlDoc.CreateTextNode("1.50"); //tutarı nokta ile gönderdiğinizden emin olunuz.
+            XmlText transactionIdText = xmlDoc.CreateTextNode(creditCardData.Id.ToString("N"));
+            XmlText currencyAmountText = xmlDoc.CreateTextNode(creditCardData.FormattedAmount); //tutarı nokta ile gönderdiğinizden emin olunuz.
             XmlText currencyCodeText = xmlDoc.CreateTextNode("949");
-            XmlText panText = xmlDoc.CreateTextNode("4543600299100712");
-            XmlText cvvText = xmlDoc.CreateTextNode("454");
-            XmlText expiryText = xmlDoc.CreateTextNode("201611");
-            XmlText ClientIpText = xmlDoc.CreateTextNode("190.20.13.12");
+            XmlText panText = xmlDoc.CreateTextNode(creditCardData.CardNumber);
+            XmlText cvvText = xmlDoc.CreateTextNode(creditCardData.Cvc);
+            XmlText expiryText = xmlDoc.CreateTextNode(creditCardData.FormattedExpireDate);
+            XmlText ClientIpText = xmlDoc.CreateTextNode(HttpContext.Current.Request.UserHostAddress);
             XmlText transactionDeviceSourceText = xmlDoc.CreateTextNode("0");
+            //XmlText installmentCountText = xmlDoc.CreateTextNode(creditCardData.InstallmentType.Value.ToString());
+            XmlText cardHoldersNameText = xmlDoc.CreateTextNode(creditCardData.FullName);
 
             //nodeları root elementin altına ekliyoruz.
             rootNode.AppendChild(merchantNode);
@@ -515,6 +532,8 @@ namespace SRC.Web.NewPortal.Controllers
             rootNode.AppendChild(expiryNode);
             rootNode.AppendChild(ClientIpNode);
             rootNode.AppendChild(transactionDeviceSourceNode);
+            //rootNode.AppendChild(installmentCount);
+            rootNode.AppendChild(cardHoldersName);
 
             //nodelar için oluşturduğumuz textleri node lara ekliyoruz.
             merchantNode.AppendChild(merchantText);
@@ -529,6 +548,8 @@ namespace SRC.Web.NewPortal.Controllers
             expiryNode.AppendChild(expiryText);
             ClientIpNode.AppendChild(ClientIpText);
             transactionDeviceSourceNode.AppendChild(transactionDeviceSourceText);
+            //installmentCount.AppendChild(installmentCountText);
+            cardHoldersName.AppendChild(cardHoldersNameText);
 
             returnValue.Result = xmlDoc.OuterXml;
             returnValue.Success = true;

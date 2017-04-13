@@ -29,6 +29,32 @@ appMain.controller('PayEducationCtrl', ['$scope', '$sce', '$http', '$routeParams
             request.AttendanceId = $scope.$parent.selectedAttendance.Id;
             request.Amount = $scope.$parent.selectedAttendance.Amount;
 
+            if (request.AttendanceId == null || request.Amount == null
+                || request.InstallmentType == null || request.FullName == null
+                || request.CardNumber == null || request.ExpireMonth == null
+                || request.ExpireYear == null || request.Cvc == null) {
+                $scope.errorText = "Tüm alanlar dolu olmalıdır. Lütfen kontrol ediniz.";
+                $scope.showWarning = true;
+
+                return;
+            }
+
+
+            if (isNaN(request.CardNumber) || isNaN(request.ExpireMonth)
+                || isNaN(request.ExpireYear) || isNaN(request.Cvc)) {
+                $scope.errorText = "Kart numarası, Ay, Yıl ve Cvc alanları nümerik olmalıdır.";
+                $scope.showWarning = true;
+
+                return;
+            }
+
+            if (request.CardNumber.length != 16) {
+                $scope.errorText = "Kart numarası 16 haneli olmalıdır.";
+                $scope.showWarning = true;
+
+                return;
+            }
+
             $scope.disablePay = true;
 
             $http({
@@ -51,10 +77,10 @@ appMain.controller('PayEducationCtrl', ['$scope', '$sce', '$http', '$routeParams
 
                 $scope.disablePay = false;
             })
-            .error(function (err) {
-                alertModal(err.Message, "error");
-                $scope.disablePay = false;
-            });
+                .error(function (err) {
+                    alertModal(err.Message, "error");
+                    $scope.disablePay = false;
+                });
         }
     };
 }]);

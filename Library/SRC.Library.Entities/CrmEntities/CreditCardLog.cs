@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -58,6 +59,32 @@ namespace SRC.Library.Entities.CrmEntities
         public string Result { get; set; }
 
         public Guid? AttendanceId { get; set; }
+
+        public string FormattedExpireDate
+        {
+            get
+            {
+                if (ExpireMonth != null && ExpireYear != null)
+                {
+                    return string.Concat(ExpireYear.Value.ToString(), ExpireMonth.Value.ToString());
+                }
+
+                return null;
+            }
+        }
+
+        public string FormattedAmount
+        {
+            get
+            {
+                if (Amount != null)
+                {
+                    return Amount.Value.ToString("F", CultureInfo.InvariantCulture);
+                }
+
+                return null;
+            }
+        }
 
         public const string KEY_LOGICAL_NAME = "new_creditcardlog";
         public const string KEY_CREDIT_CARD_LOG_ID = "new_creditcardlogid";
