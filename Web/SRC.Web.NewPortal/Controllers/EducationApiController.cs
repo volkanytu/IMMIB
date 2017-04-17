@@ -56,7 +56,14 @@ namespace SRC.Web.NewPortal.Controllers
             }
             else
             {
-                returnValue.Result = _educationBusiness.GetLastEducations().Where(p => p.IsExpired == false).Take(5).ToList();
+                Guid? associationId = null;
+
+                if (LoggedUser.IsLoggedIn && LoggedUser.Current.Association != null)
+                {
+                    associationId = LoggedUser.Current.Association.Id;
+                }
+
+                returnValue.Result = _educationFacade.GetComingEducationList(associationId);
                 returnValue.Success = true;
                 returnValue.Message = "Yaklaşan eğitimler çekildi.";
 
@@ -76,8 +83,14 @@ namespace SRC.Web.NewPortal.Controllers
             }
             else
             {
-                returnValue.Result = _educationBusiness.GetLastEducations().Where(p => p.IsExpired
-                                                                                    && p.StartDate != null && p.City != null).Take(5).ToList();
+                Guid? associationId = null;
+
+                if (LoggedUser.IsLoggedIn && LoggedUser.Current.Association != null)
+                {
+                    associationId = LoggedUser.Current.Association.Id;
+                }
+
+                returnValue.Result = _educationFacade.GetDoneEducationList(associationId);
                 returnValue.Success = true;
                 returnValue.Message = "Tamamlanan eğitimler çekildi.";
             }

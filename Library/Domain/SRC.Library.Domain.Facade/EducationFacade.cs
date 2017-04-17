@@ -56,6 +56,43 @@ namespace SRC.Library.Domain.Facade
             return educations.Where(p => p.AssociationPermissions.Any(c=>c.Id == associationId)).ToList();
         }
 
+        public List<Education> GetDoneEducationList(Guid? associationId = null)
+        {
+            List<Education> educations = _educationBusiness.GetLastEducations().Where(p => p.IsExpired
+                                                                                            && p.StartDate != null
+                                                                                            && p.City != null).ToList();
+            if (associationId == null) //Birlik yok ise tüm eğitimler döner
+                return educations.Take(5).ToList();
+
+            if (educations.Count == 0)
+                return null;
+
+            foreach (Education education in educations)
+            {
+                education.AssociationPermissions = _associationBusiness.GetAssociationErListByEducation(education.Id);
+            }
+
+            return educations.Where(p => p.AssociationPermissions.Any(c => c.Id == associationId)).Take(5).ToList();
+        }
+
+        public List<Education> GetComingEducationList(Guid? associationId = null)
+        {
+            List<Education> educations = _educationBusiness.GetLastEducations().Where(p => p.IsExpired == false).ToList();
+
+            if (associationId == null) //Birlik yok ise tüm eğitimler döner
+                return educations.Take(5).ToList();
+
+            if (educations.Count == 0)
+                return null;
+
+            foreach (Education education in educations)
+            {
+                education.AssociationPermissions = _associationBusiness.GetAssociationErListByEducation(education.Id);
+            }
+
+            return educations.Where(p => p.AssociationPermissions.Any(c => c.Id == associationId)).Take(5).ToList();
+        }
+
         public List<Education> GetEducationsOfAttendances(List<EducationAttendance> attendances)
         {
             return _educationBusiness.GetEducationsOfAttendances(attendances);
