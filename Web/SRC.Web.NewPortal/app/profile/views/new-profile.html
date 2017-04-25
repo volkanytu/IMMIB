@@ -45,6 +45,13 @@
                             <input type="text" inputtype="phonenumber" class="form-control" placeholder="Cep Telefonu" ng-model="Contact.MobilePhone">
                         </div>
                     </div>
+                    <div class="form-group" ng-hide="recordType==0">
+                        <label class="col-lg-2 control-label">Üniversite</label>
+                        <div class="col-lg-6">
+                            <select class="form-control m-bot15" ng-model="Contact.University"
+                                    ng-options="university as university.Name for university in Universities"></select>
+                        </div>
+                    </div>
                     <div class="form-group" ng-hide="recordType==1">
                         <label class="col-lg-2 control-label">İş Telefonu</label>
                         <div class="col-lg-6">

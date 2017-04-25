@@ -81,7 +81,7 @@ var appRoot = angular.module('main', ['ngRoute', 'ngGrid', 'ngResource', 'ui.gri
 
 
 
-           // CONFIGS
+    // CONFIGS
     .config(['$httpProvider', '$locationProvider', function ($httpProvider, $locationProvider) {
         $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
         $httpProvider.interceptors.push("baseInterceptor");
@@ -118,6 +118,7 @@ var appRoot = angular.module('main', ['ngRoute', 'ngGrid', 'ngResource', 'ui.gri
         var getEducationLevelsDataUrl = $rootScope.baseUrl + 'api/commonapi/GetEducationLevels';
         var getGenderCodesDataUrl = $rootScope.baseUrl + 'api/commonapi/GetGenderCodes';
         var installmentTypesDataUrl = $rootScope.baseUrl + 'api/commonapi/GetInstallmentTypes';
+        var universitiesDataUrl = $rootScope.baseUrl + 'api/commonapi/GetUniversities';
         return {
             getCities: function (onSuccess, onError) {
                 $http({
@@ -132,9 +133,9 @@ var appRoot = angular.module('main', ['ngRoute', 'ngGrid', 'ngResource', 'ui.gri
                         onSuccess(data.Result);
                     }
                 })
-                .error(function (err) {
-                    onError(err);
-                });
+                    .error(function (err) {
+                        onError(err);
+                    });
             },
             getEducationLevels: function (onSuccess, onError) {
                 $http({
@@ -149,9 +150,9 @@ var appRoot = angular.module('main', ['ngRoute', 'ngGrid', 'ngResource', 'ui.gri
                         onSuccess(data.Result);
                     }
                 })
-                .error(function (err) {
-                    onError(err);
-                });
+                    .error(function (err) {
+                        onError(err);
+                    });
             },
             getGenderCodes: function (onSuccess, onError) {
                 $http({
@@ -166,9 +167,9 @@ var appRoot = angular.module('main', ['ngRoute', 'ngGrid', 'ngResource', 'ui.gri
                         onSuccess(data.Result);
                     }
                 })
-                .error(function (err) {
-                    onError(err);
-                });
+                    .error(function (err) {
+                        onError(err);
+                    });
             },
             getInstallmentTypes: function (onSuccess, onError) {
                 $http({
@@ -183,9 +184,26 @@ var appRoot = angular.module('main', ['ngRoute', 'ngGrid', 'ngResource', 'ui.gri
                         onSuccess(data.Result);
                     }
                 })
-                .error(function (err) {
-                    onError(err);
-                });
+                    .error(function (err) {
+                        onError(err);
+                    });
+            },
+            getUniversities: function (onSuccess, onError) {
+                $http({
+                    url: universitiesDataUrl,
+                    method: "GET",
+                    async: false,
+                    params: {
+
+                    }
+                }).success(function (data) {
+                    if (data && data.Success && data.Result) {
+                        onSuccess(data.Result);
+                    }
+                })
+                    .error(function (err) {
+                        onError(err);
+                    });
             }
         };
 
@@ -284,4 +302,4 @@ var appRoot = angular.module('main', ['ngRoute', 'ngGrid', 'ngResource', 'ui.gri
             });
         };
     }])
-;
+    ;

@@ -22,6 +22,10 @@ appMain.controller('NewProfileCtrl', ['$scope', '$sce', '$http', '$routeParams',
         $scope.GenderCodes = data;
     });
 
+    commonValues.getUniversities(function (data) {
+        $scope.Universities = data;
+    });
+
     $scope.Save = function () {
 
         var password = $scope.Contact.Password;

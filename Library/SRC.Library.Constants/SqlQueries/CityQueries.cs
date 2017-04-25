@@ -36,7 +36,8 @@ namespace SRC.Library.Constants.SqlQueries
                                                 FROM
 	                                                new_city C WITH (NOLOCK)
                                                 WHERE
-	                                                C.StateCode = 0";
+	                                                C.StateCode = 0
+                                                ORDER BY C.new_name ASC";
 
         #endregion
     }

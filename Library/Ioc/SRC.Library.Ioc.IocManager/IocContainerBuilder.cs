@@ -50,6 +50,8 @@ namespace SRC.Library.Ioc.IocManager
                 , c.Resolve<IMsCrmAccess>(), "", "")).InstancePerDependency();
             builder.Register<IBaseDao<SmsEnt>>(c => new BaseSqlDao<SmsEnt>(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>()
                 , SmsQueries.GET_SMS, SmsQueries.GET_SMS_LIST)).InstancePerDependency();
+            builder.Register<IBaseDao<University>>(c => new BaseSqlDao<University>(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>()
+                , UniversityQueries.GET_UNIVERSITY, UniversityQueries.GET_UNIVERSITY_LIST)).InstancePerDependency();
             builder.Register<IBaseDao<Contact>>(c => new BaseSqlDao<Contact>(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>()
                 , ContactQueries.GET_CONTACT, ContactQueries.GET_CONTACT_LIST)).InstancePerDependency();
             builder.Register<IBaseDao<Account>>(c => new BaseSqlDao<Account>(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>()
@@ -92,6 +94,7 @@ namespace SRC.Library.Ioc.IocManager
             #region | BUSINESS |
             builder.Register<IBaseBusiness<LoginLog>>(c => new BaseBusiness<LoginLog>(c.Resolve<IBaseDao<LoginLog>>())).InstancePerDependency();
             builder.Register<ISmsBusiness>(c => new SmsBusiness(c.Resolve<IBaseDao<SmsEnt>>())).InstancePerDependency();
+            builder.Register<IBaseBusiness<University>>(c => new BaseBusiness<University>(c.Resolve<IBaseDao<University>>())).InstancePerDependency();
             builder.Register<IBaseBusiness<Contact>>(c => new BaseBusiness<Contact>(c.Resolve<IBaseDao<Contact>>())).InstancePerDependency();
             builder.Register<IBaseBusiness<Account>>(c => new BaseBusiness<Account>(c.Resolve<IBaseDao<Account>>())).InstancePerDependency();
             builder.Register<IBaseBusiness<CreditCardLog>>(c => new BaseBusiness<CreditCardLog>(c.Resolve<IBaseDao<CreditCardLog>>())).InstancePerDependency();

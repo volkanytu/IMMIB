@@ -18,11 +18,13 @@ namespace SRC.Web.NewPortal.Controllers
     public class CommonApiController : ApiController
     {
         private IBaseBusiness<City> _cityBusiness;
+        private IBaseBusiness<University> _universityBusiness;
         private bool isMockActive = bool.Parse(ConfigurationManager.AppSettings["isMockActive"]);
 
-        public CommonApiController(IBaseBusiness<City> cityBusiness)
+        public CommonApiController(IBaseBusiness<City> cityBusiness, IBaseBusiness<University> universityBusiness)
         {
             _cityBusiness = cityBusiness;
+            _universityBusiness = universityBusiness;
         }
 
         public ResponseContainer<List<EntityReferenceWrapper>> GetCities()
@@ -105,6 +107,28 @@ namespace SRC.Web.NewPortal.Controllers
                 returnValue.Result = CreditCardLog.GetInstallmentTypes();
                 returnValue.Success = true;
                 returnValue.Message = "Taksit sayıları çekildi.";
+            }
+
+            return returnValue;
+        }
+
+        public ResponseContainer<List<EntityReferenceWrapper>> GetUniversities()
+        {
+            ResponseContainer<List<EntityReferenceWrapper>> returnValue = new ResponseContainer<List<EntityReferenceWrapper>>();
+
+            if (isMockActive)
+            {
+                Thread.Sleep(1000);
+
+                returnValue.Result = ContactMock.GetCities();
+                returnValue.Success = true;
+            }
+            else
+            {
+                var cityList = _universityBusiness.GetList().Select(c => c.ToEntityReferenceWrapper()).ToList();
+                returnValue.Result = cityList;
+                returnValue.Success = true;
+                returnValue.Message = "Üniversite listesi çekildi.";
             }
 
             return returnValue;

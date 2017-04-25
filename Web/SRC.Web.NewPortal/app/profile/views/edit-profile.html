@@ -51,7 +51,14 @@
                                     <input type="text" inputtype="phonenumber" class="form-control" id="mobile" placeholder=" " ng-model="Contact.MobilePhone">
                                 </div>
                             </div>
-                            <div class="form-group" id="divWorkPhone">
+                            <div class="form-group" ng-hide="recordType==0">
+                                <label class="col-lg-2 control-label">Üniversite</label>
+                                <div class="col-lg-6">
+                                    <select class="form-control m-bot15" ng-model="Contact.University"
+                                            ng-options="university as university.Name for university in Universities"></select>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divWorkPhone" ng-hide="recordType==1">
                                 <label class="col-lg-2 control-label">İş Telefonu</label>
                                 <div class="col-lg-6">
                                     <input type="text" class="form-control" id="businessphone" placeholder=" " ng-model="Contact.WorkPhone">
@@ -63,19 +70,19 @@
                                     <input type="text" class="form-control" id="email" placeholder=" " readonly ng-model="Contact.EmailAddress">
                                 </div>
                             </div>
-                            <div class="form-group" id="divTaxNumber">
+                            <div class="form-group" id="divTaxNumber" ng-hide="recordType==1">
                                 <label class="col-lg-2 control-label">Firma Vergi Numarası</label>
                                 <div class="col-lg-6">
                                     <input type="text" class="form-control" id="taxnumber" placeholder=" " readonly ng-model="Contact.TaxNumber">
                                 </div>
                             </div>
-                            <div class="form-group" id="divCompany">
+                            <div class="form-group" id="divCompany" ng-hide="recordType==1">
                                 <label class="col-lg-2 control-label">Firma Adı</label>
                                 <div class="col-lg-6">
                                     <input type="text" class="form-control" id="firm" placeholder=" " readonly ng-model="Contact.CompanyName">
                                 </div>
                             </div>
-                            <div class="form-group" id="divPosition">
+                            <div class="form-group" id="divPosition" ng-hide="recordType==1">
                                 <label class="col-lg-2 control-label">Firmadaki Pozisyonunuz</label>
                                 <div class="col-lg-6">
                                     <input type="text" class="form-control" id="firmposition" placeholder=" " ng-model="Contact.CompanyPosition">

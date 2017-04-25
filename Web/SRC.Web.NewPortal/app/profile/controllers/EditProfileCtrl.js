@@ -10,7 +10,9 @@ appMain.controller('EditProfileCtrl', ['$scope', '$sce', '$http', '$routeParams'
 
     $scope.checkGetContact = function () {
 
-        if (typeof ($scope.Cities) != "undefined" && typeof ($scope.EducationLevels) != "undefined" && typeof ($scope.GenderCodes) != "undefined") {
+        if (typeof ($scope.Cities) != "undefined" && typeof ($scope.EducationLevels) != "undefined" && typeof ($scope.GenderCodes) != "undefined"
+            && typeof ($scope.Universities) != "undefined") {
+
             $scope.getContact();
         }
     };
@@ -48,6 +50,18 @@ appMain.controller('EditProfileCtrl', ['$scope', '$sce', '$http', '$routeParams'
                     var elementPos = $scope.EducationLevels.map(function (x) { return x.AttributeValue; }).indexOf($scope.Contact.EducationLevel.AttributeValue);
 
                     $scope.Contact.EducationLevel = $scope.EducationLevels[elementPos];
+                }
+
+                if ($scope.Contact.CustomerType != null) {
+
+                    if ($scope.Contact.CustomerType.AttributeValue == 1)
+                    {
+                        $scope.recordType = 0;
+                    }
+                    else
+                    {
+                        $scope.recordType = 1;
+                    }
                 }
             }
             else {
@@ -146,6 +160,12 @@ appMain.controller('EditProfileCtrl', ['$scope', '$sce', '$http', '$routeParams'
 
     commonValues.getGenderCodes(function (data) {
         $scope.GenderCodes = data;
+
+        $scope.checkGetContact();
+    });
+
+    commonValues.getUniversities(function (data) {
+        $scope.Universities = data;
 
         $scope.checkGetContact();
     });

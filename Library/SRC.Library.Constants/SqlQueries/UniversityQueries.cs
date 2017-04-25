@@ -36,7 +36,8 @@ namespace SRC.Library.Constants.SqlQueries
                                                         FROM
 	                                                        new_university U WITH (NOLOCK)
                                                         WHERE
-	                                                        U.StateCode = 0";
+	                                                        U.StateCode = 0
+                                                        ORDER BY U.new_name ASC";
 
         #endregion
     }
