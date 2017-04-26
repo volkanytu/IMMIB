@@ -1,4 +1,5 @@
 ﻿using SRC.Library.Entities.CrmEntities;
+using SRC.Library.Entities.CustomEntities;
 using System;
 namespace SRC.Library.Domain.Business.Interfaces
 {
@@ -9,5 +10,6 @@ namespace SRC.Library.Domain.Business.Interfaces
         void UpdatePassword(Guid contactId, string password, string newPassword);
         string RememberPassword(string userName);
         void UpdatePassword(Guid contactId, string password);
+        Guid CreateAttachment(Attachment attacment);
     }
 }

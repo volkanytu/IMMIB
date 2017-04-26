@@ -124,6 +124,22 @@ namespace SRC.Web.NewPortal.Controllers
                     contact.Password = contact.Password.ToSHA1();
                     var newContactId = _contactFacade.CreateContact(contact);
 
+                    if (!string.IsNullOrWhiteSpace(contact.PostedFile) && !string.IsNullOrWhiteSpace(contact.PostedFileName))
+                    {
+                        var attachment = new Attachment
+                        {
+                            Base64Data = contact.PostedFile,
+                            FileName = contact.PostedFileName,
+                            FileSize = contact.PostedFileSize.Value,
+                            ObjectId = newContactId.Value.ToEntityReferenceWrapper<Contact>(),
+                            ObjectTypeCode = (int)ObjectTypeCode.CONTACT
+                        };
+
+                        attachment.SetMimeType();
+
+                        _contactFacade.CreateAttachment(attachment);
+                    }
+
                     returnValue.Success = true;
                     returnValue.Result = true;
                     returnValue.Message = "Üyelik başvurusu tamamlanmıştır.";

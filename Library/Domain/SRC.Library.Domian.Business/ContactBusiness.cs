@@ -40,7 +40,7 @@ namespace SRC.Library.Domain.Business
             var contact = _baseDao.Get(contactId);
             if (contact.Password != password)
             {
-                throw new CustomException("Eski parola uyuşmuyor!",ContactLogKeys.INVALID_PASSWORD,contactId.ToString());
+                throw new CustomException("Eski parola uyuşmuyor!", ContactLogKeys.INVALID_PASSWORD, contactId.ToString());
             }
 
             string hashedPassword = Encryption.SHA1Hash(newPassword);
@@ -77,7 +77,7 @@ namespace SRC.Library.Domain.Business
 
             if (contact == null)
             {
-                throw new CustomException("Bu kullanıcı adına ait üye bulunamadı!", ContactLogKeys.USER_NOT_FOUND, userName); 
+                throw new CustomException("Bu kullanıcı adına ait üye bulunamadı!", ContactLogKeys.USER_NOT_FOUND, userName);
             }
 
             //TODO: Generate
@@ -94,6 +94,11 @@ namespace SRC.Library.Domain.Business
             _baseDao.Update(entity);
 
             return generatedPassword;
+        }
+
+        public Guid CreateAttachment(Attachment attacment)
+        {
+            return _contactDao.CreateAttachment(attacment);
         }
     }
 }

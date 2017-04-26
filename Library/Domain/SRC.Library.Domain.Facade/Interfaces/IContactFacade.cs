@@ -1,6 +1,7 @@
 using System;
 using SRC.Library.Entities;
 using SRC.Library.Entities.CrmEntities;
+using SRC.Library.Entities.CustomEntities;
 
 namespace SRC.Library.Domain.Facade.Interfaces
 {
@@ -14,5 +15,6 @@ namespace SRC.Library.Domain.Facade.Interfaces
         void CreateLoginLog(EntityReferenceWrapper contact, string ipAddress);
         Contact GetContact(Guid? contactId);
         bool CheckUserExists(string userName);
+        Guid CreateAttachment(Attachment attacment);
     }
 }

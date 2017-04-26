@@ -123,6 +123,9 @@ namespace SRC.Library.Domain.Facade
             return contact != null;
         }
 
-
+        public Guid CreateAttachment(Attachment attacment)
+        {
+            return _contactBusiness.CreateAttachment(attacment);
+        }
     }
 }

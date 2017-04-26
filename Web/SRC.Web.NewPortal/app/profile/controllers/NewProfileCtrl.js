@@ -2,6 +2,8 @@
 
 appMain.controller('NewProfileCtrl', ['$scope', '$sce', '$http', '$routeParams', 'safeApply', 'alertModal', 'commonFunc', 'commonValues', function ($scope, $sce, $http, $routeParams, safeApply, alertModal, commonFunc, commonValues) {
 
+    $scope.uploadFileText = null;
+
     $("input[inputtype='phonenumber']").mask("0(999)-999-9999");
 
     $scope.saveNewProfileDataUrl = $scope.baseUrl + 'api/contactapi/SaveNewProfile';
@@ -64,8 +66,26 @@ appMain.controller('NewProfileCtrl', ['$scope', '$sce', '$http', '$routeParams',
             $scope.Contact.CustomerType.AttributeValue = 1;
         }
         else {
+
+            if ($scope.Contact.University == null) {
+                alertModal("Tüm alanlar dolu olmalıdır.", "error");
+
+                return;
+            }
+
+            if ($scope.OriginalFile == null) {
+                alertModal("Öğrenci belgesi yükleyiniz.", "error");
+
+                return;
+            }
+
             $scope.Contact.CustomerType.AttributeValue = 2;
+
+            $scope.Contact.PostedFile = $scope.OriginalFile.base64Data.substring($scope.OriginalFile.base64Data.indexOf(',') + 1);
+            $scope.Contact.PostedFilename = $scope.OriginalFile.blob.name;
+            $scope.Contact.PostedFileSize = $scope.OriginalFile.blob.size;
         }
+
 
         if ($scope.recordType == "0") //Firma çalışanı ise
         {
@@ -80,9 +100,7 @@ appMain.controller('NewProfileCtrl', ['$scope', '$sce', '$http', '$routeParams',
         $http({
             url: $scope.saveNewProfileDataUrl,
             method: "POST",
-            params: {
-
-            },
+            params: {},
             data: $scope.Contact
         }).success(function (data) {
             if (data && data.Success && data.Result) {
@@ -129,5 +147,50 @@ appMain.controller('NewProfileCtrl', ['$scope', '$sce', '$http', '$routeParams',
             .error(function (err) {
                 alertModal(err.Message, "error");
             });
+    };
+
+    $scope.OriginalFile = null;
+
+    $scope.ReadFile = function (input) {
+
+        if (input.files && input.files[0]) {
+
+            var file = input.files[0];
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+
+            reader.onload = function (e) {
+                var base64Data = reader.result;
+                if (file.type.indexOf("image") == -1) {
+                    alertModal("Lütfen image türünde bir dosya seçiniz.", "error");
+
+                    return;
+                }
+
+                var fileSize = parseInt(file.size / 1024);
+                var fileName = file.name;
+
+                safeApply($scope, function () {
+                    $scope.uploadFileText = file.name;
+                });
+
+                //$("#lblFileSize").html(fileSize + " KB");
+                //$("#lblFileName").html(fileName);
+
+                $scope.OriginalFile = {};
+
+                $scope.OriginalFile.blob = file;
+                $scope.OriginalFile.fileName = file.name;
+                $scope.OriginalFile.base64Data = base64Data;
+                $scope.OriginalFile.fileSize = file.size;
+
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    };
+
+    $scope.SelectFile = function () {
+        $("input[type='file']").click();
     };
 }]);

@@ -6,7 +6,7 @@
                 Yeni üyelik başvurusu
             </div>
             <div class="panel-body bio-graph-info">
-                <form class="form-horizontal" role="form">
+                <form class="form-horizontal" role="form" name="myForm">
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Kayıt Tipi</label>
                         <div class="col-lg-6 text-left">
@@ -17,13 +17,23 @@
                     <div class="form-group">
                         <label class="col-lg-2 control-label">İsim</label>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" placeholder="İsim" ng-model="Contact.FirstName">
+                            <input type="text" name="firstname" required class="form-control" placeholder="İsim" ng-model="Contact.FirstName">
+                        </div>
+                        <div role="alert">
+                            <span class="error" ng-show="myForm.firstname.$error.required">
+                                *
+                            </span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Soyisim</label>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" placeholder="Soyisim" ng-model="Contact.LastName">
+                            <input type="text" name="lastname" required class="form-control" placeholder="Soyisim" ng-model="Contact.LastName">
+                        </div>
+                        <div role="alert">
+                            <span class="error" ng-show="myForm.lastname.$error.required">
+                                *
+                            </span>
                         </div>
                     </div>
                     <!--<div class="form-group">
@@ -35,14 +45,24 @@
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Cinsiyet</label>
                         <div class="col-lg-6">
-                            <select class="form-control m-bot15" ng-model="Contact.Gender"
+                            <select class="form-control m-bot15" name="gender" required ng-model="Contact.Gender"
                                     ng-options="gender as gender.Value for gender in GenderCodes"></select>
+                        </div>
+                        <div role="alert">
+                            <span class="error" ng-show="myForm.gender.$error.required">
+                                *
+                            </span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Cep Telefonu</label>
                         <div class="col-lg-6">
-                            <input type="text" inputtype="phonenumber" class="form-control" placeholder="Cep Telefonu" ng-model="Contact.MobilePhone">
+                            <input type="text" inputtype="phonenumber" required name="phonenumber" class="form-control" placeholder="Cep Telefonu" ng-model="Contact.MobilePhone">
+                        </div>
+                        <div role="alert">
+                            <span class="error" ng-show="myForm.phonenumber.$error.required">
+                                *
+                            </span>
                         </div>
                     </div>
                     <div class="form-group" ng-hide="recordType==0">
@@ -50,6 +70,18 @@
                         <div class="col-lg-6">
                             <select class="form-control m-bot15" ng-model="Contact.University"
                                     ng-options="university as university.Name for university in Universities"></select>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-hide="recordType==0">
+                        <label class="col-lg-2 control-label">Öğrenci Belgesi</label>
+                        <div class="col-lg-6">
+                            <div class="input-group m-bot15">
+                                <input type="file" accept="image/*" class="form-control" style="display:none; width:0px;height:0px;" onchange="angular.element(this).scope().ReadFile(this)">
+                                <input type="text" class="form-control" placeholder="Öğrenci belgesi yükleyiniz." readonly ng-model="uploadFileText">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-warning" title="Dosya Seç" data-ng-click="SelectFile()"><i class="fa fa-file"></i></button>
+                                </span>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group" ng-hide="recordType==1">
@@ -61,7 +93,15 @@
                     <div class="form-group">
                         <label class="col-lg-2 control-label">E-Posta</label>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" placeholder="E-Posta" ng-model="Contact.EmailAddress">
+                            <input type="email" name="emailaddress" required class="form-control" placeholder="E-Posta" ng-model="Contact.EmailAddress">
+                        </div>
+                        <div role="alert">
+                            <span class="error" ng-show="myForm.emailaddress.$error.required">
+                                *
+                            </span>
+                            <span class="error" ng-show="myForm.emailaddress.$error.email">
+                                Email adresi geçersiz
+                            </span>
                         </div>
                     </div>
                     <div class="form-group" ng-hide="recordType==1">
@@ -90,8 +130,13 @@
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Şehir</label>
                         <div class="col-lg-6">
-                            <select class="form-control m-bot15" ng-model="Contact.City"
+                            <select class="form-control m-bot15" required name="city" ng-model="Contact.City"
                                     ng-options="city as city.Name for city in Cities"></select>
+                        </div>
+                        <div role="alert">
+                            <span class="error" ng-show="myForm.city.$error.required">
+                                *
+                            </span>
                         </div>
                     </div>
                     <!--<div class="form-group">
@@ -104,18 +149,28 @@
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Şifre</label>
                         <div class="col-lg-6">
-                            <input type="password" ng-model="Contact.Password" class="form-control" placeholder="Şifre">
+                            <input type="password" ng-model="Contact.Password" name="password" required class="form-control" placeholder="Şifre">
+                        </div>
+                        <div role="alert">
+                            <span class="error" ng-show="myForm.password.$error.required">
+                                *
+                            </span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Şifre Tekrar</label>
                         <div class="col-lg-6">
-                            <input type="password" ng-model="Contact.RePassword" class="form-control" placeholder="Şifre Tekrar">
+                            <input type="password" ng-model="Contact.RePassword" name="repassword" required class="form-control" placeholder="Şifre Tekrar">
+                        </div>
+                        <div role="alert">
+                            <span class="error" ng-show="myForm.repassword.$error.required">
+                                *
+                            </span>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-lg-offset-2 col-lg-10">
-                            <button type="button" class="btn btn-success" data-ng-disabled="disableSave" data-ng-click="Save()">Kaydet</button>
+                            <button type="button" class="btn btn-success" data-ng-disabled="disableSave || myForm.$valid!=true" data-ng-click="Save()">Kaydet</button>
                         </div>
                     </div>
                 </form>

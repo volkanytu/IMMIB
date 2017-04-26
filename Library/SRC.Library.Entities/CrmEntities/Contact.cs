@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace SRC.Library.Entities.CrmEntities
 {
@@ -160,6 +161,10 @@ namespace SRC.Library.Entities.CrmEntities
         public string RePassword { get; set; }
         public string NewPassword { get; set; }
         public EntityReferenceWrapper Association { get; set; }
+
+        public string PostedFile { get; set; }
+        public string PostedFileName { get; set; }
+        public int? PostedFileSize { get; set; }
 
         public const string KEY_LOGICAL_NAME = "contact";
         public const string KEY_CONTACT_ID = "contactid";

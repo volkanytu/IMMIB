@@ -1,7 +1,10 @@
-﻿using SRC.Library.Constants.SqlQueries;
+﻿using Microsoft.Xrm.Sdk;
+using SRC.Library.Constants.SqlQueries;
 using SRC.Library.Data.Interfaces;
 using SRC.Library.Data.SqlDao.Interfaces;
+using SRC.Library.Entities;
 using SRC.Library.Entities.CrmEntities;
+using SRC.Library.Entities.CustomEntities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -47,6 +50,24 @@ namespace SRC.Library.Data.SqlDao
             DataTable dt = _sqlAccess.GetDataTable(ContactQueries.GET_CONTACT_BY_USERNAME_PASSWORD, parameters);
 
             return dt.ToList<Contact>().FirstOrDefault();
+        }
+
+        public Guid CreateAttachment(Attachment attacment)
+        {
+            IOrganizationService service = _msCrmAccess.GetCrmService();
+
+            Entity attach = new Entity("annotation");
+
+            attach["filename"] = attacment.FileName;
+            attach["mimetype"] = attacment.MimeType;
+            attach["filesize"] = attacment.FileSize.Value;
+            attach["subject"] = "Kişi Doküman";
+            attach["documentbody"] = attacment.Base64Data;
+            attach["objecttypecode"] = attacment.ObjectTypeCode;
+            attach["isdocument"] = true;
+            attach["objectid"] = attacment.ObjectId.ToCrmEntityReference();
+
+            return service.Create(attach);
         }
     }
 }

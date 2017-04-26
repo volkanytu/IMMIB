@@ -42,6 +42,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -63,6 +64,7 @@
     <Compile Include="CrmEntities\InformedBy.cs" />
     <Compile Include="CrmEntities\Language.cs" />
     <Compile Include="CrmEntities\LoginLog.cs" />
+    <Compile Include="CrmEntities\ObjectTypeCode.cs" />
     <Compile Include="CrmEntities\SmsEnt.cs" />
     <Compile Include="CrmEntities\TaxOffice.cs" />
     <Compile Include="CrmEntities\Town.cs" />
@@ -70,6 +72,7 @@
     <Compile Include="CrmEntities\UserLanguage.cs" />
     <Compile Include="CustomAttributes.cs" />
     <Compile Include="CrmEntities\EntityBase.cs" />
+    <Compile Include="CustomEntities\Attachment.cs" />
     <Compile Include="CustomEntities\ContactAttendanceSummary.cs" />
     <Compile Include="CustomEntities\CreditCardResult.cs" />
     <Compile Include="CustomEntities\CustomException.cs" />
@@ -83,7 +86,12 @@
     <Compile Include="OptionSetValueWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\SRC.Library.Common\SRC.Library.Common.csproj">
+      <Project>{13229FE4-C206-4917-8A42-2EA185EF8F86}</Project>
+      <Name>SRC.Library.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="SRC.Library.Entities.snk" />

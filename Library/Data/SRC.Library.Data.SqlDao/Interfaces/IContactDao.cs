@@ -1,4 +1,5 @@
 ﻿using SRC.Library.Entities.CrmEntities;
+using SRC.Library.Entities.CustomEntities;
 using System;
 namespace SRC.Library.Data.SqlDao.Interfaces
 {
@@ -6,5 +7,6 @@ namespace SRC.Library.Data.SqlDao.Interfaces
     {
         Contact GetContact(string userName);
         Contact GetContact(string userName, string password);
+        Guid CreateAttachment(Attachment attacment);
     }
 }
