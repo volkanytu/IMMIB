@@ -4,14 +4,13 @@ appMain.controller('RememberPasswordCtrl', ['$scope', '$sce', '$http', '$routePa
 
     $scope.rememberPasswordDataUrl = $scope.baseUrl + 'api/contactapi/RememberPassword';
 
-    $scope.emailAddress = null;
+    $scope.userEmailAddress = null;
 
     $scope.Remember = function () {
         $scope.showWarning = false;
         $scope.disableApply = true;
 
-        if ($scope.emailAddress == null || $scope.emailAddress == "")
-        {
+        if ($scope.$$childHead.userEmailAddress == null || $scope.$$childHead.userEmailAddress == "") {
             $scope.errorText = "E-Posta alanı doldu olmalıdır.";
             $scope.showWarning = true;
             $scope.disableApply = false;
@@ -22,11 +21,13 @@ appMain.controller('RememberPasswordCtrl', ['$scope', '$sce', '$http', '$routePa
             url: $scope.rememberPasswordDataUrl,
             method: "POST",
             params: {
-                emailAddress: $scope.emailAddress
+                emailAddress: $scope.$$childHead.userEmailAddress
             }
         }).success(function (data) {
             if (data && data.Success && data.Result) {
-                $scope.Attendance = data.Result;
+                alertModal(data.Message, "success", function () {
+                    window.document.location.reload();
+                });
             }
             else {
                 $scope.errorText = data.Message;
