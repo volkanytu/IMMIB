@@ -16,5 +16,6 @@ namespace SRC.Library.Domain.Facade.Interfaces
         Contact GetContact(Guid? contactId);
         bool CheckUserExists(string userName);
         Guid CreateAttachment(Attachment attacment);
+        Contact GetContact(string userName);
     }
 }

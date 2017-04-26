@@ -13,7 +13,8 @@ appMain.controller('LoginFormCtrl', ['$scope', '$sce', '$http', '$routeParams', 
     };
 
     $scope.RememberPassword = function () {
-        alertModal("Yapım aşamasında.", "info");
+        $('#login').modal("hide");
+        $('#rememberModal').modal();
     };
 
     $scope.SignIn = function () {
@@ -62,9 +63,9 @@ appMain.controller('LoginFormCtrl', ['$scope', '$sce', '$http', '$routeParams', 
 
             $scope.disableButtons = false;
         })
-        .error(function (err) {
-            $scope.errorText = err.Message;
-            $scope.showWarning = true;
-        });
+            .error(function (err) {
+                $scope.errorText = err.Message;
+                $scope.showWarning = true;
+            });
     };
 }]);

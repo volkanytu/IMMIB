@@ -127,5 +127,10 @@ namespace SRC.Library.Domain.Facade
         {
             return _contactBusiness.CreateAttachment(attacment);
         }
+
+        public Contact GetContact(string userName)
+        {
+            return _contactBusiness.GetContact(userName);
+        }
     }
 }

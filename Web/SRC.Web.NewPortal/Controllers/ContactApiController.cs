@@ -17,6 +17,7 @@ using System.Web;
 using System.Web.Http;
 using SRC.Library.Common;
 using System.Configuration;
+using System.Web.Security;
 
 namespace SRC.Web.NewPortal.Controllers
 {
@@ -25,15 +26,18 @@ namespace SRC.Web.NewPortal.Controllers
         private IContactBusiness _contactBusiness;
         private IContactFacade _contactFacade;
         private IAccountBusiness _accountBusiness;
+        private ISmsBusiness _smsBusiness;
 
         private bool isMockActive = bool.Parse(ConfigurationManager.AppSettings["isMockActive"]);
 
         public ContactApiController(IContactBusiness contactBusiness, IContactFacade contactFacade
-            , IAccountBusiness accountBusiness)
+            , IAccountBusiness accountBusiness
+            , ISmsBusiness smsBusiness)
         {
             _contactBusiness = contactBusiness;
             _contactFacade = contactFacade;
             _accountBusiness = accountBusiness;
+            _smsBusiness = smsBusiness;
         }
 
         [HttpPost]
@@ -252,6 +256,55 @@ namespace SRC.Web.NewPortal.Controllers
                 else
                 {
                     returnValue.Message = "İlgili vergi numarası ile eşleşen bir firma kaydı bulunamadı.";
+                }
+            }
+
+            return returnValue;
+        }
+
+        [HttpPost]
+        public ResponseContainer<bool> RememberPassword(string emailAddress)
+        {
+            ResponseContainer<bool> returnValue = new ResponseContainer<bool>();
+
+            if (isMockActive)
+            {
+                Thread.Sleep(1000);
+
+                returnValue.Success = true;
+                returnValue.Result = true;
+
+                returnValue.Message = "Şifreniz SMS ile gönderilmiştir.";
+            }
+            else
+            {
+                if (!string.IsNullOrWhiteSpace(emailAddress))
+                {
+                    string newPassword = Membership.GeneratePassword(6, 0);
+
+                    var contact = _contactFacade.GetContact(emailAddress);
+
+                    if (contact == null)
+                    {
+                        returnValue.Message = "Girmiş olduğunuz e-posta ile eşleşen kullanıcı bulunamadı.";
+
+                        return returnValue;
+                    }
+
+                    if (string.IsNullOrWhiteSpace(contact.MobilePhone))
+                    {
+                        returnValue.Message = "Kullanıcınıza ait cep telefonu bilgisi bulunmamaktadır.";
+
+                        return returnValue;
+                    }
+
+                    _contactFacade.UpdatePassWord(contact.Id, newPassword.ToSHA1());
+
+                    _smsBusiness.CreateRememberPasswordSms(contact, newPassword);
+
+                    returnValue.Success = true;
+                    returnValue.Result = true;
+                    returnValue.Message = "Yeni Şifreniz SMS olarak cep telefonunuza gönderilmiştir.";
                 }
             }
 

@@ -7,6 +7,6 @@ namespace SRC.Library.Data.SqlDao.Interfaces
     {
         Contact GetContact(string userName);
         Contact GetContact(string userName, string password);
-        Guid CreateAttachment(Attachment attacment);
+        Guid CreateAttachment(Attachment attachment);
     }
 }

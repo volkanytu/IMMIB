@@ -10,6 +10,6 @@ namespace SRC.Library.Domain.Business.Interfaces
         void UpdatePassword(Guid contactId, string password, string newPassword);
         string RememberPassword(string userName);
         void UpdatePassword(Guid contactId, string password);
-        Guid CreateAttachment(Attachment attacment);
+        Guid CreateAttachment(Attachment attachment);
     }
 }

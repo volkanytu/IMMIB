@@ -52,20 +52,20 @@ namespace SRC.Library.Data.SqlDao
             return dt.ToList<Contact>().FirstOrDefault();
         }
 
-        public Guid CreateAttachment(Attachment attacment)
+        public Guid CreateAttachment(Attachment attachment)
         {
             IOrganizationService service = _msCrmAccess.GetCrmService();
 
             Entity attach = new Entity("annotation");
 
-            attach["filename"] = attacment.FileName;
-            attach["mimetype"] = attacment.MimeType;
-            attach["filesize"] = attacment.FileSize.Value;
+            attach["filename"] = attachment.FileName;
+            attach["mimetype"] = attachment.MimeType;
+            attach["filesize"] = attachment.FileSize.Value;
             attach["subject"] = "Kişi Doküman";
-            attach["documentbody"] = attacment.Base64Data;
-            attach["objecttypecode"] = attacment.ObjectTypeCode;
+            attach["documentbody"] = attachment.Base64Data;
+            attach["objecttypecode"] = attachment.ObjectTypeCode;
             attach["isdocument"] = true;
-            attach["objectid"] = attacment.ObjectId.ToCrmEntityReference();
+            attach["objectid"] = attachment.ObjectId.ToCrmEntityReference();
 
             return service.Create(attach);
         }

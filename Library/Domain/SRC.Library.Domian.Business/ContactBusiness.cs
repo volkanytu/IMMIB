@@ -96,9 +96,9 @@ namespace SRC.Library.Domain.Business
             return generatedPassword;
         }
 
-        public Guid CreateAttachment(Attachment attacment)
+        public Guid CreateAttachment(Attachment attachment)
         {
-            return _contactDao.CreateAttachment(attacment);
+            return _contactDao.CreateAttachment(attachment);
         }
     }
 }

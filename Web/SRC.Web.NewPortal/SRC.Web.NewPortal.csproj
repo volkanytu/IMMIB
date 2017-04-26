@@ -179,11 +179,13 @@
     <Content Include="app\pages\controllers\HowtoCtrl.js" />
     <Content Include="app\pages\views\contact.html" />
     <Content Include="app\pages\views\howto.html" />
+    <Content Include="app\partials\controllers\RememberPasswordCtrl.js" />
     <Content Include="app\partials\controllers\CancelAttendanceCtrl.js" />
     <Content Include="app\partials\controllers\ApplyEducationCtrl.js" />
     <Content Include="app\partials\controllers\LoginFormCtrl.js" />
     <Content Include="app\partials\controllers\PayEducationCtrl.js" />
     <Content Include="app\partials\controllers\ProfileMenuCtrl.js" />
+    <Content Include="app\partials\views\remember-password.html" />
     <Content Include="app\partials\views\apply-education.html" />
     <Content Include="app\partials\views\cancel-attendance.html" />
     <Content Include="app\partials\views\login-form.html" />
