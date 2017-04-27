@@ -9,7 +9,9 @@
             <div class="panel-body bio-graph-info">
                 <div class="row p-details">
                     <div class="bio-row">
-                        <p><span class="bold">Eğitmen </span>: {{Education.Contact.Name}}</p>
+                        <p><span class="bold">Eğitmen </span>: {{Education.Contact.Name}} ({{Ecucation.EducatorAccount!=null ? Ecucation.EducatorAccount.Name:'---'}})
+                            <a href="javascript:;" class="btn btn-warning btn-xs" data-ng-click="EducatorInfo()"><i class="fa fa-user"></i> Eğitmen Bilgi </a>
+                        </p>
                     </div>
                     <div class="bio-row">
                         <p><span class="bold">Durum </span>: <span class="label {{Education.class}}">{{Education.StatusText}}</span></p>
@@ -36,6 +38,8 @@
                         <a href="javascript:;" class="btn btn-primary btn-xs" data-ng-click="Education.Apply(this)" data-ng-show="showApply"><i class="fa fa-folder"></i> Başvur </a>
                         <a href="javascript:;" class="btn btn-danger btn-xs" data-ng-click="Education.Cancel(this)" ng-show="Education.Attendance!=null"><i class="fa fa-folder"></i> İptal </a>
                         <a href="javascript:;" class="btn btn-warning btn-xs" data-ng-click="Education.Pay(this)" ng-show="Education.Attendance!=null"><i class="fa fa-folder"></i> Ödeme Yap </a>
+                        <a href="javascript:;" class="btn btn-primary btn-xs" data-ng-click="AttendanceContract()"><i class="fa fa-folder"></i> Başvuru Koşulları</a>
+                        <a href="javascript:;" class="btn btn-danger btn-xs" data-ng-click="BankInfo()"><i class="fa fa-folder"></i> Banka ve Havale Bilgileri</a>
                     </div>
                 </div>
             </div>
@@ -72,4 +76,58 @@
         </div>
     </section>
     <!-- page end-->
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="attendanceContract">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Eğitim Başvuru Koşulları</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <span data-ng-bind-html="trustHtml(Page.Content)"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="bankInfo">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Banka ve Havale Bilgileri</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <span data-ng-bind-html="trustHtml(BankPage.Content)"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="educatorInfo">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">{{Education.Contact.Name}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <span data-ng-bind-html="trustHtml(Education.EducatorInfo)"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>

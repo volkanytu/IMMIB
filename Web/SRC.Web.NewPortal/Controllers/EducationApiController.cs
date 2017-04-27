@@ -30,19 +30,22 @@ namespace SRC.Web.NewPortal.Controllers
         private IBaseBusiness<Education> _baseEducationBusiness;
         private IBaseBusiness<EducationAttendance> _educationAttendanceBaseBusiness;
         private IBaseBusiness<CreditCardLog> _creditCardLogBaseBusiness;
+        private IBaseBusiness<Contact> _baseContactBusiness;
 
         private bool isMockActive = bool.Parse(ConfigurationManager.AppSettings["isMockActive"]);
 
         public EducationApiController(IEducationBusiness educationBusiness, IEducationFacade educationFacade
             , IBaseBusiness<Education> baseEducationBusiness
             , IBaseBusiness<EducationAttendance> educationAttendanceBaseBusiness
-            , IBaseBusiness<CreditCardLog> creditCardLogBaseBusiness)
+            , IBaseBusiness<CreditCardLog> creditCardLogBaseBusiness
+            , IBaseBusiness<Contact> baseContactBusiness)
         {
             _educationBusiness = educationBusiness;
             _educationFacade = educationFacade;
             _baseEducationBusiness = baseEducationBusiness;
             _educationAttendanceBaseBusiness = educationAttendanceBaseBusiness;
             _creditCardLogBaseBusiness = creditCardLogBaseBusiness;
+            _baseContactBusiness = baseContactBusiness;
         }
 
         public ResponseContainer<List<Education>> GetComingEducationList()
@@ -200,6 +203,17 @@ namespace SRC.Web.NewPortal.Controllers
             else
             {
                 returnValue.Result = _baseEducationBusiness.Get(Guid.Parse(id));
+
+                if (returnValue.Result.Contact != null)
+                {
+                    var educator = _baseContactBusiness.Get(returnValue.Result.Contact.Id);
+
+                    if (educator != null)
+                    {
+                        returnValue.Result.EducatorAccount = educator.Account;
+                        returnValue.Result.EducatorInfo = educator.Info;
+                    }
+                }
 
                 List<EducationAttendance> contactAttendanceList = null;
 

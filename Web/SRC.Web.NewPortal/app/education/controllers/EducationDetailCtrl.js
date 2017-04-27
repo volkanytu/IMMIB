@@ -2,14 +2,21 @@
 
 appMain.controller('EducationDetailCtrl', ['$scope', '$sce', '$http', '$routeParams', 'safeApply', 'alertModal', 'commonFunc', function ($scope, $sce, $http, $routeParams, safeApply, alertModal, commonFunc) {
 
-    $scope.educationListDataUrl = $scope.baseUrl + 'api/educationapi/GetEducation';
+    $scope.educationDetailDataUrl = $scope.baseUrl + 'api/educationapi/GetEducation';
+    $scope.dynamicPageDataUrl = $scope.baseUrl + 'api/dynamicpageapi/GetPage';
 
     $scope.trustHtml = function (content) {
         return $sce.trustAsHtml(content);
     };
 
+    $scope.BankPage = {};
+    $scope.BankPage.Content = "Banka bilgisi içeriği alınamadı";
+
+    $scope.Page = {};
+    $scope.Page.Content = "Eğitim başvuru koşulları içeriği alınamadı";
+
     $http({
-        url: $scope.educationListDataUrl,
+        url: $scope.educationDetailDataUrl,
         method: "GET",
         params: {
             id: $routeParams.id
@@ -108,4 +115,56 @@ appMain.controller('EducationDetailCtrl', ['$scope', '$sce', '$http', '$routePar
     .error(function (err) {
         alertModal(err.Message, "error");
     });
+
+    $http({
+        url: $scope.dynamicPageDataUrl,
+        method: "GET",
+        params: {
+            pageType: 3
+        }
+    }).success(function (data) {
+        if (data && data.Success && data.Result) {
+            $scope.Page = data.Result;
+        }
+        else {
+            alertModal(data.Message, "error");
+        }
+    })
+    .error(function (err) {
+        alertModal(err.Message, "error");
+    });
+
+    $http({
+        url: $scope.dynamicPageDataUrl,
+        method: "GET",
+        params: {
+            pageType: 4
+        }
+    }).success(function (data) {
+        if (data && data.Success && data.Result) {
+            $scope.BankPage = data.Result;
+        }
+        else {
+            alertModal(data.Message, "error");
+        }
+    })
+    .error(function (err) {
+        alertModal(err.Message, "error");
+    });
+
+
+    $scope.AttendanceContract = function () {
+
+        $("#attendanceContract").modal();
+    };
+
+    $scope.BankInfo = function () {
+
+        $("#bankInfo").modal();
+    };
+
+    $scope.EducatorInfo = function () {
+
+        $("#educatorInfo").modal();
+    };
 }]);

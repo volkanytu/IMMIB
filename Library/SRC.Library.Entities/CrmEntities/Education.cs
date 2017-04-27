@@ -115,6 +115,8 @@ namespace SRC.Library.Entities.CrmEntities
         public string Info { get; set; }
 
         public EducationAttendance Attendance { get; set; }
+        public string EducatorInfo { get; set; }
+        public EntityReferenceWrapper EducatorAccount { get; set; }
 
         public bool IsParticipantAcceptable
         {
