@@ -97,5 +97,11 @@ namespace SRC.Library.Constants.SqlQueries
 	                                        AC.new_taxnumber = @taxNumber AND AC.StateCode = 0";
 
         #endregion
+
+        #region | PASSIVE ALL ACCOUNT |
+
+        public const string PASSIVE_ALL_ACCOUNT = @"UPDATE AccountBase SET StateCode = 1, StatusCode = 2 WHERE StateCode = 0";
+
+        #endregion
     }
 }

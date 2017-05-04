@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="SRC_Library_Services_Members_MemberService_crmegitim" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://uyeler.immib.org.tr/crmegitim.asmx</Value>
+      <Value Profile="(Default)">http://uyeler.immib.org.tr/cariuyeler.asmx</Value>
     </Setting>
   </Settings>
 </SettingsFile>

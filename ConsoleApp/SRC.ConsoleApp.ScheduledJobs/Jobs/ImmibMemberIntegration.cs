@@ -39,29 +39,43 @@ namespace SRC.ConsoleApp.ScheduledJobs.Jobs
         {
             List<ImmibMember> members = _service.GetMembers();
 
+            //TODO: GMT alanından gelen değerle değiştirilebiliriz belki
+            _accountBusiness.PassiveAllAccount();
+
             foreach (var immibMember in members)
             {
-                Account account = _accountBusiness.GetAccount(immibMember.TCVERNO);
+                Account account = _accountBusiness.GetAccount(immibMember.VERGINO);
                 if (account == null)
                 {
                     //immibmember to account
                     account = new Account();
                     account.Name = immibMember.UNVAN;
-                    account.TaxNumber = immibMember.TCVERNO;
+                    account.TaxNumber = immibMember.VERGINO;
+                    account.Address = immibMember.ADRES;
+                    account.PostalCode = immibMember.PK;
+                    account.WorkPhone = immibMember.TELEFON1;
+                    account.LandPhone = immibMember.TELEFON2;
+                    account.Fax = immibMember.FAX;
+                    account.EmailAddress = immibMember.EMAIL;
+                    account.WebSite = immibMember.WEB;
 
-                    Association association = _associationBusiness.GetAssociation(immibMember.BIRLIKKOD.ToInteger());
+                    Association association = _associationBusiness.GetAssociation(immibMember.SICIL.ToInteger());
                     if (association == null)
                     {
                         association = new Association
                         {
-                            Name = immibMember.BIRLIK,
-                            Code = immibMember.BIRLIKKOD.ToInteger()
+                            Name = "",
+                            Code = immibMember.SICIL.ToInteger()
                         };
                         association.Id = _baseAssociationBusiness.Insert(association);
                     }
 
                     account.Association = association.ToEntityReferenceWrapper();
                     _baseAccountBusiness.Insert(account);
+                }
+                else
+                {
+                    _baseAccountBusiness.SetState(account.Id, (int)Account.StateCode.ACTIVE, (int)Account.StatusCode.ACTIVE);
                 }
             }
         }

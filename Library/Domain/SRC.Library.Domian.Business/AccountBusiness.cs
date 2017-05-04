@@ -29,5 +29,10 @@ namespace SRC.Library.Domain.Business
         {
             return _accountDao.GetAccount(taxNumber);
         }
+
+        public void PassiveAllAccount()
+        {
+            _accountDao.PassiveAllAccount();
+        }
     }
 }

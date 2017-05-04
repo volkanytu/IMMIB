@@ -26,7 +26,7 @@ namespace SRC.Library.Services.Members.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://uyeler.immib.org.tr/crmegitim.asmx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://uyeler.immib.org.tr/cariuyeler.asmx")]
         public string SRC_Library_Services_Members_MemberService_crmegitim {
             get {
                 return ((string)(this["SRC_Library_Services_Members_MemberService_crmegitim"]));

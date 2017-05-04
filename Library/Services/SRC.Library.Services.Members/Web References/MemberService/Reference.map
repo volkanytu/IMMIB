@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Results>
-    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://uyeler.immib.org.tr/crmegitim.asmx?wsdl" filename="crmegitim.wsdl" />
-    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.DiscoveryDocumentReference" url="http://uyeler.immib.org.tr/crmegitim.asmx?disco" filename="crmegitim.disco" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://uyeler.immib.org.tr/cariuyeler.asmx?wsdl" filename="cariuyeler.wsdl" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.DiscoveryDocumentReference" url="http://uyeler.immib.org.tr/cariuyeler.asmx?disco" filename="cariuyeler.disco" />
   </Results>
 </DiscoveryClientResultsFile>

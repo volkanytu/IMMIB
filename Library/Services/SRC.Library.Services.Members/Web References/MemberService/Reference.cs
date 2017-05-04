@@ -27,15 +27,15 @@ namespace SRC.Library.Services.Members.MemberService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Web.Services.WebServiceBindingAttribute(Name="crmegitimSoap", Namespace="http://tempuri.org/")]
-    public partial class crmegitim : System.Web.Services.Protocols.SoapHttpClientProtocol {
+    [System.Web.Services.WebServiceBindingAttribute(Name="CariUyelerSoap", Namespace="http://tempuri.org/")]
+    public partial class CariUyeler : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
-        private System.Threading.SendOrPostCallback UyelistesiOperationCompleted;
+        private System.Threading.SendOrPostCallback UyeListesiOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
-        public crmegitim() {
+        public CariUyeler() {
             this.Url = global::SRC.Library.Services.Members.Properties.Settings.Default.SRC_Library_Services_Members_MemberService_crmegitim;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
@@ -71,34 +71,34 @@ namespace SRC.Library.Services.Members.MemberService {
         }
         
         /// <remarks/>
-        public event UyelistesiCompletedEventHandler UyelistesiCompleted;
+        public event UyeListesiCompletedEventHandler UyeListesiCompleted;
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Uyelistesi", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Uyelistesi(string sifre) {
-            object[] results = this.Invoke("Uyelistesi", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UyeListesi", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet UyeListesi(string sifre) {
+            object[] results = this.Invoke("UyeListesi", new object[] {
                         sifre});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void UyelistesiAsync(string sifre) {
-            this.UyelistesiAsync(sifre, null);
+        public void UyeListesiAsync(string sifre) {
+            this.UyeListesiAsync(sifre, null);
         }
         
         /// <remarks/>
-        public void UyelistesiAsync(string sifre, object userState) {
-            if ((this.UyelistesiOperationCompleted == null)) {
-                this.UyelistesiOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUyelistesiOperationCompleted);
+        public void UyeListesiAsync(string sifre, object userState) {
+            if ((this.UyeListesiOperationCompleted == null)) {
+                this.UyeListesiOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUyeListesiOperationCompleted);
             }
-            this.InvokeAsync("Uyelistesi", new object[] {
-                        sifre}, this.UyelistesiOperationCompleted, userState);
+            this.InvokeAsync("UyeListesi", new object[] {
+                        sifre}, this.UyeListesiOperationCompleted, userState);
         }
         
-        private void OnUyelistesiOperationCompleted(object arg) {
-            if ((this.UyelistesiCompleted != null)) {
+        private void OnUyeListesiOperationCompleted(object arg) {
+            if ((this.UyeListesiCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.UyelistesiCompleted(this, new UyelistesiCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.UyeListesiCompleted(this, new UyeListesiCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -123,17 +123,17 @@ namespace SRC.Library.Services.Members.MemberService {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
-    public delegate void UyelistesiCompletedEventHandler(object sender, UyelistesiCompletedEventArgs e);
+    public delegate void UyeListesiCompletedEventHandler(object sender, UyeListesiCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class UyelistesiCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class UyeListesiCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal UyelistesiCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal UyeListesiCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

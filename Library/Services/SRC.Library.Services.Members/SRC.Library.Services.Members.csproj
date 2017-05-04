@@ -68,10 +68,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://uyeler.immib.org.tr/crmegitim.asmx">
+    <WebReferenceUrl Include="http://uyeler.immib.org.tr/cariuyeler.asmx/UyeListesi">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\MemberService\</RelPath>
-      <UpdateFromURL>http://uyeler.immib.org.tr/crmegitim.asmx</UpdateFromURL>
+      <UpdateFromURL>http://uyeler.immib.org.tr/cariuyeler.asmx/UyeListesi</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -87,14 +87,11 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="SRC.Library.Services.Members.snk" />
-    <None Include="Web References\MemberService\crmegitim.wsdl" />
+    <None Include="Web References\MemberService\cariuyeler.wsdl" />
     <None Include="Web References\MemberService\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Web References\MemberService\crmegitim.disco" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interfaces\" />
@@ -108,6 +105,9 @@
       <Project>{b8161203-76e4-4500-92c5-4c98b17b75ef}</Project>
       <Name>SRC.Library.Entities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\MemberService\cariuyeler.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

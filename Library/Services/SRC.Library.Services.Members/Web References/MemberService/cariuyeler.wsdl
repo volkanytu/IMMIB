@@ -2,17 +2,17 @@
 <wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
-      <s:element name="Uyelistesi">
+      <s:element name="UyeListesi">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="sifre" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="UyelistesiResponse">
+      <s:element name="UyeListesiResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="UyelistesiResult">
+            <s:element minOccurs="0" maxOccurs="1" name="UyeListesiResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -33,46 +33,46 @@
       </s:element>
     </s:schema>
   </wsdl:types>
-  <wsdl:message name="UyelistesiSoapIn">
-    <wsdl:part name="parameters" element="tns:Uyelistesi" />
+  <wsdl:message name="UyeListesiSoapIn">
+    <wsdl:part name="parameters" element="tns:UyeListesi" />
   </wsdl:message>
-  <wsdl:message name="UyelistesiSoapOut">
-    <wsdl:part name="parameters" element="tns:UyelistesiResponse" />
+  <wsdl:message name="UyeListesiSoapOut">
+    <wsdl:part name="parameters" element="tns:UyeListesiResponse" />
   </wsdl:message>
-  <wsdl:message name="UyelistesiHttpGetIn">
+  <wsdl:message name="UyeListesiHttpGetIn">
     <wsdl:part name="sifre" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="UyelistesiHttpGetOut">
+  <wsdl:message name="UyeListesiHttpGetOut">
     <wsdl:part name="Body" element="tns:DataSet" />
   </wsdl:message>
-  <wsdl:message name="UyelistesiHttpPostIn">
+  <wsdl:message name="UyeListesiHttpPostIn">
     <wsdl:part name="sifre" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="UyelistesiHttpPostOut">
+  <wsdl:message name="UyeListesiHttpPostOut">
     <wsdl:part name="Body" element="tns:DataSet" />
   </wsdl:message>
-  <wsdl:portType name="crmegitimSoap">
-    <wsdl:operation name="Uyelistesi">
-      <wsdl:input message="tns:UyelistesiSoapIn" />
-      <wsdl:output message="tns:UyelistesiSoapOut" />
+  <wsdl:portType name="CariUyelerSoap">
+    <wsdl:operation name="UyeListesi">
+      <wsdl:input message="tns:UyeListesiSoapIn" />
+      <wsdl:output message="tns:UyeListesiSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:portType name="crmegitimHttpGet">
-    <wsdl:operation name="Uyelistesi">
-      <wsdl:input message="tns:UyelistesiHttpGetIn" />
-      <wsdl:output message="tns:UyelistesiHttpGetOut" />
+  <wsdl:portType name="CariUyelerHttpGet">
+    <wsdl:operation name="UyeListesi">
+      <wsdl:input message="tns:UyeListesiHttpGetIn" />
+      <wsdl:output message="tns:UyeListesiHttpGetOut" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:portType name="crmegitimHttpPost">
-    <wsdl:operation name="Uyelistesi">
-      <wsdl:input message="tns:UyelistesiHttpPostIn" />
-      <wsdl:output message="tns:UyelistesiHttpPostOut" />
+  <wsdl:portType name="CariUyelerHttpPost">
+    <wsdl:operation name="UyeListesi">
+      <wsdl:input message="tns:UyeListesiHttpPostIn" />
+      <wsdl:output message="tns:UyeListesiHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="crmegitimSoap" type="tns:crmegitimSoap">
+  <wsdl:binding name="CariUyelerSoap" type="tns:CariUyelerSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="Uyelistesi">
-      <soap:operation soapAction="http://tempuri.org/Uyelistesi" style="document" />
+    <wsdl:operation name="UyeListesi">
+      <soap:operation soapAction="http://tempuri.org/UyeListesi" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -81,10 +81,10 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:binding name="crmegitimSoap12" type="tns:crmegitimSoap">
+  <wsdl:binding name="CariUyelerSoap12" type="tns:CariUyelerSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="Uyelistesi">
-      <soap12:operation soapAction="http://tempuri.org/Uyelistesi" style="document" />
+    <wsdl:operation name="UyeListesi">
+      <soap12:operation soapAction="http://tempuri.org/UyeListesi" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -93,10 +93,10 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:binding name="crmegitimHttpGet" type="tns:crmegitimHttpGet">
+  <wsdl:binding name="CariUyelerHttpGet" type="tns:CariUyelerHttpGet">
     <http:binding verb="GET" />
-    <wsdl:operation name="Uyelistesi">
-      <http:operation location="/Uyelistesi" />
+    <wsdl:operation name="UyeListesi">
+      <http:operation location="/UyeListesi" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -105,10 +105,10 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:binding name="crmegitimHttpPost" type="tns:crmegitimHttpPost">
+  <wsdl:binding name="CariUyelerHttpPost" type="tns:CariUyelerHttpPost">
     <http:binding verb="POST" />
-    <wsdl:operation name="Uyelistesi">
-      <http:operation location="/Uyelistesi" />
+    <wsdl:operation name="UyeListesi">
+      <http:operation location="/UyeListesi" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
@@ -117,18 +117,18 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:service name="crmegitim">
-    <wsdl:port name="crmegitimSoap" binding="tns:crmegitimSoap">
-      <soap:address location="http://uyeler.immib.org.tr/crmegitim.asmx" />
+  <wsdl:service name="CariUyeler">
+    <wsdl:port name="CariUyelerSoap" binding="tns:CariUyelerSoap">
+      <soap:address location="http://uyeler.immib.org.tr/cariuyeler.asmx" />
     </wsdl:port>
-    <wsdl:port name="crmegitimSoap12" binding="tns:crmegitimSoap12">
-      <soap12:address location="http://uyeler.immib.org.tr/crmegitim.asmx" />
+    <wsdl:port name="CariUyelerSoap12" binding="tns:CariUyelerSoap12">
+      <soap12:address location="http://uyeler.immib.org.tr/cariuyeler.asmx" />
     </wsdl:port>
-    <wsdl:port name="crmegitimHttpGet" binding="tns:crmegitimHttpGet">
-      <http:address location="http://uyeler.immib.org.tr/crmegitim.asmx" />
+    <wsdl:port name="CariUyelerHttpGet" binding="tns:CariUyelerHttpGet">
+      <http:address location="http://uyeler.immib.org.tr/cariuyeler.asmx" />
     </wsdl:port>
-    <wsdl:port name="crmegitimHttpPost" binding="tns:crmegitimHttpPost">
-      <http:address location="http://uyeler.immib.org.tr/crmegitim.asmx" />
+    <wsdl:port name="CariUyelerHttpPost" binding="tns:CariUyelerHttpPost">
+      <http:address location="http://uyeler.immib.org.tr/cariuyeler.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

@@ -12,28 +12,29 @@ namespace SRC.Library.Services.Members
 {
     public class ImmibMembers
     {
-        private const string PASSWORD= "cRM2023px";
-        private MemberService.crmegitim _service;
+        private const string PASSWORD= "Crmk2012X";
+        private MemberService.CariUyeler _service;
         public ImmibMembers()
         {
-            _service = new crmegitim();
+            _service = new CariUyeler();
         }
 
         public List<ImmibMember> GetMembers()
         {
-            return new List<ImmibMember>()
-            {
-                new ImmibMember()
-                {
-                    TCVERNO = "0040490092",
-                    UNVAN = "ACAR AKÜ",
-                    BIRLIKKOD = 1212,
-                    BIRLIK =  "İMMİB.KİMYA"
-                }
-            };
-            //var memberList = _service.Uyelistesi(PASSWORD);
-            //DataTable dt = memberList.Tables[0].AsEnumerable().Take(5).CopyToDataTable();
-            //return dt.ToList<ImmibMember>();
+            //return new List<ImmibMember>()
+            //{
+            //    new ImmibMember()
+            //    {
+            //        TCVERNO = "0040490092",
+            //        UNVAN = "ACAR AKÜ",
+            //        BIRLIKKOD = 1212,
+            //        BIRLIK =  "İMMİB.KİMYA"
+            //    }
+            //};
+            
+            var memberList = _service.UyeListesi(PASSWORD);
+            DataTable dt = memberList.Tables[0].AsEnumerable().CopyToDataTable();
+            return dt.ToList<ImmibMember>();
         }
     }
 }

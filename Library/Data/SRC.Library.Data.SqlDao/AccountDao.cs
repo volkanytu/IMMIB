@@ -26,14 +26,17 @@ namespace SRC.Library.Data.SqlDao
 
         public Account GetAccount(string taxNumber)
         {
-            SqlParameter[] parameters = new SqlParameter[]
-            {
-                new SqlParameter("@taxNumber",taxNumber)
-            };
+            SqlParameter[] parameters = { new SqlParameter("@taxNumber",taxNumber) };
 
             DataTable dt = _sqlAccess.GetDataTable(AccountQueries.GET_ACCOUNT_BY_TAX_NUMBER, parameters);
 
             return dt.ToList<Account>().FirstOrDefault();
+        }
+
+
+        public void PassiveAllAccount()
+        {
+            _sqlAccess.ExecuteNonQuery(AccountQueries.PASSIVE_ALL_ACCOUNT);
         }
     }
 }

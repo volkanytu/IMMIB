@@ -59,6 +59,10 @@ namespace SRC.Library.Entities.CrmEntities
         public string Address { get; set; }
 
         [CrmFieldDataType(CrmDataType.STRING)]
+        [CrmFieldName(KEY_POSTAL_CODE)]
+        public string PostalCode { get; set; }
+
+        [CrmFieldDataType(CrmDataType.STRING)]
         [CrmFieldName(KEY_REGISTRY_ID)]
         public string RegistryId { get; set; }
 
@@ -92,6 +96,7 @@ namespace SRC.Library.Entities.CrmEntities
         public const string KEY_TAX_NUMBER = "new_taxnumber";
         public const string KEY_TAX_OFFICE = "new_taxoffice";
         public const string KEY_ADDRESS = "address1_line1";
+        public const string KEY_POSTAL_CODE = "address1_postalcode";
         public const string KEY_REGISTRY_ID = "new_registryid";
         public const string KEY_IS_ASSOCIATION_MEMBER = "new_isassociationmember";
         public const string KEY_CITY_ID = "new_cityid";
