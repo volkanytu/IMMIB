@@ -10,6 +10,7 @@ namespace SRC.Library.Data.Interfaces
     public interface IBaseDao<TEntity>
      where TEntity : new()
     {
+        //TEST
         Guid Insert(TEntity entity);
         void Update(TEntity entity);
         void Delete(Guid Id);
