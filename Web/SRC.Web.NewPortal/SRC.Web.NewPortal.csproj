@@ -1844,7 +1844,9 @@
     <Content Include="img\gallery\6.jpg" />
     <Content Include="img\gallery\7.jpg" />
     <Content Include="img\green-bg.jpg" />
+    <Content Include="img\immib.png" />
     <Content Include="img\input-spinner.gif" />
+    <Content Include="img\istanbul_turu_1.jpg" />
     <Content Include="img\kroki.jpeg" />
     <Content Include="img\left-arrow.png" />
     <Content Include="img\lock-bg.jpg" />

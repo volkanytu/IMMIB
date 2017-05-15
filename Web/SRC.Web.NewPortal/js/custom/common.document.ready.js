@@ -4,7 +4,7 @@
     $("input[inputtype='phonenumber']").mask("999-9999999");
 
     $.vegas({
-        src: 'http://egitim.immib.org.tr/jsv/istanbul_turu_1.jpg'
+        src: 'img/istanbul_turu_1.jpg'
     });
 
     $('.flexslider').flexslider({
