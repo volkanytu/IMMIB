@@ -4,7 +4,7 @@
     $("input[inputtype='phonenumber']").mask("999-9999999");
 
     $.vegas({
-        src: 'img/istanbul_turu_1.jpg'
+        src: baseUrl + 'img/istanbul_turu_1.jpg'
     });
 
     $('.flexslider').flexslider({
