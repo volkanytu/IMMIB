@@ -37,6 +37,22 @@
                 templateUrl: baseUrl + "app/home/views/index.html",
                 controller: 'HomeCtrl'
             })
+            .when('/Editor/Index/', {
+                templateUrl: baseUrl + "app/editor/views/editor.html",
+                controller: 'EditorCtrl'
+            })
+            .when('/Editor/', {
+                templateUrl: baseUrl + "app/editor/views/editor.html",
+                controller: 'EditorCtrl'
+            })
+            .when('/Editor/Index', {
+                templateUrl: baseUrl + "app/editor/views/editor.html",
+                controller: 'EditorCtrl'
+            })
+            .when('/Editor', {
+                templateUrl: baseUrl + "app/editor/views/editor.html",
+                controller: 'EditorCtrl'
+            })
             .otherwise({
                 redirectTo: '/Home/'
             });

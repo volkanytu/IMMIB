@@ -105,10 +105,12 @@
     <Compile Include="AssociationDao.cs" />
     <Compile Include="BaseSqlDao.cs" />
     <Compile Include="AccountDao.cs" />
+    <Compile Include="CommonDao.cs" />
     <Compile Include="ContactDao.cs" />
     <Compile Include="EducationAttendanceDao.cs" />
     <Compile Include="EducationDao.cs" />
     <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="Interfaces\ICommonDao.cs" />
     <Compile Include="Interfaces\IAssociationDao.cs" />
     <Compile Include="Interfaces\IAccountDao.cs" />
     <Compile Include="Interfaces\IEducationAttendanceDao.cs" />

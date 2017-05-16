@@ -48,9 +48,11 @@
     <Compile Include="AssociationBusiness.cs" />
     <Compile Include="BaseBusiness.cs" />
     <Compile Include="AccountBusiness.cs" />
+    <Compile Include="CommonBusiness.cs" />
     <Compile Include="ContactBusiness.cs" />
     <Compile Include="EducationAttendanceBusiness.cs" />
     <Compile Include="EducationBusiness.cs" />
+    <Compile Include="Interfaces\ICommonBusiness.cs" />
     <Compile Include="Interfaces\IAssociationBusiness.cs" />
     <Compile Include="Interfaces\IAccountBusiness.cs" />
     <Compile Include="Interfaces\IEducationAttendanceBusiness.cs" />

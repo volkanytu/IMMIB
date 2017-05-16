@@ -57,7 +57,8 @@ namespace SRC.Web.NewPortal
                     "~/assets/jquery-knob/js/jquery.knob.js",
                     "~/js/custom/common.document.ready.js",
                     "~/js/jquery.validate.min.js",
-                    "~/js/jquery.maskedinput.js"
+                    "~/js/jquery.maskedinput.js",
+                    "~/ckeditor/ckeditor.js"
                 }));
         }
 
@@ -87,7 +88,8 @@ namespace SRC.Web.NewPortal
                     "~/app/education/factories/*.js",
                     "~/app/pages/controllers/*.js",
                     "~/app/partials/controllers/*.js",
-                    "~/app/profile/controllers/*.js"
+                    "~/app/profile/controllers/*.js",
+                    "~/app/editor/controllers/*.js"
                 }));
         }
 
