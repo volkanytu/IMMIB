@@ -9,21 +9,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SRC.Library.Entities;
+using SRC.Library.Domain.Business.Interfaces;
 
 namespace SRC.WindowsService.TestService.Libs
 {
     public class ServiceManager : IDisposable, IServiceManager
     {
         private IBaseBusiness<SmsEnt> _baseSmsBusiness;
+        private ISmsBusiness _smsBusiness;
         private ISmsManager _smsManager;
 
         private System.Timers.Timer _timer;
-        private const int INTERVAL = 3 * 60 * 1000;
+        private const int INTERVAL = 30 * 1000;
         private bool isDisposed = false;
 
-        public ServiceManager(IBaseBusiness<SmsEnt> baseSmsBusiness, ISmsManager smsManager)
+        public ServiceManager(IBaseBusiness<SmsEnt> baseSmsBusiness, ISmsBusiness smsBusiness, ISmsManager smsManager)
         {
             _baseSmsBusiness = baseSmsBusiness;
+            _smsBusiness = smsBusiness;
             _smsManager = smsManager;
         }
 
@@ -73,25 +76,22 @@ namespace SRC.WindowsService.TestService.Libs
                 MessageResponse response = _smsManager.SendSms(smsEntity, sessionId);
                 if (response.Results != null)
                 {
-                    foreach (var r in response.Results)
+                    var result = response.Results[0];
+
+                    smsEntity.MessageID = result.MessageID;
+                    smsEntity.MessageStatus = result.Status;
+
+                    if (result.Status == "0")
                     {
-                        smsEntity.MessageID = r.MessageID;
-                        smsEntity.MessageStatus = r.Status;
-
-                        if (r.Status == "0")
-                        {
-                            smsEntity.Status = SmsEnt.StatusCode.SENT.ToOptionSetValueWrapper();
-                        }
-                        else
-                        {
-                            smsEntity.Status = SmsEnt.StatusCode.CANT_SEND.ToOptionSetValueWrapper();
-                        }
-
-                        _baseSmsBusiness.Update(smsEntity);
+                        smsEntity.Status = SmsEnt.StatusCode.SENT.ToOptionSetValueWrapper();
+                    }
+                    else
+                    {
+                        smsEntity.Status = SmsEnt.StatusCode.CANT_SEND.ToOptionSetValueWrapper();
                     }
                 }
 
-                _baseSmsBusiness.Update(smsEntity);
+                _smsBusiness.UpdateSmsResult(smsEntity);
             }
         }
     }

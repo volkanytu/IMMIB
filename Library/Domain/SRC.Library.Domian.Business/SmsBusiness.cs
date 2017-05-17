@@ -10,19 +10,26 @@ using SRC.Library.Domain.Business.Interfaces;
 using SRC.Library.Entities;
 using SRC.Library.Entities.CrmEntities;
 using SRC.Library.Entities.CustomEntities;
-
+using SRC.Library.Data.SqlDao.Interfaces;
 
 namespace SRC.Library.Domain.Business
 {
     public class SmsBusiness : ISmsBusiness
     {
         private IBaseDao<SmsEnt> _baseDao;
+        private ISmsDao _smsDao;
         private const string SUBJECT_REMEMBER_PASSWORD = "Şifre Hatırlatma Servisi";
         private const string SUBJECT_NEW_CONTACT = "Yeni Üye Servisi";
 
-        public SmsBusiness(IBaseDao<SmsEnt> baseDao)
+        public SmsBusiness(IBaseDao<SmsEnt> baseDao, ISmsDao smsDao)
         {
             _baseDao = (BaseSqlDao<SmsEnt>) baseDao;
+            _smsDao = smsDao;
+        }
+
+        public void UpdateSmsResult(SmsEnt sms)
+        {
+            _smsDao.UpdateSmsResult(sms);
         }
 
         public void CreateNewContactSms(Contact contact, string password)

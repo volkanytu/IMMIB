@@ -19,6 +19,8 @@ using SRC.Library.SmsManager;
 using SRC.Library.SmsManager.Libs;
 using System.Linq;
 using SRC.Library.Common;
+using SRC.Library.Domain.Business.Interfaces;
+using SRC.Library.Domain.Business;
 
 namespace SRC.WindowsService.TestService
 {
@@ -42,8 +44,14 @@ namespace SRC.WindowsService.TestService
                  .ToDictionary(n => n.Key.ToInteger(), n => n.Value.ToInteger());
             #endregion
 
+
             builder.Register<IBaseDao<SmsEnt>>(c => new BaseSqlDao<SmsEnt>(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>(), SmsQueries.GET_SMS, SmsQueries.GET_SMS_LIST)).InstancePerDependency();
+            builder.Register<ISmsDao>(c => new SmsDao(c.Resolve<ISqlAccess>(), c.Resolve<IMsCrmAccess>())).InstancePerDependency();
+
             builder.Register<IBaseBusiness<SmsEnt>>(c => new BaseBusiness<SmsEnt>(c.Resolve<IBaseDao<SmsEnt>>())).InstancePerDependency();
+            builder.Register<ISmsBusiness>(c => new SmsBusiness(c.Resolve<IBaseDao<SmsEnt>>(), c.Resolve<ISmsDao>())).InstancePerDependency();
+
+
             builder.Register<ISmsManager>(c => new SmsManager(new SmsConfig() { AccountNumber = ConfigurationManager.AppSettings["AccountNumber"].ToString(),UserName = ConfigurationManager.AppSettings["UserName"].ToString(),
                 Password = ConfigurationManager.AppSettings["Password"].ToString(),
                 ShortNumber = ConfigurationManager.AppSettings["ShortNumber"].ToString(),
@@ -51,7 +59,8 @@ namespace SRC.WindowsService.TestService
             })).InstancePerDependency();
 
             builder.Register<IServiceManager>(c => new ServiceManager(c.Resolve<IBaseBusiness<SmsEnt>>()
-                ,c.Resolve<ISmsManager>()))
+                , c.Resolve<ISmsBusiness>()
+                , c.Resolve<ISmsManager>()))
                 .InstancePerLifetimeScope()
                 .InterceptedBy(typeof(LogInterceptor));
 
