@@ -10,6 +10,9 @@ namespace SRC.Web.NewPortal
         public const string BundleStyleMain = "~/content/style/main";
         public const string BundleJsMain = "~/bundles/js/main";
 
+        public const string BundleStyleEditor = "~/content/style/editor";
+        public const string BundleJsEditor = "~/bundles/js/editor";
+
         public const string BundleStyleAngular = "~/bundles/style/angular";
         public const string BundleJsAngular = "~/bundles/js/angular";
 
@@ -18,12 +21,14 @@ namespace SRC.Web.NewPortal
 
         public const string BundleJsAngularAppMain = "~/bundles/js/angular-app-main";
 
+        public const string BundleJsCkEditor = "~/bundles/js/ckeditor";
 
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.IgnoreList.Clear();
             RegisterMainBundles(bundles);
             RegisterAngularBundles(bundles);
+            RegisterEditorBundles(bundles);
         }
 
         #region | PRIVATE METHODS |
@@ -41,9 +46,10 @@ namespace SRC.Web.NewPortal
                     "~/css/site.css"
                 }));
 
+
             bundles.Add(CreateScriptBundle(BundleJsMain, new[]
                 {
-                    "~/js/jquery.js",
+                    "~/js/jquery.min.js",
                     "~/js/jquery.scrollTo.min.js",
                     "~/js/jquery.nicescroll.js",
                     "~/js/jquery.dcjqaccordion.2.7.js",
@@ -58,7 +64,42 @@ namespace SRC.Web.NewPortal
                     "~/js/custom/common.document.ready.js",
                     "~/js/jquery.validate.min.js",
                     "~/js/jquery.maskedinput.js",
-                    "~/ckeditor/ckeditor.js"
+                    //"~/ckeditor/ckeditor.js"
+                }));
+        }
+
+        private static void RegisterEditorBundles(BundleCollection bundles)
+        {
+            bundles.Add(CreateStyleBundle(BundleStyleEditor, new[]
+                {
+                    "~/css/bootstrap.min.css",
+                    "~/css/bootstrap-reset.css",
+                    "~/assets/font-awesome/css/font-awesome.css",
+                    "~/css/style.css",
+                    "~/css/style-responsive.css",
+                    "~/css/jquery.vegas.css",
+                    "~/css/flexslider.css",
+                    "~/css/site.css"
+                }));
+
+            bundles.Add(CreateScriptBundle(BundleJsEditor, new[]
+                {
+                    "~/js/jquery.min.js",
+                    "~/js/jquery.scrollTo.min.js",
+                    "~/js/jquery.nicescroll.js",
+                    "~/js/jquery.dcjqaccordion.2.7.js",
+                    "~/js/bootstrap.min.js",
+                    "~/js/hover-dropdown.js",
+                    "~/js/respond.min.js",
+                    "~/js/slidebars.min.js",
+                    "~/js/common-scripts.js",
+                    "~/js/jquery.vegas.js",
+                    "~/js/jquery.flexslider.js",
+                    "~/assets/jquery-knob/js/jquery.knob.js",
+                    //"~/js/custom/common.document.ready.js",
+                    "~/js/jquery.validate.min.js",
+                    "~/js/jquery.maskedinput.js",
+                    //"~/ckeditor/ckeditor.js"
                 }));
         }
 

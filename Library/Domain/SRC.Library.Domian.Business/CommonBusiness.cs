@@ -23,9 +23,9 @@ namespace SRC.Library.Domain.Business
             return _commonDao.GetEntityNameByCode(objectTypeCode);
         }
 
-        public object GetEntityFieldValue(string entityName, string fieldName)
+        public object GetEntityFieldValue(Guid id, string entityName, string fieldName)
         {
-            return _commonDao.GetEntityFieldValue(entityName, fieldName);
+            return _commonDao.GetEntityFieldValue(id, entityName, fieldName);
         }
 
         public void UpdateEntityField(EntityReferenceWrapper erEntity, KeyValuePair<string, object> value)

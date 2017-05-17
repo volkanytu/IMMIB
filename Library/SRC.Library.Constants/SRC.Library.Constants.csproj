@@ -55,6 +55,7 @@
     <Compile Include="SqlQueries\AccountQueries.cs" />
     <Compile Include="SqlQueries\AssociationQueries.cs" />
     <Compile Include="SqlQueries\CityQueries.cs" />
+    <Compile Include="SqlQueries\CommonQueries.cs" />
     <Compile Include="SqlQueries\ContactQueries.cs" />
     <Compile Include="SqlQueries\CreditCardQueries.cs" />
     <Compile Include="SqlQueries\DynamicPageQueries.cs" />

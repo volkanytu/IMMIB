@@ -1,9 +1,13 @@
 ﻿using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Client;
+using SRC.Library.Constants.SqlQueries;
 using SRC.Library.Data.Interfaces;
 using SRC.Library.Data.SqlDao.Interfaces;
 using SRC.Library.Entities;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace SRC.Library.Data.SqlDao
 {
@@ -28,18 +32,21 @@ namespace SRC.Library.Data.SqlDao
                 new SqlParameter("@objectTypeCode",objectTypeCode)
             };
 
-            return _sqlAccess.ExecuteScalar("", parameters).ToString();
+            return _sqlAccess.ExecuteScalar(CommonQueries.GET_ENTITY_NAME_BY_CODE, parameters).ToString();
         }
 
-        public object GetEntityFieldValue(string entityName, string fieldName)
+        public object GetEntityFieldValue(Guid id, string entityName, string fieldName)
         {
-            SqlParameter[] parameters = new SqlParameter[]
-            {
-                new SqlParameter("@entityName",entityName),
-                new SqlParameter("@fieldName",fieldName)
-            };
+            IOrganizationService service = _msCrmAccess.GetCrmService();
 
-            return _sqlAccess.ExecuteScalar("", parameters).ToString();
+            var orgContext = new OrganizationServiceContext(service);
+
+            string pkName = string.Concat(entityName, "id");
+
+            return (from a in orgContext.CreateQuery(entityName)
+                    where
+                    (Guid)a[pkName] == id
+                    select a[fieldName]).ToList().FirstOrDefault();
         }
 
         public void UpdateEntityField(EntityReferenceWrapper erEntity, KeyValuePair<string, object> value)

@@ -165,6 +165,7 @@
     <Compile Include="MockData\EducationMock.cs" />
     <Compile Include="Models\HeaderMenuItem.cs" />
     <Compile Include="Models\LoggedUser.cs" />
+    <Compile Include="Models\SaveEditorTestRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2138,7 +2139,7 @@
     <Content Include="js\jquery.dcjqaccordion.2.7.js" />
     <Content Include="js\jquery.dcjqaccordion.2.7.min.js" />
     <Content Include="js\jquery.flexslider.js" />
-    <Content Include="js\jquery.js" />
+    <Content Include="js\jquery.min.js" />
     <Content Include="js\jquery.maskedinput.js" />
     <Content Include="js\jquery.nicescroll.js" />
     <Content Include="js\jquery.pulsate.min.js" />

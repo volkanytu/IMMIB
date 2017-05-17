@@ -7,7 +7,7 @@ namespace SRC.Library.Domain.Business.Interfaces
     public interface ICommonBusiness
     {
         string GetEntityNameByCode(int objectTypeCode);
-        object GetEntityFieldValue(string entityName, string fieldName);
+        object GetEntityFieldValue(Guid id, string entityName, string fieldName);
         void UpdateEntityField(EntityReferenceWrapper erEntity, KeyValuePair<string, object> value);
     }
 }
