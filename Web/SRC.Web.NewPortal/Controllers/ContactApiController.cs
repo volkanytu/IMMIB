@@ -124,6 +124,8 @@ namespace SRC.Web.NewPortal.Controllers
             {
                 if (!_contactFacade.CheckUserExists(contact.EmailAddress))
                 {
+                    string originalPassword = contact.Password;
+                    contact.Name = contact.FirstName + " " + contact.LastName;
                     contact.UserName = contact.EmailAddress;
                     contact.Password = contact.Password.ToSHA1();
                     var newContactId = _contactFacade.CreateContact(contact);
@@ -143,6 +145,9 @@ namespace SRC.Web.NewPortal.Controllers
 
                         _contactFacade.CreateAttachment(attachment);
                     }
+
+                    contact.Id = newContactId.Value; 
+                    _smsBusiness.CreateNewContactSms(contact, originalPassword);
 
                     returnValue.Success = true;
                     returnValue.Result = true;

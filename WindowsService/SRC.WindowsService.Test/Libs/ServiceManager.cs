@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SRC.Library.Entities;
 
 namespace SRC.WindowsService.TestService.Libs
 {
@@ -77,7 +78,16 @@ namespace SRC.WindowsService.TestService.Libs
                         smsEntity.MessageID = r.MessageID;
                         smsEntity.MessageStatus = r.Status;
 
-                        //TODO: Update StatusCode
+                        if (r.Status == "0")
+                        {
+                            smsEntity.Status = SmsEnt.StatusCode.SENT.ToOptionSetValueWrapper();
+                        }
+                        else
+                        {
+                            smsEntity.Status = SmsEnt.StatusCode.CANT_SEND.ToOptionSetValueWrapper();
+                        }
+
+                        _baseSmsBusiness.Update(smsEntity);
                     }
                 }
 

@@ -18,10 +18,26 @@ namespace SRC.Library.Domain.Business
     {
         private IBaseDao<SmsEnt> _baseDao;
         private const string SUBJECT_REMEMBER_PASSWORD = "Şifre Hatırlatma Servisi";
+        private const string SUBJECT_NEW_CONTACT = "Yeni Üye Servisi";
 
         public SmsBusiness(IBaseDao<SmsEnt> baseDao)
         {
             _baseDao = (BaseSqlDao<SmsEnt>) baseDao;
+        }
+
+        public void CreateNewContactSms(Contact contact, string password)
+        {
+            var sms = new SmsEnt
+            {
+                Contact = contact.ToEntityReferenceWrapper(),
+                PhoneNumber = contact.MobilePhone,
+                Name = SUBJECT_NEW_CONTACT,
+                Message = string.Format(SmsEnt.CREATE_CONTACT_TEXT, contact.Name, contact.UserName, password)
+            };
+
+            ValidateSms(sms);
+
+            _baseDao.Insert(sms);
         }
 
         public void CreateRememberPasswordSms(Contact contact, string password)

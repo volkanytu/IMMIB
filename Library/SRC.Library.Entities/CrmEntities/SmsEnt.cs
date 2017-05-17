@@ -41,6 +41,7 @@ namespace SRC.Library.Entities.CrmEntities
         [CrmFieldName(KEY_MESSAGE_ID)]
         public string MessageID { get; set; }
 
+        public const string CREATE_CONTACT_TEXT = "SN. {0}, IMMIB Eğitim Portalı kullanıcı adınız: {1} , şifreniz: {2} . İsterseniz şifre değiştirme bölümünden şifrenizi değiştirebilirsiniz. Teşekkürler...";
         public const string REMEMBER_PASSWORD_TEXT = "SN. {0}, IMMIB Eğitim Portalı şifreniz: {1} olarak değiştirilmiştir. Teşekkürler...";
 
         public const string KEY_LOGICAL_NAME = "new_sms";
