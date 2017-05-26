@@ -77,7 +77,7 @@ namespace SRC.Library.Domain.Facade
 
         public List<Education> GetComingEducationList(Guid? associationId = null)
         {
-            List<Education> educations = _educationBusiness.GetLastEducations().Where(p => p.IsExpired == false).ToList();
+            List<Education> educations = _educationBusiness.GetLastEducations().Where(p => p.IsExpired == false).OrderBy(p=>p.StartDate).ToList();
 
             if (associationId == null) //Birlik yok ise tüm eğitimler döner
                 return educations.Take(5).ToList();

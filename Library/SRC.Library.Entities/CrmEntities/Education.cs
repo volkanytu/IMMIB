@@ -176,7 +176,11 @@ namespace SRC.Library.Entities.CrmEntities
             {
                 if (StartDate != null && EndDate != null)
                 {
-                    return string.Format("{0}-{1}", StartDate.Value.ToString("dd.MM.yyyy"), EndDate.Value.ToString("dd.MM.yyyy"));
+                    if ((StartDate.Value - EndDate.Value).Days != 0 )
+                    {
+                        return string.Format("{0}-{1}", StartDate.Value.ToString("dd.MM.yyyy"), EndDate.Value.ToString("dd.MM.yyyy"));
+                    }
+                    return StartDate.Value.ToString("dd.MM.yyyy");
                 }
 
                 return null;

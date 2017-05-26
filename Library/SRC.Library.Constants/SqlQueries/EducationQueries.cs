@@ -35,10 +35,10 @@ namespace SRC.Library.Constants.SqlQueries
 	                                            ,ED.new_townidName AS TownName
 	                                            ,ED.new_educationlocationid AS EducationLocation
 	                                            ,ED.new_educationlocationidName AS EducationLocationName
-	                                            ,ED.new_startdate AS StartDate
-	                                            ,ED.new_enddate AS EndDate
-	                                            ,ED.new_recordstartdate AS RecordStartDate
-	                                            ,ED.new_recordenddate AS RecordEndDate
+	                                            ,DATEADD(HOUR,3,ED.new_startdate) AS StartDate
+	                                            ,DATEADD(HOUR,3,ED.new_enddate) AS EndDate
+	                                            ,DATEADD(HOUR,3,ED.new_recordstartdate) AS RecordStartDate
+	                                            ,DATEADD(HOUR,3,ED.new_recordenddate) AS RecordEndDate
 	                                            ,ED.new_educationperiod AS EducationPeriod
 	                                            ,ED.new_info AS Info
 	                                            ,ED.statecode AS State
@@ -119,10 +119,10 @@ namespace SRC.Library.Constants.SqlQueries
 	                                                ,ED.new_townidName AS TownName
 	                                                ,ED.new_educationlocationid AS EducationLocation
 	                                                ,ED.new_educationlocationidName AS EducationLocationName
-	                                                ,ED.new_startdate AS StartDate
-	                                                ,ED.new_enddate AS EndDate
-	                                                ,ED.new_recordstartdate AS RecordStartDate
-	                                                ,ED.new_recordenddate AS RecordEndDate
+	                                                ,DATEADD(HOUR,3,ED.new_startdate) AS StartDate
+	                                                ,DATEADD(HOUR,3,ED.new_enddate) AS EndDate
+	                                                ,DATEADD(HOUR,3,ED.new_recordstartdate) AS RecordStartDate
+	                                                ,DATEADD(HOUR,3,ED.new_recordenddate) AS RecordEndDate
 	                                                ,ED.new_educationperiod AS EducationPeriod
 	                                                ,ED.new_info AS Info
 	                                                ,ED.statecode AS State
@@ -166,10 +166,10 @@ namespace SRC.Library.Constants.SqlQueries
 	                                                ,ED.new_townidName AS TownName
 	                                                ,ED.new_educationlocationid AS EducationLocation
 	                                                ,ED.new_educationlocationidName AS EducationLocationName
-	                                                ,ED.new_startdate AS StartDate
-	                                                ,ED.new_enddate AS EndDate
-	                                                ,ED.new_recordstartdate AS RecordStartDate
-	                                                ,ED.new_recordenddate AS RecordEndDate
+	                                                ,DATEADD(HOUR,3,ED.new_startdate) AS StartDate
+	                                                ,DATEADD(HOUR,3,ED.new_enddate) AS EndDate
+	                                                ,DATEADD(HOUR,3,ED.new_recordstartdate) AS RecordStartDate
+	                                                ,DATEADD(HOUR,3,ED.new_recordenddate) AS RecordEndDate
 	                                                ,ED.new_educationperiod AS EducationPeriod
 	                                                ,ED.new_info AS Info
 	                                                ,ED.statecode AS State
@@ -208,10 +208,10 @@ namespace SRC.Library.Constants.SqlQueries
 	                                                ,ED.new_townidName AS TownName
 	                                                ,ED.new_educationlocationid AS EducationLocation
 	                                                ,ED.new_educationlocationidName AS EducationLocationName
-	                                                ,ED.new_startdate AS StartDate
-	                                                ,ED.new_enddate AS EndDate
-	                                                ,ED.new_recordstartdate AS RecordStartDate
-	                                                ,ED.new_recordenddate AS RecordEndDate
+	                                                ,DATEADD(HOUR,3,ED.new_startdate) AS StartDate
+	                                                ,DATEADD(HOUR,3,ED.new_enddate) AS EndDate
+	                                                ,DATEADD(HOUR,3,ED.new_recordstartdate) AS RecordStartDate
+	                                                ,DATEADD(HOUR,3,ED.new_recordenddate) AS RecordEndDate
 	                                                ,ED.new_educationperiod AS EducationPeriod
 	                                                ,ED.new_info AS Info
 	                                                ,ED.statecode AS State
