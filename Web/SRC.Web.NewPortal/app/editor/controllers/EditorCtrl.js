@@ -1,7 +1,7 @@
 ﻿var appMain = angular.module('main');
 
 appMain.controller('EditorCtrl', ['$scope', '$sce', '$http', '$routeParams', 'safeApply', 'alertModal', 'flexSlider', 'commonFunc', function ($scope, $sce, $http, $routeParams, safeApply, alertModal, flexSlider, commonFunc) {
-
+    debugger;
     var id = $routeParams.id;
     var typeName = $routeParams.typename;
     var typeCode = $routeParams.type;
@@ -9,13 +9,14 @@ appMain.controller('EditorCtrl', ['$scope', '$sce', '$http', '$routeParams', 'sa
 
     $scope.getEntityFieldValueDataUrl = $scope.baseUrl + 'api/editorapi/GetEntityFieldValue';
     $scope.setEntityFieldValueDataUrl = $scope.baseUrl + 'api/editorapi/SetEntityFieldValue';
+    $scope.isSaveDisabled = true;
 
     if (id == null || id == ""
         || typeName == null || typeName == ""
         || typeCode == null || typeCode == ""
         || fieldName == null || fieldName == "") {
-        alertModal("Eksik Parametre", "error");
-
+         
+        $scope.isSaveDisabled = false;
         return;
     }
 
@@ -37,7 +38,7 @@ appMain.controller('EditorCtrl', ['$scope', '$sce', '$http', '$routeParams', 'sa
             fieldName: fieldName
         }
     }).success(function (data) {
-        if (data && data.Success && data.Result) {
+        if (data != null && data.Success) {
             CKEDITOR.instances.txtEdit.setData(data.Result);
         }
         else {

@@ -43,10 +43,17 @@ namespace SRC.Library.Data.SqlDao
 
             string pkName = string.Concat(entityName, "id");
 
-            return (from a in orgContext.CreateQuery(entityName)
-                    where
-                    (Guid)a[pkName] == id
-                    select a[fieldName]).ToList().FirstOrDefault();
+            var entity = (from a in orgContext.CreateQuery(entityName)
+                     where
+                     (Guid)a[pkName] == id
+                     select a).FirstOrDefault();
+
+            if (entity.Contains(fieldName))
+            {
+                return entity[fieldName];
+            }
+
+            return null;
         }
 
         public void UpdateEntityField(EntityReferenceWrapper erEntity, KeyValuePair<string, object> value)
