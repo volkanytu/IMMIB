@@ -27,21 +27,3 @@ appMain.controller('HowtoCtrl', ['$scope', '$sce', '$http', '$routeParams', 'saf
     });
 
 }]);
-
-if (Xrm.Page.getAttribute("customertypecode").getValue() != null) {
-    var customerType = Xrm.Page.getAttribute("customertypecode").getValue();
-    var formName = customerType != 3 ? 'İlgili Kişi' : 'Yeni Form';
-
-    if (Xrm.Page.ui.formSelector.getCurrentItem().getLabel() != formName) {
-        var items = Xrm.Page.ui.formSelector.items.get();
-        for (var i in items) {
-            var item = items[i];
-            var itemId = item.getId();
-            var itemLabel = item.getLabel();
-
-            if (itemLabel == formName) {
-                item.navigate();
-            }
-        }
-    }
-}
