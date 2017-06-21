@@ -118,6 +118,33 @@ namespace SRC.Library.Entities.CrmEntities
         public string EducatorInfo { get; set; }
         public EntityReferenceWrapper EducatorAccount { get; set; }
 
+        public string FormattedEducationPrice
+        {
+            get
+            {
+                if (EducationPrice != null)
+                {
+                    return EducationPrice != 0 ? ((decimal)EducationPrice).ToString("N2") + " TL" : "Ücretsiz";
+                }
+
+                return null;
+            }
+        }
+
+        public string FormattedEducationPeriod
+        {
+            get
+            {
+                if (StartDate != null && EndDate != null)
+                {
+                    TimeSpan timeSpan = (DateTime)EndDate - (DateTime)StartDate;
+                    return timeSpan.Days > 0 ? timeSpan.Days + " gün" : timeSpan.Hours + " saat";
+                }
+
+                return null;
+            }
+        }
+
         public bool IsParticipantAcceptable
         {
             get
